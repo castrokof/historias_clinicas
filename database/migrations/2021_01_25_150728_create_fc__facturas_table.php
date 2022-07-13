@@ -15,6 +15,8 @@ class CreateFcFacturasTable extends Migration
     {
         Schema::create('fc__facturas', function (Blueprint $table) {
             $table->bigIncrements('id_factura');
+            $table->string('factura',10);
+            $table->string('numero_factura',255);
             $table->dateTime('fechahora');
             $table->string('papellido',100);
             $table->string('sapellido',100)->nullable();
