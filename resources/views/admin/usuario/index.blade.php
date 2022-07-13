@@ -20,7 +20,7 @@
         @include('includes.form-mensaje')
     <div class="card card-info">
         <div class="card-header with-border">
-          <h3 class="card-title">Usuarios IPS</h3>
+          <h3 class="card-title">Usuarios</h3>
           <div class="card-tools pull-right">
             <button type="button" class="btn btn-default" name="create_usuario" id="create_usuario" data-toggle="modal" data-target="#modal-u"><i class="fa fa-fw fa-plus-circle"></i> Nuevo Usuario</button>
             </button>

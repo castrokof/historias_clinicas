@@ -5,11 +5,11 @@ Historia clinica
 @endsection
 @section("styles")
 <link href="{{asset("assets/$theme/plugins/datatables-bs4/css/dataTables.bootstrap4.css")}}" rel="stylesheet" type="text/css"/>       
+<link href="{{asset("assets/css/select2.min.css")}}" rel="stylesheet" type="text/css"/>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css" />
 
-<link href="{{asset("assets/css/select2.min.css")}}" rel="stylesheet" type="text/css"/>
 @endsection
 
 
@@ -41,7 +41,6 @@ Historia clinica
               <th>Paciente</th>
               <th>Profesional</th>
               <th>Fecha de creacion</th>
-                    
              
         </tr>
         </thead>
@@ -160,8 +159,7 @@ Historia clinica
                             <div class="card-body">
                             <form  id="form-general" class="form-horizontal" method="POST">
                                 @csrf      
-                                @include('admin.historia.form')
-                            
+                                @include('admin.historia.form')                            
                               </div>
                           </div>
                                           
@@ -734,7 +732,7 @@ function fill_datatable( historia_idp = '')
                           
                         }
                       )
-                      // Manteliviano.notificaciones('cliente creado correctamente', 'Sistema Ventas', 'success');
+                      // Manteliviano.notificaciones('cliente creado correctamente', 'Sistema Historias clinicas', 'success');
                       
                     }else if(data.success == 'ok1'){
                       $('#form-general-d')[0].reset();

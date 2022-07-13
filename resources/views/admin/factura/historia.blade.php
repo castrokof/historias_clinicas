@@ -1,7 +1,7 @@
 @extends("theme.$theme.layout")
 
 @section('titulo')
-    Citas
+    Historia clinica
 @endsection
 @section("styles")
 <link href="{{asset("assets/$theme/plugins/datatables-bs4/css/dataTables.bootstrap4.css")}}" rel="stylesheet" type="text/css"/>       
@@ -25,81 +25,134 @@
         @include('includes.form-mensaje')
     <div class="card card-info">
         <div class="card-header with-border">
-          <h3 class="card-title">Citas</h3>
-          <div class="card-tools pull-right">
-            <button type="button" class="btn btn-default" name="create_cita" id="create_cita" data-toggle="modal" data-target="#modal-u"><i class="fa fa-fw fa-plus-circle"></i> Nueva cita</button>
-            </button>
-          </div>
+          <h3 class="card-title">Historia clinica</h3>
+         
         </div>
-      <div class="card-body table-responsive p-2">
         
-      <table id="Citas" class="table table-hover  text-nowrap">
-        {{-- class="table table-hover table-bordered text-nowrap" --}}
-        <thead>
-        <tr>
-              <th>Acciones</th>
-              <th># Cita</th>
-              <th>Paciente</th>
-              <th>Tipo de cita</th>
-              <th>Fecha y Hora programada</th>
-              <th>Sede</th>
-              <th>Profesional</th>
-              <th>Estado de cita</th>
-              <th>fecha solicitada de cita</th>
-              <th>Fecha de creacion</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-  </form>
-    <!-- /.card-body -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary card-tabs">
+              <div class="card-header p-0 pt-1">
+                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" 
+                    id="custom-tabs-one-datos-del-paciente-tab" 
+                    data-toggle="pill" 
+                    href="#custom-tabs-one-datos-del-paciente" 
+                    role="tab" 
+                    aria-controls="custom-tabs-one-datos-del-paciente" 
+                    aria-selected="false">Datos del paciente</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" 
+                    id="custom-tabs-one-consulta-tab" 
+                    data-toggle="pill" 
+                    href="#custom-tabs-one-consulta" 
+                    role="tab" 
+                    aria-controls="custom-tabs-one-Consulta" 
+                    aria-selected="false">Consulta</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" 
+                    id="custom-tabs-one-examen-tab" 
+                    data-toggle="pill" 
+                    href="#custom-tabs-one-examen" 
+                    role="tab" 
+                    aria-controls="custom-tabs-one-examen" 
+                    aria-selected="false">Examen fisico</a>
+                  </li>
+                 </ul>
+              </div>
+              <div class="card-body">
+                <div class="tab-content" id="custom-tabs-one-tabContent">
+                  <div class="tab-pane fade active show" id="custom-tabs-one-datos-del-paciente" role="tabpanel" aria-labelledby="custom-tabs-one-datos-del-paciente-tab">
+                    <div class="card-body">
+                       <form  id="form-general" class="form-horizontal" method="POST">
+                        @csrf      
+                        @include('admin.pacienteprogramado.form')
+                    
+                      </div>
+                  </div>
+                                  
+                  <div class="tab-pane fade" id="custom-tabs-one-consulta" role="tabpanel" aria-labelledby="custom-tabs-one-consulta-tab">
+                    <div class="card-body">
+                      
+                                  @include('admin.pacienteprogramado.form-consulta')
+                      
+                     </div>
+                  </div>
+
+                  <div class="tab-pane fade" id="custom-tabs-one-examen" role="tabpanel" aria-labelledby="custom-tabs-one-examen-tab">
+                    <div class="card-body">
+                     
+                                  @include('admin.pacienteprogramado.form-examen')
+                                  <div class="card-footer">
+                                
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-6">
+                                    @include('includes.boton-form-crear-empresa-empleado-usuario')    
+                                </div>
+                                 </div>
+                      </form>
+                     </div>    
+                  </div>
+                 </div>
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+          
+        </div>
 </div>
 </div>
 </div>
 
-    <div class="modal fade" tabindex="-1" id ="modal-u" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">   
-        <div class="row">
-            <div class="col-lg-12">
-              @include('includes.form-error')
-              @include('includes.form-mensaje')
-              <span id="form_result"></span>
-               <div class="card card-info">
-                <div class="card-header">
-                  <h3 class="card-title-1"></h3>
-                  <div class="card-tools pull-right">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-              <form  id="form-general" class="form-horizontal" method="POST">
-                @csrf
-                <div class="card-body">
-                                  @include('admin.cita.form')
-                              </div>
-                              <!-- /.card-body -->
-                              <div class="card-footer">
-                                
-                                  <div class="col-lg-3"></div>
-                                  <div class="col-lg-6">
-                                  @include('includes.boton-form-crear-empresa-empleado-usuario')    
-                              </div>
-                               </div>
-                              <!-- /.card-footer -->
-              </form>
-                         
-            
-               
+
+<div class="modal fade" tabindex="-1" id ="modal-u" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-xl" role="document">
+  <div class="modal-content">   
+  <div class="row">
+      <div class="col-lg-12">
+        @include('includes.form-error')
+        @include('includes.form-mensaje')
+        <span id="form_result"></span>
+         <div class="card card-success">
+          <div class="card-header">
+            <div class="row">
+            <div class="col-10">  
+            <h6 class="card-title2"></h6>
+            </div>
+            <div class="col-2">  
+            <div class="card-tools pull-right">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
           </div>
-        </div>
-      </div>
+          </div>
+          </div>
+        <form  id="form-general" class="form-horizontal" method="POST">
+          @csrf
+          <div class="card-body">
+                            @include('admin.pacienteprogramado.form-diag')
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                          
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                            @include('includes.boton-form-crear-empresa-empleado-usuario')    
+                        </div>
+                         </div>
+                        <!-- /.card-footer -->
+        </form>
+                   
+      
+         
     </div>
   </div>
 </div>
-
-
+</div>
+</div>
+</div>
 @endsection
 
 
@@ -121,16 +174,45 @@
 
 <script>
  
+
+
+
+
  $(document).ready(function(){
-        //initiate dataTables plugin
-        $('#fechahora').datetimepicker(
-          { footer: true, 
-          modal: true,
-          format: 'yyyy-mm-dd HH:MM:SS '
-          
-          });
-        
-        $("#paciente").select2({
+
+  $('#create_diagnostico').click(function(){
+  $('#form-general')[0].reset();
+  $('.card-title2').text('Agregar Nuevo diagnostico');
+  $('#action_button').val('Add');
+  $('#action').val('Add');
+  $('#form_result').html('');
+  $('#modal-u').modal('show');
+ });
+
+
+$('.decimales').on('input', function () {
+  this.value = this.value.replace(/[^0-9,.]/g, '').replace(/,/g, '.');
+ });
+
+  $(function(){
+
+    $('.validanumericos').keypress(function(e) {
+    if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+      return false;
+    })
+    .on("cut copy paste",function(e){
+    e.preventDefault();
+    });
+
+});
+     //initiate dataTables plugin
+           
+        $("#cie10_motivo_consulta").select2({
+          theme: "bootstrap"
+
+        });
+
+        $("#cie10_motivo_consulta1").select2({
           theme: "bootstrap"
 
         });
@@ -146,16 +228,16 @@
         // });
 
         var myTable = 
-        $('#Citas').DataTable({
+        $('#diagnostico10').DataTable({
         language: idioma_espanol,
         processing: true,
         lengthMenu: [ [25, 50, 100, 500, -1 ], [25, 50, 100, 500, "Mostrar Todo"] ],
         processing: true,
         serverSide: true,
-        aaSorting: [[ 4, "desc" ]],
+        aaSorting: [[ 1, "asc" ]],
         
         ajax:{
-          url:"{{ route('cita')}}",
+          url:"{{ route('historia')}}",
               },
         columns: [
           {data:'action',
@@ -168,9 +250,6 @@
           {data:'paciente',
            name:'paciente'
           },
-          {data:'tipo_cita',
-           name:'tipo_cita'
-          },
           {data:'fechahora',
           name: 'fechahora'
           },
@@ -182,9 +261,6 @@
           },
           {data:'asistio',
           name:'asistio',
-          },
-          {data:'fechasp',
-          name:'fechasp',
           },
           {data:'created_at',
            name:'created_at'
@@ -247,16 +323,6 @@
     
         });
 
-  $('#create_cita').click(function(){
-  $('#form-general')[0].reset();
-  $('#paciente').val('').trigger('change.select2');
-  $('#profesional').val('').trigger('change.select2');
-  $('.card-title-1').text('Agregar nueva cita');
-  $('#action_button').val('Add');
-  $('#action').val('Add');
-  $('#form_result').html('');
-  $('#modal-u').modal('show');
- });
 
  $('#form-general').on('submit', function(event){
     event.preventDefault(); 
@@ -271,28 +337,20 @@
 
   if($('#action').val() == 'Add')
   {
-    text = "Estás por crear un cita"
-    url = "{{route('guardar_cita')}}";
+    text = "Estás por crear una historia"
+    url = "{{route('guardar_historia')}}";
     method = 'post';
-    fechahora = $('#fechahora').val();
-    sede = $('#sede').val();
-    usuario_id = $('#profesional').val();
-    paciente_id = $('#paciente').val();
-    tipo_cita = $('#tipo_cita').val();
-    fechasp = $('#fechasp').val();
+    usuario_id = $('#usuario_id').val();
+    paciente_id = $('#paciente_id').val();
 
   }   
 
   if($('#action').val() == 'Edit')
   {
-    text = "Estás por actualizar un cita"
+    text = "Estás por actualizar una cita"
     var updateid = $('#hidden_id').val();
-    url = "/cita/"+updateid;
+    url = "/historia/"+updateid;
     method = 'put';
-    fechahora = $('#fechahora').val();
-    sede = $('#sede').val();
-    usuario_id = $('#profesional').val();
-    paciente_id = $('#paciente').val();
   }  
     Swal.fire({
      title: "¿Estás seguro?",
@@ -306,8 +364,7 @@
     $.ajax({
            url:url,
            method:method,
-           data:{fechahora:fechahora, sede:sede, paciente_id:paciente_id, usuario_id:usuario_id, tipo_cita:tipo_cita, fechasp:fechasp,
-            "_token": $("meta[name='csrf-token']").attr("content")},
+           data:$(this).serialize(),
            dataType:"json",
            success:function(data){
               var html = '';
@@ -331,7 +388,7 @@
                       Swal.fire(
                         {
                           icon: 'success',
-                          title: 'cita creada correctamente',
+                          title: 'Historia creado correctamente',
                           showConfirmButton: false,
                           timer: 1500
                           
@@ -346,24 +403,9 @@
                       Swal.fire(
                         {
                           icon: 'warning',
-                          title: 'cita actualizado correctamente',
+                          title: 'Historia actualizado correctamente',
                           showConfirmButton: false,
                           timer: 1500
-                          
-                        }
-                      )
-                     
-
-                    }else if(data.success == 'tomada'){
-                      //$('#form-general')[0].reset();
-                      $('#Citas').DataTable().ajax.reload();
-                      //$('#modal-u').modal('hide');
-                      Swal.fire(
-                        {
-                          icon: 'warning',
-                          title: 'La hora del Profesional ya fue tomada por favor selecciona otro horario',
-                          showConfirmButton: true,
-                          //timer: 1500
                           
                         }
                       )
@@ -388,14 +430,12 @@ $(document).on('click', '.edit', function(){
     var id = $(this).attr('id');
     
   $.ajax({
-    url:"/cita/"+id+"/editar",
+    url:"/historia/"+id+"/editar",
     dataType:"json",
     success:function(data){
       $('#paciente').val(data.result.paciente_id).trigger('change.select2');
       $('#fechahora').val(data.result.fechahora);
       $('#sede').val(data.result.sede);
-      $('#fechasp').val(data.result.fechasp);
-      $('#tipo_cita').val(data.result.tipo_cita);
       $('#profesional').val(data.result.usuario_id).trigger('change.select2')
       $('#hidden_id').val(id);
       $('.card-title-1').text('Editar cita');
@@ -420,16 +460,16 @@ if (jqXHR.status === 403) {
 
 });
 
-// $.get(
-//   'selectp',
-//    function(pacientes1)
-//   {   
-//       $('#paciente').empty();
-//       $('#paciente').append("<option value=''>---seleccione paciente---</option>")
-//       $.each(pacientes1, function(paciente, value){
-//       $('#paciente').append("<option value='" + value + "'>" + value + "</option>")
-//       });
-//   }); 
+$.get(
+  'selectp',
+   function(pacientes1)
+  {   
+      $('#paciente').empty();
+      $('#paciente').append("<option value=''>---seleccione paciente---</option>")
+      $.each(pacientes1, function(paciente, value){
+      $('#paciente').append("<option value='" + value + "'>" + value + "</option>")
+      });
+  }); 
 
    var idioma_espanol =
                  {

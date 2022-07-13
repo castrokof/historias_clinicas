@@ -1,7 +1,7 @@
 @extends("theme.$theme.layout")
 
 @section('titulo')
-Pacientes
+Países
 @endsection
 @section("styles")
 <link href="{{asset("assets/$theme/plugins/datatables-bs4/css/dataTables.bootstrap4.css")}}" rel="stylesheet" type="text/css" />
@@ -24,35 +24,22 @@ Pacientes
     @include('includes.form-mensaje')
     <div class="card card-success">
       <div class="card-header with-border form-group row">
-        <h3 class="card-title-1 col-lg-10">Pacientes</h3>
+        <h3 class="card-title-1 col-lg-10">Países</h3>
         <div class="card-tools pull-right col-lg-2">
-          <button type="button" class="btn btn-default" name="create_paciente" id="create_paciente" data-toggle="modal" data-target="#modal-u"><i class="fa fa-fw fa-plus-circle"></i> Nuevo paciente</button>
+          <button type="button" class="btn btn-default" name="create_paciente" id="create_paciente" data-toggle="modal" data-target="#modal-u"><i class="fa fa-fw fa-plus-circle"></i> Nuevo País</button>
           </button>
         </div>
       </div>
       <div class="card-body table-responsive p-2">
 
-        <table id="pacientes" class="table table-hover  text-nowrap">
+        <table id="tpaises" class="table table-hover  text-nowrap">
           {{-- class="table table-hover table-bordered text-nowrap" --}}
           <thead>
             <tr>
               <th>Acciones</th>
-              <th>Id</th>
-              <th>1Nombre</th>
-              <th>2Nombre</th>
-              <th>1Apellido</th>
-              <th>2Apellido</th>
-              <th>Tipo documento</th>
-              <th>Documento</th>
-              <th>Edad</th>
-              <th>Ciudad</th>
-              <th>Dirección</th>
-              <th>Celular</th>
-              <th>Telefono</th>
-              <th>Correo</th>
-              <th>Grupo</th>
-              <th>Régimen</th>
-              <th>Observaciones</th>
+              <th>Codigo</th>
+              <th>Nombre</th>
+              <th>Estado</th>
               <th>Fecha de creacion</th>
             </tr>
           </thead>
@@ -84,7 +71,7 @@ Pacientes
             <form id="form-general" class="form-horizontal" method="POST">
               @csrf
               <div class="card-body">
-                @include('admin.paciente.form')
+                @include('admin.pais.form')
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
@@ -128,52 +115,10 @@ Pacientes
   $(document).ready(function() {
 
 
-    //funcion de edad
-
-    function edad() {
-
-      let fecha1 = new Date($("#futuro2").val());
-      let fecha2 = new Date();
-
-      let resta = new Date(fecha2.getDate - fecha1.getDate);
-
-      let edad = Math.round(resta);
-
-
-    }
-
-
-
-    function edad() {
-
-      let hoy = new Date();
-
-
-      if ($('#futuro2').val() != null) {
-
-        var nacimiento = new Date($('#futuro2').val());
-        let edad = hoy.getFullYear() - nacimiento.getFullYear();
-        let meses = hoy.getMonth() - nacimiento.getMonth();
-
-        if (meses < 0 || (meses === 0 && hoy.getDate() < nacimiento.getDate())) {
-          edad--;
-        }
-        console.log(edad);
-
-        $('#edad').val(edad);
-
-      } else {
-
-        $('#edad').val();
-      }
-    }
-
-    $("#futuro2").change(edad);
-
     //initiate dataTables plugin
 
     var myTable =
-      $('#pacientes').DataTable({
+      $('#tpaises').DataTable({
         language: idioma_espanol,
         processing: true,
         lengthMenu: [
@@ -183,11 +128,11 @@ Pacientes
         processing: true,
         serverSide: true,
         aaSorting: [
-          [1, "asc"]
+          [2, "asc"]
         ],
 
         ajax: {
-          url: "{{ route('paciente')}}",
+          url: "{{ route('paises')}}",
         },
         columns: [{
             data: 'action',
@@ -195,68 +140,16 @@ Pacientes
             orderable: false
           },
           {
-            data: 'id_paciente',
-            name: 'id_paciente'
+            data: 'cod_pais',
+            name: 'cod_pais'
           },
           {
-            data: 'pnombre',
-            name: 'pnombre'
+            data: 'nombre',
+            name: 'nombre'
           },
           {
-            data: 'snombre',
-            name: 'snombre'
-          },
-          {
-            data: 'papellido',
-            name: 'papellido'
-          },
-          {
-            data: 'sapellido',
-            name: 'sapellido'
-          },
-          {
-            data: 'tipo_documento',
-            name: 'tipo_documento'
-          },
-          {
-            data: 'documento',
-            name: 'documento'
-          },
-          {
-            data: 'edad',
-            name: 'edad'
-          },
-          {
-            data: 'ciudad',
-            name: 'ciudad'
-          },
-          {
-            data: 'direccion',
-            name: 'direccion'
-          },
-          {
-            data: 'celular',
-            name: 'celular'
-          },
-          {
-            data: 'telefono',
-            name: 'telefono'
-          },
-          {
-            data: 'correo',
-            name: 'correo'
-          },
-          {
-            data: 'grupo',
-            name: 'grupo'
-          },
-          {
-            data: 'plan',
-            name: 'plan'
-          },
-          {
-            data: 'observaciones',
-            name: 'observaciones'
+            data: 'estado',
+            name: 'estado'
           },
           {
             data: 'created_at',
@@ -305,12 +198,45 @@ Pacientes
 
           }
         ],
+        "columnDefs": [{
+
+            "render": function(data, type, row) {
+              if (row["estado"] == 1) {
+                return ' Activo';
+                /* return data + ' - Activo'; */
+              } else {
+
+                return ' Inactivo';
+                /* return data + ' - Inactivo'; */
+
+              }
+
+            },
+            "targets": [3]
+          },
+          
+          /*  {
+
+            "render": function(data, type, row) {
+              if (row["type_salary"] == 1) {
+                return data + ' - Fijo';
+              } else {
+
+                return data + ' - Por horas';
+
+              }
+
+            },
+            "targets": [15]
+          } */
+
+        ],
 
       });
 
     $('#create_paciente').click(function() {
       $('#form-general')[0].reset();
-      $('.card-title').text('Agregar Nuevo paciente');
+      $('.card-title').text('Agregar Nuevo País');
       $('#action_button').val('Add');
       $('#action').val('Add');
       $('#form_result').html('');
@@ -324,15 +250,15 @@ Pacientes
       var text = '';
 
       if ($('#action').val() == 'Add') {
-        text = "Estás por crear un paciente"
-        url = "{{route('guardar_paciente')}}";
+        text = "Estás por crear un País"
+        url = "{{route('guardar_pais')}}";
         method = 'post';
       }
 
       if ($('#action').val() == 'Edit') {
-        text = "Estás por actualizar un paciente"
+        text = "Estás por actualizar un País"
         var updateid = $('#hidden_id').val();
-        url = "/paciente/" + updateid;
+        url = "/paises/" + updateid;
         method = 'put';
       }
       Swal.fire({
@@ -367,10 +293,10 @@ Pacientes
               if (data.success == 'ok') {
                 $('#form-general')[0].reset();
                 $('#modal-u').modal('hide');
-                $('#pacientes').DataTable().ajax.reload();
+                $('#tpaises').DataTable().ajax.reload();
                 Swal.fire({
                   icon: 'success',
-                  title: 'paciente creado correctamente',
+                  title: 'Pais creado correctamente',
                   showConfirmButton: false,
                   timer: 1500
 
@@ -380,10 +306,10 @@ Pacientes
               } else if (data.success == 'ok1') {
                 $('#form-general')[0].reset();
                 $('#modal-u').modal('hide');
-                $('#pacientes').DataTable().ajax.reload();
+                $('#tpaises').DataTable().ajax.reload();
                 Swal.fire({
                   icon: 'warning',
-                  title: 'paciente actualizado correctamente',
+                  title: 'Pais actualizado correctamente',
                   showConfirmButton: false,
                   timer: 1500
 
@@ -409,7 +335,7 @@ Pacientes
       var id = $(this).attr('id');
 
       $.ajax({
-        url: "/paciente/" + id + "/editar",
+        url: "/paises/" + id + "/editar",
         dataType: "json",
         success: function(data) {
           $('#pnombre').val(data.result.pnombre);
@@ -427,14 +353,16 @@ Pacientes
           $('#eps').val(data.result.eps);
           $('#sexo').val(data.result.sexo);
           $('#plan').val(data.result.plan);
-          $('#Ocupacion').val(data.result.Ocupacion);
           $('#observacion').val(data.result.observacion);
           $('#hidden_id').val(id);
-          $('.card-title').text('Editar Paciente');
+          $('.card-title').text('Editar País');
           $('#action_button').val('Edit');
           $('#action').val('Edit');
           $('#modal-u').modal('show');
+
         }
+
+
       }).fail(function(jqXHR, textStatus, errorThrown) {
 
         if (jqXHR.status === 403) {
@@ -446,52 +374,7 @@ Pacientes
 
     });
 
-    $("#paciente_pais").select2({
-      theme: "bootstrap",
-      ajax: {
-        url: "{{ route('pais')}}",
-        dataType: 'json',
-        delay: 250,
-        processResults: function(data) {
-          return {
-            results: $.map(data, function(data) {
 
-              return {
-
-                text: data.nombre,
-                id: data.id_pais
-
-              }
-            })
-          };
-        },
-        cache: true
-      }
-    });
-    //Select para consultar la EPS, Niveles 
-    $("#eps").select2({
-      theme: "bootstrap",
-      ajax: {
-        url: "{{ route('eps')}}",
-        dataType: 'json',
-        delay: 250,
-        processResults: function(data) {
-          return {
-            results: $.map(data, function(data) {
-
-              return {
-
-                //text: data.codigo,
-                text: data.codigo+" - "+data.nombre,
-                id: data.id_eps_empresas
-
-              }
-            })
-          };
-        },
-        cache: true
-      }
-    });
   });
 
 
