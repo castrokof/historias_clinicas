@@ -40,8 +40,6 @@ class UsuarioAdministradorSeeder extends Seeder
             'rol_id'=>1,
             'usuario_id'=>1,
 
-
-
         ]);
 
 
@@ -52,7 +50,7 @@ class UsuarioAdministradorSeeder extends Seeder
             'menu_id'=> 0,
             'nombre'=>'Admin',
             'url'=>'#',
-            'orden'=>1,
+            'orden'=>8,
             'icono'=>'far fa-building'
         ]);
         DB::table('menu')->insert([
@@ -92,18 +90,17 @@ class UsuarioAdministradorSeeder extends Seeder
             'menu_id'=> 0,
             'nombre'=>'Usuario',
             'url'=>'#',
-            'orden'=>4,
+            'orden'=>11,
             'icono'=>'fa fa-users'
         ]);
         DB::table('menu')->insert([
 
             'menu_id'=> 6,
-            'nombre'=>'Listar profesionales',
+            'nombre'=>'Usuarios',
             'url'=>'usuario',
             'orden'=>1,
             'icono'=>'fa fa-user'
         ]);
-
 
         DB::table('menu')->insert([
 
@@ -126,7 +123,7 @@ class UsuarioAdministradorSeeder extends Seeder
             'menu_id'=> 0,
             'nombre'=>'Tablero de control',
             'url'=>'tablero',
-            'orden'=>2,
+            'orden'=>9,
             'icono'=>'fas fa-tachometer-alt'
         ]);
         DB::table('menu')->insert([
@@ -142,16 +139,16 @@ class UsuarioAdministradorSeeder extends Seeder
             'menu_id'=> 0,
             'nombre'=>'IPS',
             'url'=>'#',
-            'orden'=>3,
+            'orden'=>10,
             'icono'=>'far fa-building'
         ]);
         DB::table('menu')->insert([
 
-            'menu_id'=> 12,
+            'menu_id'=> 38,
             'nombre'=>'Cita',
             'url'=>'cita',
             'orden'=>1,
-            'icono'=>'fa fa-calendar'
+            'icono'=>'fas fa-calendar-plus'
         ]);
         DB::table('menu')->insert([
 
@@ -169,10 +166,203 @@ class UsuarioAdministradorSeeder extends Seeder
             'orden'=>2,
             'icono'=>'fas fa-clipboard-list'
         ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 1,
+            'nombre'=>'Eps empresas',
+            'url'=>'eps_empresas',
+            'orden'=>5,
+            'icono'=>'far fa-building'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 0,
+            'nombre'=>'Parámetros Generales',
+            'url'=>'#',
+            'orden'=>1,
+            'icono'=>'fa fa-cog fa-spin fa-3x fa-fw'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 0,
+            'nombre'=>'Modulo Financiero',
+            'url'=>'#',
+            'orden'=>3,
+            'icono'=>'fas fa-chart-line'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 0,
+            'nombre'=>'Modulo Administrativo',
+            'url'=>'#',
+            'orden'=>4,
+            'icono'=>'fas fa-clipboard'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 0,
+            'nombre'=>'Modulo Inventario',
+            'url'=>'#',
+            'orden'=>5,
+            'icono'=>'fas fa-book'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 0,
+            'nombre'=>'Modulo Clínico',
+            'url'=>'#',
+            'orden'=>6,
+            'icono'=>'fas fa-clinic-medical'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 0,
+            'nombre'=>'Informes',
+            'url'=>'#',
+            'orden'=>7,
+            'icono'=>'fas fa-sitemap'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 33,
+            'nombre'=>'Sedes',
+            'url'=>'sedes',
+            'orden'=>1,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 33,
+            'nombre'=>'Servicvios',
+            'url'=>'servicvios',
+            'orden'=>2,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 33,
+            'nombre'=>'Países',
+            'url'=>'paises',
+            'orden'=>3,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 33,
+            'nombre'=>'Departamentos',
+            'url'=>'departamentos',
+            'orden'=>4,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 33,
+            'nombre'=>'Ciudades',
+            'url'=>'ciudades',
+            'orden'=>5,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 33,
+            'nombre'=>'Barrios',
+            'url'=>'barrios',
+            'orden'=>6,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 18,
+            'nombre'=>'Facturación General',
+            'url'=>'#',
+            'orden'=>0,
+            'icono'=>''
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 29,
+            'nombre'=>'Facturar',
+            'url'=>'facturas',
+            'orden'=>1,
+            'icono'=>'fas fa-coins'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 29,
+            'nombre'=>'Consultas',
+            'url'=>'consultar_factura',
+            'orden'=>2,
+            'icono'=>'fas fa-folder-open'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 29,
+            'nombre'=>'Informe Facturación',
+            'url'=>'informe_facturacion',
+            'orden'=>3,
+            'icono'=>'fas fa-chart-pie'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=>17,
+            'nombre'=>'Configuración Inicial',
+            'url'=>'#',
+            'orden'=>0,
+            'icono'=>'fas fa-tasks'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=>17,
+            'nombre'=>'Configuración Financiera',
+            'url'=>'#',
+            'orden'=>1,
+            'icono'=>'fas fa-tasks'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=>17,
+            'nombre'=>'Configuración Administrativa',
+            'url'=>'#',
+            'orden'=>2,
+            'icono'=>'fas fa-tasks'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=>17,
+            'nombre'=>'Configuración Inventarios',
+            'url'=>'#',
+            'orden'=>3,
+            'icono'=>'fas fa-tasks'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=>17,
+            'nombre'=>'Configuración Clínico',
+            'url'=>'#',
+            'orden'=>4,
+            'icono'=>'fas fa-tasks'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=>18,
+            'nombre'=>'Agenda Médica',
+            'url'=>'#',
+            'orden'=>1,
+            'icono'=>'fas fa-calendar-alt'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=>38,
+            'nombre'=>'Abrir Agenda',
+            'url'=>'abrir_agenda',
+            'orden'=>0,
+            'icono'=>'fas fa-calendar-check'
+        ]);
 
 
-
-        //Relación menu-rol
+        //Relación menu-rol        
 
         DB::table('menu_rol')->insert([
 
@@ -219,6 +409,11 @@ class UsuarioAdministradorSeeder extends Seeder
             'rol_id'=> 1,
             'menu_id'=> 9
         ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 10
+        ]);
 
         DB::table('menu_rol')->insert([
 
@@ -244,6 +439,121 @@ class UsuarioAdministradorSeeder extends Seeder
 
             'rol_id'=> 1,
             'menu_id'=> 15
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 16
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 17
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 18
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 19
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 20
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 21
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 22
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 23
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 24
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 25
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 26
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 27
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 28
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 29
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 30
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 31
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 32
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 33
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 34
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 35
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 36
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 37
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 38
         ]);
 
 

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             'menu',
             'menu_rol',
             'cie10',
-            //'paciente',
+            'paciente',
             //'cups'
 
         ]
@@ -33,7 +33,8 @@ class DatabaseSeeder extends Seeder
             $this->call(UsuarioAdministradorSeeder::class);
             $this->call(cie10Seeder::class);
             $this->call(cumsSeeder::class);
-             //$this->call(PacientesSeeder::class);
+            $this->call(paisesSeeder::class);
+             //$this->call(PacientesSeeder::class); paisesSeeder_2
             // $this->call(cupsSeeder::class);
     }
 
