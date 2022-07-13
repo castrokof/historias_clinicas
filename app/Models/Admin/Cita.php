@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models\Admin;
-
 use App\Models\Seguridad\Usuario;
 use Illuminate\Database\Eloquent\Model;
 

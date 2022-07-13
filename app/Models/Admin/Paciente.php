@@ -23,19 +23,25 @@ class Paciente extends Model
         'autorizacion',
         'grupo',
         'plan',
+        'Ocupacion',
+        'Poblacion_especial',
+        'pais_id',  
+        'dpto',     
         'ciudad',
         'sexo',
-        'dpto',
+        'orientacion_sexual',        
         'eps',
-        'estado_solicitud_farma',
+        'numero_afiliacion',
         'operador',
         'correo',
-        'observaciones',
         'futuro',
         'futuro1',
         'futuro2',
         'futuro3',
-        'futuro4'
+        'futuro4',
+        'observaciones',
+        'estado_solicitud_farma'
+        
     ];
 
 
@@ -45,6 +51,10 @@ class Paciente extends Model
 
     public function citap(){
         return $this->hasMany(Cita::class, 'paciente_id');
+    }
+
+    public function paisesp(){
+        return $this->belongsTo(Paises::class, 'pais_id');
     }
 
 }

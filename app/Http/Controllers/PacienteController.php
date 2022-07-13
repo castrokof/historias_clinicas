@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Eps_empresa;
 use App\Models\Admin\Paciente;
+use App\Models\Admin\Paises;
+use App\Models\Admin\Eps_niveles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -18,28 +21,26 @@ class PacienteController extends Controller
     public function index(Request $request)
     {
         $usuario_id = $request->session()->get('usuario_id');
+        if ($request->ajax()) {
+            $datas = Paciente::orderBy('id_paciente')
+                ->get();
 
 
 
-        if($request->ajax()){
 
-        $datas = Paciente::orderBy('id_paciente')
-        ->get();
 
-        return  DataTables()->of($datas)
-        ->addColumn('action', function($datas){
-        $button = '<button type="button" name="edit" id="'.$datas->id_paciente.'"
-        class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar usuario"><i class="far fa-edit"></i></button>';
+            return  DataTables()->of($datas)
+                ->addColumn('action', function ($datas) {
+                    $button = '<button type="button" name="edit" id="' . $datas->id_paciente . '"
+        class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar paciente"><i class="far fa-edit"></i></button>';
 
-      return $button;
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
 
-        })
-        ->rawColumns(['action'])
-        ->make(true);
-     }
-
-     return view('admin.paciente.index');
-
+        return view('admin.paciente.index');
     }
 
     /**
@@ -47,29 +48,36 @@ class PacienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function guardar(Request $request)
     {
         $rules = array(
             'pnombre'  => 'required|max:100',
             'papellido'  => 'required|max:100',
-            'documento' => 'numeric|required|min:10000|max:9999999999',
-            'celular' => 'numeric|required|min:10000|max:9999999999',
             'tipo_documento' => 'required',
+            'documento' => 'numeric|required|min:19|max:9999999999',
+            'celular' => 'numeric|required|min:50|max:9999999999',            
+            'Ocupacion' => 'required',
+            'eps' => 'required',
+            'Poblacion_especial' => 'required',
+            'pais_id' => 'required',
             'ciudad' => 'required',
             'direccion' => 'required',
-            'sexo' => 'required'
+            'sexo' => 'required',
+            'orientacion_sexual' => 'required'
 
         );
 
         $error = Validator::make($request->all(), $rules);
 
-        if($error->fails()) {
+        if ($error->fails()) {
 
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
         Paciente::create($request->all());
-            return response()->json(['success' => 'ok']);
+        return response()->json(['success' => 'ok']);
     }
 
     /**
@@ -102,15 +110,13 @@ class PacienteController extends Controller
      */
     public function editar($id)
     {
-        if(request()->ajax()){
+        if (request()->ajax()) {
 
             $data = Paciente::where('id_paciente', $id)->first();
 
-                return response()->json(['result'=>$data]);
-
-            }
-            return view('admin.paciente.index');
-
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.paciente.index');
     }
 
     /**
@@ -125,12 +131,17 @@ class PacienteController extends Controller
         $rules = array(
             'pnombre'  => 'required|max:100',
             'papellido'  => 'required|max:100',
-            'documento' => 'numeric|required|min:10000|max:9999999999',
-            'celular' => 'numeric|required|min:10000|max:9999999999',
+            'documento' => 'numeric|required|min:19|max:9999999999',
+            'celular' => 'numeric|required|min:50|max:9999999999',
             'tipo_documento' => 'required',
+            'Ocupacion' => 'required',
+            'eps' => 'required',
+            'Poblacion_especial' => 'required',
+            'pais_id' => 'required',
             'ciudad' => 'required',
-            'sexo' => 'required',
             'direccion' => 'required',
+            'sexo' => 'required',
+            'orientacion_sexual' => 'required'
 
 
         );
@@ -138,33 +149,67 @@ class PacienteController extends Controller
 
         $error = Validator::make($request->all(), $rules);
 
-        if($error->fails()) {
+        if ($error->fails()) {
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
         $data = DB::table('paciente')->where('id_paciente', '=', $id)
-        ->update([
-            'papellido' => $request->papellido,
-            'sapellido' => $request->sapellido,
-            'pnombre' => $request->pnombre,
-            'snombre' => $request->snombre,
-            'tipo_documento' => $request->tipo_documento,
-            'documento' => $request->documento,
-            'edad' => $request->edad,
-            'direccion' => $request->direccion,
-            'celular' => $request->celular,
-            'telefono' => $request->telefono,
-            'plan' => $request->plan,
-            'ciudad' => $request->ciudad,
-            'operador' => $request->operador,
-            'correo' => $request->correo,
-            'sexo' => $request->sexo,
-            'observaciones' => $request->observaciones,
-            'updated_at' => now()
+            ->update([
+                'papellido' => $request->papellido,
+                'sapellido' => $request->sapellido,
+                'pnombre' => $request->pnombre,
+                'snombre' => $request->snombre,
+                'tipo_documento' => $request->tipo_documento,
+                'documento' => $request->documento,
+                'edad' => $request->edad,
+                'sexo' => $request->sexo,
+                'pais_id' => $request->pais_id,
+                'futuro3' => $request->futuro3,
+                'direccion' => $request->direccion,
+                'celular' => $request->celular,
+                'telefono' => $request->telefono,
+                'plan' => $request->plan,
+                'Ocupacion' => $request->Ocupacion,
+                'Poblacion_especial' => $request->Poblacion_especial,
+                'ciudad' => $request->ciudad,
+                'operador' => $request->operador,
+                'correo' => $request->correo,
+                'observaciones' => $request->observaciones,
+                'updated_at' => now()
 
-          ]);
+            ]);
         // $data->update($request->all());
         return response()->json(['success' => 'ok1']);
+    }
+
+    public function selectpa(Request $request)
+    {
+        $paisp = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $paisp = Paises::orderBy('id_pais')
+                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->where('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($paisp);
+        }
+    }
+
+    public function selecteps(Request $request)
+    {
+        $paisp = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $paisp = Eps_empresa::orderBy('id_eps_empresas')                
+                ->where('codigo', 'LIKE', '%' . $term . '%')
+                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')                
+                ->get();
+            return response()->json($paisp);
+        }
     }
 
     /**
