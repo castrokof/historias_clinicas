@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,9 +12,6 @@
 */
 
 if(version_compare(PHP_VERSION, '7.2.0', '>=')) { error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); }
-
-
-
 
 /* RUTAS IMAGENES TEXTO */
 
@@ -93,6 +90,15 @@ Route::get('paciente/crear', 'PacienteController@crear')->name('crear_paciente')
 Route::post('paciente', 'PacienteController@guardar')->name('guardar_paciente')->middleware('superEditor');
 Route::get('paciente/{id}/editar', 'PacienteController@editar')->name('editar_paciente')->middleware('superEditor');
 Route::put('paciente/{id}', 'PacienteController@actualizar')->name('actualizar_paciente')->middleware('superEditor');
+Route::get('pais', 'PacienteController@selectpa')->name('pais')->middleware('superEditor');
+Route::get('eps', 'PacienteController@selecteps')->name('eps')->middleware('superEditor');
+
+/* RUTAS DE PAISES */
+Route::get('paises', 'PaisController@index')->name('paises')->middleware('superEditor');
+Route::get('paises/crear', 'PaisController@crear')->name('crear_pais')->middleware('superEditor');
+Route::post('paises', 'PaisController@guardar')->name('guardar_pais')->middleware('superEditor');
+Route::get('paises/{id}/editar', 'PaisController@editar')->name('editar_pais')->middleware('superEditor');
+Route::put('paises/{id}', 'PaisController@actualizar')->name('actualizar_pais')->middleware('superEditor');
 
 /* RUTAS DEL CITA */
 Route::get('cita', 'CitaController@index')->name('cita')->middleware('superEditor');
@@ -101,6 +107,15 @@ Route::post('cita', 'CitaController@guardar')->name('guardar_cita')->middleware(
 Route::get('cita/{id}/editar', 'CitaController@editar')->name('editar_cita')->middleware('superEditor');
 Route::put('cita/{id}', 'CitaController@actualizar')->name('actualizar_cita')->middleware('superEditor');
 Route::get('pacienteselect', 'CitaController@selectp')->name('selectp')->middleware('superEditor');
+
+/* RUTAS DE LA FACTURA */
+Route::get('factura', 'FacturaController@index')->name('factura')->middleware('superEditor');
+Route::get('factura/crear', 'FacturaController@crear')->name('crear_factura')->middleware('superEditor');
+Route::post('factura', 'FacturaController@guardar')->name('guardar_factura')->middleware('superEditor');
+Route::get('factura/{id}/editar', 'FacturaController@editar')->name('editar_factura')->middleware('superEditor');
+Route::put('factura/{id}', 'FacturaController@actualizar')->name('actualizar_factura')->middleware('superEditor');
+Route::get('pacientefact', 'FacturaController@selectpa')->name('pacientefact')->middleware('superEditor');
+
 
 /* RUTAS DE LA HISTORIA */
 Route::get('paciente-pro', 'HistoriaController@indexpaciente')->name('cita-paciente')->middleware('superEditor');
@@ -115,7 +130,7 @@ Route::get('pacienteselect', 'HistoriaController@selectp')->name('selectp')->mid
 Route::get('pacienteprogramado/{id}/editar', 'HistoriaController@editarp')->name('pacienteh')->middleware('superEditor');
 Route::get('cie10d', 'HistoriaController@selectc')->name('cie10d')->middleware('superEditor');
 Route::get('cups', 'HistoriaController@selectcups')->name('cups')->middleware('superEditor');
-Route::get('cums', 'HistoriaController@selectcums')->name('cums')->middleware('superEditor');
+Route::get('cums', 'HistoriaController@selectcumsindexpdf')->name('cums')->middleware('superEditor');
 Route::get('via', 'HistoriaController@selectvia')->name('via')->middleware('superEditor');
 
 //Ruta para imprimir historias
@@ -124,6 +139,17 @@ Route::get('exportarhpdf', 'HistoriaController@exportarhpdf')->name('exportarpdf
 Route::get('exportaropdf', 'HistoriaController@exportaropdf')->name('exportarpdfo')->middleware('superEditor');
 Route::get('exportarfpdf', 'HistoriaController@exportarfpdf')->name('exportarpdff')->middleware('superEditor');
 
+/* RUTAS PARA CREAR LAS EPS, NIVELES Y COPAGOS */
+Route::get('eps_empresas', 'EpsController@index')->name('eps_empresas')->middleware('superEditor');
+Route::get('eps_empresas/crear', 'EpsController@crear')->name('crear_eps_empresas')->middleware('superEditor');
+Route::post('eps_empresas', 'EpsController@guardar')->name('guardar_eps_empresas')->middleware('superEditor');
+Route::get('eps_empresas/{id}/editar', 'EpsController@editar')->name('editar_eps_empresas')->middleware('superEditor');
+Route::put('eps_empresas/{id}', 'EpsController@actualizar')->name('actualizar_eps_empresas')->middleware('superEditor');
+//Route::get('eps_empresas/{id}/agregar_nivel', 'EpsController@agregar_nivel')->name('agregarnivel_eps_empresas')->middleware('superEditor');
+Route::get('eps_niveles', 'EpsController@indexnivel')->name('eps_niveles')->middleware('superEditor');
+Route::get('eps_niveles/{id}/editarn', 'EpsController@editarn')->name('niveles_eps_empresas')->middleware('superEditor');
+Route::post('eps_niveles', 'EpsController@guardarnivel')->name('agregarnivel_eps_empresas')->middleware('superEditor');
+Route::put('eps_niveles/{id}', 'EpsController@actualizar')->name('actualizarnivel_eps_empresas')->middleware('superEditor');
 
 /* RUTAS DEL DIAGNOSTICO */
 Route::get('diagnostico', 'DiagnosticoController@index')->name('diagnostico')->middleware('superEditor');
@@ -223,7 +249,6 @@ Route::get('marca/crear', 'MarcasController@crear')->name('crear_marca')->middle
 Route::post('marca', 'MarcasController@guardar')->name('guardar_marca')->middleware('superEditor');
 Route::get('marca/{id}/editar', 'MarcasController@editar')->name('editar_marca')->middleware('superEditor');
 Route::put('marca/{id}', 'MarcasController@actualizar')->name('actualizar_marca')->middleware('superEditor');
-
 
 });
 
