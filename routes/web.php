@@ -75,6 +75,30 @@ Route::get('/tablero', 'AdminController@index')->name('tablero');
 
 Route::get('informes', 'AdminController@informes')->name('informes')->middleware('superConsultor');
 
+
+ //RUTA PARA LISTAS DE PALIATIVOS
+
+ Route::get('/listas-index', 'Listas\ListasController@index')->name('listasIndex')->middleware('superEditor');
+ Route::post('/crear-listas', 'Listas\ListasController@store')->name('crearlistas')->middleware('superEditor');
+ Route::get('/editar-listas/{id}', 'Listas\ListasController@show')->name('editar-listas')->middleware('superEditor');
+ Route::put('/actualizar-listas/{id}', 'Listas\ListasController@update')->name('actualizar-listas')->middleware('superEditor');
+ Route::delete('/borrar-listas/{id}', 'Listas\ListasController@destroy')->name('borrar-listas')->middleware('superEditor');
+
+ Route::post('/listas-estado', 'Listas\ListasController@updateestado')->name('lisestado')->middleware('superEditor');
+
+ //RUTA PARA LISTAS DETALLE DE
+ Route::get('/detallelistas', 'Listas\ListasDetalleController@indexDetalle')->name('listasdetalledetalle')->middleware('superEditor');
+ Route::post('/detallecrear-listas', 'Listas\ListasDetalleController@store')->name('crearlistasdetalle')->middleware('superEditor');
+ Route::get('/detalleeditar-listas/{id}', 'Listas\ListasDetalleController@show')->name('editar-listasdetalle')->middleware('superEditor');
+ Route::put('/detalleactualizar-listas/{id}', 'Listas\ListasDetalleController@update')->name('actualizar-listasdetalle')->middleware('superEditor');
+ Route::delete('/detalleborrar-listas/{id}', 'Listas\ListasDetalleController@destroy')->name('borrar-listasdetalle')->middleware('superEditor');
+
+ Route::post('/detalle-estado', 'Listas\ListasDetalleController@updateestado')->name('detestado')->middleware('superEditor');
+
+ //SELECT DE LISTAS
+
+ route::get('selectlist', 'Listas\ListasDetalleController@select')->name('selectlist')->middleware('superEditor');
+
 /* RUTAS DEL USUARIO */
 Route::get('usuario', 'UsuarioController@index')->name('usuario')->middleware('superEditor');
 Route::get('usuario/crear', 'UsuarioController@crear')->name('crear_usuario')->middleware('superEditor');
@@ -250,6 +274,11 @@ Route::post('marca', 'MarcasController@guardar')->name('guardar_marca')->middlew
 Route::get('marca/{id}/editar', 'MarcasController@editar')->name('editar_marca')->middleware('superEditor');
 Route::put('marca/{id}', 'MarcasController@actualizar')->name('actualizar_marca')->middleware('superEditor');
 
+
+
+
+
+
 });
 
 Route::group(['middleware' => ['auth','superEditor']], function () {
@@ -260,6 +289,12 @@ Route::get('criticaadd', 'OrdenesmtlasignarController@criticaadd')->name('critic
 Route::get('generar_critica', 'OrdenesmtlasignarController@generarcritica')->name('generar_critica');
 Route::post('adicionar_critica', 'OrdenesmtlasignarController@adicionarcritica')->name('adicionar_critica');
 Route::post('eliminar_critica', 'OrdenesmtlasignarController@eliminarcritica')->name('eliminar_critica');
+
+
+
+
+
+
 });
 
 
