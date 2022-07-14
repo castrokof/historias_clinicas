@@ -14,7 +14,9 @@ class CreateDefATCMedicamentosTable extends Migration
     public function up()
     {
         Schema::create('def__a_t_c__medicamentos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_ATC');
+            $table->string('cod_atc',45)->unique();
+            $table->string('nombre',255);
             $table->timestamps();
         });
     }

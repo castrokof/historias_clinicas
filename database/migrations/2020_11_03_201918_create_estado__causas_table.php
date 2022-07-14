@@ -14,7 +14,7 @@ class CreateEstadoCausasTable extends Migration
     public function up()
     {
         Schema::create('estado__causas', function (Blueprint $table) {
-            $table->Increments('id_causa');
+            $table->bigIncrements('id_causa');
             $table->string('cod_estado__causas',10)->unique();
             $table->string('nombre',200);
             $table->char('estado',1);

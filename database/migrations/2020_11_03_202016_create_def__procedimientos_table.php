@@ -14,7 +14,7 @@ class CreateDefProcedimientosTable extends Migration
     public function up()
     {
         Schema::create('def__procedimientos', function (Blueprint $table) {
-            $table->Increments('id_cups');
+            $table->bigIncrements('id_cups');
             $table->string('cod_cups',45)->unique();
             $table->string('cod_alterno',45)->nullable();
             $table->string('nombre',255);
@@ -25,8 +25,9 @@ class CreateDefProcedimientosTable extends Migration
             $table->string('genero',45)->nullable();
             $table->string('edad_1',45)->nullable();
             $table->string('edad_2',45)->nullable();
-            $table->string('cantidad_maxima',45);
-            $table->string('valor_particular',45);
+            $table->string('cantidad_maxima',45)->nullable();
+            $table->string('valor_SOAT',45)->nullable();
+            $table->string('valor_particular',45)->nullable();
             $table->char('estado',1);
             $table->timestamps();
         });

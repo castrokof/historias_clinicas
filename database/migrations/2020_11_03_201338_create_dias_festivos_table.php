@@ -14,7 +14,7 @@ class CreateDiasFestivosTable extends Migration
     public function up()
     {
         Schema::create('dias_festivos', function (Blueprint $table) {
-            $table->Increments('id_festivos');
+            $table->bigIncrements('id_festivos');
             $table->dateTime('fecha');            
             $table->timestamps();
         });

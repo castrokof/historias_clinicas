@@ -14,7 +14,7 @@ class CreatePacienteTable extends Migration
     public function up()
     {
         Schema::create('paciente', function (Blueprint $table) {
-            $table->Increments('id_paciente');
+            $table->bigIncrements('id_paciente');
             $table->string('papellido',100);
             $table->string('sapellido',100)->nullable();
             $table->string('pnombre',100);
@@ -29,13 +29,13 @@ class CreatePacienteTable extends Migration
             $table->string('autorizacion', 100)->nullable();
             $table->string('grupo',45)->nullable();
             //$table->string('plan', 100)->nullable();
-            $table->unsignedBigInteger('id_programa', 100)->nullable();
-            $table->string('descripcion_programa', 100)->nullable();
+            $table->unsignedBigInteger('programa_id');
+            $table->string('descripcion_programa', 155)->nullable();
             $table->string('Ocupacion', 100)->nullable();
-            $table->string('Poblacion_especial', 200)->nullable();              
-            $table->unsignedBigInteger('pais_id');            
-            $table->string('dpto', 45)->nullable(); 
-            $table->string('ciudad', 100);
+            $table->string('Poblacion_especial', 200)->nullable();
+            $table->unsignedBigInteger('pais_id');
+            $table->unsignedBigInteger('departamento_id');
+            $table->unsignedBigInteger('ciudad_id');
             $table->string('sexo', 100)->nullable();
             $table->string('orientacion_sexual', 100)->nullable();
             $table->string('plan', 100); //Este campo corresponde al Régimen
@@ -52,8 +52,12 @@ class CreatePacienteTable extends Migration
             $table->string('futuro3', 100)->nullable();
             $table->string('futuro4', 100)->nullable();
             $table->string('observaciones', 200)->nullable();
-            $table->string('estado_solicitud_farma', 45)->nullable();            
-            $table->foreign('pais_id', 'fk_paciente_paises')->references('id_pais')->on('paises')->onDelete('restrict')->onUpdate('restrict');            
+            $table->string('estado_solicitud_farma', 45)->nullable();
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id', 'fk_paciente_usuario')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('pais_id', 'fk_paciente_paises')->references('id_pais')->on('paises')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('departamento_id', 'fk_paciente_departamento')->references('id_departamento')->on('departamentos')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('ciudad_id', 'fk_paciente_ciudad')->references('id_ciudad')->on('ciudades')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

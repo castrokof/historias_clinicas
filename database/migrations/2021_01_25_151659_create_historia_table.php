@@ -54,9 +54,9 @@ class CreateHistoriaTable extends Migration
             $table->string('toxico',255)->nullable();
             $table->string('cuello',255)->nullable();
             $table->string('car_pulmonar',255)->nullable();
-            $table->unsignedInteger('paciente_id');
+            $table->unsignedBigInteger('paciente_id');
             $table->foreign('paciente_id', 'fk_historia_paciente')->references('id_paciente')->on('paciente')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedInteger('usuario_id');
+            $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id', 'fk_historia_usuario')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
