@@ -21,7 +21,7 @@ class CreateListasdetalleTable extends Migration
             $table->string('activo',2);
             $table->unsignedBigInteger('listas_id');
             $table->foreign('listas_id', 'fk_listas_listasdetalle')->references('id')->on('listas')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id', 'fk_usuario_listasdetalle')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
 

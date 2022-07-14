@@ -15,7 +15,7 @@ class CreateCita extends Migration
     {
         Schema::create('cita', function (Blueprint $table) {
             $table->bigIncrements('id_cita');
-            $table->string('cod_profesional',20)->nullable();            
+            $table->string('cod_profesional',20)->nullable();
             $table->dateTime('fechahora');//Cupo de la cita
             $table->date('fechasp')->nullable();
             $table->dateTime('fechaspdh')->nullable();

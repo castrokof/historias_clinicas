@@ -36,6 +36,7 @@ class CreatePacienteTable extends Migration
             $table->unsignedBigInteger('pais_id');
             $table->unsignedBigInteger('departamento_id');
             $table->unsignedBigInteger('ciudad_id');
+            $table->string('ciudad', 100)->nullable();
             $table->string('sexo', 100)->nullable();
             $table->string('orientacion_sexual', 100)->nullable();
             $table->string('plan', 100); //Este campo corresponde al Régimen

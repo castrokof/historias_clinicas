@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfesionalesTable extends Migration
+class CreateRelProfesionalvsprocedimientosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProfesionalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profesionales', function (Blueprint $table) {
+        Schema::create('rel_profesionalvsprocedimientos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateProfesionalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profesionales');
+        Schema::dropIfExists('rel_profesionalvsprocedimientos');
     }
 }

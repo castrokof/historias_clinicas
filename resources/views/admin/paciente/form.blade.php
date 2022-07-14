@@ -156,7 +156,7 @@
         </div>
         <div class="col-lg-4">
             <label for="eps" class="col-xs-4 control-label requerido">Empresa</label>
-            <select name="codigo_empresa" id="eps" class="form-control select2bs4" style="width: 100%;" required>                
+            <select name="eps" id="eps" class="form-control select2bs4" style="width: 100%;" required>                
             </select>
         </div>
 

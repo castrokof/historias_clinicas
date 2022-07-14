@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Models\Admin;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ciudades extends Model
@@ -12,10 +10,8 @@ class Ciudades extends Model
     protected $primary_key = 'id_ciudad';
     
     protected $fillable = [
-
         'cod_ciudad',
         'nombre',
         'estado'
-        
     ];
 }

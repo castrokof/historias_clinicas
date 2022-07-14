@@ -19,7 +19,7 @@ class CreateListasTable extends Migration
             $table->string('nombre',100);
             $table->string('descripcion',200);
             $table->string('activo',2);
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id', 'fk_usuario_listas')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });

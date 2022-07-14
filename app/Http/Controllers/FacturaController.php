@@ -58,7 +58,7 @@ class FacturaController extends Controller
      */
     public function selectpa(Request $request)
     {
-       
+
         $pacientes1 = [];
 
         if ($request->has('q')) {
@@ -111,6 +111,18 @@ class FacturaController extends Controller
         }
         return view('admin.paciente.index');
     }
+    public function buscarp($key)
+    {
+        if (request()->ajax()) {
+
+            $data = Paciente::where('documento', $key)->first();
+
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.factura.index');
+    }
+
+
 
     /**
      * Update the specified resource in storage.

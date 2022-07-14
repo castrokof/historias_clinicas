@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ciudades;
+use App\Models\Admin\Ciudades;
 use Illuminate\Http\Request;
 
 class CiudadesController extends Controller
@@ -41,7 +41,7 @@ class CiudadesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ciudades  $ciudades
+     * @param  \App\Models\Admin\Ciudades  $ciudades
      * @return \Illuminate\Http\Response
      */
     public function show(Ciudades $ciudades)
@@ -52,7 +52,7 @@ class CiudadesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ciudades  $ciudades
+     * @param  \App\Models\Admin\Ciudades  $ciudades
      * @return \Illuminate\Http\Response
      */
     public function edit(Ciudades $ciudades)
@@ -64,7 +64,7 @@ class CiudadesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ciudades  $ciudades
+     * @param  \App\Models\Admin\Ciudades  $ciudades
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Ciudades $ciudades)
@@ -75,7 +75,7 @@ class CiudadesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ciudades  $ciudades
+     * @param  \App\Models\Admin\Ciudades  $ciudades
      * @return \Illuminate\Http\Response
      */
     public function destroy(Ciudades $ciudades)

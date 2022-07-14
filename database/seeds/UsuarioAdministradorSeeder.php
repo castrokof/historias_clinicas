@@ -278,13 +278,13 @@ class UsuarioAdministradorSeeder extends Seeder
             'nombre'=>'Facturación General',
             'url'=>'#',
             'orden'=>0,
-            'icono'=>''
+            'icono'=>'fas fa-coins'
         ]);
         DB::table('menu')->insert([
 
             'menu_id'=> 29,
             'nombre'=>'Facturar',
-            'url'=>'facturas',
+            'url'=>'factura',
             'orden'=>1,
             'icono'=>'fas fa-coins'
         ]);
@@ -554,6 +554,11 @@ class UsuarioAdministradorSeeder extends Seeder
 
             'rol_id'=> 1,
             'menu_id'=> 38
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 39
         ]);
 
 

@@ -9,13 +9,46 @@ Facturación
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css" />
-
 @endsection
-
 
 @section('scripts')
 
 <script src="{{asset("assets/pages/scripts/admin/usuario/crearuser.js")}}" type="text/javascript"></script>
+<script>
+  $(document).ready(function() {
+    $('#key').on('keyup', function() {
+      var key = $(this).val();
+      var dataString = 'key=' + key;
+      $.ajax({
+        type: "GET",
+        //url: "/paciente/" + key + "/buscarp",
+        url: "{{ route('pacientefact')}}",
+        data: dataString,
+        //dataType: "json",
+        success: function(data) {
+          $('#pnombre').val(data.result.pnombre);
+          $('#snombre').val(data.result.snombre);
+          $('#papellido').val(data.result.papellido);
+          $('#sapellido').val(data.result.sapellido);
+          $('#tipo_documento').val(data.result.tipo_documento);
+          $('#documento').val(data.result.documento);
+          $('#edad').val(data.result.edad);
+          $('#ciudad').val(data.result.ciudad);
+          $('#direccion').val(data.result.direccion);
+          $('#correo').val(data.result.correo);
+          $('#celular').val(data.result.celular);
+          $('#telefono').val(data.result.telefono);
+          $('#eps').val(data.result.eps);
+          $('#sexo').val(data.result.sexo);
+          $('#plan').val(data.result.plan);
+          $('#Ocupacion').val(data.result.Ocupacion);
+          $('#observacion').val(data.result.observacion);
+          $('#hidden_id').val(id);
+        }
+      });
+    });
+  });
+</script>
 @endsection
 
 @section('contenido')
@@ -31,15 +64,22 @@ Facturación
       </div>
       <div class="x_panel">
         <div class="card-body">
-
+          <div class="form-group row">
+            <h4>Seleccione paciente</h4>
+            <div class="input-group col-lg-2">
+              <input class="search_query form-control" type="text" name="key" id="key" placeholder="Buscar..." required>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </div>
           <div class="form-group row">
             <div class="col-lg-2">
               <label for="paciente_id" class="col-xs-4 control-label ">Historia</label>
-              <!-- <input type="text" name="documento" id="paciente_id" class="form-control" onkeyup='load(1);'> -->
-              <select name="documento" id="paciente_id" class="form-control" style="width: 100%;" onkeyup='load(1);' required>
-              </select>
+              <input type="text" name="documento" id="paciente_id" class="form-control">
+              <!-- <select name="documento" id="paciente_id" class="form-control" style="width: 100%;"  required>
+              </select> -->
             </div>
-            <div id="result2"></div>
             <div class="col-lg-1">
               <label for="tipo_documento" class="col-xs-4 control-label ">Tipo ID</label>
               <input name="tipo_documento" id="tipo_documento" class="form-control select2bs4" type="text" readonly>
@@ -402,74 +442,7 @@ Facturación
       }
     });
 
-    // Edición de cliente
 
-    $("#paciente_id").submit(function(event) {
-      $('#paciente_id').attr("disabled", true);
-      //var q= $("#paciente_id").val();
-      //var parametros = $(this).serialize();
-      var id = $(this).serialize();
-
-      $.ajax({
-        type: "GET",
-        url: "/factura/" + id + "/editar",
-        dataType: "json",
-        /* data: parametros,*/        
-        beforeSend: function(objeto) {
-          $("#result2").html("Mensaje: Cargando...");
-        },
-        success: function(datos) {
-          //$("#result2").html(datos);            
-          $('#tipo_documento').val(data.result.tipo_documento);
-          $('#papellido').val(data.result.papellido);
-          $('#sapellido').val(data.result.sapellido);
-          $('#pnombre').val(data.result.pnombre);
-          $('#snombre').val(data.result.snombre);
-          $('#edad').val(data.result.edad);
-          $('#direccion').val(data.result.direccion);
-          $('#celular').val(data.result.celular);
-          $('#telefono').val(data.result.telefono);
-          $('#correo').val(data.result.correo);
-          $('#ciudad').val(data.result.ciudad);
-          $('#paciente_id').modal('show');
-          load(1);
-        }
-      });
-      event.preventDefault();
-    })
-
-    $(document).on('click', '.edit', function() {
-      var id = $(this).attr('id');
-      $.ajax({
-        url: "/factura/" + id + "/editar",
-        //dataType: "json",
-        data: "id_paciente=" + id,
-        "paciente_id": id,
-        success: function(data) {
-          $('#tipo_documento').val(data.result.tipo_documento);
-          $('#papellido').val(data.result.papellido);
-          $('#sapellido').val(data.result.sapellido);
-          $('#pnombre').val(data.result.pnombre);
-          $('#snombre').val(data.result.snombre);
-          $('#edad').val(data.result.edad);
-          $('#direccion').val(data.result.direccion);
-          $('#celular').val(data.result.celular);
-          $('#telefono').val(data.result.telefono);
-          $('#correo').val(data.result.correo);
-          $('#ciudad').val(data.result.ciudad);
-
-        },
-
-      }).fail(function(jqXHR, textStatus, errorThrown) {
-
-        if (jqXHR.status === 403) {
-
-          Manteliviano.notificaciones('No tienes permisos para realizar esta accion', 'Sistema Fidem', 'warning');
-
-        }
-      });
-
-    });
 
   });
 
@@ -503,6 +476,8 @@ Facturación
     }
   }
 </script>
+
+
 
 
 @endsection

@@ -139,6 +139,7 @@ Route::post('factura', 'FacturaController@guardar')->name('guardar_factura')->mi
 Route::get('factura/{id}/editar', 'FacturaController@editar')->name('editar_factura')->middleware('superEditor');
 Route::put('factura/{id}', 'FacturaController@actualizar')->name('actualizar_factura')->middleware('superEditor');
 Route::get('pacientefact', 'FacturaController@selectpa')->name('pacientefact')->middleware('superEditor');
+Route::get('paciente/{id}/buscarp', 'FacturaController@buscarp')->name('buscarp')->middleware('superEditor');
 
 
 /* RUTAS DE LA HISTORIA */
@@ -289,10 +290,6 @@ Route::get('criticaadd', 'OrdenesmtlasignarController@criticaadd')->name('critic
 Route::get('generar_critica', 'OrdenesmtlasignarController@generarcritica')->name('generar_critica');
 Route::post('adicionar_critica', 'OrdenesmtlasignarController@adicionarcritica')->name('adicionar_critica');
 Route::post('eliminar_critica', 'OrdenesmtlasignarController@eliminarcritica')->name('eliminar_critica');
-
-
-
-
 
 
 });
