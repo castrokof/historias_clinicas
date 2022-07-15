@@ -19,7 +19,7 @@ class CreateCita extends Migration
             $table->dateTime('fechahora');//Cupo de la cita
             $table->date('fechasp')->nullable();
             $table->dateTime('fechaspdh')->nullable();
-            $table->string('servicio',150)->nullable();
+            $table->string('servicio',150)->nullable();//Este dato corresponde al centro de produccion
             $table->string('tipo_documento',45)->nullable();//Ej: CC, TI, CE, 
             $table->string('historia',45)->nullable();//Este es el numero de documento del paciente
             $table->string('papellido',100)->nullable();
