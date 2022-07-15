@@ -28,14 +28,12 @@ class CreatePacienteTable extends Migration
             $table->string('solicitud', 20)->nullable();
             $table->string('autorizacion', 100)->nullable();
             $table->string('grupo',45)->nullable();
-            //$table->string('plan', 100)->nullable();
-            $table->unsignedBigInteger('programa_id');
-            $table->string('descripcion_programa', 155)->nullable();
+            //$table->string('plan', 100)->nullable();            
             $table->string('Ocupacion', 100)->nullable();
             $table->string('Poblacion_especial', 200)->nullable();
-            $table->unsignedBigInteger('pais_id');
-            $table->unsignedBigInteger('departamento_id');
-            $table->unsignedBigInteger('ciudad_id');
+            $table->unsignedBigInteger('pais_id')->nullable();;
+            $table->unsignedBigInteger('departamento_id')->nullable();;
+            $table->unsignedBigInteger('ciudad_id')->nullable();;
             $table->string('ciudad', 100)->nullable();
             $table->string('sexo', 100)->nullable();
             $table->string('orientacion_sexual', 100)->nullable();

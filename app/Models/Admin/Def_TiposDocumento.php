@@ -5,7 +5,7 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rel_profesionalvsmedicamentos extends Model
+class Def__TiposDocumento extends Model
 {
     use HasFactory;
 }

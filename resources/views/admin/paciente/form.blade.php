@@ -156,7 +156,7 @@
         </div>
         <div class="col-lg-4">
             <label for="eps" class="col-xs-4 control-label requerido">Empresa</label>
-            <select name="eps" id="eps" class="form-control select2bs4" style="width: 100%;" required>                
+            <select name="eps" id="eps" class="form-control select2bs4" style="width: 100%;" required>
             </select>
         </div>
 
@@ -195,5 +195,9 @@
         <div class="col-lg-3">
             <label for="observaciones" class="col-xs-8 control-label ">Observación</label>
             <textarea name="observaciones" id="observaciones" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+        </div>
+        <div class="col-lg-2">
+            <label for="usuario_id" class="col-xs-4 control-label ">Usuario que creo el registro</label>
+            <input name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario_id') ?? ''}}" readonly>
         </div>
     </div>

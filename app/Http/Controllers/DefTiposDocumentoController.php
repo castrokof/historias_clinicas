@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\rel__contratovsservicio;
+use App\Models\Admin\Def__TiposDocumento;
 use Illuminate\Http\Request;
 
-class RelContratovsservicioController extends Controller
+class Def__TiposDocumentoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class RelContratovsservicioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\rel__contratovsservicio  $rel_contratovsservicio
+     * @param  \App\Models\Admin\Def__TiposDocumento  $Def__TiposDocumento
      * @return \Illuminate\Http\Response
      */
-    public function show(rel__contratovsservicio $rel__contratovsservicio)
+    public function show(Def__TiposDocumento $Def__TiposDocumento)
     {
         //
     }
@@ -52,10 +52,10 @@ class RelContratovsservicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\rel__contratovsservicio  $rel_contratovsservicio
+     * @param  \App\Models\Admin\Def__TiposDocumento  $Def__TiposDocumento
      * @return \Illuminate\Http\Response
      */
-    public function edit(rel__contratovsservicio $rel__contratovsservicio)
+    public function edit(Def__TiposDocumento $Def__TiposDocumento)
     {
         //
     }
@@ -64,10 +64,10 @@ class RelContratovsservicioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\rel__contratovsservicio  $rel__contratovsservicio
+     * @param  \App\Models\Admin\Def__TiposDocumento  $Def__TiposDocumento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rel__contratovsservicio $rel__contratovsservicio)
+    public function update(Request $request, Def__TiposDocumento $Def__TiposDocumento)
     {
         //
     }
@@ -75,10 +75,10 @@ class RelContratovsservicioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\rel__contratovsservicio  $rel_contratovsservicio
+     * @param  \App\Models\Admin\Def__TiposDocumento  $Def__TiposDocumento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rel__contratovsservicio $rel__contratovsservicio)
+    public function destroy(Def__TiposDocumento $Def__TiposDocumento)
     {
         //
     }

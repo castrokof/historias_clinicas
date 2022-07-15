@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Documentos;
+use App\Models\Admin\rel_programasvspaciente;
 use Illuminate\Http\Request;
 
-class DocumentosController extends Controller
+class RelProgramasvspacienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class DocumentosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Documentos  $documentos
+     * @param  \App\Models\Admin\rel_programasvspaciente  $rel_programasvspaciente
      * @return \Illuminate\Http\Response
      */
-    public function show(Documentos $documentos)
+    public function show(rel_programasvspaciente $rel_programasvspaciente)
     {
         //
     }
@@ -52,10 +52,10 @@ class DocumentosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Documentos  $documentos
+     * @param  \App\Models\Admin\rel_programasvspaciente  $rel_programasvspaciente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Documentos $documentos)
+    public function edit(rel_programasvspaciente $rel_programasvspaciente)
     {
         //
     }
@@ -64,10 +64,10 @@ class DocumentosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Documentos  $documentos
+     * @param  \App\Models\Admin\rel_programasvspaciente  $rel_programasvspaciente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Documentos $documentos)
+    public function update(Request $request, rel_programasvspaciente $rel_programasvspaciente)
     {
         //
     }
@@ -75,10 +75,10 @@ class DocumentosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Documentos  $documentos
+     * @param  \App\Models\Admin\rel_programasvspaciente  $rel_programasvspaciente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Documentos $documentos)
+    public function destroy(rel_programasvspaciente $rel_programasvspaciente)
     {
         //
     }

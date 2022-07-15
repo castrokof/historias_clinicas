@@ -3,6 +3,7 @@
 namespace App\Models\Seguridad;
 
 use App\Models\Admin\Cita;
+use App\Models\Admin\Paciente;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Admin\Rol;
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +52,9 @@ class Usuario extends Authenticatable
 
     public function citau(){
         return $this->hasMany(Cita::class, 'usuario_id');
+    }
+    public function pacienteu(){
+        return $this->hasMany(Paciente::class, 'usuario_id');
     }
 
     public function setSession(){

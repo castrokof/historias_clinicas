@@ -5,7 +5,7 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TiposDocumento extends Model
+class rel__profesionalvsservicio extends Model
 {
     use HasFactory;
 }

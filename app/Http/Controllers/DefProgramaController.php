@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TiposDocumento;
+use App\Models\Admin\def__programa;
 use Illuminate\Http\Request;
 
-class TiposDocumentoController extends Controller
+class DefProgramaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class TiposDocumentoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TiposDocumento  $tiposDocumento
+     * @param  \App\Models\Admin\def__programa  $def__programa
      * @return \Illuminate\Http\Response
      */
-    public function show(TiposDocumento $tiposDocumento)
+    public function show(def__programa $def__programa)
     {
         //
     }
@@ -52,10 +52,10 @@ class TiposDocumentoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TiposDocumento  $tiposDocumento
+     * @param  \App\Models\Admin\def__programa  $def__programa
      * @return \Illuminate\Http\Response
      */
-    public function edit(TiposDocumento $tiposDocumento)
+    public function edit(def__programa $def__programa)
     {
         //
     }
@@ -64,10 +64,10 @@ class TiposDocumentoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TiposDocumento  $tiposDocumento
+     * @param  \App\Models\Admin\def__programa  $def__programa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TiposDocumento $tiposDocumento)
+    public function update(Request $request, def__programa $def__programa)
     {
         //
     }
@@ -75,10 +75,10 @@ class TiposDocumentoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TiposDocumento  $tiposDocumento
+     * @param  \App\Models\Admin\def__programa  $def__programa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TiposDocumento $tiposDocumento)
+    public function destroy(def__programa $def__programa)
     {
         //
     }

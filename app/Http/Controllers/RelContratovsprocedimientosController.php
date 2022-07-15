@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\rel_contratovsprocedimientos;
+use App\Models\Admin\rel__contratovsprocedimientos;
 use Illuminate\Http\Request;
 
 class RelContratovsprocedimientosController extends Controller
@@ -41,10 +41,10 @@ class RelContratovsprocedimientosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\rel_contratovsprocedimientos  $rel_contratovsprocedimientos
+     * @param  \App\Models\Admin\rel__contratovsprocedimientos  $rel__contratovsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function show(rel_contratovsprocedimientos $rel_contratovsprocedimientos)
+    public function show(rel__contratovsprocedimientos $rel__contratovsprocedimientos)
     {
         //
     }
@@ -52,10 +52,10 @@ class RelContratovsprocedimientosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\rel_contratovsprocedimientos  $rel_contratovsprocedimientos
+     * @param  \App\Models\Admin\rel__contratovsprocedimientos  $rel__contratovsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function edit(rel_contratovsprocedimientos $rel_contratovsprocedimientos)
+    public function edit(rel__contratovsprocedimientos $rel__contratovsprocedimientos)
     {
         //
     }
@@ -64,10 +64,10 @@ class RelContratovsprocedimientosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\rel_contratovsprocedimientos  $rel_contratovsprocedimientos
+     * @param  \App\Models\Admin\rel__contratovsprocedimientos  $rel__contratovsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rel_contratovsprocedimientos $rel_contratovsprocedimientos)
+    public function update(Request $request, rel__contratovsprocedimientos $rel__contratovsprocedimientos)
     {
         //
     }
@@ -75,10 +75,10 @@ class RelContratovsprocedimientosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\rel_contratovsprocedimientos  $rel_contratovsprocedimientos
+     * @param  \App\Models\Admin\rel__contratovsprocedimientos  $rel__contratovsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rel_contratovsprocedimientos $rel_contratovsprocedimientos)
+    public function destroy(rel__contratovsprocedimientos $rel__contratovsprocedimientos)
     {
         //
     }

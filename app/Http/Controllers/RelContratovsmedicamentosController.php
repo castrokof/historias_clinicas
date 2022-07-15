@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\rel_contratovsmedicamentos;
+use App\Models\Admin\rel__contratovsmedicamentos;
 use Illuminate\Http\Request;
 
 class RelContratovsmedicamentosController extends Controller
@@ -41,10 +41,10 @@ class RelContratovsmedicamentosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\rel_contratovsmedicamentos  $rel_contratovsmedicamentos
+     * @param  \App\Models\Admin\rel__contratovsmedicamentos  $rel_contratovsmedicamentos
      * @return \Illuminate\Http\Response
      */
-    public function show(rel_contratovsmedicamentos $rel_contratovsmedicamentos)
+    public function show(rel__contratovsmedicamentos $rel__contratovsmedicamentos)
     {
         //
     }
@@ -52,10 +52,10 @@ class RelContratovsmedicamentosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\rel_contratovsmedicamentos  $rel_contratovsmedicamentos
+     * @param  \App\Models\Admin\rel__contratovsmedicamentos  $rel_contratovsmedicamentos
      * @return \Illuminate\Http\Response
      */
-    public function edit(rel_contratovsmedicamentos $rel_contratovsmedicamentos)
+    public function edit(rel__contratovsmedicamentos $rel__contratovsmedicamentos)
     {
         //
     }
@@ -64,10 +64,10 @@ class RelContratovsmedicamentosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\rel_contratovsmedicamentos  $rel_contratovsmedicamentos
+     * @param  \App\Models\Admin\rel__contratovsmedicamentos  $rel_contratovsmedicamentos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rel_contratovsmedicamentos $rel_contratovsmedicamentos)
+    public function update(Request $request, rel__contratovsmedicamentos $rel__contratovsmedicamentos)
     {
         //
     }
@@ -75,10 +75,10 @@ class RelContratovsmedicamentosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\rel_contratovsmedicamentos  $rel_contratovsmedicamentos
+     * @param  \App\Models\Admin\rel__contratovsmedicamentos  $rel_contratovsmedicamentos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rel_contratovsmedicamentos $rel_contratovsmedicamentos)
+    public function destroy(rel__contratovsmedicamentos $rel__contratovsmedicamentos)
     {
         //
     }

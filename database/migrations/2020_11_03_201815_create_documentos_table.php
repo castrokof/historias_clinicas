@@ -13,7 +13,7 @@ class CreateDocumentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('documentos', function (Blueprint $table) {
+        Schema::create('def__documentos', function (Blueprint $table) {
             $table->bigIncrements('id_documento');
             $table->string('cod_documentos',10)->unique();
             $table->string('consecutivo',255)->unique();
@@ -30,6 +30,6 @@ class CreateDocumentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documentos');
+        Schema::dropIfExists('def__documentos');
     }
 }

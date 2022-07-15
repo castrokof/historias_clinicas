@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\rel_contratovseps;
+use App\Models\Admin\rel__contratovseps;
 use Illuminate\Http\Request;
 
 class RelContratovsepsController extends Controller
@@ -41,10 +41,10 @@ class RelContratovsepsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\rel_contratovseps  $rel_contratovseps
+     * @param  \App\Models\Admin\rel__contratovseps  $rel_contratovseps
      * @return \Illuminate\Http\Response
      */
-    public function show(rel_contratovseps $rel_contratovseps)
+    public function show(rel__contratovseps $rel__contratovseps)
     {
         //
     }
@@ -52,10 +52,10 @@ class RelContratovsepsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\rel_contratovseps  $rel_contratovseps
+     * @param  \App\Models\Admin\rel__contratovseps  $rel_contratovseps
      * @return \Illuminate\Http\Response
      */
-    public function edit(rel_contratovseps $rel_contratovseps)
+    public function edit(rel__contratovseps $rel__contratovseps)
     {
         //
     }
@@ -64,10 +64,10 @@ class RelContratovsepsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\rel_contratovseps  $rel_contratovseps
+     * @param  \App\Models\Admin\rel__contratovseps  $rel_contratovseps
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rel_contratovseps $rel_contratovseps)
+    public function update(Request $request, rel__contratovseps $rel__contratovseps)
     {
         //
     }
@@ -78,7 +78,7 @@ class RelContratovsepsController extends Controller
      * @param  \App\Models\Admin\rel_contratovseps  $rel_contratovseps
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rel_contratovseps $rel_contratovseps)
+    public function destroy(rel__contratovseps $rel__contratovseps)
     {
         //
     }

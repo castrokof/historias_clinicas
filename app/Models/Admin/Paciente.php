@@ -40,7 +40,9 @@ class Paciente extends Model
         'futuro3',
         'futuro4',
         'observaciones',
-        'estado_solicitud_farma'
+        'estado_solicitud_farma',
+        'usuario_id'
+
         
     ];
 

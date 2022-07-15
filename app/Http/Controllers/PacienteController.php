@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Admin\Eps_empresa;
 use App\Models\Admin\Paciente;
 use App\Models\Admin\Paises;
-use App\Models\Admin\Eps_niveles;
+use App\Models\Seguridad\Usuario;
+//use App\Models\Admin\Eps_niveles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -24,9 +25,6 @@ class PacienteController extends Controller
         if ($request->ajax()) {
             $datas = Paciente::orderBy('id_paciente')
                 ->get();
-
-
-
 
 
             return  DataTables()->of($datas)
@@ -57,7 +55,7 @@ class PacienteController extends Controller
             'papellido'  => 'required|max:100',
             'tipo_documento' => 'required',
             'documento' => 'numeric|required|min:19|max:9999999999',
-            'celular' => 'numeric|required|min:50|max:9999999999',            
+            'celular' => 'numeric|required|min:50|max:9999999999',
             'Ocupacion' => 'required',
             'eps' => 'required',
             'Poblacion_especial' => 'required',
@@ -65,7 +63,8 @@ class PacienteController extends Controller
             'ciudad' => 'required',
             'direccion' => 'required',
             'sexo' => 'required',
-            'orientacion_sexual' => 'required'
+            'orientacion_sexual' => 'required',
+            'usuario_id'
 
         );
 
@@ -141,7 +140,8 @@ class PacienteController extends Controller
             'ciudad' => 'required',
             'direccion' => 'required',
             'sexo' => 'required',
-            'orientacion_sexual' => 'required'
+            'orientacion_sexual' => 'required',
+            'usuario_id'
 
 
         );

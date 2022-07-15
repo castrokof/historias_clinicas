@@ -13,7 +13,7 @@ class CreateRelProfesionalvsservicioTable extends Migration
      */
     public function up()
     {
-        Schema::create('rel_profesionalvsservicio', function (Blueprint $table) {
+        Schema::create('rel__profesionalvsservicio', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateRelProfesionalvsservicioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rel_profesionalvsservicio_');
+        Schema::dropIfExists('rel__profesionalvsservicio');
     }
 }

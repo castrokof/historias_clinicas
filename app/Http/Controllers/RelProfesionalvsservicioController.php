@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\rel_profesionalvsservicio;
+use App\Models\Admin\rel__profesionalvsservicio;
 use Illuminate\Http\Request;
 
 class RelProfesionalvsservicioController extends Controller
@@ -41,10 +41,10 @@ class RelProfesionalvsservicioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\rel_profesionalvsservicio  $rel_profesionalvsservicio
+     * @param  \App\Models\rel__profesionalvsservicio  $rel_profesionalvsservicio
      * @return \Illuminate\Http\Response
      */
-    public function show(rel_profesionalvsservicio $rel_profesionalvsservicio)
+    public function show(rel__profesionalvsservicio $rel_profesionalvsservicio)
     {
         //
     }
@@ -55,7 +55,7 @@ class RelProfesionalvsservicioController extends Controller
      * @param  \App\Models\rel_profesionalvsservicio  $rel_profesionalvsservicio
      * @return \Illuminate\Http\Response
      */
-    public function edit(rel_profesionalvsservicio $rel_profesionalvsservicio)
+    public function edit(rel__profesionalvsservicio $rel_profesionalvsservicio)
     {
         //
     }
@@ -64,10 +64,10 @@ class RelProfesionalvsservicioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\rel_profesionalvsservicio  $rel_profesionalvsservicio
+     * @param  \App\Models\rel__profesionalvsservicio  $rel_profesionalvsservicio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rel_profesionalvsservicio $rel_profesionalvsservicio)
+    public function update(Request $request, rel__profesionalvsservicio $rel__profesionalvsservicio)
     {
         //
     }
@@ -75,10 +75,10 @@ class RelProfesionalvsservicioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\rel_profesionalvsservicio  $rel_profesionalvsservicio
+     * @param  \App\Models\rel__profesionalvsservicio  $rel_profesionalvsservicio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rel_profesionalvsservicio $rel_profesionalvsservicio)
+    public function destroy(rel__profesionalvsservicio $rel__profesionalvsservicio)
     {
         //
     }

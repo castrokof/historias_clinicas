@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\rel_profesionalvsmedicamentos;
+use App\Models\Admin\rel__profesionalvsmedicamentos;
 use Illuminate\Http\Request;
 
 class RelProfesionalvsmedicamentosController extends Controller
@@ -41,10 +41,10 @@ class RelProfesionalvsmedicamentosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\rel_profesionalvsmedicamentos  $rel_profesionalvsmedicamentos
+     * @param  \App\Models\Admin\rel__profesionalvsmedicamentos  $rel__profesionalvsmedicamentos
      * @return \Illuminate\Http\Response
      */
-    public function show(rel_profesionalvsmedicamentos $rel_profesionalvsmedicamentos)
+    public function show(rel__profesionalvsmedicamentos $rel__profesionalvsmedicamentos)
     {
         //
     }
@@ -52,10 +52,10 @@ class RelProfesionalvsmedicamentosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\rel_profesionalvsmedicamentos  $rel_profesionalvsmedicamentos
+     * @param  \App\Models\Admin\rel__profesionalvsmedicamentos  $rel_profesionalvsmedicamentos
      * @return \Illuminate\Http\Response
      */
-    public function edit(rel_profesionalvsmedicamentos $rel_profesionalvsmedicamentos)
+    public function edit(rel__profesionalvsmedicamentos $rel__profesionalvsmedicamentos)
     {
         //
     }
@@ -64,10 +64,10 @@ class RelProfesionalvsmedicamentosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\rel_profesionalvsmedicamentos  $rel_profesionalvsmedicamentos
+     * @param  \App\Models\rel__profesionalvsmedicamentos  $rel_profesionalvsmedicamentos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rel_profesionalvsmedicamentos $rel_profesionalvsmedicamentos)
+    public function update(Request $request, rel__profesionalvsmedicamentos $rel__profesionalvsmedicamentos)
     {
         //
     }
@@ -75,10 +75,10 @@ class RelProfesionalvsmedicamentosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\rel_profesionalvsmedicamentos  $rel_profesionalvsmedicamentos
+     * @param  \App\Models\rel__profesionalvsmedicamentos  $rel_profesionalvsmedicamentos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rel_profesionalvsmedicamentos $rel_profesionalvsmedicamentos)
+    public function destroy(rel__profesionalvsmedicamentos $rel__profesionalvsmedicamentos)
     {
         //
     }

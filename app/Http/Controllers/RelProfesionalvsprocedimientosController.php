@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\rel_profesionalvsprocedimientos;
+use App\Models\Admin\rel__profesionalvsprocedimientos;
 use Illuminate\Http\Request;
 
 class RelProfesionalvsprocedimientosController extends Controller
@@ -41,10 +41,10 @@ class RelProfesionalvsprocedimientosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\rel_profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
+     * @param  \App\Models\Admin\rel__profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function show(rel_profesionalvsprocedimientos $rel_profesionalvsprocedimientos)
+    public function show(rel__profesionalvsprocedimientos $rel__profesionalvsprocedimientos)
     {
         //
     }
@@ -52,10 +52,10 @@ class RelProfesionalvsprocedimientosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\rel_profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
+     * @param  \App\Models\Admin\rel__profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function edit(rel_profesionalvsprocedimientos $rel_profesionalvsprocedimientos)
+    public function edit(rel__profesionalvsprocedimientos $rel__profesionalvsprocedimientos)
     {
         //
     }
@@ -67,7 +67,7 @@ class RelProfesionalvsprocedimientosController extends Controller
      * @param  \App\Models\Admin\rel_profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rel_profesionalvsprocedimientos $rel_profesionalvsprocedimientos)
+    public function update(Request $request, rel__profesionalvsprocedimientos $rel__profesionalvsprocedimientos)
     {
         //
     }
@@ -75,10 +75,10 @@ class RelProfesionalvsprocedimientosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\rel_profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
+     * @param  \App\Models\Admin\rel__profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rel_profesionalvsprocedimientos $rel_profesionalvsprocedimientos)
+    public function destroy(rel__profesionalvsprocedimientos $rel__profesionalvsprocedimientos)
     {
         //
     }

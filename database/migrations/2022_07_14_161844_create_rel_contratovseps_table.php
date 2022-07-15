@@ -13,7 +13,7 @@ class CreateRelContratovsepsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rel_contratovseps', function (Blueprint $table) {
+        Schema::create('rel__contratovseps', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateRelContratovsepsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rel_contratovseps');
+        Schema::dropIfExists('rel__contratovseps');
     }
 }
