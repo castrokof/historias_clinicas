@@ -139,7 +139,7 @@ Route::post('factura', 'FacturaController@guardar')->name('guardar_factura')->mi
 Route::get('factura/{id}/editar', 'FacturaController@editar')->name('editar_factura')->middleware('superEditor');
 Route::put('factura/{id}', 'FacturaController@actualizar')->name('actualizar_factura')->middleware('superEditor');
 Route::get('pacientefact', 'FacturaController@selectpa')->name('pacientefact')->middleware('superEditor');
-Route::get('paciente/{id}/buscarp', 'FacturaController@buscarp')->name('buscarp')->middleware('superEditor');
+Route::get('pacientefill', 'FacturaController@buscarp')->name('pacientefill')->middleware('superEditor');
 
 
 /* RUTAS DE LA HISTORIA */

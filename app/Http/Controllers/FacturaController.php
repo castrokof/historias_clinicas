@@ -111,15 +111,17 @@ class FacturaController extends Controller
         }
         return view('admin.paciente.index');
     }
-    public function buscarp($key)
+
+
+    public function buscarp(Request $request)
     {
         if (request()->ajax()) {
 
-            $data = Paciente::where('documento', $key)->first();
+            $data = Paciente::where('documento', $request->document)->first();
 
-            return response()->json(['result' => $data]);
+            return response()->json(['pacientes' => $data]);
         }
-        return view('admin.factura.index');
+
     }
 
 
