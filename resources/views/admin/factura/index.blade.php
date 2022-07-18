@@ -14,7 +14,7 @@ Facturación
 @section('scripts')
 
 <script src="{{asset("assets/pages/scripts/admin/usuario/crearuser.js")}}" type="text/javascript"></script>
-<script>
+<!-- <script>
   $(document).ready(function() {
     $('#key').on('keyup', function() {
       var key = $(this).val();
@@ -48,7 +48,7 @@ Facturación
       });
     });
   });
-</script>
+</script> -->
 @endsection
 
 @section('contenido')
@@ -69,105 +69,107 @@ Facturación
             <div class="input-group col-lg-2">
               <input class="search_query form-control" type="text" name="key" id="key" placeholder="Buscar..." required>
               <span class="input-group-btn">
-                <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-search"></i></button>
+                <button class="btn btn-info btn-flat" id="boton"><i class="fa fa-search"></i></button>
               </span>
             </div>
           </div>
-          <div class="form-group row">
-            <div class="col-lg-2">
-              <label for="paciente_id" class="col-xs-4 control-label ">Historia</label>
-              <input type="text" name="documento" id="paciente_id" class="form-control">
-              <!-- <select name="documento" id="paciente_id" class="form-control" style="width: 100%;"  required>
+          <div id="resultado">
+            <div class="form-group row">
+              <div class="col-lg-2">
+                <label for="paciente_id" class="col-xs-4 control-label ">Historia</label>
+                <input type="text" name="documento" id="paciente_id" class="form-control">
+                <!-- <select name="documento" id="paciente_id" class="form-control" style="width: 100%;"  required>
               </select> -->
+              </div>
+              <div class="col-lg-1">
+                <label for="tipo_documento" class="col-xs-4 control-label ">Tipo ID</label>
+                <input name="tipo_documento" id="tipo_documento" class="form-control select2bs4" type="text" readonly>
+              </div>
+              <div class="col-lg-2">
+                <label for="pnombre" class="col-xs-4 control-label ">Primer pnombre</label>
+                <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+              </div>
+              <div class="col-lg-2">
+                <label for="snombre" class="col-xs-4 control-label ">Segundo pnombre</label>
+                <input type="text" name="snombre" id="snombre" class="form-control" readonly>
+              </div>
+              <div class="col-lg-2">
+                <label for="papellido" class="col-xs-4 control-label ">Primer apellido</label>
+                <input type="text" name="papellido" id="papellido" class="form-control" readonly>
+              </div>
+              <div class="col-lg-2">
+                <label for="sapellido" class="col-xs-4 control-label ">Segundo apellido</label>
+                <input type="text" name="sapellido" id="sapellido" class="form-control" readonly>
+              </div>
+              <div class="col-lg-1">
+                <label for="edad" class="col-xs-4 control-label ">Edad</label>
+                <input type="number" name="edad" id="edad" class="form-control" placeholder="Edad" readonly>
+              </div>
             </div>
-            <div class="col-lg-1">
-              <label for="tipo_documento" class="col-xs-4 control-label ">Tipo ID</label>
-              <input name="tipo_documento" id="tipo_documento" class="form-control select2bs4" type="text" readonly>
+            <div class="form-group row">
+              <div class="col-lg-2">
+                <label for="paciente_pais" class="col-xs-4 control-label ">País de Residencia</label>
+                <input name="pais_id" id="paciente_pais" class="form-control" readonly>
+              </div>
+              <div class="col-lg-2">
+                <label for="ciudad" class="col-xs-4 control-label ">Ciudad</label>
+                <input type="text" name="ciudad" id="ciudad" class="form-control" readonly>
+              </div>
+              <div class="col-lg-2">
+                <label for="direccion" class="col-xs-4 control-label ">Direccion</label>
+                <input type="text" name="direccion" id="direccion" class="form-control" readonly>
+              </div>
+              <div class="col-lg-2">
+                <label for="celular" class="col-xs-4 control-label ">Celular</label>
+                <input type="tel" name="celular" id="celular" class="form-control" readonly>
+              </div>
+              <div class="col-lg-2">
+                <label for="telefono" class="col-xs-4 control-label ">Telefono</label>
+                <input type="tel" name="telefono" id="telefono" class="form-control" readonly>
+              </div>
+              <div class="col-lg-2">
+                <label for="correo" class="col-xs-4 control-label ">E-mail</label>
+                <input type="email" name="correo" id="correo" class="form-control" readonly>
+              </div>
             </div>
-            <div class="col-lg-2">
-              <label for="pnombre" class="col-xs-4 control-label ">Primer nombre</label>
-              <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
-            </div>
-            <div class="col-lg-2">
-              <label for="snombre" class="col-xs-4 control-label ">Segundo nombre</label>
-              <input type="text" name="snombre" id="snombre" class="form-control" readonly>
-            </div>
-            <div class="col-lg-2">
-              <label for="papellido" class="col-xs-4 control-label ">Primer apellido</label>
-              <input type="text" name="papellido" id="papellido" class="form-control" readonly>
-            </div>
-            <div class="col-lg-2">
-              <label for="sapellido" class="col-xs-4 control-label ">Segundo apellido</label>
-              <input type="text" name="sapellido" id="sapellido" class="form-control" readonly>
-            </div>
-            <div class="col-lg-1">
-              <label for="edad" class="col-xs-4 control-label ">Edad</label>
-              <input type="number" name="edad" id="edad" class="form-control" placeholder="Edad" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-lg-2">
-              <label for="paciente_pais" class="col-xs-4 control-label ">País de Residencia</label>
-              <input name="pais_id" id="paciente_pais" class="form-control" readonly>
-            </div>
-            <div class="col-lg-2">
-              <label for="ciudad" class="col-xs-4 control-label ">Ciudad</label>
-              <input type="text" name="ciudad" id="ciudad" class="form-control" readonly>
-            </div>
-            <div class="col-lg-2">
-              <label for="direccion" class="col-xs-4 control-label ">Direccion</label>
-              <input type="text" name="direccion" id="direccion" class="form-control" readonly>
-            </div>
-            <div class="col-lg-2">
-              <label for="celular" class="col-xs-4 control-label ">Celular</label>
-              <input type="tel" name="celular" id="celular" class="form-control" readonly>
-            </div>
-            <div class="col-lg-2">
-              <label for="telefono" class="col-xs-4 control-label ">Telefono</label>
-              <input type="tel" name="telefono" id="telefono" class="form-control" readonly>
-            </div>
-            <div class="col-lg-2">
-              <label for="correo" class="col-xs-4 control-label ">E-mail</label>
-              <input type="email" name="correo" id="correo" class="form-control" readonly>
-            </div>
-          </div>
-          <p><a style="color:#0071c5;"> Datos de afiliación:</a> </p>
-          <hr>
-          <div class="form-group row">
-            <div class="col-lg-2">
-              <label for="regimen" class="col-xs-6 control-label">Régimen</label>
-              <!--<input type="text" name="regimen" id="regimen" class="form-control" value="{{old('regimen')}}" required> -->
-              <select name="regimen" id="regimen" class="form-control" style="width: 100%;" value="{{old('regimen')}}" required>
-                <option value="" selected>-- Seleccionar --</option>
-                <!-- <option value="Particular">Particular</option> -->
-                <option value="Contributivo">Contributivo</option>
-                <option value="Subsidiado">Subsidiado</option>
-                <option value="Vinculado">Vinculado</option>
-                <option value="Otro régimen">Otro régimen</option>
-                <option value="Accidentes de tránsito">Accidentes de tránsito</option>
-                <option value="Riesgos profesionales">Riesgos profesionales</option>
-                <option value="Desplazado">Desplazado</option>
-              </select>
-            </div>
-            <div class="col-lg-1">
-              <label for="codigo_n" class="col-xs-4 control-label ">EPS</label>
-              <input type="text" name="codigo_empresa" id="codigo_n" class="form-control">
-            </div>
-            <div class="col-lg-3">
-              <label for="nombre_n" class="col-xs-4 control-label requerido"></label>
-              <input type="text" name="nombre" id="nombre_n" class="form-control" placeholder="Razón Social" readonly>
-            </div>
-            <div class="col-lg-1">
-              <label for="nivel" class="col-xs-6 control-label">Nivel</label>
-              <input type="text" name="nivel" id="nivel" class="form-control" value="{{old('nivel')}}" required>
-            </div>
-            <div class="col-lg-2">
-              <label for="descripcion_nivel" class="col-xs-6 control-label">Descripcion</label>
-              <input type="text" name="descripcion_nivel" id="descripcion_nivel" class="form-control" value="{{old('descripcion_nivel')}}" required>
-            </div>
-            <div class="col-lg-2">
-              <label for="numero_afiliacion" class="col-xs-4 control-label ">Número Afiliación</label>
-              <input type="number" name="numero_afiliacion" id="numero_afiliacion" class="form-control" value="{{old('numero_afiliacion')}}">
+            <p><a style="color:#0071c5;"> Datos de afiliación:</a> </p>
+            <hr>
+            <div class="form-group row">
+              <div class="col-lg-2">
+                <label for="regimen" class="col-xs-6 control-label">Régimen</label>
+                <!--<input type="text" name="regimen" id="regimen" class="form-control" value="{{old('regimen')}}" required> -->
+                <select name="regimen" id="regimen" class="form-control" style="width: 100%;" value="{{old('regimen')}}" required>
+                  <option value="" selected>-- Seleccionar --</option>
+                  <!-- <option value="Particular">Particular</option> -->
+                  <option value="Contributivo">Contributivo</option>
+                  <option value="Subsidiado">Subsidiado</option>
+                  <option value="Vinculado">Vinculado</option>
+                  <option value="Otro régimen">Otro régimen</option>
+                  <option value="Accidentes de tránsito">Accidentes de tránsito</option>
+                  <option value="Riesgos profesionales">Riesgos profesionales</option>
+                  <option value="Desplazado">Desplazado</option>
+                </select>
+              </div>
+              <div class="col-lg-1">
+                <label for="codigo_n" class="col-xs-4 control-label ">EPS</label>
+                <input type="text" name="codigo_empresa" id="codigo_n" class="form-control">
+              </div>
+              <div class="col-lg-3">
+                <label for="nombre_n" class="col-xs-4 control-label requerido"></label>
+                <input type="text" name="pnombre" id="nombre_n" class="form-control" placeholder="Razón Social" readonly>
+              </div>
+              <div class="col-lg-1">
+                <label for="nivel" class="col-xs-6 control-label">Nivel</label>
+                <input type="text" name="nivel" id="nivel" class="form-control" value="{{old('nivel')}}" required>
+              </div>
+              <div class="col-lg-2">
+                <label for="descripcion_nivel" class="col-xs-6 control-label">Descripcion</label>
+                <input type="text" name="descripcion_nivel" id="descripcion_nivel" class="form-control" value="{{old('descripcion_nivel')}}" required>
+              </div>
+              <div class="col-lg-2">
+                <label for="numero_afiliacion" class="col-xs-4 control-label ">Número Afiliación</label>
+                <input type="number" name="numero_afiliacion" id="numero_afiliacion" class="form-control" value="{{old('numero_afiliacion')}}">
+              </div>
             </div>
           </div>
 
@@ -261,8 +263,8 @@ Facturación
             name: 'codigo'
           },
           {
-            data: 'nombre',
-            name: 'nombre'
+            data: 'pnombre',
+            name: 'pnombre'
           },
           {
             data: 'NIT',
@@ -477,7 +479,70 @@ Facturación
   }
 </script>
 
+<script>
+  const pacientes = [
+    $.ajax(
+    {url: "{{ route('pacientefact')}}"},
+    {data: 'pnombre', pnombre: 'pnombre',},
+    {data: 'documento', documento: 'documento',}
+    )
+  ]
+  const formulario = document.querySelector('#key');
+  const boton = document.querySelector('#boton');
+  const resultado = document.querySelector('#resultado');
 
+  const filtrar = () => {
+    //console.log(formulario.value);
+    resultado.innerHTML = '';
+    const texto = formulario.value.toLowerCase();
+    for (let paciente of pacientes) {
+      let pnombre = paciente.pnombre.toLowerCase();
+      if (pnombre.indexOf(texto) !== -1) {
+        resultado.innerHTML += `<div>${paciente.pnombre} -documento:${paciente.documento} </div> `
+      }
+    }
+    if (resultado.innerHTML === '') {
+      `<div>Paciente no encontrado... </div> `
+    }
+
+  }
+  //boton.addEventListener('click', filtrar)
+  formulario.addEventListener('keyup', filtrar)
+</script>
+
+
+<!-- <script>
+  const pacientes = [{
+      pnombre: 'Carlos',
+      documento: '1130639211'
+    },
+    {
+      pnombre: 'Lorena',
+      documento: '12345678'
+    },
+  ]
+  const formulario = document.querySelector('#key');
+  const boton = document.querySelector('#boton');
+  const resultado = document.querySelector('#resultado');
+
+  const filtrar = () => {
+    //console.log(formulario.value);
+    resultado.innerHTML = '';
+    const texto = formulario.value.toLowerCase();
+    for (let paciente of pacientes) {
+      let pnombre = paciente.pnombre.toLowerCase();
+      if (pnombre.indexOf(texto) !== -1) {
+        resultado.innerHTML += `<div>${paciente.pnombre} -documento:${paciente.documento} </div> `
+      }
+    }
+    if (resultado.innerHTML === '') {
+      `<div>Paciente no encontrado... </div> `
+    }
+
+  }
+  //boton.addEventListener('click', filtrar)
+  formulario.addEventListener('keyup', filtrar)
+</script> -->
 
 
 @endsection

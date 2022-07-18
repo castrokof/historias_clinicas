@@ -15,10 +15,11 @@ class CreateRelProfesionalvsservicioTable extends Migration
     {
         Schema::create('rel__profesionalvsservicio', function (Blueprint $table) {
             $table->bigIncrements('id_profesionalvsservicio');
-            $table->string('codigo',10);
+            //$table->string('codigo',10);
             $table->unsignedBigInteger('servicio_id');
             $table->unsignedBigInteger('profesional_id');
-            $table->foreign('profesional_id', 'fk_prof_paciente')->references('id_profesional')->on('def__profesionales')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('servicio_id', 'fk_servicio_prof')->references('id_servicio')->on('servicios')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('profesional_id', 'fk_prof_servicio')->references('id_profesional')->on('def__profesionales')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

@@ -19,9 +19,10 @@ class CreateDefMedicamentosSuministrosTable extends Migration
             $table->string('nombre',255);
             $table->string('detalle',255)->nullable();
             $table->string('marca',255);
-            $table->string('CUMS',255);
-            $table->string('cod_atc',5);
-            $table->string('IUM',5);
+            $table->string('CUMS',255)->nullable();
+            $table->unsignedBigInteger('ATC_id')->nullable();
+            //$table->string('cod_atc',5)->nullable();
+            $table->string('IUM',5)->nullable();
             $table->string('invima',50);
             $table->string('tipo',5);
             $table->string('stock_max',10)->nullable();
@@ -31,6 +32,7 @@ class CreateDefMedicamentosSuministrosTable extends Migration
             $table->string('valor_SOAT',45)->nullable();
             $table->string('valor_particular',45)->nullable();
             $table->char('estado',1);
+            $table->foreign('ATC_id', 'fk_ATC_medicamento')->references('id_ATC')->on('def__a_t_c__medicamentos')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

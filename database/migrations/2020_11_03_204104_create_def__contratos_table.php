@@ -14,7 +14,12 @@ class CreateDefContratosTable extends Migration
     public function up()
     {
         Schema::create('def__contratos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_contrato');
+            $table->string('contrato',10)->unique();
+            $table->string('nombre',200);
+            $table->string('descripcion',200)->nullable();
+            $table->string('tipo_contrato',200);
+            $table->char('estado',1);
             $table->timestamps();
         });
     }
