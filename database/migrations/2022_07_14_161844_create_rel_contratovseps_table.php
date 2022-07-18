@@ -14,7 +14,11 @@ class CreateRelContratovsepsTable extends Migration
     public function up()
     {
         Schema::create('rel__contratovseps', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_contratovseps');
+            $table->unsignedBigInteger('contrato_id');
+            $table->unsignedBigInteger('eps_id');
+            $table->foreign('contrato_id', 'fk_contrato_eps')->references('id_contrato')->on('def__contratos')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('eps_id', 'fk_eps_contrato')->references('id_eps_empresas')->on('eps_empresas')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

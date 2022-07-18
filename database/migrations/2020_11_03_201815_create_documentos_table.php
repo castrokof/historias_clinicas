@@ -16,9 +16,11 @@ class CreateDocumentosTable extends Migration
         Schema::create('def__documentos', function (Blueprint $table) {
             $table->bigIncrements('id_documento');
             $table->string('cod_documentos',10)->unique();
-            $table->string('consecutivo',255)->unique();
+            //$table->string('consecutivo',255);
             $table->string('nombre',200);
+            $table->unsignedBigInteger('tipo_doc_id');
             $table->char('estado',1);
+            $table->foreign('tipo_doc_id', 'fk_tipo_codumento')->references('id_tipo_doc')->on('def__tipos_documentos')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }
