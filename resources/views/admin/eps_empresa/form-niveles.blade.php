@@ -1,17 +1,3 @@
-<div class="form-group row">
-  <div class="col-lg-2">
-    <label for="codigo_n" class="col-xs-4 control-label ">Código</label>
-    <input type="text" name="codigo_empresa" id="codigo_n" class="form-control" readonly>
-  </div>
-  <div class="col-lg-4">
-    <label for="nombre_n" class="col-xs-4 control-label requerido">Razón Social</label>
-    <input type="text" name="nombre" id="nombre_n" class="form-control" readonly>
-  </div>
-  <div class="col-lg-2">
-    <label for="NIT_n" class="col-xs-4 control-label requerido">NIT</label>
-    <input type="number" name="NIT" id="NIT_n" class="form-control" readonly>
-  </div>
-</div>
 
 <!-- <p><a style="color:#0071c5;"> Niveles y cuotas de recuperación:</a> </p>
     <hr>-->
@@ -60,7 +46,7 @@
       </div>
 
       <div class="form-group row">
-        <div class="col-lg-2">          
+        <div class="col-lg-2">
           <label for="afiliacion" class="col-xs-6 control-label">Afiliación</label>
           <!--<input type="text" name="afiliacion" id="afiliacion" class="form-control" value="{{old('afiliacion')}}" required>-->
           <select name="afiliacion" id="afiliacion" class="form-control" style="width: 100%;" value="{{old('afiliacion')}}" >
@@ -68,7 +54,7 @@
             <option value="Cotizante">Cotizante</option>
             <option value="Beneficiario">Beneficiario</option>
             <option value="Todos">Todos</option>
-          </select>          
+          </select>
         </div>
 
         <div class="col-lg-4">

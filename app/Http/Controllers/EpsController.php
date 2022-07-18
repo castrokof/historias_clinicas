@@ -43,18 +43,17 @@ class EpsController extends Controller
         return view('admin.eps_empresa.index');
     }
 
-    public function indexnivel($id)
+    public function indexnivel(Request $request)
     {
-        
 
         if (request()->ajax()) {
 
-            $datas2 = Eps_niveles::where('eps_empresas_id', $id)->get();
-
-            return response()->json(['result' => $datas2]);
+            $datas = Eps_niveles::where('eps_empresas_id', $request->nivel_idp2)->get();
+            return  DataTables()->of($datas)
+            ->make(true);
         }
-        return view('admin.eps_empresa.index');
-       
+
+
     }
 
     /**
@@ -176,7 +175,7 @@ class EpsController extends Controller
                 return response()->json(['result'=>$data]);
 
             }
-            return view('admin.eps_empresa.index'); 
+            return view('admin.eps_empresa.index');
 
         if ($request->ajax()) {
             $datas1 = DB::table('eps_niveles')

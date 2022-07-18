@@ -109,6 +109,24 @@ Eps Empresas
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
             </div>
+            <form id="form-general2" class="form-horizontal" method="POST">
+                <div class="card-body">
+            <div class="form-group row">
+                <div class="col-lg-2">
+                  <label for="codigo_n" class="col-xs-4 control-label ">Código</label>
+                  <input type="text" name="codigo_empresa" id="codigo_n" class="form-control" readonly>
+                </div>
+                <div class="col-lg-4">
+                  <label for="nombre_n" class="col-xs-4 control-label requerido">Razón Social</label>
+                  <input type="text" name="nombre" id="nombre_n" class="form-control" readonly>
+                </div>
+                <div class="col-lg-2">
+                  <label for="NIT_n" class="col-xs-4 control-label requerido">NIT</label>
+                  <input type="number" name="NIT" id="NIT_n" class="form-control" readonly>
+                </div>
+              </div>
+                </div>
+            </form>
             <form id="form-general-n" class="form-horizontal" method="POST">
               @csrf
               <div class="card-body">
@@ -149,6 +167,10 @@ Eps Empresas
 
 <script>
   $(document).ready(function() {
+
+
+
+
 
     //initiate dataTables plugin
     var myTable =
@@ -370,9 +392,12 @@ Eps Empresas
   });
 
 
-  // Tabla para consultar los niveles 
+  // Tabla para consultar los niveles
   $(document).on('click', '.agregarnivel', function() {
     var id = $(this).attr('id');
+    var  nivel_idp2 = id;
+    $('#tniveles').DataTable().destroy();
+    fill_datatable_f(nivel_idp2);
 
     $.ajax({
       url: "/eps_niveles/" + id + "/editarn",
@@ -403,7 +428,6 @@ Eps Empresas
   });
 
   function fill_datatable_f(nivel_idp2 = '')
-
   {
     var myTable2 =
       $('#tniveles').DataTable({
@@ -419,7 +443,9 @@ Eps Empresas
           [1, "asc"]
         ],
         ajax: {
-          url: "{{ route('eps_niveles')}}",          
+          url: "{{ route('eps_niveles')}}",
+          type: "get",
+          data: {"nivel_idp2":nivel_idp2},
         },
         columns: [
           /* {
@@ -510,7 +536,7 @@ Eps Empresas
       });
 
   }
-  //Funcion para agregar niveles y copagos  
+  //Funcion para agregar niveles y copagos
 
 
   $('#form-general-n').on('submit', function(event) {
@@ -563,7 +589,7 @@ Eps Empresas
             if (data.success == 'okn1') {
               $('#form-general-n')[0].reset();
               //$('#modal-u').modal('hide');
-              $('#modal-n').modal('hide');
+            //   $('#modal-n').modal('hide');
               $('#tniveles').DataTable().ajax.reload();
               Swal.fire({
                 icon: 'success',
@@ -577,7 +603,7 @@ Eps Empresas
             } else if (data.success == 'okn2') {
               $('#form-general-n')[0].reset();
               /* $('#modal-u').modal('hide'); */
-              $('#modal-n').modal('hide');
+            //   $('#modal-n').modal('hide');
               $('#tniveles').DataTable().ajax.reload();
               Swal.fire({
                 icon: 'warning',
