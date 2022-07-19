@@ -112,22 +112,85 @@ class ListasDetalleController extends Controller
             return response()->json(['success' => 'ok']);
         }
     }
-    public function select()
+    public function select(Request $request)
     {
-        if(request()->ajax())
-        {
-          $typeDocument=ListasDetalle::orderBy('slug')->where([
-            ['listas_id', 5],
-            ['activo', 'SI'],])->get();
-            $state=ListasDetalle::orderBy('slug')->where([
-                ['listas_id', 6],
-                ['activo', 'SI'],])->get();
-                $type=ListasDetalle::orderBy('id')->where([
-                    ['listas_id', 4],
-                    ['activo', 'SI'],])->get();
-            return response()->json([$typeDocument, $state, $type]);
-        }
+
+        $regimen = [];
+        $type = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $regimen = ListasDetalle::orderBy('id')
+                ->where([
+                    ['listas_id', 2],
+                    ['activo', 'SI'],
+                ])
+                ->where('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            $type = ListasDetalle::orderBy('id')->where([
+                ['listas_id', 3],
+                ['activo', 'SI'],
+            ])
+                ->where('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+
+
+            return response()->json(['regimen' => $regimen, 'type' => $type]);
+            }else{
+
+                $regimen = ListasDetalle::orderBy('id')
+                ->where([
+                    ['listas_id', 2],
+                    ['activo', 'SI'],
+                ])
+                ->get();
+
+                $type = ListasDetalle::orderBy('id')->where([
+                    ['listas_id', 3],
+                    ['activo', 'SI'],
+                ])
+                                      ->get();
+
+                    return response()->json(['regimen' => $regimen, 'type' => $type]);
+
+
+
+            }
+
+
+
     }
+
+
+    // public function select(Request $request)
+    // {
+
+    //     $regimen = [];
+    //     $type = [];
+
+    //     if ($request->has('q')) {
+
+    //         $term = $request->get('q');
+    //         $regimen = ListasDetalle::orderBy('id')
+    //             ->where([
+    //                 ['listas_id', 2],
+    //                 ['activo', 'SI'],
+    //             ])
+    //             ->where('nombre', 'LIKE', '%' . $term . '%')
+    //             ->get();
+    //         $type = ListasDetalle::orderBy('id')->where([
+    //             ['listas_id', 3],
+    //             ['activo', 'SI'],
+    //         ])
+    //             ->where('nombre', 'LIKE', '%' . $term . '%')
+    //             ->get();
+
+
+    //         return response()->json(['regimen' => $regimen, 'type' => $type]);
+    //     }
+    // }
+
 
     /**
      * Show the form for editing the specified resource.
