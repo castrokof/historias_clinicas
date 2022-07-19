@@ -20,21 +20,7 @@
         <div class="col-lg-2">
             <label for="tipo_documento" class="col-xs-4 control-label requerido">Tipo de documento</label>
             <select name="tipo_documento" id="tipo_documento" class="form-control select2bs4" style="width: 100%;" required>
-                <option value="">---seleccione---</option>
-                <option value="CC">CC</option>
-                <option value="TI">TI</option>
-                <option value="CE">CE</option>
-                <option value="RC">RC</option>
-                <option value="PA">PA</option>
-                <option value="AS">AS</option>
-                <option value="MS">MS</option>
-                <option value="NI">NI</option>
-                <option value="NU">NU</option>
-                <option value="PE">PE</option>
-                <option value="SC">SC</option>
-                <option value="CD">CD</option>
-                <option value="RE">RE</option>
-                <option value="PT">PT</option>
+
             </select>
         </div>
         <div class="col-lg-3">
@@ -143,15 +129,15 @@
         <div class="col-lg-2">
             <label for="plan" class="col-xs-4 control-label requerido">Régimen</label>
             <select name="plan" id="plan" class="form-control select2bs4" style="width: 100%;" required>
-                <option value="">---seleccione---</option>
-                <option value="Contributivo">Particular</option>
+                {{-- <option value="">---seleccione---</option>
+                <option value="Particular">Particular</option>
                 <option value="Contributivo">Contributivo</option>
                 <option value="Subsidiado">Subsidiado</option>
                 <option value="Vinculado">Vinculado</option>
                 <option value="Otro régimen">Otro régimen</option>
                 <option value="Accidentes de tránsito">Accidentes de tránsito</option>
                 <option value="Riesgos profesionales">Riesgos profesionales</option>
-                <option value="Desplazado">Desplazado</option>
+                <option value="Desplazado">Desplazado</option> --}}
             </select>
         </div>
         <div class="col-lg-4">
@@ -185,7 +171,7 @@
         </div>
 
         <div class="col-lg-3">
-            <input type="hidden" name="usuario_id" id="operador" class="form-control" value="{{Session()->get('usuario_id') ?? ''}}">
+            <input type="hidden" name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario_id') ?? ''}}">
         </div>
         <div class="col-lg-3">
             <input type="hidden" name="paciente_id" id="id_paciente" class="form-control" value="{{old('plan',$datas->id_paciente ?? '')}}">
@@ -198,6 +184,6 @@
         </div>
         <div class="col-lg-2">
             <label for="usuario_id" class="col-xs-4 control-label ">Usuario que creo el registro</label>
-            <input name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario_id') ?? ''}}" readonly>
+            <input name="usuario" id="usuario_id" class="form-control" value="{{Session()->get('usuario') ?? ''}}" readonly>
         </div>
     </div>

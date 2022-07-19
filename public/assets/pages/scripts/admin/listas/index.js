@@ -2,12 +2,12 @@
 $(document).ready(function () {
 
     //Función para convertir minuscula en mayuscula en el form
-    $(".UpperCase").on("keypress", function () {
-        $input = $(this);
-        setTimeout(function () {
-            $input.val($input.val().toUpperCase());
-        }, 50);
-    });
+    // $(".UpperCase").on("keypress", function () {
+    //     $input = $(this);
+    //     setTimeout(function () {
+    //         $input.val($input.val().toUpperCase());
+    //     }, 50);
+    // });
 
 
     //------------------------------------------------------Funciones de Listas-----------------------------------------//

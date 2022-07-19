@@ -468,8 +468,9 @@ Pacientes
         cache: true
       }
     });
-    //Select para consultar la EPS, Niveles 
+    //Select para consultar la EPS, Niveles
     $("#eps").select2({
+        language: "es",
       theme: "bootstrap",
       ajax: {
         url: "{{ route('eps')}}",
@@ -493,6 +494,60 @@ Pacientes
       }
     });
   });
+
+
+
+  $("#plan").select2({
+    language: "es",
+      theme: "bootstrap",
+      placeholder: 'Seleccione regimen',
+      ajax: {
+        url: "{{ route('selectlist')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data.regimen, function(data) {
+
+              return {
+
+                text: data.nombre,
+                id: data.nombre
+
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    });
+
+
+
+    $("#tipo_documento").select2({
+      theme: "bootstrap",
+      placeholder: 'tipo documento',
+      ajax: {
+        url: "{{ route('selectlist')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data.type, function(data) {
+
+              return {
+
+                text: data.nombre,
+                id: data.nombre
+
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    });
+
 
 
   var idioma_espanol = {

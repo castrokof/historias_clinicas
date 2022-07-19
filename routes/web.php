@@ -76,7 +76,7 @@ Route::get('/tablero', 'AdminController@index')->name('tablero');
 Route::get('informes', 'AdminController@informes')->name('informes')->middleware('superConsultor');
 
 
- //RUTA PARA LISTAS DE PALIATIVOS
+ //RUTA PARA LISTAS GENERALES
 
  Route::get('/listas-index', 'Listas\ListasController@index')->name('listasIndex')->middleware('superEditor');
  Route::post('/crear-listas', 'Listas\ListasController@store')->name('crearlistas')->middleware('superEditor');
@@ -86,7 +86,7 @@ Route::get('informes', 'AdminController@informes')->name('informes')->middleware
 
  Route::post('/listas-estado', 'Listas\ListasController@updateestado')->name('lisestado')->middleware('superEditor');
 
- //RUTA PARA LISTAS DETALLE DE
+ //RUTA PARA LISTAS DETALLE GENERALES
  Route::get('/detallelistas', 'Listas\ListasDetalleController@indexDetalle')->name('listasdetalledetalle')->middleware('superEditor');
  Route::post('/detallecrear-listas', 'Listas\ListasDetalleController@store')->name('crearlistasdetalle')->middleware('superEditor');
  Route::get('/detalleeditar-listas/{id}', 'Listas\ListasDetalleController@show')->name('editar-listasdetalle')->middleware('superEditor');

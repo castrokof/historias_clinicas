@@ -361,8 +361,25 @@ class UsuarioAdministradorSeeder extends Seeder
             'icono'=>'fas fa-calendar-check'
         ]);
 
+        DB::table('menu')->insert([
 
-        //Relación menu-rol        
+            'menu_id'=> 1,
+            'nombre'=>'Listas',
+            'url'=>'#',
+            'orden'=>5,
+            'icono'=>'fa fa-list'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 40,
+            'nombre'=>'Crear listas',
+            'url'=>'/listas-index',
+            'orden'=>1,
+            'icono'=>'fa fa-list-alt'
+        ]);
+
+        //Relación menu-rol
 
         DB::table('menu_rol')->insert([
 
@@ -560,6 +577,19 @@ class UsuarioAdministradorSeeder extends Seeder
             'rol_id'=> 1,
             'menu_id'=> 39
         ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 40
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 41
+        ]);
+
 
 
         DB::table('menu_rol')->insert([
