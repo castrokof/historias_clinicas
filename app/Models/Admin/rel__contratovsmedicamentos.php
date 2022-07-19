@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class rel__contratovsmedicamentos extends Model
 {
-    use HasFactory;
+    protected $table = 'rel__contratovsmedicamentos';
+    protected $primary_key = 'id_contratovsmedicamento';
+    protected $fillable = [
+        'contrato_id',
+        'medicamento_id'
+    ];
+    public function contratomed(){
+        return $this->belongsTo(Def_Contratos::class, 'id_contrato');
+    }
+    public function medicamentocontrato(){
+        return $this->belongsTo(Def_MedicamentosSuministros::class, 'id_medicamento');
+    }
 }

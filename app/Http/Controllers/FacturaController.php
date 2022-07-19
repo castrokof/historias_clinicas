@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 
 use App\Models\Admin\Eps_empresa;
 use App\Models\Admin\Eps_copago;
 use App\Models\Admin\Eps_niveles;
 use App\Models\Admin\Paciente;
 
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Admin\Factura;
+use App\Models\Admin\Paises;
 use Illuminate\Http\Request;
 
 class FacturaController extends Controller
@@ -87,7 +88,7 @@ class FacturaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Factura  $factura
+     * @param  \App\Models\Admin\Factura  $factura
      * @return \Illuminate\Http\Response
      */
     public function show(Factura $factura)
@@ -98,7 +99,7 @@ class FacturaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Factura  $factura
+     * @param  \App\Models\Admin\Factura  $factura
      * @return \Illuminate\Http\Response
      */
     public function editar($id)
@@ -115,9 +116,19 @@ class FacturaController extends Controller
 
     public function buscarp(Request $request)
     {
+        $usuario_id = $request->session()->get('usuario_id');
+        $fechaActual= Carbon::now()->toDateString()." 00:00:01";
+
+        $paises = Paises::orderBy('id_pais')->select('id_pais', 'cod_pais', 'nombre',DB::raw("nombre as pais"))->get();
+
         if (request()->ajax()) {
 
-            $data = Paciente::where('documento', $request->document)->first();
+            /* $data = Paciente::where('documento', $request->document)->first(); */
+            $data = DB::table('paciente') 
+            ->Join('paises','paciente.pais_id','=','paises.id_pais')
+            /* ->select(DB::raw('paises.nombre as pais'),'paciente.documento as documento',) */
+            ->where('paciente.documento', $request->document)
+            ->first();
 
             return response()->json(['pacientes' => $data]);
         }
@@ -130,7 +141,7 @@ class FacturaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Factura  $factura
+     * @param  \App\Models\Admin\Factura  $factura
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Factura $factura)
@@ -141,7 +152,7 @@ class FacturaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Factura  $factura
+     * @param  \App\Models\Admin\Factura  $factura
      * @return \Illuminate\Http\Response
      */
     public function destroy(Factura $factura)

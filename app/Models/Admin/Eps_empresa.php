@@ -22,5 +22,8 @@ class Eps_empresa extends Model
     public function niveleps(){
         return $this->hasMany(Eps_niveles::class, 'eps_empresas_id');
     }
+    public function contratoeps(){
+        return $this->hasMany(rel__contratovseps::class, 'eps_id');
+    }
     
 }

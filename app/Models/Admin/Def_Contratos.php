@@ -7,5 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Def_Contratos extends Model
 {
-    use HasFactory;
+    protected $table = 'def__contratos';
+    protected $primary_key = 'id_contrato';
+    protected $fillable = [
+        'contrato',
+        'nombre',
+        'descripcion',
+        'tipo_contrato',
+        'estado'
+        
+    ];
+    public function contratoeps(){
+        return $this->hasMany(rel__contratovseps::class, 'contrato_id');
+    }
+    public function contratomed(){
+        return $this->hasMany(rel__contratovsmedicamentos::class, 'contrato_id');
+    }
 }

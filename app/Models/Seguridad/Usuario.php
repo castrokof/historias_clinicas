@@ -4,6 +4,7 @@ namespace App\Models\Seguridad;
 
 use App\Models\Admin\Cita;
 use App\Models\Admin\Paciente;
+use App\Models\Admin\Factura;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Admin\Rol;
 use Illuminate\Support\Facades\Hash;
@@ -36,10 +37,7 @@ class Usuario extends Authenticatable
     ];
 
 
-
-
-    protected $hidden = ['password'];
-    
+    protected $hidden = ['password'];    
 
     
     public function roles1(){
@@ -55,6 +53,9 @@ class Usuario extends Authenticatable
     }
     public function pacienteu(){
         return $this->hasMany(Paciente::class, 'usuario_id');
+    }
+    public function facturau(){
+        return $this->hasMany(Factura::class, 'usuario_id');
     }
 
     public function setSession(){

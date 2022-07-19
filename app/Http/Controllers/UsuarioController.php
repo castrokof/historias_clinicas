@@ -147,10 +147,7 @@ class UsuarioController extends Controller
             ->where('usuario.id', $id)
             ->first();
 
-
-
             return response()->json(['result'=>$data]);
-
 
         }
 

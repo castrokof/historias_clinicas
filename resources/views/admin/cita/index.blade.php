@@ -241,10 +241,6 @@
                   }
       
                  }
-
-
-        
-    
         });
 
   $('#create_cita').click(function(){

@@ -19,6 +19,7 @@
             <option value="ATENCION FIDEM S.A.S">ATENCION FIDEM S.A.S</option>
             <option value="TEMPUS ATENCION INTEGRAL EN SALUD EU">TEMPUS ATENCION INTEGRAL EN SALUD EU</option>
             <option value="OPORTUNIDAD DE VIDAD S.A.S">OPORTUNIDAD DE VIDAD S.A.S</option>
+            <option value="SALUD VITALIA">SALUD VITALIA </option>
         </select>
     </div>
     <div class="col-lg-3">

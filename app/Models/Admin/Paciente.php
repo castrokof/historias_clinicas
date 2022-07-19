@@ -25,11 +25,11 @@ class Paciente extends Model
         'plan',
         'Ocupacion',
         'Poblacion_especial',
-        'pais_id',  
-        'dpto',     
+        'pais_id',
+        'dpto',
         'ciudad',
         'sexo',
-        'orientacion_sexual',        
+        'orientacion_sexual',
         'eps',
         'numero_afiliacion',
         'operador',
@@ -42,10 +42,7 @@ class Paciente extends Model
         'observaciones',
         'estado_solicitud_farma',
         'usuario_id'
-
-        
     ];
-
 
     public function historiap(){
         return $this->hasMany(Historia::class, 'paciente_id');
