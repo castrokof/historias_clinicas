@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            @include('paliativos.listas.tablas.tablaIndexListasDetalle')
+                            @include('admin.listas.tablas.tablaIndexListasDetalle')
 
 
 

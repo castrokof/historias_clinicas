@@ -22,10 +22,12 @@ class CreateEpsNivelesTable extends Migration
             $table->string('regimen',20)->nullable();
             $table->string('tipo_recuperacion',20)->nullable();
             $table->string('afiliacion',100)->nullable();
+            $table->unsignedBigInteger('servicio_id')->nullable();
             $table->string('servicios',255)->nullable();
             $table->string('vlr_copago',255)->nullable();
             $table->char('estado',1);
-            $table->foreign('eps_empresas_id', 'fk_niveles_empresas')->references('id_eps_empresas')->on('eps_empresas')->onDelete('restrict')->onUpdate('restrict');                                  
+            $table->foreign('eps_empresas_id', 'fk_niveles_empresas')->references('id_eps_empresas')->on('eps_empresas')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('servicio_id', 'fk_niveles_servicios')->references('id_servicio')->on('servicios')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

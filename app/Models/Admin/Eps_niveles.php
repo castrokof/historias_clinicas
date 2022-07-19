@@ -21,9 +21,15 @@ class Eps_niveles extends Model
         'regimen',        
         'tipo_recuperacion',
         'afiliacion',
+        'servicio_id',
         'servicios',
         'vlr_copago',
-        'estado'   
-               
+        'estado'
     ];
+    public function niveleps(){
+        return $this->belongsTo(Eps_empresa::class, 'id_eps_empresas');
+    }
+    public function nivelservicio(){
+        return $this->belongsTo(Servicios::class, 'id_servicio');
+    }
 }

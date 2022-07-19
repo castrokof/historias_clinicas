@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Paliativos\Listas;
+namespace App\Http\Controllers\Listas;
 
 use App\Models\Listas\Listas;
 use App\Http\Controllers\Controller;
@@ -61,7 +61,7 @@ class ListasController extends Controller
 
     }
 
-    return view('paliativos.listas.index');
+    return view('admin.listas.index');
     }
 
 

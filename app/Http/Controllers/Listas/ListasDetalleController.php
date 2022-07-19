@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Paliativos\Listas;
+namespace App\Http\Controllers\Listas;
 
 use App\Models\Listas\ListasDetalle;
 use App\Http\Controllers\Controller;
@@ -70,7 +70,7 @@ class ListasDetalleController extends Controller
         }
 
 
-        return view('paliativos.listas.index');
+        return view('admin.listas.index');
     }
 
     /**

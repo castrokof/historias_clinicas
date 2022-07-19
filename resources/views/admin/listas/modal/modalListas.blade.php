@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <form id="form-general1" class="form-horizontal" method="POST">
                                 @csrf
-                                @include('paliativos.listas.form.form')
+                                @include('admin.listas.form.form')
 
                                 @include('includes.boton-form-crear-empresa-empleado-usuario')
 

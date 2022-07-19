@@ -30,10 +30,10 @@
 @endsection
 
 @section('contenido')
-    @include('paliativos.listas.tablas.tablaIndexListas')
-    @include('paliativos.listas.modal.modalListas')
-    @include('paliativos.listas.modal.modalListasDetalle')
-    @include('paliativos.listas.modal.modalListasDetalleIndex')
+    @include('admin.listas.tablas.tablaIndexListas')
+    @include('admin.listas.modal.modalListas')
+    @include('admin.listas.modal.modalListasDetalle')
+    @include('admin.listas.modal.modalListasDetalleIndex')
 @endsection
 
 @section('scriptsPlugins')

@@ -25,10 +25,11 @@ class Def_MedicamentosSuministros extends Model
         'valor_SOAT',
         'valor_particular',
         'estado'
-
-        
     ];
     public function medicamentocontrato(){
         return $this->hasMany(rel__contratovsmedicamentos::class, 'medicamento_id');
+    }
+    public function medicamentoprof(){
+        return $this->hasMany(rel__profesionalvsmedicamentos::class, 'medicamento_id');
     }
 }
