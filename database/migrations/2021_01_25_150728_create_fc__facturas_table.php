@@ -16,7 +16,7 @@ class CreateFcFacturasTable extends Migration
         Schema::create('fc__facturas', function (Blueprint $table) {
             $table->bigIncrements('id_factura');
             $table->string('cod_documentos',10); //Este es el codigo de la factura
-            $table->string('numero_factura',255);//Este es el consecutivo de la factura
+            $table->string('numero_factura',100);//Este es el consecutivo de la factura
             $table->dateTime('fechahora');
             $table->string('tipo_documento',10);
             $table->string('documento',19);//Este es el numero de documento del paciente

@@ -14,7 +14,10 @@ class CreateFcFacturaDiagnosticosTable extends Migration
     public function up()
     {
         Schema::create('fc__factura__diagnosticos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_fc_factura_diagnosticos');
+            $table->string('cod_documentos',10); //Este es el codigo de la factura
+            $table->string('numero_factura',100);//Este es el consecutivo de la factura
+            $table->string('codigo_cie10',45);
             $table->timestamps();
         });
     }

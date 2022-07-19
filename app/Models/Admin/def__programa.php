@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class def__programa extends Model
 {
-    use HasFactory;
+    protected $table = 'def__programas';
+    protected $primary_key = 'id_programa';
+    protected $fillable = [
+        'descripcion_programa',
+        'estado'
+    ];
+    public function programapa()
+    {
+        return $this->hasMany(rel_programasvspaciente::class, 'programa_id');
+    }
 }

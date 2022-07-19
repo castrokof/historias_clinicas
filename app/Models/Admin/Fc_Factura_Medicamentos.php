@@ -7,5 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fc_Factura_Medicamentos extends Model
 {
-    use HasFactory;
+    protected $table = 'fc__factura__medicamentos';
+    protected $primary_key = 'id_fc_factura_medicamentos';
+
+    protected $fillable = [
+        'cod_documentos',
+        'numero_factura',
+        'fechahora',
+        'codigo',
+        'cantidad_ordenada',
+        'cantidad_entregada',
+        'unitario',
+        'total',
+        'pagado',
+        'servicio',
+        'profesional',
+        'CUMS',
+        'observaciones',
+        'usuario_id'
+    ];
+    public function usuariof()
+    {
+        return $this->belongsTo(Usuario::class, 'id');
+    }
 }

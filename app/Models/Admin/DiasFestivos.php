@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class DiasFestivos extends Model
 {
-    use HasFactory;
+    protected $table = 'dias_festivos';
+    protected $primary_key = 'id_festivos';
+    
+    protected $fillable = [
+        'fecha'
+    ];
 }

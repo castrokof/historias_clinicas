@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Barrios extends Model
 {
-    use HasFactory;
+    protected $table = 'barrios';
+    protected $primary_key = 'id_barrio';
+    protected $fillable = [
+        'cod_barrio',
+        'nombre',
+        'estado'
+    ];
 }

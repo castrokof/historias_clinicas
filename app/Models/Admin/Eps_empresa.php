@@ -2,7 +2,7 @@
 
 namespace App\Models\Admin;
 
-//use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Eps_empresa extends Model
@@ -12,12 +12,11 @@ class Eps_empresa extends Model
     protected $primary_key = 'id_eps_empresas';
     
     protected $fillable = [
-
         'codigo',
         'nombre',
         'NIT',
-        'color',        
-        'estado'        
+        'color',
+        'estado'
     ];
     public function niveleps(){
         return $this->hasMany(Eps_niveles::class, 'eps_empresas_id');

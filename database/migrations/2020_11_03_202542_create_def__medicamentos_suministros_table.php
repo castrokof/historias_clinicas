@@ -19,7 +19,7 @@ class CreateDefMedicamentosSuministrosTable extends Migration
             $table->string('nombre',255);
             $table->string('detalle',255)->nullable();
             $table->string('marca',255);
-            $table->string('CUMS',255)->nullable();
+            $table->string('CUMS',100)->nullable();
             $table->unsignedBigInteger('ATC_id')->nullable();
             //$table->string('cod_atc',5)->nullable();
             $table->string('IUM',5)->nullable();

@@ -44,16 +44,22 @@ class Paciente extends Model
         'usuario_id'
     ];
 
-    public function historiap(){
+    public function historiap()
+    {
         return $this->hasMany(Historia::class, 'paciente_id');
     }
 
-    public function citap(){
+    public function citap()
+    {
         return $this->hasMany(Cita::class, 'paciente_id');
     }
 
-    public function paisesp(){
-        return $this->belongsTo(Paises::class, 'pais_id');
+    public function paisesp()
+    {
+        return $this->hasMany(Paises::class, 'pais_id');
     }
-
+    public function programapa()
+    {
+        return $this->hasMany(rel_programasvspaciente::class, 'paciente_id');
+    }
 }
