@@ -13,9 +13,9 @@ class CreateEstadoCausasTable extends Migration
      */
     public function up()
     {
-        Schema::create('estado__causas', function (Blueprint $table) {
+        Schema::create('estado_causas', function (Blueprint $table) {
             $table->bigIncrements('id_causa');
-            $table->string('cod_estado__causas',10)->unique();
+            $table->string('cod_estado_causas',10)->unique();
             $table->string('nombre',200);
             $table->char('estado',1);
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateEstadoCausasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado__causas');
+        Schema::dropIfExists('estado_causas');
     }
 }

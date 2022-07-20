@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Def_SalasCamas extends Model
 {
-    use HasFactory;
+    protected $table = 'def__salas_camas';
+    protected $primary_key = 'id_salas_camas';
+    
+    protected $fillable = [
+
+        'codigo',
+        'nombre',
+        'estado'
+    ];
 }

@@ -40,7 +40,7 @@ class CreateFcFacturasTable extends Migration
             $table->foreign('paciente_id', 'fk_factura_paciente')->references('id_paciente')->on('paciente')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id', 'fk_factura_usuario')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('causa_id', 'fk_factura_causa')->references('id_causa')->on('estado__causas')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('causa_id', 'fk_factura_causa')->references('id_causa')->on('estado_causas')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

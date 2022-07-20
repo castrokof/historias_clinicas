@@ -35,7 +35,7 @@ class Factura extends Model
         'nivel',
         'sede',
         'anulada',
-        'causa_id',
+        'causa_id', //Este campo es para definir las diferentes causas para anular un documento o factura
         'fecha_anulacion',
         'usuario_anulo',
         'paciente_id',
@@ -49,5 +49,9 @@ class Factura extends Model
     public function usuariof()
     {
         return $this->belongsTo(Usuario::class, 'id');
+    }
+    public function causaanul()
+    {
+        return $this->belongsTo(Estado_Causas::class, 'id_causa');
     }
 }

@@ -14,7 +14,10 @@ class CreateDefEspecialidadesTable extends Migration
     public function up()
     {
         Schema::create('def__especialidades', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_especialidad');
+            $table->string('codigo',10);
+            $table->string('nombre',200);
+            $table->char('estado',1);
             $table->timestamps();
         });
     }

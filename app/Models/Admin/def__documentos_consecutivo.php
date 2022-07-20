@@ -7,5 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class def__documentos_consecutivo extends Model
 {
-    use HasFactory;
+    protected $table = 'def__documentos_consecutivos';
+    protected $primary_key = 'id_documento_consecutivo';
+    
+    protected $fillable = [
+
+        'documento_id',
+        'consecutivo',
+        'sede',
+        'observaciones'
+    ];
+    public function documentotipo(){
+        return $this->belongsTo(Def__Documentos::class, 'id_documento');
+    }
 }

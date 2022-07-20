@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Def_Especialidades extends Model
 {
-    use HasFactory;
+    protected $table = 'def__especialidades';
+    protected $primary_key = 'id_especialidad';
+    
+    protected $fillable = [
+
+        'codigo',
+        'nombre',
+        'estado'
+    ];
 }

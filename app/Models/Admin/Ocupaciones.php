@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ocupaciones extends Model
 {
-    use HasFactory;
+    protected $table = 'ocupaciones';
+    protected $primary_key = 'id_ocupacion';
+    
+    protected $fillable = [
+
+        'codigo',
+        'nombre',
+        'estado'
+    ];
 }

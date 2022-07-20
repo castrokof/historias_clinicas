@@ -14,7 +14,10 @@ class CreateDefSalasCamasTable extends Migration
     public function up()
     {
         Schema::create('def__salas_camas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_salas_camas');
+            $table->string('codigo',10);
+            $table->string('nombre',200);
+            $table->char('estado',1);
             $table->timestamps();
         });
     }
