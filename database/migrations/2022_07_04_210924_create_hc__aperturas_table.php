@@ -16,6 +16,7 @@ class CreateHcAperturasTable extends Migration
         Schema::create('hc__aperturas', function (Blueprint $table) {
             $table->bigIncrements('id_apertura');
             $table->string('historia',200)->nullable();//Este es el documento del paciente
+            $table->unsignedBigInteger('tipo_historia_id');
             $table->string('tipo_historia',255)->nullable();// Este dato se trae de la tabla hc__def__tipos_historia_clinicas
             $table->dateTime('fechahora_ingreso')->nullable();//Fecha y hra en que se crea o se graba la apertura de la historia clinica
             $table->string('motivo_consulta',255)->nullable();
@@ -70,6 +71,7 @@ class CreateHcAperturasTable extends Migration
             $table->foreign('paciente_id', 'fk_apertura_paciente')->references('id_paciente')->on('paciente')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id', 'fk_apertura_usuario')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('tipo_historia_id', 'fk_tipo_apertura')->references('id_tipo_historia')->on('hc__def__tipos_historia_clinicas')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

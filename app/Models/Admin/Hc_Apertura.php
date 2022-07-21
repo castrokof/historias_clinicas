@@ -63,7 +63,7 @@ class Hc_Apertura extends Model
         'ANT_FAMILIARES',
         'ANT_HABITOS',
         'ANT_LABORALES',
-        'OBSERVACIONES',        
+        'OBSERVACIONES',
         'paciente_id',
         'usuario_id'
     ];

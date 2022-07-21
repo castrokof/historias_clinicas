@@ -14,7 +14,16 @@ class CreateHcDefTiposHistoriaClinicasTable extends Migration
     public function up()
     {
         Schema::create('hc__def__tipos_historia_clinicas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_tipo_historia');
+            $table->string('tipo_historia',20)->nullable();
+            $table->string('descripcion',20)->nullable();
+            $table->string('horas_cierre',20)->nullable();
+            $table->char('rips_obligatorio',1);
+            $table->string('orden_impresion',20)->nullable();
+            $table->char('ambito1',2); //Este es ambulatorio
+            $table->char('ambito2',2);//Este es urgencias
+            $table->char('ambito3',2);//Este es hospitalizacion
+            $table->char('estado',1);
             $table->timestamps();
         });
     }
