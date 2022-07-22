@@ -5,6 +5,8 @@ namespace App\Models\Seguridad;
 use App\Models\Admin\Cita;
 use App\Models\Admin\Paciente;
 use App\Models\Admin\Factura;
+use App\Models\Admin\Historia;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Admin\Rol;
 use Illuminate\Support\Facades\Hash;

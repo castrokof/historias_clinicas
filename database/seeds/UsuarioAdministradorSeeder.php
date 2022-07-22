@@ -168,11 +168,11 @@ class UsuarioAdministradorSeeder extends Seeder
         ]);
         DB::table('menu')->insert([
 
-            'menu_id'=> 1,
+            'menu_id'=> 34,
             'nombre'=>'Eps empresas',
             'url'=>'eps_empresas',
-            'orden'=>5,
-            'icono'=>'far fa-building'
+            'orden'=>4,
+            'icono'=>'fas fa-angle-right'
         ]);
 
         DB::table('menu')->insert([
@@ -378,6 +378,58 @@ class UsuarioAdministradorSeeder extends Seeder
             'orden'=>1,
             'icono'=>'fa fa-list-alt'
         ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 34,
+            'nombre'=>'Documentos',
+            'url'=>'documentos',
+            'orden'=>0,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 34,
+            'nombre'=>'Documentos Consecutivo',
+            'url'=>'documentos_consecutivo',
+            'orden'=>1,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        
+        DB::table('menu')->insert([
+
+            'menu_id'=> 34,
+            'nombre'=>'Medicamentos',
+            'url'=>'medicamentos',
+            'orden'=>2,
+            'icono'=>'fas fa-angle-right'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 34,
+            'nombre'=>'Procedimientos',
+            'url'=>'procedimientos',
+            'orden'=>3,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 34,
+            'nombre'=>'Contratos',
+            'url'=>'contratos',
+            'orden'=>5,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        DB::table('menu')->insert([
+
+            'menu_id'=> 34,
+            'nombre'=>'Profesionales',
+            'url'=>'profesionales',
+            'orden'=>6,
+            'icono'=>'fas fa-angle-right'
+        ]);
+        
+
 
         //Relación menu-rol
 
@@ -589,7 +641,37 @@ class UsuarioAdministradorSeeder extends Seeder
             'rol_id'=> 1,
             'menu_id'=> 41
         ]);
+        DB::table('menu_rol')->insert([
 
+            'rol_id'=> 1,
+            'menu_id'=> 42
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 43
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 44
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 45
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 46
+        ]);
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 47
+        ]);
+        
 
 
         DB::table('menu_rol')->insert([

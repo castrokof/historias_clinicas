@@ -28,6 +28,7 @@ class Paciente extends Model
         'pais_id',
         'dpto',
         'ciudad',
+        'barrio_id',
         'sexo',
         'orientacion_sexual',
         'eps',
@@ -57,6 +58,10 @@ class Paciente extends Model
     public function paisesp()
     {
         return $this->hasMany(Paises::class, 'pais_id');
+    }
+    public function barriop()
+    {
+        return $this->hasMany(Barrios::class, 'id_barrio');
     }
     public function programapa()
     {

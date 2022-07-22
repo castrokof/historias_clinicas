@@ -15,11 +15,9 @@ class CreateCita extends Migration
     {
         Schema::create('cita', function (Blueprint $table) {
             $table->bigIncrements('id_cita');
-            $table->string('cod_profesional',20)->nullable();
             $table->dateTime('fechahora');//Cupo de la cita
             $table->date('fechasp')->nullable();
             $table->dateTime('fechaspdh')->nullable();
-            $table->string('servicio',150)->nullable();//Este dato corresponde al centro de produccion
             $table->string('tipo_documento',45)->nullable();//Ej: CC, TI, CE, 
             $table->string('historia',45)->nullable();//Este es el numero de documento del paciente
             $table->string('papellido',100)->nullable();
@@ -28,8 +26,10 @@ class CreateCita extends Migration
             $table->string('snombre',100)->nullable();
             $table->string('cod_documentos',10); //Este es el codigo de la factura
             $table->string('numero_factura',255);//Este es el consecutivo de la factura
-            $table->string('cod_cups',45)->nullable();
-            $table->string('contrato',45)->nullable();
+            $table->string('servicio',150)->nullable();//Este dato corresponde al centro de produccion
+            $table->string('cod_profesional',20)->nullable();//Este dato se captura de la tabla def__profesionales
+            $table->string('cod_cups',45)->nullable(); //Este dato se captura de la tabla def__procedimientos
+            $table->string('contrato',45)->nullable();//Este dato se captura de la tabla def__contratos
             $table->string('regimen', 100)->nullable();
             $table->string('eps', 45)->nullable();
             $table->string('nivel',10)->nullable();

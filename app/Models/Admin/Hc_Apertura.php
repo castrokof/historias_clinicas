@@ -2,8 +2,14 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Seguridad\Usuario;
+use App\Models\Admin\Cita;
+use App\Models\Admin\Paciente;
+use App\Models\Admin\Factura;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Hc_Apertura extends Model
 {
@@ -73,5 +79,8 @@ class Hc_Apertura extends Model
 
     public function usuarioaper(){
         return $this->belongsTo(Usuario::class, 'id');
+    }
+    public function tipoapertura(){
+        return $this->belongsTo(Hc_Def_TiposHistoriaClinica::class, 'id_tipo_historia');
     }
 }

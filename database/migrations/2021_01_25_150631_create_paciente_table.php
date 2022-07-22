@@ -31,9 +31,10 @@ class CreatePacienteTable extends Migration
             //$table->string('plan', 100)->nullable();            
             $table->string('Ocupacion', 100)->nullable();
             $table->string('Poblacion_especial', 200)->nullable();
-            $table->unsignedBigInteger('pais_id')->nullable();;
-            $table->unsignedBigInteger('departamento_id')->nullable();;
-            $table->unsignedBigInteger('ciudad_id')->nullable();;
+            $table->unsignedBigInteger('pais_id')->nullable();
+            $table->unsignedBigInteger('departamento_id')->nullable();
+            $table->unsignedBigInteger('ciudad_id')->nullable();
+            $table->unsignedBigInteger('barrio_id')->nullable();
             $table->string('ciudad', 100)->nullable();
             $table->string('sexo', 100)->nullable();
             $table->string('orientacion_sexual', 100)->nullable();
@@ -56,7 +57,8 @@ class CreatePacienteTable extends Migration
             $table->foreign('usuario_id', 'fk_paciente_usuario')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('pais_id', 'fk_paciente_paises')->references('id_pais')->on('paises')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('departamento_id', 'fk_paciente_departamento')->references('id_departamento')->on('departamentos')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('ciudad_id', 'fk_paciente_ciudad')->references('id_ciudad')->on('ciudades')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('ciudad_id','fk_paciente_ciudad')->references('id_ciudad')->on('ciudades')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('barrio_id','fk_paciente_barrio')->references('id_barrio')->on('barrios')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

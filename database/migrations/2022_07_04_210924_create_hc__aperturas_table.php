@@ -66,7 +66,7 @@ class CreateHcAperturasTable extends Migration
             $table->string('ANT_FAMILIARES',255)->nullable();
             $table->string('ANT_HABITOS',255)->nullable();
             $table->string('ANT_LABORALES',255)->nullable();
-            $table->string('OBSERVACIONES',255)->nullable();            
+            $table->string('OBSERVACIONES',255)->nullable();
             $table->unsignedBigInteger('paciente_id');
             $table->foreign('paciente_id', 'fk_apertura_paciente')->references('id_paciente')->on('paciente')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('usuario_id');

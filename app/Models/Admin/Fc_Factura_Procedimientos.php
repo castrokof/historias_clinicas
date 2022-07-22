@@ -15,12 +15,14 @@ class Fc_Factura_Procedimientos extends Model
         'numero_factura', //Este es el consecutivo de la factura
         'cod_cups',
         'cod_alterno',
-        'fechahora',
         'codigo_cie10',
         'tipo_diagnostico', // El mismo que se ingresa en la tabla diagnostico
         'cantidad',
         'unitario',
         'total',
-        'pagado'
+        'pagado',
+        'servicio',
+        'profesional',
+        'observaciones'
     ];
 }

@@ -12,8 +12,7 @@ class Fc_Factura_Medicamentos extends Model
 
     protected $fillable = [
         'cod_documentos',
-        'numero_factura',
-        'fechahora',
+        'numero_factura',        
         'codigo',
         'cantidad_ordenada',
         'cantidad_entregada',
@@ -23,8 +22,8 @@ class Fc_Factura_Medicamentos extends Model
         'servicio',
         'profesional',
         'CUMS',
-        'observaciones',
-        'usuario_id'
+        'observaciones'
+        
     ];
     public function usuariof()
     {
