@@ -57,7 +57,7 @@
 
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6">
-                  @include('includes.boton-form-crear-empresa-empleado-usuario')
+                  @include('includes.boton-form-add')
                 </div>
               </div>
               <!-- /.card-footer -->

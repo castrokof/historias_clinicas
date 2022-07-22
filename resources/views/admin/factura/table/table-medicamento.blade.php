@@ -1,15 +1,15 @@
 <div class="card card-info p-2">
     <div>
         <!-- Modal -->
-        <button type="button" class="btn btn-primary" name="agregar_cups" id="agregar_cups" 
+        <button type="button" class="btn btn-primary" name="agregar_cups" id="agregar_cups"
         data-toggle="modal" data-target="#bs-example-modal-lg-add"><i class="fa fa-plus-circle"></i> Agregar</button>
     </div>
-    
+
     <div class="x_panel">
         <div class="card-body with-border">
 
             <div class="card-body table-responsive p-2">
-                <table id="tdiagnostico" class="table table-hover  text-nowrap">
+                <table id="tmedicamentos" class="table table-hover  text-nowrap">
                     <thead>
                         <tr>
                             <th>Acciones</th>

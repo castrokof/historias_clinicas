@@ -1,8 +1,8 @@
 <div class="form-group row">
   <div class="col-lg-2">
-    <label for="codigo_cie10" class="col-xs-4 control-label requerido">Procedimiento</label>
-    <select name="cie10_id" id="cie10_motivo_consulta1" class="form-control " style="width: 100%;" required>
-    </select>
+        <label for="profesional" class="col-xs-4 control-label requerido">Profesional</label>
+        <select name="profesional" id="profesional" class="form-control " value="{{old('profesional')}}" required>
+        </select>
   </div>
   <div class="col-lg-2">
     <label for="servicio" class="col-xs-4 control-label requerido">Servicio</label>
@@ -10,10 +10,11 @@
     </select>
   </div>
   <div class="col-lg-2">
-    <label for="profesional" class="col-xs-4 control-label requerido">Profesional</label>
-    <select name="profesional" id="profesional" class="form-control " value="{{old('profesional')}}" required>
+    <label for="codigo_cie10" class="col-xs-4 control-label requerido">Procedimiento</label>
+    <select name="cod_cups" id="cod_cups" class="form-control " style="width: 100%;" required>
     </select>
   </div>
+
   <div class="col-lg-2">
     <label for="cantidad" class="col-xs-4 control-label requerido">Cantidad</label>
     <input type="number" name="cantidad" id="cantidad" class="form-control" value="{{old('cantidad')}}">
@@ -35,7 +36,7 @@
   </div>
   <div class="col-lg-2">
     <label for="valor" class="col-xs-4 control-label ">Valor Unitario</label>
-    <input type="number" name="valor" id="valor" class="form-control" placeholder="$0.00" readonly>
+    <input type="number" name="valor" id="valor" class="form-control" placeholder="$0.00" value = "35000"readonly>
   </div>
 </div>
 
