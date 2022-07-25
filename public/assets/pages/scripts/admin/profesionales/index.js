@@ -26,12 +26,12 @@ $(document).ready(function () {
     function customSwitch1() {
 
         if ($('#customSwitch1').prop('checked')) {
-            $('#estado').val(1);
+            $('#estado').val('1');
             console.log($('#estado').val());
 
         } else {
 
-            $('#estado').val(0);
+            $('#estado').val('0');
             console.log($('#estado').val());
 
         }

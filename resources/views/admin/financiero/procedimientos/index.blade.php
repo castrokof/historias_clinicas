@@ -151,7 +151,7 @@
 
 
                 if ($('#action').val() == 'Add') {
-                    text = "Estás por crear una lista"
+                    text = "Estás por crear un procedimiento"
                     url = "{{ route('guardar_procedimientos') }}"; 
                     method = 'post';
                 }
@@ -218,7 +218,6 @@
                         id: $(this).val(),
                         _token: $('input[name=_token]').val()
                     };
-
                 }
                 //Si se ha desmarcado se ejecuta el siguiente mensaje.
                 else {
@@ -227,8 +226,7 @@
                         _token: $('input[name=_token]').val()
                     }
                 }
-
-                ajaxRequest('/procedimiento-estado', data);
+                ajaxRequest('procedimiento-estado', data);
             });
 
 
@@ -383,10 +381,8 @@
 
                         Manteliviano.notificaciones('No tienes permisos para realizar esta accion',
                             'Sistema Paliativos', 'warning');
-
                     }
-                });
-
+                }); 
 
             });
 

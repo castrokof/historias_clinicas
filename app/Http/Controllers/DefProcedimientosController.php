@@ -18,24 +18,48 @@ class DefProcedimientosController extends Controller
      */
     public function index(Request $request)
     {
-        $usuario_id = $request->session()->get('usuario_id');
+
         if ($request->ajax()) {
-            $datas = Def_Procedimientos::orderBy('id_cups')
-                ->get();
 
 
-            return  DataTables()->of($datas)
-                ->addColumn('action', function ($datas) {
-                    $button = '<button type="button" name="edit" id="' . $datas->id_cups . '"
-        class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar procedimiento"><i class="far fa-edit"></i></button>';
-
-                    return $button;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-        return view('admin.financiero.procedimientos.index');
+            $datas = Def_Procedimientos::orderBy('id_cups', 'asc')->get();
+     
+             return  DataTables()->of($datas)
+                 ->addColumn('action', function($datas){
+                     $button ='<button type="button" name="Detalle" id="'.$datas->id_cups.'" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Editar procedimiento"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
+     
+                 return $button;
+     
+             })->addColumn('estado', function($datas){
+     
+     
+                 if ($datas->estado == "1") {
+     
+                 $button ='
+                 <div class="custom-control custom-switch ">
+                 <input type="checkbox"  class="check_98 custom-control-input"  id="customSwitch99'.$datas->id_cups.'" value="'.$datas->id_cups.'"  checked>
+                 <label class="custom-control-label" for="customSwitch99'.$datas->id_cups.'"  valueid="'.$datas->id_cups.'"></label>
+                 </div>';
+     
+             }else{
+     
+                 $button ='
+                 <div class="custom-control custom-switch ">
+                 <input type="checkbox" class="check_98 custom-control-input" id="customSwitch99'.$datas->id_cups.'" value="'.$datas->id_cups.'" >
+                 <label class="custom-control-label" for="customSwitch99'.$datas->id_cups.'"  valueid="'.$datas->id_cups.'"></label>
+                 </div>';
+     
+             }
+     
+             return $button;
+     
+         })
+             ->rawColumns(['action', 'estado'])
+             ->make(true);
+     
+         }
+     
+         return view('admin.financiero.procedimientos.index');
     }
 
     /**
@@ -93,8 +117,8 @@ class DefProcedimientosController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Def_Procedimientos  $def_Procedimientos
+     *@param  int  $id
+     * @param  \App\Models\Admin\Def_Procedimientos  $def_Procedimientos
      * @return \Illuminate\Http\Response
      */
     public function editar($id)
@@ -106,8 +130,8 @@ class DefProcedimientosController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Def_Procedimientos  $def_Procedimientos
+     *@param  int  $id
+     * @param  \App\Models\Admin\Def_Procedimientos  $def_Procedimientos
      * @return \Illuminate\Http\Response
      */
     public function edit(Def_Procedimientos $def_Procedimientos)
@@ -119,7 +143,8 @@ class DefProcedimientosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Def_Procedimientos  $def_Procedimientos
+     * @param  \App\Models\Admin\Def_Procedimientos  $def_Procedimientos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Def_Procedimientos $def_Procedimientos)
@@ -132,21 +157,25 @@ class DefProcedimientosController extends Controller
 
             if ($request->ajax()) {
 
-                $procedimientoactivo = new Def_Procedimientos();
+                $procedimientoestado = new Def_Procedimientos();
+                
 
-                $datas = DB::table('def__procedimientos')->select('estado')->where('id_cups',$request->input('id_cups'))->first();
+                $datas = DB::table('def__procedimientos')->select('estado')->where('id_cups', $request->input('id'))->first();
+
+                //dd($datas);
+                //return($datas);
 
                 foreach($datas as $data){
 
                   if($data == '1'){
 
-                    $procedimientoactivo->findOrFail($request->input('id_cups'))->update([
-                        'estado' =>'0'
+                    $procedimientoestado->findOrFail($request->input('id'))->update([
+                        'estado' => '0'
                     ]);
 
                     return response()->json(['respuesta' => 'Procedimiento desactivado', 'titulo' => 'System Fidem', 'icon' => 'warning']);
                     }else if($data == '0'){
-                        $procedimientoactivo->findOrFail($request->input('id_cups'))->update([
+                        $procedimientoestado->findOrFail($request->input('id'))->update([
                             'estado' => '1'
                         ]);
 
@@ -160,7 +189,7 @@ class DefProcedimientosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Def_Procedimientos  $def_Procedimientos
+     * @param  \App\Models\Admin\Def_Procedimientos  $def_Procedimientos
      * @return \Illuminate\Http\Response
      */
     public function destroy(Def_Procedimientos $def_Procedimientos)

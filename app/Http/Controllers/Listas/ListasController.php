@@ -152,7 +152,7 @@ class ListasController extends Controller
                 $listaactivo = new Listas();
 
                 $datas = DB::table('listas')->select('activo')->where('id',$request->input('id'))->first();
-
+                //dd($datas);
 
 
                 foreach($datas as $data){
