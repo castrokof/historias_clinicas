@@ -26,13 +26,13 @@ $(document).ready(function () {
     function customSwitch1() {
 
         if ($('#customSwitch1').prop('checked')) {
-            $('#activo').val('SI');
-            console.log($('#activo').val());
+            $('#estado').val(1);
+            console.log($('#estado').val());
 
         } else {
 
-            $('#activo').val('NO');
-            console.log($('#activo').val());
+            $('#estado').val(0);
+            console.log($('#estado').val());
 
         }
     }
@@ -40,11 +40,6 @@ $(document).ready(function () {
     $("#customSwitch1").change(customSwitch1);
 
     //------------------------------------------------------Funciones de items-----------------------------------------//
-
-
-
-
-
 
 
     //Función para abrir modal y prevenir el cierre de creación de items
@@ -60,13 +55,13 @@ $(document).ready(function () {
     function customSwitch2() {
 
         if ($('#customSwitch2').prop('checked')) {
-            $('#activo2').val('SI');
-            console.log($('#activo2').val());
+            $('#estado2').val(1);
+            console.log($('#estado2').val());
 
         } else {
 
-            $('#activo2').val('NO');
-            console.log($('#activo2').val());
+            $('#estado2').val(0);
+            console.log($('#estado2').val());
 
         }
     }
@@ -90,7 +85,7 @@ $(document).ready(function () {
         }
 
         if ($('#nombre1').val() == '' || $('#descripcion1').val() == '' || $('#slug1').val() == '' ||
-            $('#activo1').val() == '') {
+            $('#estado1').val() == '') {
             Swal.fire({
                 title: "Debes de rellenar todos los campos del formulario",
                 text: "Respuesta Paliativos",

@@ -22,6 +22,7 @@ class Def_Procedimientos extends Model
         'edad_2',
         'cantidad_maxima',
         'valor_SOAT',
+        'valor_particular',
         'estado'
     ];
     public function procedimientocontrato(){

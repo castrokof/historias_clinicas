@@ -21,51 +21,48 @@ class ListasDetalleController extends Controller
 
         $idlist = $request->id;
 
-         if ($request->ajax()) {
+        if ($request->ajax()) {
 
             if ($idlist != null) {
 
                 $datas = ListasDetalle::orderBy('id', 'asc')
-                ->where('listas_id', "=", $idlist)->get();
+                    ->where('listas_id', "=", $idlist)->get();
 
-            return  DataTables()->of($datas)
-                ->addColumn('action', function ($datas) {
-                    $button = '<button type="button" name="Detalle" id="' . $datas->id . '" class="itemsEditar btn btn-app bg-warning tooltipsC" title="Editar"  ><span class="badge bg-teal">Editar</span><i class="fas fa-edit"></i>Editar</button>';
+                return  DataTables()->of($datas)
+                    ->addColumn('action', function ($datas) {
+                        $button = '<button type="button" name="Detalle" id="' . $datas->id . '" class="itemsEditar btn btn-app bg-warning tooltipsC" title="Editar"  ><span class="badge bg-teal">Editar</span><i class="fas fa-edit"></i>Editar</button>';
 
-                    return $button;
-                })->addColumn('activo', function ($datas) {
-
-
-                    if ($datas->activo == "SI") {
+                        return $button;
+                    })->addColumn('activo', function ($datas) {
 
 
-                        $button = '
+                        if ($datas->activo == "SI") {
+
+
+                            $button = '
              <div class="custom-control custom-switch ">
              <input type="checkbox"  class="check_99 custom-control-input"  id="customSwitch999' . $datas->id . '" value="' . $datas->id . '"  checked>
              <label class="custom-control-label" for="customSwitch999' . $datas->id . '"  valueid="' . $datas->id . '"></label>
              </div>';
-                    } else {
+                        } else {
 
-                        $button = '
+                            $button = '
              <div class="custom-control custom-switch ">
              <input type="checkbox" class="check_99 custom-control-input" id="customSwitch999' . $datas->id . '" value="' . $datas->id . '" >
              <label class="custom-control-label" for="customSwitch999' . $datas->id . '"  valueid="' . $datas->id . '"></label>
              </div>';
-                    }
+                        }
 
-                    return $button;
-                })
-                ->rawColumns(['action', 'activo'])
-                ->make(true);
-
-
+                        return $button;
+                    })
+                    ->rawColumns(['action', 'activo'])
+                    ->make(true);
             } else {
 
                 $datas = ListasDetalle::orderBy('id', 'asc')
-                ->where('listas_id', '=', null)->get();
+                    ->where('listas_id', '=', null)->get();
                 return  DataTables()->of($datas)
-                        ->make(true);;
-
+                    ->make(true);;
             }
         }
 
@@ -137,29 +134,23 @@ class ListasDetalleController extends Controller
 
 
             return response()->json(['regimen' => $regimen, 'type' => $type]);
-            }else{
+        } else {
 
-                $regimen = ListasDetalle::orderBy('id')
+            $regimen = ListasDetalle::orderBy('id')
                 ->where([
                     ['listas_id', 2],
                     ['activo', 'SI'],
                 ])
                 ->get();
 
-                $type = ListasDetalle::orderBy('id')->where([
-                    ['listas_id', 3],
-                    ['activo', 'SI'],
-                ])
-                                      ->get();
+            $type = ListasDetalle::orderBy('id')->where([
+                ['listas_id', 3],
+                ['activo', 'SI'],
+            ])
+                ->get();
 
-                    return response()->json(['regimen' => $regimen, 'type' => $type]);
-
-
-
-            }
-
-
-
+            return response()->json(['regimen' => $regimen, 'type' => $type]);
+        }
     }
 
 
@@ -218,36 +209,32 @@ class ListasDetalleController extends Controller
     public function updateestado(Request $request)
     {
 
-            if ($request->ajax()) {
+        if ($request->ajax()) {
 
-                $listaactivo = new ListasDetalle();
+            $listaactivo = new ListasDetalle();
 
-                $datas = DB::table('listasdetalle')->select('activo')->where('id',$request->input('id'))->first();
+            $datas = DB::table('listasdetalle')->select('activo')->where('id', $request->input('id'))->first();
 
 
 
-                foreach($datas as $data){
+            foreach ($datas as $data) {
 
-                  if($data == 'SI'){
+                if ($data == 'SI') {
 
                     $listaactivo->findOrFail($request->input('id'))->update([
-                        'activo' =>'NO'
+                        'activo' => 'NO'
                     ]);
 
                     return response()->json(['respuesta' => 'Item desactivado correctamente', 'titulo' => 'System Fidem', 'icon' => 'info']);
-                    }else if($data == 'NO'){
-                        $listaactivo->findOrFail($request->input('id'))->update([
-                            'activo' => 'SI'
-                        ]);
+                } else if ($data == 'NO') {
+                    $listaactivo->findOrFail($request->input('id'))->update([
+                        'activo' => 'SI'
+                    ]);
 
-                        return response()->json(['respuesta' => 'Item activado correctamente', 'titulo' => 'System Fidem', 'icon' => 'success']);
-
-                    }
-
+                    return response()->json(['respuesta' => 'Item activado correctamente', 'titulo' => 'System Fidem', 'icon' => 'success']);
                 }
-
             }
-
+        }
     }
     /**
      * Remove the specified resource from storage.

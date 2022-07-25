@@ -96,8 +96,19 @@ Route::get('informes', 'AdminController@informes')->name('informes')->middleware
  Route::post('/detalle-estado', 'Listas\ListasDetalleController@updateestado')->name('detestado')->middleware('superEditor');
 
  //SELECT DE LISTAS
-
  route::get('selectlist', 'Listas\ListasDetalleController@select')->name('selectlist')->middleware('superEditor');
+
+//RUTA PARA CREAR PROCEDIMIENTOS
+/* RUTAS DEL paciente */
+Route::get('procedimientos', 'DefProcedimientosController@index')->name('procedimientosIndex')->middleware('superEditor');
+Route::get('procedimientos/crear', 'DefProcedimientosController@crear')->name('crear_procedimientos')->middleware('superEditor');
+Route::post('procedimientos', 'DefProcedimientosController@guardar')->name('guardar_procedimientos')->middleware('superEditor');
+Route::get('editar_procedimientos/{id}', 'DefProcedimientosController@editar')->name('editar_procedimientos')->middleware('superEditor');
+Route::put('procedimientos/{id}', 'DefProcedimientosController@actualizar')->name('actualizar_procedimientos')->middleware('superEditor');
+Route::post('/procedimiento-estado', 'Listas\ListasController@updateestado')->name('procestado')->middleware('superEditor');
+Route::get('pais', 'PacienteController@selectpa')->name('pais')->middleware('superEditor');
+Route::get('eps', 'PacienteController@selecteps')->name('eps')->middleware('superEditor');
+
 
 /* RUTAS DEL USUARIO */
 Route::get('usuario', 'UsuarioController@index')->name('usuario')->middleware('superEditor');

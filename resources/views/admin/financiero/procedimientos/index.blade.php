@@ -1,7 +1,7 @@
 @extends("theme.$theme.layout")
 
 @section('titulo')
-    Profesionales
+    Procedimientos
 @endsection
 @section('styles')
     <style>
@@ -30,10 +30,9 @@
 @endsection
 
 @section('contenido')
-    @include('admin.financiero.procedimientos.tablas.tablaIndexProcedimientos.blade')
-    @include('admin.financiero.procedimientos.modal.modalProcedimientos.blade')
-    <!-- @include('admin.financiero.procedimientos.modal.modalListasDetalle') -->
-    <!-- @include('admin.financiero.procedimientos.modal.modalListasDetalleIndex') -->
+    @include('admin.financiero.procedimientos.tablas.tablaIndexProcedimientos')
+    @include('admin.financiero.procedimientos.modal.modalProcedimientos')
+    
 @endsection
 
 @section('scriptsPlugins')
@@ -71,7 +70,7 @@
                     [0, "desc"]
                 ],
                 ajax: {
-                    url: "{{ route('listasIndex') }}",
+                    url: "{{ route('procedimientosIndex') }}",
                 },
                 columns: [{
                         data: 'action',
@@ -79,10 +78,10 @@
                         searchable: false
                     },
                     {
-                        data: 'id'
+                        data: 'cod_cups'
                     },
                     {
-                        data: 'slug'
+                        data: 'cod_alterno'
                     },
                     {
                         data: 'nombre'
@@ -91,7 +90,10 @@
                         data: 'descripcion'
                     },
                     {
-                        data: 'activo'
+                        data: 'valor_particular'
+                    },
+                    {
+                        data: 'estado'
                     }
                 ],
 
@@ -150,12 +152,11 @@
 
                 if ($('#action').val() == 'Add') {
                     text = "Estás por crear una lista"
-                    url = "{{ route('crearlistas') }}";
+                    url = "{{ route('guardar_procedimientos') }}"; 
                     method = 'post';
                 }
 
-                if ($('#nombre').val() == '' || $('#descripcion').val() == '' || $('#slug').val() == '' ||
-                    $('#activo').val() == '') {
+                if ($('#cod_cups').val() == '' || $('#nombre').val() == '' || $('#estado').val() == '') {
                     Swal.fire({
                         title: "Debes de rellenar todos los campos del formulario",
                         text: "Respuesta Paliativos",
@@ -186,7 +187,7 @@
                                         $('#listasGeneral').DataTable().ajax.reload();
                                         Swal.fire({
                                             icon: 'success',
-                                            title: 'Lista creada correctamente',
+                                            title: 'Procedimiento creado correctamente',
                                             showConfirmButton: false,
                                             timer: 2000
                                         })
@@ -227,7 +228,7 @@
                     }
                 }
 
-                ajaxRequest('/financiero.procedimientos-estado', data);
+                ajaxRequest('/procedimiento-estado', data);
             });
 
 
@@ -362,7 +363,7 @@
                 $('#form-general2')[0].reset();
                 $('#list_id').val(idlist);
                 $.ajax({
-                    url: "editar-financiero.procedimientos/" + idlist + "",
+                    url: "editar_procedimientos/" + idlist + "",
                     dataType: "json",
                     success: function(result) {
                         $.each(result, function(i, items) {
