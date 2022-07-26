@@ -19,10 +19,9 @@
                                     <i class="fas fa-times"></i>
                                 </button>
 
-
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body">                            
                             <form id="form-general2" class="form-horizontal" method="POST">
                                 @csrf
                                 @include('admin.financiero.procedimientos.form.formDetalleProcedimientos')
@@ -30,7 +29,6 @@
                                 @include('includes.boton-form-crear-empresa-empleado-usuario')
 
                             </form>
-
 
                         </div>
                     </div>

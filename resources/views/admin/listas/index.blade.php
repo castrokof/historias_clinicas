@@ -347,8 +347,6 @@
 
             //Función para abrir detalle del registro
 
-
-
             $(document).on('click', '.listasDetalleAll', function() {
 
                 var idlist = $(this).attr('id');

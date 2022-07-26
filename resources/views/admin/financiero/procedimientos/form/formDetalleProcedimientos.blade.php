@@ -1,7 +1,7 @@
 <div class="form-group row">
     <div class="col-lg-2">
         <label for="cod_cups" class="col-xs-4 control-label requerido">Código</label>
-        <input type="number" name="cod_cups" id="cod_cups" class="form-control " placeholder="CUPS" value="{{old('cod_cups')}}" required>
+        <input type="number" name="cod_cups" id="cod_cups" class="form-control " placeholder="CUPS" value="{{old('cod_cups')}}" readonly>
     </div>
     <div class="col-lg-2">
         <label for="cod_alterno" class="col-xs-4 control-label ">Código Alterno</label>
@@ -72,9 +72,9 @@
     </div>
 
 
-    <input type="hidden" name="user_id" id="user_id1" class="form-control" value="{{Session()->get('usuario_id')}}">
+    <input type="hidden" name="user_id" id="user_id1" class="form-control" value="{{Session()->get('usuario_id')}}">    
     <input type="hidden" name="listas_id" id="list_id" class="form-control" value="">
-    <input type="hidden" name="activo" id="activo1" class="form-control" value="1">
+    <input type="hidden" name="estado" id="estado1" class="form-control" value="1">
 </div>
 
 

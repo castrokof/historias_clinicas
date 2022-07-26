@@ -124,8 +124,26 @@ class DefProcedimientosController extends Controller
     public function editar($id)
     {
         //
-        $data = Def_Procedimientos::findOrFail($id);
-        return response()->json(['result'=>$data]);
+        // $data = Def_Procedimientos::findOrFail($id);
+        // return response()->json(['result'=>$data]);
+        if (request()->ajax()) {
+
+            $data = Def_Procedimientos::where('id_cups', $id)->first();
+
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.financiero.procedimientos.index');
+    }
+
+    public function editarn($id)
+    {
+        if (request()->ajax()) {
+
+            $datas2 = Def_Procedimientos::where('id_cups', $id)->first();
+
+            return response()->json(['result' => $datas2]);
+        }
+        return view('admin.financiero.procedimientos.index');
     }
 
     /**
@@ -169,15 +187,19 @@ class DefProcedimientosController extends Controller
 
                   if($data == '1'){
 
-                    $procedimientoestado->findOrFail($request->input('id'))->update([
-                        'estado' => '0'
-                    ]);
+                    DB::table('def__procedimientos')
+                    ->where('id_cups',$request->input('id'))
+                    ->update([
+                     'estado' => '0'
+                            ]);
 
                     return response()->json(['respuesta' => 'Procedimiento desactivado', 'titulo' => 'System Fidem', 'icon' => 'warning']);
                     }else if($data == '0'){
-                        $procedimientoestado->findOrFail($request->input('id'))->update([
-                            'estado' => '1'
-                        ]);
+                        DB::table('def__procedimientos')
+                        ->where('id_cups',$request->input('id'))
+                        ->update([
+                         'estado' => '1'
+                                ]);
 
                         return response()->json(['respuesta' => 'Procedimiento activado correctamente', 'titulo' => 'System Fidem', 'icon' => 'warning']);
 
