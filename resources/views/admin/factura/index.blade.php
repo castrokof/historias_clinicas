@@ -194,7 +194,9 @@ $('#hidden_id').val(id);
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="custom-tabs-one-datos-del-paciente-tab" data-toggle="pill" href="#custom-tabs-one-datos-del-paciente" role="tab" aria-controls="custom-tabs-one-datos-del-paciente" aria-selected="false">Procedimientos</a>
+                                <a class="nav-link active" id="custom-tabs-one-datos-del-paciente-tab" 
+                                data-toggle="pill" href="#custom-tabs-one-datos-del-paciente" role="tab" 
+                                aria-controls="custom-tabs-one-datos-del-paciente" aria-selected="false">Procedimientos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="custom-tabs-one-consulta-tab" data-toggle="pill" href="#custom-tabs-one-consulta" role="tab" aria-controls="custom-tabs-one-Consulta" aria-selected="false">Medicamentos</a>
@@ -203,7 +205,8 @@ $('#hidden_id').val(id);
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="custom-tabs-one-tabContent">
-                            <div class="tab-pane fade active show" id="custom-tabs-one-datos-del-paciente" role="tabpanel" aria-labelledby="custom-tabs-one-datos-del-paciente-tab">
+                            <div class="tab-pane fade active show" id="custom-tabs-one-datos-del-paciente" role="tabpanel" 
+                            aria-labelledby="custom-tabs-one-datos-del-paciente-tab">
                                 <div class="card-body">
                                     <form id="form-general" class="form-horizontal" method="POST">
                                         @csrf

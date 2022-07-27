@@ -29,8 +29,13 @@ Procedimientos
 @include('admin.financiero.procedimientos.tablas.tablaIndexProcedimientos')
 @include('admin.financiero.procedimientos.modal.modalProcedimientos')
 @include('admin.financiero.procedimientos.modal.modalProcDetalle')
+@include('admin.financiero.procedimientos.modal.modalProcProfesional')
+<!-- Modal para relacionar los profesionales -->
+@include('admin.financiero.procedimientos.modal.modalProcServicio')
+<!-- Modal para relacionar los servicios -->
+@include('admin.financiero.procedimientos.modal.modalProcContrato')
+<!-- Modal para relacionar los contratos -->
 @include('admin.financiero.procedimientos.modal.modalProcDetalleIndex')
-
 
 @endsection
 
@@ -54,7 +59,7 @@ Procedimientos
 <script>
     $(document).ready(function() {
 
-        // Funcion para pintar con data table tabla de financiero.procedimientos generales
+        // Funcion 2 para pintar con data table tabla de financiero.procedimientos generales
         var datatable = $('#listasGeneral').DataTable({
             language: idioma_espanol,
             processing: true,
@@ -135,8 +140,6 @@ Procedimientos
             ]
 
         });
-
-
 
 
         // Función que envía los datos de procedimientos.procedimientos al controlador ademas controla los input con sweat alert2
@@ -244,98 +247,7 @@ Procedimientos
         }
 
 
-        // Función para pintar Tabla detalle de financiero.procedimientos
 
-
-        filtroDetalle();
-
-        function filtroDetalle(idlistp = '') {
-
-            var datatable1 = $('#listasGeneralDetalle').DataTable({
-                language: idioma_espanol,
-                processing: true,
-                lengthMenu: [
-                    [25, 50, 100, 500, -1],
-                    [25, 50, 100, 500, "Mostrar Todo"]
-                ],
-                processing: true,
-                serverSide: true,
-                aaSorting: [
-                    [1, "desc"]
-                ],
-                ajax: {
-                    url: "{{ route('listasdetalledetalle') }}",
-                    data: {
-                        id: idlistp
-                    }
-                },
-                columns: [{
-                        data: 'action'
-                    },
-                    {
-                        data: 'id'
-                    },
-                    {
-                        data: 'slug'
-                    },
-                    {
-                        data: 'nombre'
-                    },
-                    {
-                        data: 'descripcion'
-                    },
-                    {
-                        data: 'activo'
-                    }
-                ],
-
-                //Botones----------------------------------------------------------------------
-
-                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
-
-                buttons: [{
-
-                        extend: 'copyHtml5',
-                        titleAttr: 'Copiar Registros',
-                        title: "Control de horas",
-                        className: "btn  btn-outline-primary btn-sm"
-
-
-                    },
-                    {
-
-                        extend: 'excelHtml5',
-                        titleAttr: 'Exportar Excel',
-                        title: "Control de horas",
-                        className: "btn  btn-outline-success btn-sm"
-
-
-                    },
-                    {
-
-                        extend: 'csvHtml5',
-                        titleAttr: 'Exportar csv',
-                        className: "btn  btn-outline-warning btn-sm"
-
-                    },
-                    {
-
-                        extend: 'pdfHtml5',
-                        titleAttr: 'Exportar pdf',
-                        className: "btn  btn-outline-secondary btn-sm"
-
-
-                    }
-                ]
-
-
-
-
-
-            });
-
-
-        }
 
 
         //Función para abrir detalle del registro
@@ -345,30 +257,33 @@ Procedimientos
             var idlist = $(this).attr('id');
             var idlistp = $(this).attr('id');
 
-            /* if (idlistp != '') {
-                $('#listasGeneralDetalle').DataTable().destroy();
-                filtroDetalle(idlistp);
-            } */
+            if (idlistp != '') {
+                $('#tservicio').DataTable().destroy();
+                fill_datatable(idlistp);
+            }
 
-            $('#form-general2')[0].reset();
-            $('#list_id').val(idlist);
+            //$('#form-general2')[0].reset();
+            //$('#list_id').val(idlist);
             $.ajax({
                 url: "editar_procedimientos/" + idlist + "",
                 dataType: "json",
-                success: function(result) {                    
+                success: function(result) {
                     $.each(result, function(i, items) {
+                        /* $('#cod_cups').val(items.cod_cups);
+                        $('#cod_alterno').val(items.cod_alterno);
+                        $('#nombre').val(items.nombre); */
                         $('#title-procedimiento-detalle').text(items.nombre);
                         $('#modal-procedimiento-detalle').modal({
+                            
                             backdrop: 'static',
                             keyboard: false
-                            
                         });
-                        $('#cod_cups').val(data.result.cod_cups);
-                        $('#cod_alterno').val(data.result.cod_alterno);
-                        $('#nombre').val(data.result.nombre);
                         $('#modal-procedimiento-detalle').modal('show');
 
                     });
+                    /* var procedimiento_idp = $('#procedimiento_idp').val(idlist);
+                    $('#tservicio').DataTable().destroy();
+                    fill_datatable(procedimiento_idp); */
                 }
 
             }).fail(function(jqXHR, textStatus, errorThrown) {
@@ -381,7 +296,93 @@ Procedimientos
             });
 
         });
+        //--------------------------------Tabla relacion procedimiento vs servicios----------------------------//
+        //fill_datatable();
 
+        function fill_datatable(idlistp = '') {
+            var datatable1 = $('#tservicio').DataTable({
+                    language: idioma_espanol,
+                    lengthMenu: [
+                        [25, 50, 100, 500, -1],
+                        [25, 50, 100, 500, "Mostrar Todo"]
+                    ],
+                    processing: true,
+                    serverSide: true,
+                    aaSorting: [
+                        [1, "asc"]
+                    ],
+                    ajax: {
+                        url: "{{ route('relserviciovsprocedimiento')}}",
+                        //type: "get",
+                        // data: {"idlist": procedimiento_idp}
+                        data: {
+                            id: idlistp
+                        }
+                    },
+                    columns: [/* {
+                            data: 'actionpt',
+                            //orderable: false
+                        }, */
+                        {
+                            data: 'cod_servicio',
+                             name:'cod_servicio'
+                        },
+                        {
+                            data: 'nombre',
+                            name:'nombre'
+                        },
+                        {
+                            data: 'cups',
+                            name:'cups'
+                        },
+                        {
+                            data: 'Procedimiento',
+                            name:'Procedimiento'
+                        }
+                    ],
+
+                    //Botones----------------------------------------------------------------------
+
+                    "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+
+
+                    buttons: [{
+
+                            extend: 'copyHtml5',
+                            titleAttr: 'Copiar Registros',
+                            title: "seguimiento",
+                            className: "btn  btn-outline-primary btn-sm"
+
+
+                        },
+                        {
+
+                            extend: 'excelHtml5',
+                            titleAttr: 'Exportar Excel',
+                            title: "seguimiento",
+                            className: "btn  btn-outline-success btn-sm"
+
+
+                        },
+                        {
+
+                            extend: 'csvHtml5',
+                            titleAttr: 'Exportar csv',
+                            className: "btn  btn-outline-warning btn-sm"
+                            //text: '<i class="fas fa-file-excel"></i>'
+
+                        },
+                        {
+
+                            extend: 'pdfHtml5',
+                            titleAttr: 'Exportar pdf',
+                            className: "btn  btn-outline-secondary btn-sm"
+
+
+                        }
+                    ],
+                });
+        }
 
     });
 
@@ -488,4 +489,6 @@ Procedimientos
         }
     }
 </script>
+
+
 @endsection

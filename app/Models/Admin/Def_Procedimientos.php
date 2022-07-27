@@ -31,4 +31,13 @@ class Def_Procedimientos extends Model
     public function procedimientosprof(){
         return $this->hasMany(rel__profesionalvsprocedimientos::class, 'procedimiento_id');
     }
+    public function procedimientosserv(){
+        return $this->hasMany(rel__serviciovsprocedimientos::class, 'procedimiento_id');
+    }
 }
+
+/* Consulta para traer los datos de la tabla intermedia rel__serviciovsprocedimientos*/
+// SELECT s.cod_servicio,s.nombre,r.cod_cups,r.nombre FROM `rel__serviciovsprocedimientos`p 
+// INNER JOIN `servicios` s ON p.servicio_id = s.id_servicio
+// INNER JOIN `def__procedimientos` r ON p.procedimiento_id = r.id_cups
+// WHERE p.id= 1;

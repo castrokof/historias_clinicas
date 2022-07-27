@@ -135,17 +135,6 @@ class DefProcedimientosController extends Controller
         return view('admin.financiero.procedimientos.index');
     }
 
-    public function editarn($id)
-    {
-        if (request()->ajax()) {
-
-            $datas2 = Def_Procedimientos::where('id_cups', $id)->first();
-
-            return response()->json(['result' => $datas2]);
-        }
-        return view('admin.financiero.procedimientos.index');
-    }
-
     /**
      * Show the form for editing the specified resource.
      *@param  int  $id

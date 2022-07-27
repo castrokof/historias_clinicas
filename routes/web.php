@@ -109,6 +109,9 @@ Route::post('procedimiento-estado', 'DefProcedimientosController@updateestado')-
 // Route::get('pais', 'PacienteController@selectpa')->name('pais')->middleware('superEditor');
 // Route::get('eps', 'PacienteController@selecteps')->name('eps')->middleware('superEditor');
 
+//Ruta para consultar las relaciones de Procedimientos vs Servicio
+Route::get('relserviciovsprocedimiento', 'RelServiciovsprocedimientosController@index')->name('relserviciovsprocedimiento')->middleware('superEditor');
+
 
 /* RUTAS DEL USUARIO */
 Route::get('usuario', 'UsuarioController@index')->name('usuario')->middleware('superEditor');

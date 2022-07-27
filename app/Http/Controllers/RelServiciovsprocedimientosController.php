@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\rel__profesionalvsprocedimientos;
+use App\Models\Admin\rel__serviciovsprocedimientos;
+
+
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class RelProfesionalvsprocedimientosController extends Controller
+class RelServiciovsprocedimientosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,14 +24,14 @@ class RelProfesionalvsprocedimientosController extends Controller
         $idlist = $request->id;
 
         if($request->ajax()){
-           /* $datast = rel__profesionalvsprocedimientos::orderBy('id', 'asc')
+           /* $datast = rel__serviciovsprocedimientos::orderBy('id', 'asc')
            ->where('procedimiento_id', "=", $idlist)->get(); */
-            $datast = DB::table('rel__profesionalvsprocedimientos')
-            ->Join('def__profesionales', 'rel__profesionalvsprocedimientos.servicio_id', '=', 'def__profesionales.id_profesional')
-            ->Join('def__procedimientos', 'rel__profesionalvsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
-            ->select('rel__profesionalvsprocedimientos.procedimiento_id as idd','def__profesionales.codigo as codigo', 'def__profesionales.nombre as nombre',
+            $datast = DB::table('rel__serviciovsprocedimientos')
+            ->Join('servicios', 'rel__serviciovsprocedimientos.servicio_id', '=', 'servicios.id_servicio')
+            ->Join('def__procedimientos', 'rel__serviciovsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
+            ->select('rel__serviciovsprocedimientos.procedimiento_id as idd','servicios.cod_servicio as cod_servicio', 'servicios.nombre as nombre',
                     'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
-            ->where('rel__profesionalvsprocedimientos.procedimiento_id', '=', $idlist )
+            ->where('rel__serviciovsprocedimientos.procedimiento_id', '=', $idlist )
             ->get();
           
         return  DataTables()->of($datast)
@@ -72,10 +76,10 @@ class RelProfesionalvsprocedimientosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\rel__profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
+     * @param  \App\Models\Admin\rel__serviciovsprocedimientos  $rel__serviciovsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function show(rel__profesionalvsprocedimientos $rel__profesionalvsprocedimientos)
+    public function show(rel__serviciovsprocedimientos $rel__serviciovsprocedimientos)
     {
         //
     }
@@ -83,10 +87,10 @@ class RelProfesionalvsprocedimientosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\rel__profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
+     * @param  \App\Models\Admin\rel__serviciovsprocedimientos  $rel__serviciovsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function edit(rel__profesionalvsprocedimientos $rel__profesionalvsprocedimientos)
+    public function edit(rel__serviciovsprocedimientos $rel__serviciovsprocedimientos)
     {
         //
     }
@@ -95,10 +99,10 @@ class RelProfesionalvsprocedimientosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\rel_profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
+     * @param  \App\Models\Admin\rel__serviciovsprocedimientos  $rel__serviciovsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rel__profesionalvsprocedimientos $rel__profesionalvsprocedimientos)
+    public function update(Request $request, rel__serviciovsprocedimientos $rel__serviciovsprocedimientos)
     {
         //
     }
@@ -106,10 +110,10 @@ class RelProfesionalvsprocedimientosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\rel__profesionalvsprocedimientos  $rel_profesionalvsprocedimientos
+     * @param  \App\Models\Admin\rel__serviciovsprocedimientos  $rel__serviciovsprocedimientos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rel__profesionalvsprocedimientos $rel__profesionalvsprocedimientos)
+    public function destroy(rel__serviciovsprocedimientos $rel__serviciovsprocedimientos)
     {
         //
     }

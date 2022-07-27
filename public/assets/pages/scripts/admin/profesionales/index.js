@@ -39,15 +39,13 @@ $(document).ready(function () {
 
     $("#customSwitch1").change(customSwitch1);
 
-    //------------------------------------------------------Funciones de items-----------------------------------------//
+    //------------------------------------------------------Funciones de relaciones-----------------------------------------//
+    
+    //Función para abrir modal y prevenir el cierre de la relacion con los profesionales
+    $(document).on('click', '.relacion_profesional', function () {
 
-
-    //Función para abrir modal y prevenir el cierre de creación de items
-    $(document).on('click', '.create_items', function () {
-
-        $('#modal-items').modal({ backdrop: 'static', keyboard: false });
-        $('#modal-items').modal('show');
-
+        $('#modal-profesional').modal({ backdrop: 'static', keyboard: false });
+        $('#modal-profesional').modal('show');
 
     });
 
@@ -95,7 +93,7 @@ $(document).ready(function () {
             });
         } else {
             Swal.fire({
-                target: document.getElementById('modal-items'),
+                target: document.getElementById('modal-profesional'),
                 title: "¿Estás seguro?",
                 text: text,
                 icon: "success",
@@ -105,7 +103,7 @@ $(document).ready(function () {
             }).then((result) => {
                 if (result.value) {
                     Swal.fire({
-                        target: document.getElementById('modal-items'),
+                        target: document.getElementById('modal-profesional'),
                         icon: "success",
                         title: 'Espere por favor !',
                         html: 'Creando item..',
@@ -123,7 +121,7 @@ $(document).ready(function () {
                             success: function (data) {
                                 if (data.success == 'ok') {
                                     $('#form-general2')[0].reset();
-                                    $('#modal-items').modal('hide');
+                                    $('#modal-profesional').modal('hide');
                                     $('#listasGeneralDetalle').DataTable().ajax.reload();
                                     Swal.fire({
                                         icon: 'success',
@@ -188,9 +186,6 @@ $(document).ready(function () {
             }
         });
     }
-
-
-
 
 });
 
