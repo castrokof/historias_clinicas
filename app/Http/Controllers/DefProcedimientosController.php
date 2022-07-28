@@ -26,7 +26,7 @@ class DefProcedimientosController extends Controller
      
              return  DataTables()->of($datas)
                  ->addColumn('action', function($datas){
-                     $button ='<button type="button" name="Detalle" id="'.$datas->id_cups.'" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Editar procedimiento"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
+                     $button ='<button type="button" name="Detalle" id="'.$datas->id_cups.'" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Relacionar Item"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
      
                  return $button;
      

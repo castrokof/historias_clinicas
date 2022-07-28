@@ -1,7 +1,7 @@
 @extends("theme.$theme.layout")
 
 @section('titulo')
-Procedimientos
+Profesionales
 @endsection
 @section('styles')
 <style>
@@ -22,20 +22,20 @@ Procedimientos
 
 
 @section('scripts')
-<script src="{{ asset('assets/pages/scripts/admin/procedimientos/index.js') }}"></script>
+<script src="{{ asset('assets/pages/scripts/admin/profesionales/index.js') }}"></script>
 @endsection
 
 @section('contenido')
-@include('admin.financiero.procedimientos.tablas.tablaIndexProcedimientos')
-@include('admin.financiero.procedimientos.modal.modalProcedimientos')
-@include('admin.financiero.procedimientos.modal.modalProcDetalle')
-@include('admin.financiero.procedimientos.modal.modalProcProfesional')
-<!-- Modal para relacionar los profesionales -->
-@include('admin.financiero.procedimientos.modal.modalProcServicio')
+@include('admin.financiero.profesionales.tablas.tablaIndexProfesionales')
+@include('admin.financiero.profesionales.modal.modalProfesionales')
+<!-- Modal para relacionar los procedimientos -->
+@include('admin.financiero.profesionales.modal.modalProfeProcedimiento')
 <!-- Modal para relacionar los servicios -->
-@include('admin.financiero.procedimientos.modal.modalProcContrato')
-<!-- Modal para relacionar los contratos -->
-@include('admin.financiero.procedimientos.modal.modalProcDetalleIndex')
+@include('admin.financiero.profesionales.modal.modalProfeServicio')
+<!-- Modal para relacionar los medicamentos -->
+@include('admin.financiero.profesionales.modal.modalProfeMedicamentos')
+
+@include('admin.financiero.profesionales.modal.modalProfeDetalleIndex')
 
 @endsection
 
@@ -59,7 +59,7 @@ Procedimientos
 <script>
     $(document).ready(function() {
 
-        // Funcion 2 para pintar con data table tabla de financiero.procedimientos generales
+        // Funcion 2 para pintar con data table tabla de financiero.profesionales generales
         var datatable = $('#listasGeneral').DataTable({
             language: idioma_espanol,
             processing: true,
@@ -142,7 +142,7 @@ Procedimientos
         });
 
 
-        // Función que envía los datos de procedimientos.procedimientos al controlador ademas controla los input con sweat alert2
+        // Función que envía los datos de profesionales.profesionales al controlador ademas controla los input con sweat alert2
 
         $('#form-general1').on('submit', function(event) {
             event.preventDefault();

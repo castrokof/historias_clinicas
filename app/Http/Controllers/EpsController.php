@@ -107,7 +107,6 @@ class EpsController extends Controller
             $error = Validator::make($request->all(), $rules);
 
             if ($error->fails()) {
-
                 return response()->json(['errors' => $error->errors()->all()]);
             }
 

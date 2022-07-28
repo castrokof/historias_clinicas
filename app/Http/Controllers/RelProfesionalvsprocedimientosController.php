@@ -23,7 +23,7 @@ class RelProfesionalvsprocedimientosController extends Controller
            /* $datast = rel__profesionalvsprocedimientos::orderBy('id', 'asc')
            ->where('procedimiento_id', "=", $idlist)->get(); */
             $datast = DB::table('rel__profesionalvsprocedimientos')
-            ->Join('def__profesionales', 'rel__profesionalvsprocedimientos.servicio_id', '=', 'def__profesionales.id_profesional')
+            ->Join('def__profesionales', 'rel__profesionalvsprocedimientos.profesional_id', '=', 'def__profesionales.id_profesional')
             ->Join('def__procedimientos', 'rel__profesionalvsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
             ->select('rel__profesionalvsprocedimientos.procedimiento_id as idd','def__profesionales.codigo as codigo', 'def__profesionales.nombre as nombre',
                     'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')

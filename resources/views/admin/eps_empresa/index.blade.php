@@ -54,98 +54,8 @@ Eps Empresas
   </div>
 </div>
 
-<div class="modal fade" tabindex="-1" id="modal-u" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="row">
-        <div class="col-lg-12">
-          @include('includes.form-error')
-          @include('includes.form-mensaje')
-          <span id="form_result"></span>
-          <div class="card card-success">
-            <div class="card-header">
-              <h3 class="card-title"></h3>
-              <div class="card-tools pull-right">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-            <form id="form-general" class="form-horizontal" method="POST">
-              @csrf
-              <div class="card-body">
-                @include('admin.eps_empresa.form')
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6">
-                  @include('includes.boton-form-crear-empresa-empleado-usuario')
-                </div>
-              </div>
-              <!-- /.card-footer -->
-            </form>
-
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" tabindex="-1" id="modal-n" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="row">
-        <div class="col-lg-12">
-          @include('includes.form-error')
-          @include('includes.form-mensaje')
-          <span id="form_result_n"></span>
-          <div class="card card-success">
-            <div class="card-header">
-              <h3 class="card-title"></h3>
-              <div class="card-tools pull-right">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-            <form id="form-general2" class="form-horizontal" method="POST">
-                <div class="card-body">
-            <div class="form-group row">
-                <div class="col-lg-2">
-                  <label for="codigo_n" class="col-xs-4 control-label ">Código</label>
-                  <input type="text" name="codigo_empresa" id="codigo_n" class="form-control" readonly>
-                </div>
-                <div class="col-lg-4">
-                  <label for="nombre_n" class="col-xs-4 control-label requerido">Razón Social</label>
-                  <input type="text" name="nombre" id="nombre_n" class="form-control" readonly>
-                </div>
-                <div class="col-lg-2">
-                  <label for="NIT_n" class="col-xs-4 control-label requerido">NIT</label>
-                  <input type="number" name="NIT" id="NIT_n" class="form-control" readonly>
-                </div>
-              </div>
-                </div>
-            </form>
-            <form id="form-general-n" class="form-horizontal" method="POST">
-              @csrf
-              <div class="card-body">
-                @include('admin.eps_empresa.form-niveles')
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6">
-                </div>
-              </div>
-              <!-- /.card-footer -->
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+@include('admin.eps_empresa.modal.modalEpsEmpresa')
+@include('admin.eps_empresa.modal.modalEpsNiveles')
 
 
 @endsection
@@ -395,9 +305,16 @@ Eps Empresas
   // Tabla para consultar los niveles
   $(document).on('click', '.agregarnivel', function() {
     var id = $(this).attr('id');
-    var  nivel_idp2 = id;
-    $('#tniveles').DataTable().destroy();
-    fill_datatable_f(nivel_idp2);
+    var nivel_idp2 = $(this).attr('id');
+    //var  nivel_idp2 = id;
+    
+    if (nivel_idp2 != '') {
+      $('#tniveles').DataTable().destroy();
+      fill_datatable_f(nivel_idp2);
+    }
+
+    // $('#tniveles').DataTable().destroy();
+    // fill_datatable_f(nivel_idp2);
 
     $.ajax({
       url: "/eps_niveles/" + id + "/editarn",
@@ -413,9 +330,9 @@ Eps Empresas
         $('#modal-n').modal('show');
       }
 
-     /*  var nivel_idp2 = $('#nivel_idp').val();
-      $('#tniveles').DataTable().destroy();
-      fill_datatable_f(nivel_idp2); */
+      /*  var nivel_idp2 = $('#nivel_idp').val();
+       $('#tniveles').DataTable().destroy();
+       fill_datatable_f(nivel_idp2); */
 
     }).fail(function(jqXHR, textStatus, errorThrown) {
 
@@ -427,113 +344,113 @@ Eps Empresas
 
   });
 
-  function fill_datatable_f(nivel_idp2 = '')
-  {
-    var myTable2 =
-      $('#tniveles').DataTable({
-        language: idioma_espanol,
-        processing: true,
-        lengthMenu: [
-          [25, 50, 100, 500, -1],
-          [25, 50, 100, 500, "Mostrar Todo"]
-        ],
-        processing: true,
-        serverSide: true,
-        aaSorting: [
-          [1, "asc"]
-        ],
-        ajax: {
-          url: "{{ route('eps_niveles')}}",
-          type: "get",
-          data: {"nivel_idp2":nivel_idp2},
+  function fill_datatable_f(nivel_idp2 = '') {
+    var myTable2 = $('#tniveles').DataTable({
+      language: idioma_espanol,
+      processing: true,
+      lengthMenu: [
+        [25, 50, 100, 500, -1],
+        [25, 50, 100, 500, "Mostrar Todo"]
+      ],
+      processing: true,
+      serverSide: true,
+      aaSorting: [
+        [1, "asc"]
+      ],
+      ajax: {
+        url: "{{ route('eps_niveles')}}",
+        //type: "get",
+        data: {
+          id: nivel_idp2
+        }
+      },
+      columns: [
+        /* {
+                  data: 'action',
+                  name: 'action',
+                  orderable: false
+                }, */
+        {
+          data: 'nivel',
+          name: 'nivel'
         },
-        columns: [
-          /* {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false
-                  }, */
-          {
-            data: 'nivel',
-            name: 'nivel'
-          },
-          {
-            data: 'descripcion_nivel',
-            name: 'descripcion_nivel'
-          },
-          {
-            data: 'regimen',
-            name: 'regimen'
-          },
-          {
-            data: 'tipo_recuperacion',
-            name: 'tipo_recuperacion'
-          },
-          {
-            data: 'afiliacion',
-            name: 'afiliacion'
-          },
-          {
-            data: 'servicios',
-            name: 'servicios'
-          },
-          {
-            data: 'vlr_copago',
-            name: 'vlr_copago'
-          },
-          {
-            data: 'estado',
-            name: 'estado'
-          },
-          {
-            data: 'created_at',
-            name: 'created_at'
-          }
+        {
+          data: 'descripcion_nivel',
+          name: 'descripcion_nivel'
+        },
+        {
+          data: 'regimen',
+          name: 'regimen'
+        },
+        {
+          data: 'tipo_recuperacion',
+          name: 'tipo_recuperacion'
+        },
+        {
+          data: 'afiliacion',
+          name: 'afiliacion'
+        },
+        {
+          data: 'servicios',
+          name: 'servicios'
+        },
+        {
+          data: 'vlr_copago',
+          name: 'vlr_copago'
+        },
+        {
+          data: 'estado',
+          name: 'estado'
+        },
+        {
+          data: 'created_at',
+          name: 'created_at'
+        }
 
-        ],
+      ],
 
-        //Botones----------------------------------------------------------------------
+      //Botones----------------------------------------------------------------------
 
-        "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+      "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
 
 
-        buttons: [{
+      buttons: [{
 
-            extend: 'copyHtml5',
-            titleAttr: 'Copiar Registros',
-            title: "seguimiento",
-            className: "btn  btn-outline-primary btn-sm"
-
-
-          },
-          {
-
-            extend: 'excelHtml5',
-            titleAttr: 'Exportar Excel',
-            title: "seguimiento",
-            className: "btn  btn-outline-success btn-sm"
+          extend: 'copyHtml5',
+          titleAttr: 'Copiar Registros',
+          title: "seguimiento",
+          className: "btn  btn-outline-primary btn-sm"
 
 
-          },
-          {
+        },
+        {
 
-            extend: 'csvHtml5',
-            titleAttr: 'Exportar csv',
-            className: "btn  btn-outline-warning btn-sm"
-            //text: '<i class="fas fa-file-excel"></i>'
-
-          },
-          {
-
-            extend: 'pdfHtml5',
-            titleAttr: 'Exportar pdf',
-            className: "btn  btn-outline-secondary btn-sm"
+          extend: 'excelHtml5',
+          titleAttr: 'Exportar Excel',
+          title: "seguimiento",
+          className: "btn  btn-outline-success btn-sm"
 
 
-          }
-        ],
+        },
+        {
 
-      });
+          extend: 'csvHtml5',
+          titleAttr: 'Exportar csv',
+          className: "btn  btn-outline-warning btn-sm"
+          //text: '<i class="fas fa-file-excel"></i>'
+
+        },
+        {
+
+          extend: 'pdfHtml5',
+          titleAttr: 'Exportar pdf',
+          className: "btn  btn-outline-secondary btn-sm"
+
+
+        }
+      ],
+
+    });
 
   }
   //Funcion para agregar niveles y copagos
@@ -589,7 +506,7 @@ Eps Empresas
             if (data.success == 'okn1') {
               $('#form-general-n')[0].reset();
               //$('#modal-u').modal('hide');
-            //   $('#modal-n').modal('hide');
+              $('#modal-n').modal('hide');
               $('#tniveles').DataTable().ajax.reload();
               Swal.fire({
                 icon: 'success',
@@ -603,7 +520,7 @@ Eps Empresas
             } else if (data.success == 'okn2') {
               $('#form-general-n')[0].reset();
               /* $('#modal-u').modal('hide'); */
-            //   $('#modal-n').modal('hide');
+              $('#modal-n').modal('hide');
               $('#tniveles').DataTable().ajax.reload();
               Swal.fire({
                 icon: 'warning',

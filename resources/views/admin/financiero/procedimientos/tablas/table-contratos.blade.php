@@ -1,16 +1,19 @@
-<div class="card card-info p-2">
-
-    <div class="x_panel">
-        <div class="card-body with-border">
-
+<div class="row">
+    <div class="col-lg-12">
+        @include('includes.form-error')
+        @include('includes.form-mensaje')
+        <div class="card card-info">
             <div class="card-body table-responsive p-2">
-                <table id="tcups" class="table table-hover  text-nowrap">
-                    {{-- class="table table-hover table-bordered text-nowrap" --}}
+
+                <table id="tcontrato" class="table table-hover  text-nowrap">
+
                     <thead>
                         <tr>
-                            <th>Acciones</th>
-                            <th>Código</th>
                             <th>Contrato</th>
+                            <th>Descripcion</th>
+                            <th>Precio</th>
+                            <th>Cups</th>
+                            <th>Procedimiento</th>
                         </tr>
                     </thead>
                     <tbody>
