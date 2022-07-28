@@ -16,10 +16,9 @@
                         <tr>
                             <th>Acciones</th>
                             <th>Código</th>
-                            <th>Alterno</th>
                             <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Valor</th>
+                            <th>Especialidad</th>
+                            <th>Sede</th>
                             <th>Estado</th>
                         </tr>
                     </thead>

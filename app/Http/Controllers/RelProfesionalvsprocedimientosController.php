@@ -27,7 +27,7 @@ class RelProfesionalvsprocedimientosController extends Controller
             ->Join('def__procedimientos', 'rel__profesionalvsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
             ->select('rel__profesionalvsprocedimientos.procedimiento_id as idd','def__profesionales.codigo as codigo', 'def__profesionales.nombre as nombre',
                     'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
-            ->where('rel__profesionalvsprocedimientos.procedimiento_id', '=', $idlist )
+            ->where('rel__profesionalvsprocedimientos.profesional_id', '=', $idlist )
             ->get();
           
         return  DataTables()->of($datast)
@@ -41,7 +41,7 @@ class RelProfesionalvsprocedimientosController extends Controller
         ->rawColumns(['actionpt'])
         ->make(true);
         
-     }
+     } 
 
      
       /* return view('admin.financiero.procedimientos.index', compact('datast')); */

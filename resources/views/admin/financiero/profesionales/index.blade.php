@@ -73,7 +73,7 @@ Profesionales
                 [0, "desc"]
             ],
             ajax: {
-                url: "{{ route('procedimientosIndex') }}",
+                url: "{{ route('profesionalesIndex') }}",
             },
             columns: [{
                     data: 'action',
@@ -81,19 +81,16 @@ Profesionales
                     searchable: false
                 },
                 {
-                    data: 'cod_cups'
-                },
-                {
-                    data: 'cod_alterno'
+                    data: 'codigo'
                 },
                 {
                     data: 'nombre'
                 },
                 {
-                    data: 'descripcion'
+                    data: 'especialidad'
                 },
                 {
-                    data: 'valor_particular'
+                    data: 'sede'
                 },
                 {
                     data: 'estado'
@@ -152,15 +149,15 @@ Profesionales
 
 
             if ($('#action').val() == 'Add') {
-                text = "Estás por crear un procedimiento"
-                url = "{{ route('guardar_procedimientos') }}";
+                text = "Estás por crear un profesional"
+                url = "{{ route('guardar_profesionales') }}";
                 method = 'post';
             }
 
-            if ($('#cod_cups').val() == '' || $('#nombre').val() == '' || $('#estado').val() == '') {
+            if ($('#codigo').val() == '' || $('#nombre').val() == '' || $('#reg_profesional').val() == '' || $('#cod_usuario').val() == '' || $('#tipo').val() == '' || $('#especialidad').val() == '' || $('#especialidad').val() == '') {
                 Swal.fire({
                     title: "Debes de rellenar todos los campos del formulario",
-                    text: "Respuesta Paliativos",
+                    text: "Respuesta verifique los campos",
                     icon: "warning",
                     showCloseButton: true,
                     confirmButtonText: 'Aceptar',
@@ -227,7 +224,7 @@ Profesionales
                     _token: $('input[name=_token]').val()
                 }
             }
-            ajaxRequest('procedimiento-estado', data);
+            ajaxRequest('profesional-estado', data);
         });
 
 
@@ -263,26 +260,26 @@ Profesionales
                 fill_datatable(idlistp);
             }
             if (idlistp != '') {
-                $('#tprofesional').DataTable().destroy();
-                fill_tableprofe(idlistp);
+                $('#tprocedimiento').DataTable().destroy();
+                fill_tableproce(idlistp);
             }
             if (idlistp != '') {
-                $('#tcontrato').DataTable().destroy();
-                fill_tablecontrato(idlistp);
+                $('#tmedicamento').DataTable().destroy();
+                fill_tablemedicamento(idlistp);
             }
             
             $.ajax({
-                url: "editar_procedimientos/" + idlist + "",
+                url: "editar_profesionales/" + idlist + "",
                 dataType: "json",
                 success: function(result) {
                     $.each(result, function(i, items) {
-                        $('#title-procedimiento-detalle').text(items.nombre);
-                        $('#modal-procedimiento-detalle').modal({
+                        $('#title-profesional-detalle').text(items.nombre);
+                        $('#modal-profesional-detalle').modal({
                             
                             backdrop: 'static',
                             keyboard: false
                         });
-                        $('#modal-procedimiento-detalle').modal('show');
+                        $('#modal-profesional-detalle').modal('show');
 
                     });
                 }
@@ -297,7 +294,7 @@ Profesionales
             });
 
         });
-        //--------------------------------Tabla relacion procedimiento vs servicios----------------------------//
+        //--------------------------------Tabla relacion profesional vs servicios----------------------------//
         //fill_datatable();
         function fill_datatable(idlistp = '') {
             var datatable1 = $('#tservicio').DataTable({
@@ -312,7 +309,7 @@ Profesionales
                         [1, "asc"]
                     ],
                     ajax: {
-                        url: "{{ route('relserviciovsprocedimiento')}}",
+                        url: "{{ route('relserviciovsprofesional')}}",
                         //type: "get",
                         // data: {"idlist": procedimiento_idp}
                         data: {
@@ -332,12 +329,12 @@ Profesionales
                             name:'nombre'
                         },
                         {
-                            data: 'cups',
-                            name:'cups'
+                            data: 'codigo',
+                            name:'codigo'
                         },
                         {
-                            data: 'Procedimiento',
-                            name:'Procedimiento'
+                            data: 'Profesional',
+                            name:'Profesional'
                         }
                     ],
 
@@ -378,15 +375,14 @@ Profesionales
                             titleAttr: 'Exportar pdf',
                             className: "btn  btn-outline-secondary btn-sm"
 
-
                         }
                     ],
                 });
         }
 
-        //--------------------------------Tabla relacion procedimiento vs profesionales----------------------------//
-        function fill_tableprofe(idlistp = ''){
-            var datatable2 = $('#tprofesional').DataTable({
+        //--------------------------------Tabla relacion profesional vs procedimiento----------------------------//
+        function fill_tableproce(idlistp = ''){
+            var datatable2 = $('#tprocedimiento').DataTable({
                     language: idioma_espanol,
                     lengthMenu: [
                         [25, 50, 100, 500, -1],
@@ -410,21 +406,22 @@ Profesionales
                             //orderable: false
                         }, */
                         {
-                            data: 'codigo',
-                             name:'codigo'
-                        },
-                        {
-                            data: 'nombre',
-                            name:'nombre'
-                        },
-                        {
                             data: 'cups',
                             name:'cups'
                         },
                         {
                             data: 'Procedimiento',
                             name:'Procedimiento'
+                        },
+                        {
+                            data: 'codigo',
+                             name:'codigo'
+                        },
+                        {
+                            data: 'nombre',
+                            name:'nombre'
                         }
+                        
                     ],
 
                     //Botones----------------------------------------------------------------------
@@ -470,9 +467,9 @@ Profesionales
                 });
         }
 
-        //--------------------------------Tabla relacion procedimiento vs contratos----------------------------//
-        function fill_tablecontrato(idlistp = ''){
-            var datatable2 = $('#tcontrato').DataTable({
+        //--------------------------------Tabla relacion profesional vs medicamento----------------------------//
+        function fill_tablemedicamento(idlistp = ''){
+            var datatable3 = $('#tmedicamento').DataTable({
                     language: idioma_espanol,
                     lengthMenu: [
                         [25, 50, 100, 500, -1],
@@ -484,7 +481,7 @@ Profesionales
                         [1, "asc"]
                     ],
                     ajax: {
-                        url: "{{ route('contratovsprocedimiento')}}",
+                        url: "{{ route('profesionalvsmedicamento')}}",
                         //type: "get",
                         // data: {"idlist": procedimiento_idp}
                         data: {
@@ -496,24 +493,20 @@ Profesionales
                             //orderable: false
                         }, */
                         {
-                            data: 'contrato',
-                             name:'contrato'
+                            data: 'cod_medicamento',
+                             name:'cod_medicamento'
                         },
                         {
-                            data: 'nombre',
-                            name:'nombre'
+                            data: 'medicamento',
+                            name:'medicamento'
                         },
                         {
-                            data: 'precio',
-                            name:'precio'
+                            data: 'codigo',
+                            name:'codigo'
                         },
                         {
-                            data: 'cups',
-                            name:'cups'
-                        },
-                        {
-                            data: 'Procedimiento',
-                            name:'Procedimiento'
+                            data: 'Profesional',
+                            name:'Profesional'
                         }
                         
                     ],

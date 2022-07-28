@@ -95,6 +95,63 @@ class DefProfesionalesController extends Controller
             return response()->json(['success' => 'ok']);
         }
     }
+    /**
+     * Display the specified resource.
+     *@param  int  $id
+     * @param  \App\Models\Admin\Def_Profesionales  $def_Profesionales
+     * @return \Illuminate\Http\Response
+     */
+    public function editar($id)
+    {
+        //
+        // $data = Def_Procedimientos::findOrFail($id);
+        // return response()->json(['result'=>$data]);
+        if (request()->ajax()) {
+
+            $data = Def_Profesionales::where('id_profesional', $id)->first();
+
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.financiero.profesionales.index');
+    }
+
+    public function updateestado(Request $request)
+    {
+
+            if ($request->ajax()) {
+
+                //$procedimientoestado = new Def_Profesionales();
+                
+
+                $datas = DB::table('def__profesionales')->select('estado')->where('id_profesional', $request->input('id'))->first();
+
+                //dd($datas);
+                //return($datas);
+
+                foreach($datas as $data){
+
+                  if($data == '1'){
+
+                    DB::table('def__profesionales')
+                    ->where('id_profesional',$request->input('id'))
+                    ->update([
+                     'estado' => '0'
+                            ]);
+
+                    return response()->json(['respuesta' => 'Profesional desactivado', 'titulo' => 'System Fidem', 'icon' => 'warning']);
+                    }else if($data == '0'){
+                        DB::table('def__profesionales')
+                        ->where('id_profesional',$request->input('id'))
+                        ->update([
+                         'estado' => '1'
+                                ]);
+
+                        return response()->json(['respuesta' => 'Profesional habilitado correctamente', 'titulo' => 'System Fidem', 'icon' => 'warning']);
+
+                    }
+                }
+            }
+    }
 
     /**
      * Show the form for creating a new resource.

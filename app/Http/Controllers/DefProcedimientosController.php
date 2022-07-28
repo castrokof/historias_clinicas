@@ -164,7 +164,7 @@ class DefProcedimientosController extends Controller
 
             if ($request->ajax()) {
 
-                $procedimientoestado = new Def_Procedimientos();
+                //$procedimientoestado = new Def_Procedimientos();
                 
 
                 $datas = DB::table('def__procedimientos')->select('estado')->where('id_cups', $request->input('id'))->first();
