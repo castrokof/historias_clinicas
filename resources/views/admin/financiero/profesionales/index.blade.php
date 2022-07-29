@@ -394,7 +394,7 @@ Profesionales
                         [1, "asc"]
                     ],
                     ajax: {
-                        url: "{{ route('profesionalvsprocedimiento')}}",
+                        url: "{{ route('procedimientovsprofesional')}}",
                         //type: "get",
                         // data: {"idlist": procedimiento_idp}
                         data: {

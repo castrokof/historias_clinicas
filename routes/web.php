@@ -123,10 +123,13 @@ Route::get('editar_profesionales/{id}', 'DefProfesionalesController@editar')->na
 Route::put('profesionales/{id}', 'DefProfesionalesController@actualizar')->name('actualizar_profesionales')->middleware('superEditor');
 Route::post('profesional-estado', 'DefProfesionalesController@updateestado')->name('profe_estado')->middleware('superEditor');
 
-//Ruta para consultar las relaciones de Procedimientos vs Servicio
+//Ruta para consultar las relaciones de Profesional vs Servicio
 Route::get('relserviciovsprofesional', 'RelProfesionalvsservicioController@index')->name('relserviciovsprofesional')->middleware('superEditor');
 
-//Ruta para consultar las relaciones de Procedimientos vs Profesional
+//Ruta para consultar las relaciones de Profesional vs Procedimientos
+Route::get('procedimientovsprofesional', 'RelProfesionalvsprocedimientosController@indexProfe')->name('procedimientovsprofesional')->middleware('superEditor');
+
+//Ruta para consultar las relaciones de Profesional vs Medicamento
 Route::get('profesionalvsmedicamento', 'RelProfesionalvsmedicamentosController@index')->name('profesionalvsmedicamento')->middleware('superEditor');
 
 /* RUTAS DEL USUARIO */

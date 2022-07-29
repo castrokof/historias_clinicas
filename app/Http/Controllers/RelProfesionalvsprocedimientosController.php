@@ -27,6 +27,40 @@ class RelProfesionalvsprocedimientosController extends Controller
             ->Join('def__procedimientos', 'rel__profesionalvsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
             ->select('rel__profesionalvsprocedimientos.procedimiento_id as idd','def__profesionales.codigo as codigo', 'def__profesionales.nombre as nombre',
                     'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
+            ->where('rel__profesionalvsprocedimientos.procedimiento_id', '=', $idlist )
+            ->get();
+          
+        return  DataTables()->of($datast)
+        ->addColumn('actionpt', function($datast){
+        $button = '<button type="button" name="eliminarpt" id="'.$datast->idd.'"
+        class = "eliminarpt btn-float  bg-gradient-danger btn-sm tooltipsC"  title="ninguna accion"><i class="fas fa-diagnoses"><i class="fa fa-pencil"></i></i></a>';
+               
+        return $button;
+
+        }) 
+        ->rawColumns(['actionpt'])
+        ->make(true);
+        
+     } 
+
+     
+      /* return view('admin.financiero.procedimientos.index', compact('datast')); */
+      return view('admin.financiero.procedimientos.index');
+    }
+
+    public function indexProfe(Request $request)
+    {
+        $usuario_id = $request->session()->get('usuario_id');
+        $idlist = $request->id;
+
+        if($request->ajax()){
+           /* $datast = rel__profesionalvsprocedimientos::orderBy('id', 'asc')
+           ->where('procedimiento_id', "=", $idlist)->get(); */
+            $datast = DB::table('rel__profesionalvsprocedimientos')
+            ->Join('def__profesionales', 'rel__profesionalvsprocedimientos.profesional_id', '=', 'def__profesionales.id_profesional')
+            ->Join('def__procedimientos', 'rel__profesionalvsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
+            ->select('rel__profesionalvsprocedimientos.procedimiento_id as idd','def__profesionales.codigo as codigo', 'def__profesionales.nombre as nombre',
+                    'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
             ->where('rel__profesionalvsprocedimientos.profesional_id', '=', $idlist )
             ->get();
           

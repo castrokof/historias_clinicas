@@ -10,10 +10,10 @@
                     <thead>
                         <tr>
                             <!-- <th>Acciones</th> -->
-                            <th>Código</th>
+                            <th>Cups</th>
                             <th>Procedimiento</th>
+                            <th>Código</th>
                             <th>Profesional</th>
-                            <th>Nombre</th>
                         </tr>
                     </thead>
                     <tbody>
