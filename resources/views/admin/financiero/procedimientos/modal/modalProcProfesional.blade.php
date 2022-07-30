@@ -21,10 +21,21 @@
 
                             </div>
                         </div>
-                        <div class="card-body">                            
+                        <div class="card-body">
+
+
+                            <div class="tab-content" id="custom-tabs-one-tabContent">
+                                <div class="tab-pane fade active show" id="custom-tabs-one-datos-del-profesional" role="tabpanel" aria-labelledby="custom-tabs-one-datos-del-profesional-tab">
+                                    <div class="card-body">
+                                        @csrf
+                                        @include('admin.financiero.procedimientos.tablas.table-relprofesionales')
+                                    </div> 
+                                </div>
+                            </div>
+
                             <form id="form-general2" class="form-horizontal" method="POST">
                                 @csrf
-                                @include('admin.financiero.procedimientos.form.formProceVSprofe')
+                                <!-- @include('admin.financiero.procedimientos.form.formProceVSprofe') -->
 
                                 @include('includes.boton-form-crear-empresa-empleado-usuario')
 
