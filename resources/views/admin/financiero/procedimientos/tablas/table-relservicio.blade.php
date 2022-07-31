@@ -5,16 +5,14 @@
         <div class="card card-info">
             <div class="card-body table-responsive p-2">
 
-                <table id="trelprofesional" class="table table-hover  text-nowrap">
+                <table id="trelservicio" class="table table-hover  text-nowrap">
 
                     <thead>
                         <tr>
                             <!-- <th>Acciones</th> -->
                             <th>Asociar</th>
                             <th>Código</th>
-                            <th>Nombre</th>
-                            <th>Especialidad</th>
-                            <th>Sede</th>
+                            <th>Servicio</th>
                         </tr>
                     </thead>
                     <tbody>

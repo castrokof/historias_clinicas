@@ -9,6 +9,9 @@ $(document).ready(function () {
     //     }, 50);
     // });
 
+    $(document).on('click','.custom-tabs-one-datos-del-profesional-tab',function(){
+        $('#tprofesional').DataTable().ajax.reload();
+    });
 
     //------------------------------------------------------Funciones de Listas-----------------------------------------//
 
@@ -41,101 +44,8 @@ $(document).ready(function () {
 
     $("#customSwitch1").change(customSwitch1);
 
-    //------------------------------------------------------Funciones de relaciones-----------------------------------------//
+   
     
-    //Función para abrir modal y prevenir el cierre de la relacion con los profesionales
-    $(document).on('click', '.relacion_profesional', function () {
-
-        $('#modal-profesional').modal({ backdrop: 'static', keyboard: false });
-        $('#modal-profesional').modal('show');
-        $('#trelprofesional').DataTable().destroy();
-        table_profesional();
-
-    });
-    //--------------------------------Tabla para cargar los profesionales y hacer la relacion----------------------------//
-        
-        function table_profesional() {
-            var datatable1 = $('#trelprofesional').DataTable({
-                    language: idioma_espanol,
-                    lengthMenu: [
-                        [25, 50, 100, 500, -1],
-                        [25, 50, 100, 500, "Mostrar Todo"]
-                    ],
-                    processing: true,
-                    serverSide: true,
-                    aaSorting: [
-                        [1, "asc"]
-                    ],
-                    ajax: {
-                        url: "{{ route('profesionalesIndex')}}",
-                        type: "get",
-                        // data: {"idlist": procedimiento_idp}                        
-                    },
-                    columns: [/* {
-                            data: 'actionpt',
-                            //orderable: false
-                        }, */
-                        {
-                            data: 'codigo',
-                             name:'codigo'
-                        },
-                        {
-                            data: 'nombre',
-                            name:'nombre'
-                        },
-                        {
-                            data: 'especialidad',
-                            name:'especialidad'
-                        },
-                        {
-                            data: 'sede',
-                            name:'sede'
-                        }
-                    ],
-
-                    //Botones----------------------------------------------------------------------
-
-                    "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
-
-
-                    buttons: [{
-
-                            extend: 'copyHtml5',
-                            titleAttr: 'Copiar Registros',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-primary btn-sm"
-
-
-                        },
-                        {
-
-                            extend: 'excelHtml5',
-                            titleAttr: 'Exportar Excel',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-success btn-sm"
-
-
-                        },
-                        {
-
-                            extend: 'csvHtml5',
-                            titleAttr: 'Exportar csv',
-                            className: "btn  btn-outline-warning btn-sm"
-                            //text: '<i class="fas fa-file-excel"></i>'
-
-                        },
-                        {
-
-                            extend: 'pdfHtml5',
-                            titleAttr: 'Exportar pdf',
-                            className: "btn  btn-outline-secondary btn-sm"
-
-
-                        }
-                    ],
-                });
-        }
-
     //Recuperar el valor del radio button de detalle de items
     function customSwitch2() {
 

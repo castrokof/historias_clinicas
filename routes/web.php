@@ -108,9 +108,11 @@ Route::post('procedimiento-estado', 'DefProcedimientosController@updateestado')-
 
 //Ruta para consultar las relaciones de Procedimientos vs Servicio
 Route::get('relserviciovsprocedimiento', 'RelServiciovsprocedimientosController@index')->name('relserviciovsprocedimiento')->middleware('superEditor');
+Route::get('relservicioIndex', 'ServiciosController@rel_index')->name('relservicioIndex')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Procedimientos vs Profesional
 Route::get('profesionalvsprocedimiento', 'RelProfesionalvsprocedimientosController@index')->name('profesionalvsprocedimiento')->middleware('superEditor');
+Route::get('relprofeIndex', 'DefProfesionalesController@rel_index')->name('relprofeIndex')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Procedimientos vs Contrato
 Route::get('contratovsprocedimiento', 'RelContratovsprocedimientosController@index')->name('contratovsprocedimiento')->middleware('superEditor');

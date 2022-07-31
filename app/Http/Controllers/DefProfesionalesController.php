@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin\Def_Profesionales;
+use App\Models\Admin\rel__profesionalvsprocedimientos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -54,6 +55,46 @@ class DefProfesionalesController extends Controller
         }
 
         return view('admin.financiero.profesionales.index');
+    }
+
+    public function rel_index(Request $request)
+    {
+
+        if ($request->ajax()) {
+
+            $datas = Def_Profesionales::orderBy('id_profesional', 'asc')->get();
+
+            return  DataTables()->of($datas)
+                ->addColumn('action', function ($datas) {
+                    $button = '<button type="button" name="Detalle" id="' . $datas->id_profesional . '" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Relacionar Item"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
+
+                    return $button;
+                })->addColumn('estado', function ($datas) {
+
+
+                    if ($datas->estado == "1") {
+
+                        $button = '
+                 <div class="custom-control custom-switch ">
+                 <input type="checkbox"  class="check_98 custom-control-input"  id="customSwitch99' . $datas->id_profesional . '" value="' . $datas->id_profesional . '"  checked>
+                 <label class="custom-control-label" for="customSwitch99' . $datas->id_profesional . '"  valueid="' . $datas->id_profesional . '"></label>
+                 </div>';
+                    } else {
+
+                        $button = '
+                 <div class="custom-control custom-switch ">
+                 <input type="checkbox" class="check_98 custom-control-input" id="customSwitch99' . $datas->id_profesional . '" value="' . $datas->id_profesional . '" >
+                 <label class="custom-control-label" for="customSwitch99' . $datas->id_profesional . '"  valueid="' . $datas->id_profesional . '"></label>
+                 </div>';
+                    }
+
+                    return $button;
+                })
+                ->rawColumns(['action', 'estado'])
+                ->make(true);
+        }
+        
+        return view('admin.financiero.procedimientos.index');
     }
 
     public function guardar(Request $request)
@@ -118,39 +159,38 @@ class DefProfesionalesController extends Controller
     public function updateestado(Request $request)
     {
 
-            if ($request->ajax()) {
+        if ($request->ajax()) {
 
-                //$procedimientoestado = new Def_Profesionales();
-                
+            //$procedimientoestado = new Def_Profesionales();
 
-                $datas = DB::table('def__profesionales')->select('estado')->where('id_profesional', $request->input('id'))->first();
 
-                //dd($datas);
-                //return($datas);
+            $datas = DB::table('def__profesionales')->select('estado')->where('id_profesional', $request->input('id'))->first();
 
-                foreach($datas as $data){
+            //dd($datas);
+            //return($datas);
 
-                  if($data == '1'){
+            foreach ($datas as $data) {
+
+                if ($data == '1') {
 
                     DB::table('def__profesionales')
-                    ->where('id_profesional',$request->input('id'))
-                    ->update([
-                     'estado' => '0'
-                            ]);
+                        ->where('id_profesional', $request->input('id'))
+                        ->update([
+                            'estado' => '0'
+                        ]);
 
                     return response()->json(['respuesta' => 'Profesional desactivado', 'titulo' => 'System Fidem', 'icon' => 'warning']);
-                    }else if($data == '0'){
-                        DB::table('def__profesionales')
-                        ->where('id_profesional',$request->input('id'))
+                } else if ($data == '0') {
+                    DB::table('def__profesionales')
+                        ->where('id_profesional', $request->input('id'))
                         ->update([
-                         'estado' => '1'
-                                ]);
+                            'estado' => '1'
+                        ]);
 
-                        return response()->json(['respuesta' => 'Profesional habilitado correctamente', 'titulo' => 'System Fidem', 'icon' => 'warning']);
-
-                    }
+                    return response()->json(['respuesta' => 'Profesional habilitado correctamente', 'titulo' => 'System Fidem', 'icon' => 'warning']);
                 }
             }
+        }
     }
 
     /**

@@ -248,29 +248,27 @@ Procedimientos
 
 
 
-
-
         //Función para abrir detalle del registro
 
         $(document).on('click', '.listasDetalleAll', function() {
 
             var idlist = $(this).attr('id');
             var idlistp = $(this).attr('id');
-            // var idlistf = $(this).attr('id');
+            var idlistf = $(this).attr('id');
 
             if (idlistp != '') {
                 $('#tservicio').DataTable().destroy();
                 fill_datatable(idlistp);
             }
-            if (idlistp != '') {
+            if (idlistf != '') {
                 $('#tprofesional').DataTable().destroy();
-                fill_tableprofe(idlistp);
+                fill_tableprofe(idlistf);
             }
             if (idlistp != '') {
                 $('#tcontrato').DataTable().destroy();
                 fill_tablecontrato(idlistp);
             }
-            
+
             $.ajax({
                 url: "editar_procedimientos/" + idlist + "",
                 dataType: "json",
@@ -278,7 +276,7 @@ Procedimientos
                     $.each(result, function(i, items) {
                         $('#title-procedimiento-detalle').text(items.nombre);
                         $('#modal-procedimiento-detalle').modal({
-                            
+
                             backdrop: 'static',
                             keyboard: false
                         });
@@ -301,264 +299,476 @@ Procedimientos
         //fill_datatable();
         function fill_datatable(idlistp = '') {
             var datatable1 = $('#tservicio').DataTable({
-                    language: idioma_espanol,
-                    lengthMenu: [
-                        [25, 50, 100, 500, -1],
-                        [25, 50, 100, 500, "Mostrar Todo"]
-                    ],
-                    processing: true,
-                    serverSide: true,
-                    aaSorting: [
-                        [1, "asc"]
-                    ],
-                    ajax: {
-                        url: "{{ route('relserviciovsprocedimiento')}}",
-                        //type: "get",
-                        // data: {"idlist": procedimiento_idp}
-                        data: {
-                            id: idlistp
-                        }
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('relserviciovsprocedimiento')}}",
+                    //type: "get",
+                    // data: {"idlist": procedimiento_idp}
+                    data: {
+                        id: idlistp
+                    }
+                },
+                columns: [
+                    /* {
+                                                data: 'actionpt',
+                                                //orderable: false
+                                            }, */
+                    {
+                        data: 'cod_servicio',
+                        name: 'cod_servicio'
                     },
-                    columns: [/* {
-                            data: 'actionpt',
-                            //orderable: false
-                        }, */
-                        {
-                            data: 'cod_servicio',
-                             name:'cod_servicio'
-                        },
-                        {
-                            data: 'nombre',
-                            name:'nombre'
-                        },
-                        {
-                            data: 'cups',
-                            name:'cups'
-                        },
-                        {
-                            data: 'Procedimiento',
-                            name:'Procedimiento'
-                        }
-                    ],
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    },
+                    {
+                        data: 'cups',
+                        name: 'cups'
+                    },
+                    {
+                        data: 'Procedimiento',
+                        name: 'Procedimiento'
+                    }
+                ],
 
-                    //Botones----------------------------------------------------------------------
+                //Botones----------------------------------------------------------------------
 
-                    "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
 
 
-                    buttons: [{
+                buttons: [{
 
-                            extend: 'copyHtml5',
-                            titleAttr: 'Copiar Registros',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-primary btn-sm"
-
-
-                        },
-                        {
-
-                            extend: 'excelHtml5',
-                            titleAttr: 'Exportar Excel',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-success btn-sm"
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
 
 
-                        },
-                        {
+                    },
+                    {
 
-                            extend: 'csvHtml5',
-                            titleAttr: 'Exportar csv',
-                            className: "btn  btn-outline-warning btn-sm"
-                            //text: '<i class="fas fa-file-excel"></i>'
-
-                        },
-                        {
-
-                            extend: 'pdfHtml5',
-                            titleAttr: 'Exportar pdf',
-                            className: "btn  btn-outline-secondary btn-sm"
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
 
 
-                        }
-                    ],
-                });
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
         }
 
         //--------------------------------Tabla relacion procedimiento vs profesionales----------------------------//
-        function fill_tableprofe(idlistp = ''){
+        function fill_tableprofe(idlistf = '') {
             var datatable2 = $('#tprofesional').DataTable({
-                    language: idioma_espanol,
-                    lengthMenu: [
-                        [25, 50, 100, 500, -1],
-                        [25, 50, 100, 500, "Mostrar Todo"]
-                    ],
-                    processing: true,
-                    serverSide: true,
-                    aaSorting: [
-                        [1, "asc"]
-                    ],
-                    ajax: {
-                        url: "{{ route('profesionalvsprocedimiento')}}",
-                        //type: "get",
-                        // data: {"idlist": procedimiento_idp}
-                        data: {
-                            id: idlistp
-                        }
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('profesionalvsprocedimiento')}}",
+                    //type: "get",
+                    // data: {"idlist": procedimiento_idp}
+                    data: {
+                        id: idlistf
+                    }
+                },
+                columns: [
+                    /* {
+                                                data: 'actionpt',
+                                                //orderable: false
+                                            }, */
+                    {
+                        data: 'codigo',
+                        name: 'codigo'
                     },
-                    columns: [/* {
-                            data: 'actionpt',
-                            //orderable: false
-                        }, */
-                        {
-                            data: 'codigo',
-                             name:'codigo'
-                        },
-                        {
-                            data: 'nombre',
-                            name:'nombre'
-                        },
-                        {
-                            data: 'cups',
-                            name:'cups'
-                        },
-                        {
-                            data: 'Procedimiento',
-                            name:'Procedimiento'
-                        }
-                    ],
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    },
+                    {
+                        data: 'cups',
+                        name: 'cups'
+                    },
+                    {
+                        data: 'Procedimiento',
+                        name: 'Procedimiento'
+                    }
+                ],
 
-                    //Botones----------------------------------------------------------------------
+                //Botones----------------------------------------------------------------------
 
-                    "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
 
 
-                    buttons: [{
+                buttons: [{
 
-                            extend: 'copyHtml5',
-                            titleAttr: 'Copiar Registros',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-primary btn-sm"
-
-
-                        },
-                        {
-
-                            extend: 'excelHtml5',
-                            titleAttr: 'Exportar Excel',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-success btn-sm"
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
 
 
-                        },
-                        {
+                    },
+                    {
 
-                            extend: 'csvHtml5',
-                            titleAttr: 'Exportar csv',
-                            className: "btn  btn-outline-warning btn-sm"
-                            //text: '<i class="fas fa-file-excel"></i>'
-
-                        },
-                        {
-
-                            extend: 'pdfHtml5',
-                            titleAttr: 'Exportar pdf',
-                            className: "btn  btn-outline-secondary btn-sm"
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
 
 
-                        }
-                    ],
-                });
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
         }
 
         //--------------------------------Tabla relacion procedimiento vs contratos----------------------------//
-        function fill_tablecontrato(idlistp = ''){
+        function fill_tablecontrato(idlistp = '') {
             var datatable2 = $('#tcontrato').DataTable({
-                    language: idioma_espanol,
-                    lengthMenu: [
-                        [25, 50, 100, 500, -1],
-                        [25, 50, 100, 500, "Mostrar Todo"]
-                    ],
-                    processing: true,
-                    serverSide: true,
-                    aaSorting: [
-                        [1, "asc"]
-                    ],
-                    ajax: {
-                        url: "{{ route('contratovsprocedimiento')}}",
-                        //type: "get",
-                        // data: {"idlist": procedimiento_idp}
-                        data: {
-                            id: idlistp
-                        }
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('contratovsprocedimiento')}}",
+                    //type: "get",
+                    // data: {"idlist": procedimiento_idp}
+                    data: {
+                        id: idlistp
+                    }
+                },
+                columns: [
+                    /* {
+                                                data: 'actionpt',
+                                                //orderable: false
+                                            }, */
+                    {
+                        data: 'contrato',
+                        name: 'contrato'
                     },
-                    columns: [/* {
-                            data: 'actionpt',
-                            //orderable: false
-                        }, */
-                        {
-                            data: 'contrato',
-                             name:'contrato'
-                        },
-                        {
-                            data: 'nombre',
-                            name:'nombre'
-                        },
-                        {
-                            data: 'precio',
-                            name:'precio'
-                        },
-                        {
-                            data: 'cups',
-                            name:'cups'
-                        },
-                        {
-                            data: 'Procedimiento',
-                            name:'Procedimiento'
-                        }
-                        
-                    ],
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    },
+                    {
+                        data: 'precio',
+                        name: 'precio'
+                    },
+                    {
+                        data: 'cups',
+                        name: 'cups'
+                    },
+                    {
+                        data: 'Procedimiento',
+                        name: 'Procedimiento'
+                    }
 
-                    //Botones----------------------------------------------------------------------
+                ],
 
-                    "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
 
 
-                    buttons: [{
+                buttons: [{
 
-                            extend: 'copyHtml5',
-                            titleAttr: 'Copiar Registros',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-primary btn-sm"
-
-
-                        },
-                        {
-
-                            extend: 'excelHtml5',
-                            titleAttr: 'Exportar Excel',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-success btn-sm"
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
 
 
-                        },
-                        {
+                    },
+                    {
 
-                            extend: 'csvHtml5',
-                            titleAttr: 'Exportar csv',
-                            className: "btn  btn-outline-warning btn-sm"
-                            //text: '<i class="fas fa-file-excel"></i>'
-
-                        },
-                        {
-
-                            extend: 'pdfHtml5',
-                            titleAttr: 'Exportar pdf',
-                            className: "btn  btn-outline-secondary btn-sm"
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
 
 
-                        }
-                    ],
-                });
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
+        }
+
+        
+
+        //------------------------------------------------------Funciones de relaciones-----------------------------------------//
+        
+        //Función para abrir modal y prevenir el cierre de la relacion con los profesionales
+        $(document).on('click', '.relacion_profesional', function() {            
+
+            $('#modal-profesional').modal({
+                backdrop: 'static',
+                keyboard: false
+            });            
+            $('#modal-profesional').modal('show');
+            $('#trelprofesional').DataTable().destroy();
+            table_profesional();
+        });
+        
+        //--------------------------------Tabla para cargar los profesionales y hacer la relacion----------------------------//
+
+        function table_profesional() {
+            var datatablep = $('#trelprofesional').DataTable({
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('relprofeIndex')}}",
+                    type: "get",
+                },
+                columns: [
+                    /* {
+                                                data: 'action',
+                                                //orderable: false
+                                            }, */
+
+                    {
+                        data: 'estado',
+                        name: 'estado'
+                    },
+                    {
+                        data: 'codigo',
+                        name: 'codigo'
+                    },
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    },
+                    {
+                        data: 'especialidad',
+                        name: 'especialidad'
+                    },
+                    {
+                        data: 'sede',
+                        name: 'sede'
+                    }
+
+                ],
+
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+
+
+                buttons: [{
+
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
+        }
+        
+
+        //Función para abrir modal y prevenir el cierre de la relacion con los servicios
+        $(document).on('click', '.relacion_servicio', function() {
+            $('#modal-servicio').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $('#modal-servicio').modal('show');
+            $('#trelservicio').DataTable().destroy();
+            table_servicio();
+        });
+
+        //--------------------------------Tabla para cargar los servicios y hacer la relacion----------------------------//
+        function table_servicio() {
+            var datatable2 = $('#trelservicio').DataTable({
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('relservicioIndex')}}",
+                    type: "get",
+                },
+                columns: [
+                    /* {
+                                                data: 'action',
+                                                //orderable: false
+                                            }, */
+
+                    {
+                        data: 'estado',
+                        name: 'estado'
+                    },
+                    {
+                        data: 'cod_servicio',
+                        name: 'cod_servicio'
+                    },
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    }
+
+                ],
+
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+
+
+                buttons: [{
+
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
+        }
+
+        //Función para abrir modal y prevenir el cierre de la relacion con los contratos
+        $(document).on('click', '.relacion_contrato', function() {
+
+        });
+
+        //--------------------------------Tabla para cargar los contratos y hacer la relacion----------------------------//
+        function table_contrato() {
+
         }
 
     });
