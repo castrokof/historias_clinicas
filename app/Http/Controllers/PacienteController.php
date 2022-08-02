@@ -142,10 +142,7 @@ class PacienteController extends Controller
             'sexo' => 'required',
             'orientacion_sexual' => 'required',
             'usuario_id'
-
-
         );
-
 
         $error = Validator::make($request->all(), $rules);
 

@@ -159,6 +159,13 @@ Route::post('paises', 'PaisController@guardar')->name('guardar_pais')->middlewar
 Route::get('paises/{id}/editar', 'PaisController@editar')->name('editar_pais')->middleware('superEditor');
 Route::put('paises/{id}', 'PaisController@actualizar')->name('actualizar_pais')->middleware('superEditor');
 
+/* RUTAS DE SERVICIOS */
+Route::get('servicios', 'ServiciosController@index')->name('servicios')->middleware('superEditor');
+Route::get('servicios/crear', 'ServiciosController@crear')->name('crear_servicio')->middleware('superEditor');
+Route::post('servicios', 'ServiciosController@guardar')->name('guardar_servicio')->middleware('superEditor');
+Route::get('servicios/{id}/editar', 'ServiciosController@editar')->name('editar_servicio')->middleware('superEditor');
+Route::put('servicios/{id}', 'ServiciosController@actualizar')->name('actualizar_servicio')->middleware('superEditor');
+
 /* RUTAS DEL CITA */
 Route::get('cita', 'CitaController@index')->name('cita')->middleware('superEditor');
 Route::get('cita/crear', 'CitaController@crear')->name('crear_cita')->middleware('superEditor');

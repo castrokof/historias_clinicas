@@ -235,8 +235,8 @@ class UsuarioAdministradorSeeder extends Seeder
         DB::table('menu')->insert([
 
             'menu_id'=> 33,
-            'nombre'=>'Servicvios',
-            'url'=>'servicvios',
+            'nombre'=>'Servicios',
+            'url'=>'servicios',
             'orden'=>2,
             'icono'=>'fas fa-angle-right'
         ]);

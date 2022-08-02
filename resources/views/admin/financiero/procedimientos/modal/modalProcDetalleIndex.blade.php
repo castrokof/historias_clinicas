@@ -27,50 +27,50 @@
                                 rel__contratovsprocedimientos, rel__serviciovsprocedimientos
                              -->
                             <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                                <!-- <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist"> -->                                
+                                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="custom-tabs-one-datos-del-profesional-tab" 
-                                        data-toggle="pill" href="#custom-tabs-one-datos-del-profesional" role="tabpanel-1" 
+                                        data-toggle="tab" href="#custom-tabs-one-datos-del-profesional" role="tab"
                                         aria-controls="custom-tabs-one-datos-del-profesional" aria-selected="false">Profesionales</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="custom-tabs-one-datos-del-servicio-tab" 
-                                        data-toggle="pill" href="#custom-tabs-one-datos-del-servicio" role="tab" 
+                                        data-toggle="tab" href="#custom-tabs-one-datos-del-servicio" role="tab" 
                                         aria-controls="custom-tabs-one-datos-del-servicio" aria-selected="false">Servicios</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="custom-tabs-one-contrato-tab" 
-                                        data-toggle="pill" href="#custom-tabs-one-contrato" role="tab" 
+                                        data-toggle="tab" href="#custom-tabs-one-contrato" role="tab" 
                                         aria-controls="custom-tabs-one-contrato" aria-selected="false">Contratos</a>
                                     </li>
                                 </ul>
-                            </div>
 
                             <!-- Es estas tablas se pintan los datos que ya estan relacionados entre si -->
-                            <div class="card-body">
-
-                                <div class="tab-content" id="custom-tabs-one-tabContent">
-                                    <div class="tab-pane fade active show" id="custom-tabs-one-datos-del-profesional" role="tabpanel-1" aria-labelledby="custom-tabs-one-datos-del-profesional-tab">
+                                <div class="tab-content">
+                                <!-- <div class="tab-content" id="custom-tabs-one-tabContent"> -->
+                                    <div class="tab-pane tab: active" id="custom-tabs-one-datos-del-profesional" role="tabpanel" aria-labelledby="custom-tabs-one-datos-del-profesional-tab">
                                         <div class="card-body">
                                             @csrf
                                             @include('admin.financiero.procedimientos.tablas.table-profesionales')
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade" id="custom-tabs-one-datos-del-servicio" role="tabpanel-2" aria-labelledby="custom-tabs-one-datos-del-servicio-tab">
+                                    <div class="tab-pane" id="custom-tabs-one-datos-del-servicio" role="tabpanel" aria-labelledby="custom-tabs-one-datos-del-servicio-tab">
                                         <div class="card-body">
                                             @csrf
                                             @include('admin.financiero.procedimientos.tablas.table-servicios')
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="custom-tabs-one-contrato" role="tabpanel-3" aria-labelledby="custom-tabs-one-contrato-tab">
+
+                                    <div class="tab-pane" id="custom-tabs-one-contrato" role="tabpanel" aria-labelledby="custom-tabs-one-contrato-tab">
                                         <div class="card-body">
                                             @csrf
                                             @include('admin.financiero.procedimientos.tablas.table-contratos')
                                         </div>
                                     </div>
+                                <!-- </div> -->
                                 </div>
-
                             </div>
 
                             <div class="form-group row">

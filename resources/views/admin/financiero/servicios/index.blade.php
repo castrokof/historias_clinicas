@@ -1,7 +1,7 @@
 @extends("theme.$theme.layout")
 
 @section('titulo')
-Países
+Servicios
 @endsection
 @section("styles")
 <link href="{{asset("assets/$theme/plugins/datatables-bs4/css/dataTables.bootstrap4.css")}}" rel="stylesheet" type="text/css" />
@@ -24,15 +24,15 @@ Países
     @include('includes.form-mensaje')
     <div class="card card-success">
       <div class="card-header with-border form-group row">
-        <h3 class="card-title-1 col-lg-10">Países</h3>
+        <h3 class="card-title-1 col-lg-10">Servicios</h3>
         <div class="card-tools pull-right col-lg-2">
-          <button type="button" class="btn btn-default" name="create_paciente" id="create_paciente" data-toggle="modal" data-target="#modal-u"><i class="fa fa-fw fa-plus-circle"></i> Nuevo País</button>
+          <button type="button" class="btn btn-default" name="create_paciente" id="create_paciente" data-toggle="modal" data-target="#modal-u"><i class="fa fa-fw fa-plus-circle"></i> Nuevo Servicio</button>
           </button>
         </div>
       </div>
       <div class="card-body table-responsive p-2">
 
-        <table id="tpaises" class="table table-hover  text-nowrap">
+        <table id="tservicios" class="table table-hover  text-nowrap">
           {{-- class="table table-hover table-bordered text-nowrap" --}}
           <thead>
             <tr>
@@ -71,7 +71,7 @@ Países
             <form id="form-general" class="form-horizontal" method="POST">
               @csrf
               <div class="card-body">
-                @include('admin.pais.form')
+                @include('admin.financiero.servicios.form')
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
@@ -83,9 +83,6 @@ Países
               </div>
               <!-- /.card-footer -->
             </form>
-
-
-
           </div>
         </div>
       </div>
@@ -114,11 +111,9 @@ Países
 <script>
   $(document).ready(function() {
 
-
     //initiate dataTables plugin
-
     var myTable =
-      $('#tpaises').DataTable({
+      $('#tservicios').DataTable({
         language: idioma_espanol,
         processing: true,
         lengthMenu: [
@@ -132,7 +127,7 @@ Países
         ],
 
         ajax: {
-          url: "{{ route('paises')}}",
+          url: "{{ route('servicios')}}",
         },
         columns: [{
             data: 'action',
@@ -140,8 +135,8 @@ Países
             orderable: false
           },
           {
-            data: 'cod_pais',
-            name: 'cod_pais'
+            data: 'cod_servicio',
+            name: 'cod_servicio'
           },
           {
             data: 'nombre',
@@ -214,7 +209,7 @@ Países
             },
             "targets": [3]
           },
-          
+
           /*  {
 
             "render": function(data, type, row) {
@@ -236,7 +231,7 @@ Países
 
     $('#create_paciente').click(function() {
       $('#form-general')[0].reset();
-      $('.card-title').text('Agregar Nuevo País');
+      $('.card-title').text('Agregar Nuevo Servicio');
       $('#action_button').val('Add');
       $('#action').val('Add');
       $('#form_result').html('');
@@ -250,15 +245,15 @@ Países
       var text = '';
 
       if ($('#action').val() == 'Add') {
-        text = "Estás por crear un País"
-        url = "{{route('guardar_pais')}}";
+        text = "Estás por crear un Servicio"
+        url = "{{route('guardar_servicio')}}";
         method = 'post';
       }
 
       if ($('#action').val() == 'Edit') {
-        text = "Estás por actualizar un País"
+        text = "Estás por actualizar un Servicio"
         var updateid = $('#hidden_id').val();
-        url = "/paises/" + updateid;
+        url = "/servicios/" + updateid;
         method = 'put';
       }
       Swal.fire({
@@ -293,7 +288,7 @@ Países
               if (data.success == 'ok') {
                 $('#form-general')[0].reset();
                 $('#modal-u').modal('hide');
-                $('#tpaises').DataTable().ajax.reload();
+                $('#tservicios').DataTable().ajax.reload();
                 Swal.fire({
                   icon: 'success',
                   title: 'Pais creado correctamente',
@@ -306,7 +301,7 @@ Países
               } else if (data.success == 'ok1') {
                 $('#form-general')[0].reset();
                 $('#modal-u').modal('hide');
-                $('#tpaises').DataTable().ajax.reload();
+                $('#tservicios').DataTable().ajax.reload();
                 Swal.fire({
                   icon: 'warning',
                   title: 'Pais actualizado correctamente',
@@ -335,13 +330,13 @@ Países
       var id = $(this).attr('id');
 
       $.ajax({
-        url: "/paises/" + id + "/editar",
+        url: "/servicios/" + id + "/editar",
         dataType: "json",
         success: function(data) {
-          $('#cod_pais').val(data.result.cod_pais);
+          $('#cod_servicio').val(data.result.cod_servicio);
           $('#nombre').val(data.result.nombre);
           $('#hidden_id').val(id);
-          $('.card-title').text('Editar País');
+          $('.card-title').text('Editar Servicio');
           $('#action_button').val('Edit');
           $('#action').val('Edit');
           $('#modal-u').modal('show');

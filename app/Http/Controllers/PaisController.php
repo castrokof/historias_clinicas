@@ -25,7 +25,7 @@ class PaisController extends Controller
             return  DataTables()->of($datas)
                 ->addColumn('action', function ($datas) {
                     $button = '<button type="button" name="edit" id="' . $datas->id_pais . '"
-        class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar paciente"><i class="far fa-edit"></i></button>';
+        class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar"><i class="far fa-edit"></i></button>';
 
                     return $button;
                 })
@@ -43,7 +43,21 @@ class PaisController extends Controller
      */
     public function guardar(Request $request)
     {
-        //
+        $rules = array(
+            'cod_pais'  => 'required|max:10',
+            'nombre'  => 'required|max:150',
+            'estado'  => 'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        Paises::create($request->all());
+        return response()->json(['success' => 'ok']);
     }
 
     /**
@@ -74,10 +88,17 @@ class PaisController extends Controller
      * @param  \App\Models\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function editar(Paises $pais)
+    public function editar($id)
     {
-        //
+        if (request()->ajax()) {
+
+            $data = Paises::where('id_pais', $id)->first();
+
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.pais.index');
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -86,9 +107,29 @@ class PaisController extends Controller
      * @param  \App\Models\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, Paises $pais)
+    public function actualizar(Request $request, $id)
     {
-        //
+        $rules = array(
+            'cod_pais'  => 'required|max:10',
+            'nombre'  => 'required|max:200',
+            'estado'  => 'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $data = DB::table('paises')->where('id_pais', '=', $id)
+            ->update([
+                'cod_pais' => $request->cod_pais,
+                'nombre' => $request->nombre,
+                'estado' => $request->estado,
+                'updated_at' => now()
+            ]);
+        //$data->update($request->all());
+        return response()->json(['success' => 'ok1']);
     }
 
     /**

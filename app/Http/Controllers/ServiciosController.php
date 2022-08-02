@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Servicios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ServiciosController extends Controller
 {
@@ -12,9 +14,26 @@ class ServiciosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $usuario_id = $request->session()->get('usuario_id');
+        if ($request->ajax()) {
+            $datas = Servicios::orderBy('id_servicio')
+                ->get();
+
+            return  DataTables()->of($datas)
+                ->addColumn('action', function ($datas) {
+                    $button = '<button type="button" name="edit" id="' . $datas->id_servicio . '"
+        class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar servicio"><i class="far fa-edit"></i></button>';
+                    
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('admin.financiero.servicios.index');
     }
 
     public function rel_index(Request $request)
@@ -62,9 +81,23 @@ class ServiciosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function guardar(Request $request)
     {
-        //
+        $rules = array(
+            'cod_servicio'  => 'required|max:10',
+            'nombre'  => 'required|max:200',
+            'estado'  => 'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        Servicios::create($request->all());
+        return response()->json(['success' => 'ok']);
     }
 
     /**
@@ -95,9 +128,40 @@ class ServiciosController extends Controller
      * @param  \App\Models\Admin\Servicios  $servicios
      * @return \Illuminate\Http\Response
      */
-    public function edit(Servicios $servicios)
+    public function editar($id)
     {
-        //
+        if (request()->ajax()) {
+
+            $data = Servicios::where('id_servicio', $id)->first();
+
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.financiero.servicios.index');
+    }
+
+    public function actualizar(Request $request, $id)
+    {
+        $rules = array(
+            'cod_servicio'  => 'required|max:10',
+            'nombre'  => 'required|max:200',
+            'estado'  => 'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $data = DB::table('servicios')->where('id_servicio', '=', $id)
+            ->update([
+                'cod_servicio' => $request->cod_servicio,
+                'nombre' => $request->nombre,
+                'estado' => $request->estado,
+                'updated_at' => now()
+            ]);
+        //$data->update($request->all());
+        return response()->json(['success' => 'ok1']);
     }
 
     /**
