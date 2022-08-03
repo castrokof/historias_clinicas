@@ -26,7 +26,7 @@ class ServiciosController extends Controller
                 ->addColumn('action', function ($datas) {
                     $button = '<button type="button" name="edit" id="' . $datas->id_servicio . '"
         class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar servicio"><i class="far fa-edit"></i></button>';
-                    
+
                     return $button;
                 })
                 ->rawColumns(['action'])
@@ -72,7 +72,7 @@ class ServiciosController extends Controller
                 ->rawColumns(['action', 'estado'])
                 ->make(true);
         }
-        
+
         return view('admin.financiero.procedimientos.index');
     }
 

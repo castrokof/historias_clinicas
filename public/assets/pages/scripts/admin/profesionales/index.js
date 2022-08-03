@@ -83,7 +83,7 @@ $(document).ready(function () {
             $('#estado1').val() == '') {
             Swal.fire({
                 title: "Debes de rellenar todos los campos del formulario",
-                text: "Respuesta Paliativos",
+                text: "Sistema Historias Clínicas",
                 icon: "warning",
                 showConfirmButton: false,
                 timer: 3000

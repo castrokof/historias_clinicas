@@ -4,18 +4,14 @@
 Procedimientos
 @endsection
 @section('styles')
-<style>
-
-
-</style>
-
 <link href="{{ asset("assets/$theme/plugins/datatables-bs4/css/dataTables.bootstrap4.css") }}" rel="stylesheet" type="text/css" />
+<link href="{{asset("assets/css/select2.min.css")}}" rel="stylesheet" type="text/css" />
 <link href="{{ asset("assets/$theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css" />
 
-<link href="{{ asset('assets/js/gijgo-combined-1.9.13/css/gijgo.min.css') }}" rel="stylesheet" type="text/css" />
+<!-- <link href="{{ asset('assets/js/gijgo-combined-1.9.13/css/gijgo.min.css') }}" rel="stylesheet" type="text/css" /> -->
 <link href="{{ asset('assets/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
@@ -29,23 +25,26 @@ Procedimientos
 @include('admin.financiero.procedimientos.tablas.tablaIndexProcedimientos')
 @include('admin.financiero.procedimientos.modal.modalProcedimientos')
 @include('admin.financiero.procedimientos.modal.modalProcDetalle')
-@include('admin.financiero.procedimientos.modal.modalProcProfesional')
+
 <!-- Modal para relacionar los profesionales -->
-@include('admin.financiero.procedimientos.modal.modalProcServicio')
+@include('admin.financiero.procedimientos.modal.modalProcProfesional')
 <!-- Modal para relacionar los servicios -->
-@include('admin.financiero.procedimientos.modal.modalProcContrato')
+@include('admin.financiero.procedimientos.modal.modalProcServicio')
 <!-- Modal para relacionar los contratos -->
+@include('admin.financiero.procedimientos.modal.modalProcContrato')
+
+<!-- Modal que carga las tablas y los botones para realizar las relaciones -->
 @include('admin.financiero.procedimientos.modal.modalProcDetalleIndex')
 
 @endsection
 
 @section('scriptsPlugins')
 <script src="{{ asset("assets/$theme/plugins/datatables/jquery.dataTables.js") }}" type="text/javascript"></script>
-<script src="{{ asset("assets/$theme/plugins/datatables-bs4/js/dataTables.bootstrap4.js") }}" type="text/javascript">
-</script>
+<script src="{{ asset("assets/$theme/plugins/datatables-bs4/js/dataTables.bootstrap4.js") }}" type="text/javascript"></script>
 <script src="{{ asset("assets/$theme/plugins/datatables-responsive/js/dataTables.responsive.min.js") }}" type="text/javascript"></script>
+<script src="{{asset("assets/js/jquery-select2/select2.min.js")}}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/jquery-select2/select2.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/js/gijgo-combined-1.9.13/js/gijgo.min.js') }}" type="text/javascript"></script>
+<!-- <script src="{{ asset('assets/js/gijgo-combined-1.9.13/js/gijgo.min.js') }}" type="text/javascript"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 
 
@@ -290,7 +289,7 @@ Procedimientos
                 if (jqXHR.status === 403) {
 
                     Manteliviano.notificaciones('No tienes permisos para realizar esta accion',
-                        'Sistema Paliativos', 'warning');
+                        'Sistema Historias Clínicas', 'warning');
                 }
             });
 

@@ -710,7 +710,7 @@ function fill_datatable( historia_idp = '')
 
                     html = '<div class="alert alert-danger alert-dismissible" data-auto-dismiss="3000">'
                       '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'
-                        '<h5><i class="icon fas fa-check"></i> Mensaje Ventas</h5>';
+                        '<h5><i class="icon fas fa-check"></i> Alerta! Verifica los siguientes datos: </h5>';
                                      
                     for (var count = 0; count < data.errors.length; count++)
                     {
@@ -904,7 +904,7 @@ function fill_datatable_t( historia_idp1 = '')
 
                     html = '<div class="alert alert-danger alert-dismissible" data-auto-dismiss="3000">'
                       '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'
-                        '<h5><i class="icon fas fa-check"></i> Mensaje Ventas</h5>';
+                        '<h5><i class="icon fas fa-check"></i> Alerta! Verifica los siguientes datos: </h5>';
                                      
                     for (var count = 0; count < data.errors.length; count++)
                     {
@@ -1104,7 +1104,7 @@ function fill_datatable_f( historia_idp2 = '')
 
                     html = '<div class="alert alert-danger alert-dismissible" data-auto-dismiss="3000">'
                       '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'
-                        '<h5><i class="icon fas fa-check"></i> Mensaje Ventas</h5>';
+                        '<h5><i class="icon fas fa-check"></i> Alerta! Verifica los siguientes datos: </h5>';
                                      
                     for (var count = 0; count < data.errors.length; count++)
                     {
@@ -1298,7 +1298,7 @@ function fill_datatable_ae( historia_idp3 = '')
 
                     html = '<div class="alert alert-danger alert-dismissible" data-auto-dismiss="3000">'
                       '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'
-                        '<h5><i class="icon fas fa-check"></i> Mensaje Ventas</h5>';
+                        '<h5><i class="icon fas fa-check"></i> Alerta! Verifica los siguientes datos: </h5>';
                                      
                     for (var count = 0; count < data.errors.length; count++)
                     {

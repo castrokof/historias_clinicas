@@ -22,10 +22,10 @@ Pacientes
   <div class="col-lg-12">
     @include('includes.form-error')
     @include('includes.form-mensaje')
-    <div class="card card-success">
-      <div class="card-header with-border form-group row">
-        <h3 class="card-title-1 col-lg-10">Pacientes</h3>
-        <div class="card-tools pull-right col-lg-2">
+    <div class="card card-info">
+      <div class="card-header with-border">
+        <h3 class="card-title-1">Pacientes</h3>
+        <div class="card-tools pull-right">
           <button type="button" class="btn btn-default" name="create_paciente" id="create_paciente" data-toggle="modal" data-target="#modal-u"><i class="fa fa-fw fa-plus-circle"></i> Nuevo paciente</button>
           </button>
         </div>
@@ -356,7 +356,7 @@ Pacientes
                 html =
                   '<div class="alert alert-danger alert-dismissible">' +
                   '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-                  '<h5><i class="icon fas fa-ban"></i> Mensaje fidem</h5>';
+                  '<h5><i class="icon fas fa-ban"></i> Alerta! Verifica los siguientes datos: </h5>';
 
                 for (var count = 0; count < data.errors.length; count++) {
                   html += '<p>' + data.errors[count] + '<p>';
@@ -439,7 +439,7 @@ Pacientes
 
         if (jqXHR.status === 403) {
 
-          Manteliviano.notificaciones('No tienes permisos para realizar esta accion', 'Sistema Fidem', 'warning');
+          Manteliviano.notificaciones('No tienes permisos para realizar esta accion', 'Sistema Historias Clínicas', 'warning');
 
         }
       });

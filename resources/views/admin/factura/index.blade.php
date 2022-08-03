@@ -13,42 +13,7 @@ Facturación
 
 @section('scripts')
 <script src="{{ asset('assets/pages/scripts/admin/usuario/crearuser.js') }}" type="text/javascript"></script>
-{{-- <script>
-  $(document).ready(function() {
 
-    $('#key').on('keyup', function() {
-      var key = $(this).val();
-      var dataString = 'key=' + key;
-      $.ajax({
-        type: "GET",
-        //url: "/paciente/" + key + "/buscarp",
-        url: "{{ route('pacientefact')}}",
-data: dataString,
-//dataType: "json",
-success: function(data) {
-$('#pnombre').val(data.result.pnombre);
-$('#snombre').val(data.result.snombre);
-$('#papellido').val(data.result.papellido);
-$('#sapellido').val(data.result.sapellido);
-$('#tipo_documento').val(data.result.tipo_documento);
-$('#documento').val(data.result.documento);
-$('#edad').val(data.result.edad);
-$('#ciudad').val(data.result.ciudad);
-$('#direccion').val(data.result.direccion);
-$('#correo').val(data.result.correo);
-$('#celular').val(data.result.celular);
-$('#telefono').val(data.result.telefono);
-$('#eps').val(data.result.eps);
-$('#sexo').val(data.result.sexo);
-$('#plan').val(data.result.plan);
-$('#Ocupacion').val(data.result.Ocupacion);
-$('#observacion').val(data.result.observacion);
-$('#hidden_id').val(id);
-}
-});
-});
-});
-</script> --}}
 @endsection
 
 @section('contenido')
@@ -194,31 +159,29 @@ $('#hidden_id').val(id);
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="custom-tabs-one-datos-del-paciente-tab" 
-                                data-toggle="pill" href="#custom-tabs-one-datos-del-paciente" role="tab" 
-                                aria-controls="custom-tabs-one-datos-del-paciente" aria-selected="false">Procedimientos</a>
+                                <a class="nav-link active" id="custom-tabs-one-datos-del-paciente-tab" data-toggle="pill" href="#custom-tabs-one-datos-del-paciente" role="tab" aria-controls="custom-tabs-one-datos-del-paciente" aria-selected="false">Procedimientos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="custom-tabs-one-consulta-tab" data-toggle="pill" href="#custom-tabs-one-consulta" role="tab" aria-controls="custom-tabs-one-Consulta" aria-selected="false">Medicamentos</a>
                             </li>
                         </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content" id="custom-tabs-one-tabContent">
-                            <div class="tab-pane fade active show" id="custom-tabs-one-datos-del-paciente" role="tabpanel" 
-                            aria-labelledby="custom-tabs-one-datos-del-paciente-tab">
-                                <div class="card-body">
-                                    <form id="form-general" class="form-horizontal" method="POST">
-                                        @csrf
-                                        @include('admin.factura.table.table-procedimientos')
+
+                        <div class="card-body">
+                            <div class="tab-content" id="custom-tabs-one-tabContent">
+                                <div class="tab-pane fade active show" id="custom-tabs-one-datos-del-paciente" role="tabpanel" aria-labelledby="custom-tabs-one-datos-del-paciente-tab">
+                                    <div class="card-body">
+                                        <form id="form-general" class="form-horizontal" method="POST">
+                                            @csrf
+                                            @include('admin.factura.table.table-procedimientos')
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="tab-pane fade" id="custom-tabs-one-consulta" role="tabpanel" aria-labelledby="custom-tabs-one-consulta-tab">
-                                <div class="card-body">
+                                <div class="tab-pane fade" id="custom-tabs-one-consulta" role="tabpanel" aria-labelledby="custom-tabs-one-consulta-tab">
+                                    <div class="card-body">
 
-                                    @include('admin.factura.table.table-medicamento')
+                                        @include('admin.factura.table.table-medicamento')
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -389,7 +352,7 @@ $('#hidden_id').val(id);
                 dataType: "json",
                 success: function(data) {
                     if (data.pacientes == null) {
-                        Manteliviano.notificaciones('Paciente no encontrado', 'Fidem', 'warning');
+                        Manteliviano.notificaciones('Paciente no encontrado', 'Sistema Historias Clínicas', 'warning');
                     } else {
                         //Pintar formulario
                         console.log(data);
@@ -446,8 +409,6 @@ $('#hidden_id').val(id);
         $("#tcups").on("click", "#eliminar", function() {
             $(this).closest("tr").remove();
         });
-
-
 
 
 

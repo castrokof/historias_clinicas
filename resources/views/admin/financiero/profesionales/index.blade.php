@@ -4,12 +4,8 @@
 Profesionales
 @endsection
 @section('styles')
-<style>
-
-
-</style>
-
 <link href="{{ asset("assets/$theme/plugins/datatables-bs4/css/dataTables.bootstrap4.css") }}" rel="stylesheet" type="text/css" />
+<link href="{{asset("assets/css/select2.min.css")}}" rel="stylesheet" type="text/css" />
 <link href="{{ asset("assets/$theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -280,7 +276,6 @@ Profesionales
                             keyboard: false
                         });
                         $('#modal-profesional-detalle').modal('show');
-
                     });
                 }
 
@@ -289,7 +284,7 @@ Profesionales
                 if (jqXHR.status === 403) {
 
                     Manteliviano.notificaciones('No tienes permisos para realizar esta accion',
-                        'Sistema Paliativos', 'warning');
+                        'Sistema Historias Clínicas', 'warning');
                 }
             });
 

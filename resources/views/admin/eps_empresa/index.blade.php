@@ -292,7 +292,7 @@ Eps Empresas
 
         if (jqXHR.status === 403) {
 
-          Manteliviano.notificaciones('No tienes permisos para realizar esta accion', 'Sistema Fidem', 'warning');
+          Manteliviano.notificaciones('No tienes permisos para realizar esta accion', 'Sistema Historias Clínicas', 'warning');
 
         }
       });
