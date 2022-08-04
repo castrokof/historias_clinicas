@@ -32,7 +32,6 @@ class cumsSeeder extends Seeder
             'forma_farmaceutica' => $obj->forma_farmaceutica,
             'observacion' => $obj->observacion,
             'estado' => 0
-
         ));
         }
     }

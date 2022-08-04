@@ -175,11 +175,11 @@ Route::put('cita/{id}', 'CitaController@actualizar')->name('actualizar_cita')->m
 Route::get('pacienteselect', 'CitaController@selectp')->name('selectp')->middleware('superEditor');
 
 /* RUTAS DE LA FACTURA */
-Route::get('factura', 'FacturaController@index')->name('factura')->middleware('superEditor');
-Route::get('factura/crear', 'FacturaController@crear')->name('crear_factura')->middleware('superEditor');
-Route::post('factura', 'FacturaController@guardar')->name('guardar_factura')->middleware('superEditor');
-Route::get('factura/{id}/editar', 'FacturaController@editar')->name('editar_factura')->middleware('superEditor');
-Route::put('factura/{id}', 'FacturaController@actualizar')->name('actualizar_factura')->middleware('superEditor');
+Route::get('facturacion', 'FacturaController@index')->name('facturacion')->middleware('superEditor');
+Route::get('facturacion/crear', 'FacturaController@crear')->name('crear_factura')->middleware('superEditor');
+Route::post('facturacion', 'FacturaController@guardar')->name('guardar_factura')->middleware('superEditor');
+Route::get('facturacion/{id}/editar', 'FacturaController@editar')->name('editar_factura')->middleware('superEditor');
+Route::put('facturacion/{id}', 'FacturaController@actualizar')->name('actualizar_factura')->middleware('superEditor');
 Route::get('pacientefact', 'FacturaController@selectpa')->name('pacientefact')->middleware('superEditor');
 Route::get('pacientefill', 'FacturaController@buscarp')->name('pacientefill')->middleware('superEditor');
 

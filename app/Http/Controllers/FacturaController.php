@@ -40,7 +40,7 @@ class FacturaController extends Controller
                 ->make(true);
         }
 
-        return view('admin.factura.index');
+        return view('admin.financiero.facturacion.index');
     }
 
     /**

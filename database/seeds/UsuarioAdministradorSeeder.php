@@ -284,7 +284,7 @@ class UsuarioAdministradorSeeder extends Seeder
 
             'menu_id'=> 29,
             'nombre'=>'Facturar',
-            'url'=>'factura',
+            'url'=>'facturacion',
             'orden'=>1,
             'icono'=>'fas fa-coins'
         ]);
@@ -708,6 +708,215 @@ class UsuarioAdministradorSeeder extends Seeder
 
             'rol_id'=> 2,
             'menu_id'=> 15
+        ]);
+
+        //Insersion de datos en la table listas y listas detalle
+
+        DB::table('listas')->insert([
+            'slug'=> 1,
+            'nombre'=> 'EMPRESA',
+            'descripcion'=> 'LISTA DE EMPRESAS',
+            'activo'=> 'SI',
+            'user_id'=> 1
+        ]);
+        DB::table('listas')->insert([
+            'slug'=> 2,
+            'nombre'=> 'REGIMEN',
+            'descripcion'=> 'LISTAS DE TODOS LOS REGIMEN',
+            'activo'=> 'SI',
+            'user_id'=> 1
+        ]);
+        DB::table('listas')->insert([
+            'slug'=> 'TDOC',
+            'nombre'=> 'TIPO DE DOCUMENTOS',
+            'descripcion'=> 'TIPOS DE DOCUMENTOS',
+            'activo'=> 'SI',
+            'user_id'=> 1
+        ]);
+
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'PA',
+            'nombre'=> 'Particular',
+            'descripcion'=> 'Particular',
+            'activo'=> 'SI',
+            'listas_id'=> 2,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'CO',
+            'nombre'=> 'Contributivo',
+            'descripcion'=> 'Contributivo',
+            'activo'=> 'SI',
+            'listas_id'=> 2,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'SU',
+            'nombre'=> 'Subsidiado',
+            'descripcion'=> 'Subsidiado',
+            'activo'=> 'SI',
+            'listas_id'=> 2,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'VI',
+            'nombre'=> 'Vinculado',
+            'descripcion'=> 'Vinculado',
+            'activo'=> 'SI',
+            'listas_id'=> 2,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'OR',
+            'nombre'=> 'Otro régimen',
+            'descripcion'=> 'Otro régimen',
+            'activo'=> 'SI',
+            'listas_id'=> 2,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'AT',
+            'nombre'=> 'Accidentes de tránsito',
+            'descripcion'=> 'Accidentes de tránsito',
+            'activo'=> 'SI',
+            'listas_id'=> 2,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'RP',
+            'nombre'=> 'Riesgos profesionales',
+            'descripcion'=> 'Riesgos profesionales',
+            'activo'=> 'SI',
+            'listas_id'=> 2,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'DP',
+            'nombre'=> 'Desplazado',
+            'descripcion'=> 'Desplazado',
+            'activo'=> 'SI',
+            'listas_id'=> 2,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'VI',
+            'nombre'=> 'SALUD VITALIA',
+            'descripcion'=> 'SALUD VITALIA',
+            'activo'=> 'SI',
+            'listas_id'=> 1,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'CC',
+            'nombre'=> 'CC',
+            'descripcion'=> 'CEDULA DE CIUDADANIA',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'TI',
+            'nombre'=> 'TI',
+            'descripcion'=> 'TARJETA DE IDENTIDAD',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'CE',
+            'nombre'=> 'CE',
+            'descripcion'=> 'CEDULA DE EXTRANJERIA',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'RC',
+            'nombre'=> 'RC',
+            'descripcion'=> 'REGISTRO CIVIL',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'PA',
+            'nombre'=> 'PA',
+            'descripcion'=> 'PASAPORTE',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'AS',
+            'nombre'=> 'AS',
+            'descripcion'=> 'ADULTO SIN IDENTIFICACIÓN',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'MS',
+            'nombre'=> 'MS',
+            'descripcion'=> 'MENOR SIN IDENTIFICACION',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'NI',
+            'nombre'=> 'NI',
+            'descripcion'=> 'NIT',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'NU',
+            'nombre'=> 'NU',
+            'descripcion'=> 'NU',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'PE',
+            'nombre'=> 'PE',
+            'descripcion'=> 'PERMISO ESPECIAL',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'SC',
+            'nombre'=> 'SC',
+            'descripcion'=> 'SALVO CONDUCTO',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'CD',
+            'nombre'=> 'CD',
+            'descripcion'=> 'CARNET DIPLOMATICO',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'RE',
+            'nombre'=> 'RE',
+            'descripcion'=> 'RESIDENTE ESPECIAL',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'PT',
+            'nombre'=> 'PT',
+            'descripcion'=> 'PROTECCIÓN TEMPORAL',
+            'activo'=> 'SI',
+            'listas_id'=> 3,
+            'user_id'=> 1
         ]);
     }
 }
