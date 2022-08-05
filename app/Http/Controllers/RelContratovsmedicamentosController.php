@@ -82,4 +82,20 @@ class RelContratovsmedicamentosController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function eliminar(Request $request, $id)
+    {
+        if($request->ajax()){
+ 
+            rel__contratovsmedicamentos::where('id_contratovsmedicamento', $id)->delete();
+
+        return response()->json(['success' => 'ok1']);
+        }
+    }
 }

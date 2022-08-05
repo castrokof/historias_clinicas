@@ -31,8 +31,8 @@
     <input name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario') ?? ''}}" readonly>
   </div>
   <div class="col-lg-2">
-    <label for="contrato" class="col-xs-4 control-label ">Fecha</label>
-    <input name="contrato" id="contrato" class="form-control" value="{{now() ?? ''}}" readonly>
+    <label for="created_at" class="col-xs-4 control-label ">Fecha</label>
+    <input name="created_at" id="created_at" class="form-control" value="{{now() ?? ''}}" readonly>
   </div>
   <div class="col-lg-2">
     <label for="valor" class="col-xs-4 control-label ">Valor Unitario</label>

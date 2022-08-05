@@ -20,20 +20,31 @@
                             </div>
                         </div>
 
-                        {{-- <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-append">
-                                    <button type="button" class="btn btn-info btn-flat">Go!</button>
-                                    </span>
-                                    </div> --}}
-                        {{-- <div class="input-group col-lg-2">
-                                <input class="search_query form-control" type="text" name="key" id="key"
-                                    placeholder="Buscar..." required>
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-info btn-flat"><i
-                                            class="fa fa-search"></i></button>
+                        <div class="input-group input-group col-lg-2">
+                            <input type="text" name="cod_documentos" id="cod_documentos" class="form-control form-control-mb" placeholder="Documento factura..." value="">
+                            <div class="input-group-append">
+                                <span type="button" class="btn btn-mb btn-default">
+                                    <i class="fas fa-file"></i>
                                 </span>
-                            </div> --}}
+                            </div>
+                        </div>
+                        <div class="input-group input-group col-lg-1">
+                            <input type="text" name="numero_factura" id="numero_factura" class="form-control form-control-mb" placeholder="Número..." value="" readonly>
+                            <div class="input-group-append">
+                                <span type="button" class="btn btn-mb btn-default">
+                                    <i class="fas fa-tag"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="input-group input-group col-lg-2">
+                            <input type="text" name="created_at" id="created_at" class="form-control form-control-mb" placeholder="Fecha y hora del sistema" value="{{now() ?? ''}}" readonly>
+                            <div class="input-group-append">
+                                <span type="button" class="btn btn-mb btn-default">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+
                     </div>
 
                     <form id="form-general1" class="form-horizontal" method="POST">

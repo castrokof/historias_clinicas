@@ -5,15 +5,14 @@
         <div class="card card-info">
             <div class="card-body table-responsive p-2">
 
-                <table id="tprofesional" class="table table-hover  text-nowrap">
+                <table id="trelcontrato" class="table table-hover  text-nowrap">
 
                     <thead>
                         <tr>
-                            <th>Acciones</th>
+                            <!-- <th>Acciones</th> -->
+                            <th>Asociar</th>
                             <th>Código</th>
-                            <th>Profesional</th>
-                            <th>Cups</th>
-                            <th>Procedimiento</th>
+                            <th>Contrato</th>
                         </tr>
                     </thead>
                     <tbody>

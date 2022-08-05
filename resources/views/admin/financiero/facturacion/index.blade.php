@@ -13,23 +13,18 @@ Facturación
 
 @section('scripts')
 <script src="{{ asset('assets/pages/scripts/admin/usuario/crearuser.js') }}" type="text/javascript"></script>
-
 @endsection
 
 @section('contenido')
 @include('admin.financiero.facturacion.modal.modalFactura')
 @include('admin.financiero.facturacion.modal.modalFacturaProcedimiento')
-
-
 @endsection
 
 
 @section('scriptsPlugins')
 <script src="{{ asset("assets/$theme/plugins/datatables/jquery.dataTables.js") }}" type="text/javascript"></script>
-<script src="{{ asset("assets/$theme/plugins/datatables-bs4/js/dataTables.bootstrap4.js") }}" type="text/javascript">
-</script>
+<script src="{{ asset("assets/$theme/plugins/datatables-bs4/js/dataTables.bootstrap4.js") }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/jquery-select2/select2.min.js') }}" type="text/javascript"></script>
-
 
 <script src="https://cdn.datatables.net/plug-ins/1.10.20/api/sum().js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>

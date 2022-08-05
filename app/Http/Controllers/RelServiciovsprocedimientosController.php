@@ -36,8 +36,8 @@ class RelServiciovsprocedimientosController extends Controller
           
         return  DataTables()->of($datast)
         ->addColumn('actionpt', function($datast){
-        $button = '<button type="button" name="eliminarpt" id="'.$datast->idd.'"
-        class = "eliminarpt btn-float  bg-gradient-danger btn-sm tooltipsC"  title="ninguna accion"><i class="fas fa-diagnoses"><i class="fa fa-pencil"></i></i></a>';
+        $button = '<button type="button" name="eliminarps" id="'.$datast->idd.'"
+        class = "eliminarps btn-float  bg-gradient-danger btn-sm tooltipsC"  title="ninguna accion"><i class="fas fa-diagnoses"><i class="fa fa-pencil"></i></i></a>';
                
         return $button;
 
@@ -116,5 +116,21 @@ class RelServiciovsprocedimientosController extends Controller
     public function destroy(rel__serviciovsprocedimientos $rel__serviciovsprocedimientos)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function eliminar(Request $request, $id)
+    {
+        if($request->ajax()){
+ 
+            rel__serviciovsprocedimientos::where('id', $id)->delete();
+
+        return response()->json(['success' => 'ok1']);
+        }
     }
 }

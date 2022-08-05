@@ -113,9 +113,11 @@ Route::get('relservicioIndex', 'ServiciosController@rel_index')->name('relservic
 //Ruta para consultar las relaciones de Procedimientos vs Profesional
 Route::get('profesionalvsprocedimiento', 'RelProfesionalvsprocedimientosController@index')->name('profesionalvsprocedimiento')->middleware('superEditor');
 Route::get('relprofeIndex', 'DefProfesionalesController@rel_index')->name('relprofeIndex')->middleware('superEditor');
+Route::put('profesionalvsprocedimiento/{id}', 'RelProfesionalvsprocedimientosController@eliminar')->name('eliminar_profesional')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Procedimientos vs Contrato
 Route::get('contratovsprocedimiento', 'RelContratovsprocedimientosController@index')->name('contratovsprocedimiento')->middleware('superEditor');
+Route::get('relcontratoIndex', 'DefContratosController@rel_index')->name('relcontratoIndex')->middleware('superEditor');
 
 //RUTA PARA CREAR PROFESIONALES
 Route::get('profesionales', 'DefProfesionalesController@index')->name('profesionalesIndex')->middleware('superEditor');
