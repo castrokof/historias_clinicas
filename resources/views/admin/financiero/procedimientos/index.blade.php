@@ -316,11 +316,10 @@ Procedimientos
                         id: idlistp
                     }
                 },
-                columns: [
-                    /* {
-                                                data: 'actionpt',
-                                                //orderable: false
-                                            }, */
+                columns: [{
+                        data: 'actionpt',
+                        //orderable: false
+                    },
                     {
                         data: 'cod_servicio',
                         name: 'cod_servicio'
@@ -483,17 +482,16 @@ Procedimientos
                 ],
                 ajax: {
                     url: "{{ route('contratovsprocedimiento')}}",
-                    //type: "get",
+                    type: "get",
                     // data: {"idlist": procedimiento_idp}
                     data: {
                         id: idlistp
                     }
                 },
-                columns: [
-                    /* {
-                                                data: 'actionpt',
-                                                //orderable: false
-                                            }, */
+                columns: [{
+                        data: 'actionpt',
+                        //orderable: false
+                    },
                     {
                         data: 'contrato',
                         name: 'contrato'
@@ -559,7 +557,6 @@ Procedimientos
                 ],
             });
         }
-
 
 
         //------------------------------------------------------Funciones de relaciones-----------------------------------------//
@@ -851,14 +848,14 @@ Procedimientos
             });
         }
 
-        //-- Eliminar Profesional de la relación -- //
+        //-- Eliminar Profesional de la relación 
 
         $(document).on('click', '.eliminarpp', function() {
             var id = $(this).attr('id');
 
             var text = "Estás por retirar un profesional"
             var url = "/profesionalvsprocedimiento/" + id;
-            var method = 'put';
+            var method = 'delete';
 
             Swal.fire({
                 title: "¿Estás seguro?",
@@ -883,6 +880,98 @@ Procedimientos
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Profesional ha sido retirado correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1000
+
+                                })
+
+                            }
+                        }
+                    });
+
+                }
+            })
+
+        });
+
+        //-- Eliminar Servicio de la relación 
+
+        $(document).on('click', '.eliminarss', function() {
+            var id = $(this).attr('id');
+
+            var text = "Estás por retirar un servicio"
+            var url = "/serviciovsprocedimiento/" + id;
+            var method = 'delete';
+
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: text,
+                icon: "success",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: {
+                            "_token": $("meta[name='csrf-token']").attr("content")
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data.success == 'ok4') {
+
+                                $('#tservicio').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Servicio ha sido retirado correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1000
+
+                                })
+
+                            }
+                        }
+                    });
+
+                }
+            })
+
+        });
+
+        //-- Eliminar Contrato de la relación 
+
+        $(document).on('click', '.eliminarco', function() {
+            var id = $(this).attr('id');
+
+            var text = "Estás por retirar un servicio"
+            var url = "/contratovsprocedimiento/" + id;
+            var method = 'delete';
+
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: text,
+                icon: "success",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: {
+                            "_token": $("meta[name='csrf-token']").attr("content")
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data.success == 'ok4') {
+
+                                $('#tcontrato').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Contrato ha sido retirado correctamente',
                                     showConfirmButton: false,
                                     timer: 1000
 

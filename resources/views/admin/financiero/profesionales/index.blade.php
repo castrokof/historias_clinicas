@@ -263,7 +263,7 @@ Profesionales
                 $('#tmedicamento').DataTable().destroy();
                 fill_tablemedicamento(idlistp);
             }
-            
+
             $.ajax({
                 url: "editar_profesionales/" + idlist + "",
                 dataType: "json",
@@ -271,7 +271,7 @@ Profesionales
                     $.each(result, function(i, items) {
                         $('#title-profesional-detalle').text(items.nombre);
                         $('#modal-profesional-detalle').modal({
-                            
+
                             backdrop: 'static',
                             keyboard: false
                         });
@@ -293,260 +293,359 @@ Profesionales
         //fill_datatable();
         function fill_datatable(idlistp = '') {
             var datatable1 = $('#tservicio').DataTable({
-                    language: idioma_espanol,
-                    lengthMenu: [
-                        [25, 50, 100, 500, -1],
-                        [25, 50, 100, 500, "Mostrar Todo"]
-                    ],
-                    processing: true,
-                    serverSide: true,
-                    aaSorting: [
-                        [1, "asc"]
-                    ],
-                    ajax: {
-                        url: "{{ route('relserviciovsprofesional')}}",
-                        //type: "get",
-                        // data: {"idlist": procedimiento_idp}
-                        data: {
-                            id: idlistp
-                        }
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('relserviciovsprofesional')}}",
+                    //type: "get",
+                    // data: {"idlist": procedimiento_idp}
+                    data: {
+                        id: idlistp
+                    }
+                },
+                columns: [
+                    /* {
+                                                data: 'actionpt',
+                                                //orderable: false
+                                            }, */
+                    {
+                        data: 'cod_servicio',
+                        name: 'cod_servicio'
                     },
-                    columns: [/* {
-                            data: 'actionpt',
-                            //orderable: false
-                        }, */
-                        {
-                            data: 'cod_servicio',
-                             name:'cod_servicio'
-                        },
-                        {
-                            data: 'nombre',
-                            name:'nombre'
-                        },
-                        {
-                            data: 'codigo',
-                            name:'codigo'
-                        },
-                        {
-                            data: 'Profesional',
-                            name:'Profesional'
-                        }
-                    ],
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    },
+                    {
+                        data: 'codigo',
+                        name: 'codigo'
+                    },
+                    {
+                        data: 'Profesional',
+                        name: 'Profesional'
+                    }
+                ],
 
-                    //Botones----------------------------------------------------------------------
+                //Botones----------------------------------------------------------------------
 
-                    "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
 
 
-                    buttons: [{
+                buttons: [{
 
-                            extend: 'copyHtml5',
-                            titleAttr: 'Copiar Registros',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-primary btn-sm"
-
-
-                        },
-                        {
-
-                            extend: 'excelHtml5',
-                            titleAttr: 'Exportar Excel',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-success btn-sm"
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
 
 
-                        },
-                        {
+                    },
+                    {
 
-                            extend: 'csvHtml5',
-                            titleAttr: 'Exportar csv',
-                            className: "btn  btn-outline-warning btn-sm"
-                            //text: '<i class="fas fa-file-excel"></i>'
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
 
-                        },
-                        {
 
-                            extend: 'pdfHtml5',
-                            titleAttr: 'Exportar pdf',
-                            className: "btn  btn-outline-secondary btn-sm"
+                    },
+                    {
 
-                        }
-                    ],
-                });
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+                    }
+                ],
+            });
         }
 
         //--------------------------------Tabla relacion profesional vs procedimiento----------------------------//
-        function fill_tableproce(idlistp = ''){
+        function fill_tableproce(idlistp = '') {
             var datatable2 = $('#tprocedimiento').DataTable({
-                    language: idioma_espanol,
-                    lengthMenu: [
-                        [25, 50, 100, 500, -1],
-                        [25, 50, 100, 500, "Mostrar Todo"]
-                    ],
-                    processing: true,
-                    serverSide: true,
-                    aaSorting: [
-                        [1, "asc"]
-                    ],
-                    ajax: {
-                        url: "{{ route('procedimientovsprofesional')}}",
-                        //type: "get",
-                        // data: {"idlist": procedimiento_idp}
-                        data: {
-                            id: idlistp
-                        }
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('procedimientovsprofesional')}}",
+                    //type: "get",
+                    // data: {"idlist": procedimiento_idp}
+                    data: {
+                        id: idlistp
+                    }
+                },
+                columns: [
+                    /* {
+                                                data: 'actionpt',
+                                                //orderable: false
+                                            }, */
+                    {
+                        data: 'cups',
+                        name: 'cups'
                     },
-                    columns: [/* {
-                            data: 'actionpt',
-                            //orderable: false
-                        }, */
-                        {
-                            data: 'cups',
-                            name:'cups'
-                        },
-                        {
-                            data: 'Procedimiento',
-                            name:'Procedimiento'
-                        },
-                        {
-                            data: 'codigo',
-                             name:'codigo'
-                        },
-                        {
-                            data: 'nombre',
-                            name:'nombre'
-                        }
-                        
-                    ],
+                    {
+                        data: 'Procedimiento',
+                        name: 'Procedimiento'
+                    },
+                    {
+                        data: 'codigo',
+                        name: 'codigo'
+                    },
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    }
 
-                    //Botones----------------------------------------------------------------------
+                ],
 
-                    "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
 
 
-                    buttons: [{
+                buttons: [{
 
-                            extend: 'copyHtml5',
-                            titleAttr: 'Copiar Registros',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-primary btn-sm"
-
-
-                        },
-                        {
-
-                            extend: 'excelHtml5',
-                            titleAttr: 'Exportar Excel',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-success btn-sm"
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
 
 
-                        },
-                        {
+                    },
+                    {
 
-                            extend: 'csvHtml5',
-                            titleAttr: 'Exportar csv',
-                            className: "btn  btn-outline-warning btn-sm"
-                            //text: '<i class="fas fa-file-excel"></i>'
-
-                        },
-                        {
-
-                            extend: 'pdfHtml5',
-                            titleAttr: 'Exportar pdf',
-                            className: "btn  btn-outline-secondary btn-sm"
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
 
 
-                        }
-                    ],
-                });
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
         }
 
         //--------------------------------Tabla relacion profesional vs medicamento----------------------------//
-        function fill_tablemedicamento(idlistp = ''){
+        function fill_tablemedicamento(idlistp = '') {
             var datatable3 = $('#tmedicamento').DataTable({
-                    language: idioma_espanol,
-                    lengthMenu: [
-                        [25, 50, 100, 500, -1],
-                        [25, 50, 100, 500, "Mostrar Todo"]
-                    ],
-                    processing: true,
-                    serverSide: true,
-                    aaSorting: [
-                        [1, "asc"]
-                    ],
-                    ajax: {
-                        url: "{{ route('profesionalvsmedicamento')}}",
-                        //type: "get",
-                        // data: {"idlist": procedimiento_idp}
-                        data: {
-                            id: idlistp
-                        }
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('profesionalvsmedicamento')}}",
+                    //type: "get",
+                    // data: {"idlist": procedimiento_idp}
+                    data: {
+                        id: idlistp
+                    }
+                },
+                columns: [
+                    /* {
+                                                data: 'actionpt',
+                                                //orderable: false
+                                            }, */
+                    {
+                        data: 'cod_medicamento',
+                        name: 'cod_medicamento'
                     },
-                    columns: [/* {
-                            data: 'actionpt',
-                            //orderable: false
-                        }, */
-                        {
-                            data: 'cod_medicamento',
-                             name:'cod_medicamento'
-                        },
-                        {
-                            data: 'medicamento',
-                            name:'medicamento'
-                        },
-                        {
-                            data: 'codigo',
-                            name:'codigo'
-                        },
-                        {
-                            data: 'Profesional',
-                            name:'Profesional'
-                        }
-                        
-                    ],
+                    {
+                        data: 'medicamento',
+                        name: 'medicamento'
+                    },
+                    {
+                        data: 'codigo',
+                        name: 'codigo'
+                    },
+                    {
+                        data: 'Profesional',
+                        name: 'Profesional'
+                    }
 
-                    //Botones----------------------------------------------------------------------
+                ],
 
-                    "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
 
 
-                    buttons: [{
+                buttons: [{
 
-                            extend: 'copyHtml5',
-                            titleAttr: 'Copiar Registros',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-primary btn-sm"
-
-
-                        },
-                        {
-
-                            extend: 'excelHtml5',
-                            titleAttr: 'Exportar Excel',
-                            title: "seguimiento",
-                            className: "btn  btn-outline-success btn-sm"
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
 
 
-                        },
-                        {
+                    },
+                    {
 
-                            extend: 'csvHtml5',
-                            titleAttr: 'Exportar csv',
-                            className: "btn  btn-outline-warning btn-sm"
-                            //text: '<i class="fas fa-file-excel"></i>'
-
-                        },
-                        {
-
-                            extend: 'pdfHtml5',
-                            titleAttr: 'Exportar pdf',
-                            className: "btn  btn-outline-secondary btn-sm"
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
 
 
-                        }
-                    ],
-                });
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
+        }
+
+        //------------------------------------------------------Funciones de relaciones-----------------------------------------//
+
+        //Función para abrir modal y prevenir el cierre de la relacion con los profesionales
+        $(document).on('click', '.relacion_procedimiento', function() {
+
+            $('#modal-procedimiento').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $('#modal-procedimiento').modal('show');
+            $('#trelprocedimiento').DataTable().destroy();
+            table_procedimiento();
+        });
+
+        //--------------------------------Tabla para cargar los procedimientos y hacer la relacion----------------------------//
+
+        function table_procedimiento() {
+            var trelprocedimiento = $('#trelprocedimiento').DataTable({
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('relproceIndex')}}",
+                    type: "get",
+                },
+                columns: [
+                    /* {
+                                                data: 'action',
+                                                //orderable: false
+                                            }, */
+
+                    {
+                        data: 'estado',
+                        name: 'estado'
+                    },
+                    {
+                        data: 'cod_cups',
+                        name: 'cod_cups'
+                    },
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    }
+
+                ],
+
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+
+
+                buttons: [{
+
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
         }
 
     });

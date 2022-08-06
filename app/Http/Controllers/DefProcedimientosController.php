@@ -62,6 +62,46 @@ class DefProcedimientosController extends Controller
          return view('admin.financiero.procedimientos.index');
     }
 
+    public function rel_index(Request $request)
+    {
+
+        if ($request->ajax()) {
+
+            $datas = Def_Procedimientos::orderBy('id_cups', 'asc')->get();
+
+            return  DataTables()->of($datas)
+                ->addColumn('action', function ($datas) {
+                    $button = '<button type="button" name="Detalle" id="' . $datas->id_cups . '" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Relacionar Item"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
+
+                    return $button;
+                })->addColumn('estado', function ($datas) {
+
+
+                    if ($datas->estado == "1") {
+
+                        $button = '
+                 <div class="custom-control custom-switch ">
+                 <input type="checkbox"  class="check_98 custom-control-input"  id="customSwitch99' . $datas->id_cups . '" value="' . $datas->id_cups . '"  checked>
+                 <label class="custom-control-label" for="customSwitch99' . $datas->id_cups . '"  valueid="' . $datas->id_cups . '"></label>
+                 </div>';
+                    } else {
+
+                        $button = '
+                 <div class="custom-control custom-switch ">
+                 <input type="checkbox" class="check_98 custom-control-input" id="customSwitch99' . $datas->id_cups . '" value="' . $datas->id_cups . '" >
+                 <label class="custom-control-label" for="customSwitch99' . $datas->id_cups . '"  valueid="' . $datas->id_cups . '"></label>
+                 </div>';
+                    }
+
+                    return $button;
+                })
+                ->rawColumns(['action', 'estado'])
+                ->make(true);
+        }
+        
+        return view('admin.financiero.profesionales.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

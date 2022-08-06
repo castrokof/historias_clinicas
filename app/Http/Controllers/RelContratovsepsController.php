@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\rel__contratovseps;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class RelContratovsepsController extends Controller
 {
@@ -88,14 +90,16 @@ class RelContratovsepsController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */    
     public function eliminar(Request $request, $id)
     {
         if($request->ajax()){
- 
-            rel__contratovseps::where('id_contratovseps', $id)->delete();
 
-        return response()->json(['success' => 'ok1']);
+            $datasp = DB::table('rel__contratovseps')
+            ->where('id_contratovseps', '=', $id )
+            ->delete();
+
+        return response()->json(['success' => 'ok3']);
         }
     }
 }

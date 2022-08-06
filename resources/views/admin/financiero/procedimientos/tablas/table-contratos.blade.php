@@ -9,6 +9,7 @@
 
                     <thead>
                         <tr>
+                            <th>Acciones</th>
                             <th>Contrato</th>
                             <th>Descripcion</th>
                             <th>Precio</th>
