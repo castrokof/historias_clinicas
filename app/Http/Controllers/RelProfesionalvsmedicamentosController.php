@@ -25,20 +25,20 @@ class RelProfesionalvsmedicamentosController extends Controller
             $datast = DB::table('rel__profesionalvsmedicamentos')
             ->Join('def__medicamentos_suministros', 'rel__profesionalvsmedicamentos.medicamento_id', '=', 'def__medicamentos_suministros.id_medicamento')
             ->Join('def__profesionales', 'rel__profesionalvsmedicamentos.profesional_id', '=', 'def__profesionales.id_profesional')
-            ->select('rel__profesionalvsmedicamentos.profesional_id as idd','def__medicamentos_suministros.codigo as cod_medicamento', 'def__medicamentos_suministros.nombre as medicamento',
+            ->select('rel__profesionalvsmedicamentos.id_profesionalvsmedicamentos as idd','def__medicamentos_suministros.codigo as cod_medicamento', 'def__medicamentos_suministros.nombre as medicamento',
                     'def__profesionales.codigo as codigo','def__profesionales.nombre as Profesional')
             ->where('rel__profesionalvsmedicamentos.profesional_id', '=', $idlist )
             ->get();
           
         return  DataTables()->of($datast)
-        ->addColumn('actionpt', function($datast){
-        $button = '<button type="button" name="eliminarpt" id="'.$datast->idd.'"
-        class = "eliminarpt btn-float  bg-gradient-danger btn-sm tooltipsC"  title="ninguna accion"><i class="fas fa-diagnoses"><i class="fa fa-pencil"></i></i></a>';
+        ->addColumn('actionpm', function($datast){
+        $button = '<button type="button" name="eliminarpm" id="'.$datast->idd.'"
+        class = "eliminarpm btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
                
         return $button;
 
         }) 
-        ->rawColumns(['actionpt'])
+        ->rawColumns(['actionpm'])
         ->make(true);
         
      }
@@ -126,7 +126,7 @@ class RelProfesionalvsmedicamentosController extends Controller
  
             rel__profesionalvsmedicamentos::where('id_profesionalvsmedicamentos', $id)->delete();
 
-        return response()->json(['success' => 'ok1']);
+        return response()->json(['success' => 'ok2']);
         }
     }
 }

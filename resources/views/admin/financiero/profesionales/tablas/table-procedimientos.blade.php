@@ -9,7 +9,7 @@
 
                     <thead>
                         <tr>
-                            <!-- <th>Acciones</th> -->
+                            <th>Acciones</th>
                             <th>Cups</th>
                             <th>Procedimiento</th>
                             <th>Código</th>

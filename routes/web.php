@@ -131,6 +131,7 @@ Route::post('profesional-estado', 'DefProfesionalesController@updateestado')->na
 
 //Ruta para consultar las relaciones de Profesional vs Servicio
 Route::get('relserviciovsprofesional', 'RelProfesionalvsservicioController@index')->name('relserviciovsprofesional')->middleware('superEditor');
+Route::delete('serviciovsprofesional/{id}', 'RelProfesionalvsservicioController@eliminar')->name('eliminar_servicios')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Profesional vs Procedimientos
 Route::get('procedimientovsprofesional', 'RelProfesionalvsprocedimientosController@indexProfe')->name('procedimientovsprofesional')->middleware('superEditor');
@@ -138,6 +139,8 @@ Route::get('relproceIndex', 'DefProcedimientosController@rel_index')->name('relp
 
 //Ruta para consultar las relaciones de Profesional vs Medicamento
 Route::get('profesionalvsmedicamento', 'RelProfesionalvsmedicamentosController@index')->name('profesionalvsmedicamento')->middleware('superEditor');
+Route::delete('medicamentovsprofesional/{id}', 'RelProfesionalvsmedicamentosController@eliminar')->name('eliminar_medicamentos')->middleware('superEditor');
+Route::get('relmedicamentoIndex', 'DefMedicamentosSuministrosController@rel_index')->name('relmedicamentoIndex')->middleware('superEditor');
 
 /* RUTAS DEL USUARIO */
 Route::get('usuario', 'UsuarioController@index')->name('usuario')->middleware('superEditor');

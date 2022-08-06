@@ -50,7 +50,6 @@ class ServiciosController extends Controller
                     return $button;
                 })->addColumn('estado', function ($datas) {
 
-
                     if ($datas->estado == "1") {
 
                         $button = '

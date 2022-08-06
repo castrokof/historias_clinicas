@@ -305,17 +305,16 @@ Profesionales
                 ],
                 ajax: {
                     url: "{{ route('relserviciovsprofesional')}}",
-                    //type: "get",
+                    type: "get",
                     // data: {"idlist": procedimiento_idp}
                     data: {
                         id: idlistp
                     }
                 },
-                columns: [
-                    /* {
-                                                data: 'actionpt',
-                                                //orderable: false
-                                            }, */
+                columns: [{
+                        data: 'actionps',
+                        orderable: false
+                    },
                     {
                         data: 'cod_servicio',
                         name: 'cod_servicio'
@@ -397,11 +396,10 @@ Profesionales
                         id: idlistp
                     }
                 },
-                columns: [
-                    /* {
-                                                data: 'actionpt',
-                                                //orderable: false
-                                            }, */
+                columns: [{
+                        data: 'actionpp',
+                        orderable: false
+                    },
                     {
                         data: 'cups',
                         name: 'cups'
@@ -485,11 +483,10 @@ Profesionales
                         id: idlistp
                     }
                 },
-                columns: [
-                    /* {
-                                                data: 'actionpt',
-                                                //orderable: false
-                                            }, */
+                columns: [{
+                        data: 'actionpm',
+                        orderable: false
+                    },
                     {
                         data: 'cod_medicamento',
                         name: 'cod_medicamento'
@@ -586,9 +583,9 @@ Profesionales
                 },
                 columns: [
                     /* {
-                                                data: 'action',
-                                                //orderable: false
-                                            }, */
+                                            data: 'actionpp',
+                                            orderable: false
+                                        }, */
 
                     {
                         data: 'estado',
@@ -647,6 +644,331 @@ Profesionales
                 ],
             });
         }
+
+        //Función para abrir modal y prevenir el cierre de la relacion con los servicios
+        $(document).on('click', '.relacion_servicio', function() {
+            $('#modal-servicio').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $('#modal-servicio').modal('show');
+            $('#trelservicio').DataTable().destroy();
+            table_servicio();
+        });
+
+        //--------------------------------Tabla para cargar los servicios y hacer la relacion----------------------------//
+        function table_servicio() {
+            var trelservicio = $('#trelservicio').DataTable({
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('relservicioIndex')}}",
+                    type: "get",
+                },
+                columns: [
+                    /* {
+                                                data: 'action',
+                                                //orderable: false
+                                            }, */
+
+                    {
+                        data: 'estado',
+                        name: 'estado'
+                    },
+                    {
+                        data: 'cod_servicio',
+                        name: 'cod_servicio'
+                    },
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    }
+
+                ],
+
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+
+
+                buttons: [{
+
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
+        }
+
+        //Función para abrir modal y prevenir el cierre de la relacion con los medicamento
+        $(document).on('click', '.relacion_medicamento', function() {
+            $('#modal-medicamento').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $('#modal-medicamento').modal('show');
+            $('#trelmedicamento').DataTable().destroy();
+            table_medicamento();
+        });
+
+        function table_medicamento() {
+            var trelcontrato = $('#trelmedicamento').DataTable({
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('relmedicamentoIndex')}}",
+                    type: "get",
+                },
+                columns: [
+                    /* {
+                                                data: 'action',
+                                                //orderable: false
+                                            }, */
+
+                    {
+                        data: 'estado',
+                        name: 'estado'
+                    },
+                    {
+                        data: 'codigo',
+                        name: 'codigo'
+                    },
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    },
+                    {
+                        data: 'CUMS',
+                        name: 'CUMS'
+                    }
+
+                ],
+
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+
+
+                buttons: [{
+
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
+        }
+
+        //-- Eliminar Procedimiento de la relación 
+
+        $(document).on('click', '.eliminarpp', function() {
+            var id = $(this).attr('id');
+
+            var text = "Estás por retirar un Procedimiento"
+            var url = "/profesionalvsprocedimiento/" + id;
+            var method = 'delete';
+
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: text,
+                icon: "success",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: {
+                            "_token": $("meta[name='csrf-token']").attr("content")
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data.success == 'ok3') {
+
+                                $('#tprocedimiento').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Procedimiento ha sido retirado correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1000
+
+                                })
+
+                            }
+                        }
+                    });
+
+                }
+            })
+
+        });
+
+        //-- Eliminar Servicio de la relación 
+
+        $(document).on('click', '.eliminarps', function() {
+            var id = $(this).attr('id');
+
+            var text = "Estás por retirar un Servicio"
+            var url = "/serviciovsprofesional/" + id;
+            var method = 'delete';
+
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: text,
+                icon: "success",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: {
+                            "_token": $("meta[name='csrf-token']").attr("content")
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data.success == 'ok1') {
+
+                                $('#tservicio').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Servicio ha sido retirado correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1000
+
+                                })
+
+                            }
+                        }
+                    });
+
+                }
+            })
+
+        });
+
+        //-- Eliminar Medicamento de la relación 
+
+        $(document).on('click', '.eliminarpm', function() {
+            var id = $(this).attr('id');
+
+            var text = "Estás por retirar un Medicamento"
+            var url = "/medicamentovsprofesional/" + id;
+            var method = 'delete';
+
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: text,
+                icon: "success",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: {
+                            "_token": $("meta[name='csrf-token']").attr("content")
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data.success == 'ok2') {
+
+                                $('#tmedicamento').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Medicamento ha sido retirado correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1000
+
+                                })
+
+                            }
+                        }
+                    });
+
+                }
+            })
+
+        });
 
     });
 

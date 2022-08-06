@@ -25,20 +25,20 @@ class RelProfesionalvsservicioController extends Controller
             $datast = DB::table('rel__profesionalvsservicio')
             ->Join('servicios', 'rel__profesionalvsservicio.servicio_id', '=', 'servicios.id_servicio')
             ->Join('def__profesionales', 'rel__profesionalvsservicio.profesional_id', '=', 'def__profesionales.id_profesional')
-            ->select('rel__profesionalvsservicio.profesional_id as idd','servicios.cod_servicio as cod_servicio', 'servicios.nombre as nombre',
+            ->select('rel__profesionalvsservicio.id_profesionalvsservicio as idd','servicios.cod_servicio as cod_servicio', 'servicios.nombre as nombre',
                     'def__profesionales.codigo as codigo','def__profesionales.nombre as Profesional')
             ->where('rel__profesionalvsservicio.profesional_id', '=', $idlist )
             ->get();
           
         return  DataTables()->of($datast)
-        ->addColumn('actionpt', function($datast){
-        $button = '<button type="button" name="eliminarpt" id="'.$datast->idd.'"
-        class = "eliminarpt btn-float  bg-gradient-danger btn-sm tooltipsC"  title="ninguna accion"><i class="fas fa-diagnoses"><i class="fa fa-pencil"></i></i></a>';
+        ->addColumn('actionps', function($datast){
+        $button = '<button type="button" name="eliminarps" id="'.$datast->idd.'"
+        class = "eliminarps btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
                
         return $button;
 
         }) 
-        ->rawColumns(['actionpt'])
+        ->rawColumns(['actionps'])
         ->make(true);
         
      }

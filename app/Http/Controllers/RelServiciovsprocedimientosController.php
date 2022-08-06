@@ -37,7 +37,7 @@ class RelServiciovsprocedimientosController extends Controller
         return  DataTables()->of($datast)
         ->addColumn('actionpt', function($datast){
         $button = '<button type="button" name="eliminarss" id="'.$datast->idd.'"
-        class = "eliminarss btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class="fas fa-diagnoses"><i class="fa fa-pencil"></i></i></a>';
+        class = "eliminarss btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
                
         return $button;
 

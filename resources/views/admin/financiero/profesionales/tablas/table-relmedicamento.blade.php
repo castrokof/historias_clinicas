@@ -5,15 +5,15 @@
         <div class="card card-info">
             <div class="card-body table-responsive p-2">
 
-                <table id="tmedicamento" class="table table-hover  text-nowrap">
+                <table id="trelmedicamento" class="table table-hover  text-nowrap">
 
                     <thead>
                         <tr>
-                            <th>Acciones</th>
+                            <!-- <th>Acciones</th> -->
+                            <th>Asociar</th>
                             <th>Código</th>
                             <th>Medicamento</th>
-                            <th>Profesional</th>
-                            <th>Nombre</th>
+                            <th>CUMS</th>
                         </tr>
                     </thead>
                     <tbody>

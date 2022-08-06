@@ -129,7 +129,6 @@ class DefProcedimientosController extends Controller
                 'valor_SOAT',
                 'valor_particular',
                 'estado'
-
             );
 
             $error = Validator::make($request->all(), $rules);
