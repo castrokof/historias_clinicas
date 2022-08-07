@@ -1,7 +1,7 @@
 @extends("theme.$theme.layout")
 
 @section('titulo')
-Procedimientos
+Contratos
 @endsection
 @section('styles')
 <link href="{{ asset("assets/$theme/plugins/datatables-bs4/css/dataTables.bootstrap4.css") }}" rel="stylesheet" type="text/css" />
@@ -16,25 +16,28 @@ Procedimientos
 <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
-
 @section('scripts')
-<script src="{{ asset('assets/pages/scripts/admin/procedimientos/index.js') }}"></script>
+<script src="{{ asset('assets/pages/scripts/admin/contratos/index.js') }}"></script>
 @endsection
 
 @section('contenido')
-@include('admin.financiero.procedimientos.tablas.tablaIndexProcedimientos')
-@include('admin.financiero.procedimientos.modal.modalProcedimientos')
-@include('admin.financiero.procedimientos.modal.modalProcDetalle')
+@include('admin.financiero.contratos.tablas.tablaIndexContratos') 
+@include('admin.financiero.contratos.modal.modalContratos') 
+@include('admin.financiero.contratos.modal.modalContDetalle') 
 
-<!-- Modal para relacionar los profesionales -->
-@include('admin.financiero.procedimientos.modal.modalProcProfesional')
+<!-- Modal para relacionar los EPS EMPRESAS -->
+@include('admin.financiero.contratos.modal.modalContEps') 
+<!-- Modal para relacionar los procedimientos -->
+@include('admin.financiero.contratos.modal.modalContProcedimiento')
 <!-- Modal para relacionar los servicios -->
-@include('admin.financiero.procedimientos.modal.modalProcServicio')
-<!-- Modal para relacionar los contratos -->
-@include('admin.financiero.procedimientos.modal.modalProcContrato')
+@include('admin.financiero.contratos.modal.modalContServicio')
+<!-- Modal para relacionar los medicamentos -->
+@include('admin.financiero.contratos.modal.modalContMedicamento')
+<!-- Modal para relacionar las sedes -->
+@include('admin.financiero.contratos.modal.modalContSedes') 
 
 <!-- Modal que carga las tablas y los botones para realizar las relaciones -->
-@include('admin.financiero.procedimientos.modal.modalProcDetalleIndex')
+@include('admin.financiero.contratos.modal.modalContDetalleIndex')
 
 @endsection
 
@@ -58,7 +61,7 @@ Procedimientos
 <script>
     $(document).ready(function() {
 
-        // Funcion 2 para pintar con data table tabla de financiero.procedimientos generales
+        // Funcion 2 para pintar con data table tabla de financiero.contratos generales
         var datatable = $('#listasGeneral').DataTable({
             language: idioma_espanol,
             processing: true,
@@ -72,7 +75,7 @@ Procedimientos
                 [0, "desc"]
             ],
             ajax: {
-                url: "{{ route('procedimientosIndex') }}",
+                url: "{{ route('contratosIndex') }}",
             },
             columns: [{
                     data: 'action',
@@ -80,19 +83,16 @@ Procedimientos
                     searchable: false
                 },
                 {
-                    data: 'cod_cups'
+                    data: 'contrato'
                 },
-                {
-                    data: 'cod_alterno'
-                },
-                {
+                {                
                     data: 'nombre'
                 },
                 {
                     data: 'descripcion'
                 },
                 {
-                    data: 'valor_particular'
+                    data: 'tipo_contrato'
                 },
                 {
                     data: 'estado'
@@ -141,7 +141,7 @@ Procedimientos
         });
 
 
-        // Función que envía los datos de procedimientos al controlador ademas controla los input con sweat alert2
+        // Función que envía los datos de contratos al controlador ademas controla los input con sweat alert2
 
         $('#form-general1').on('submit', function(event) {
             event.preventDefault();
@@ -151,15 +151,15 @@ Procedimientos
 
 
             if ($('#action').val() == 'Add') {
-                text = "Estás por crear un procedimiento"
-                url = "{{ route('guardar_procedimientos') }}";
+                text = "Estás por crear un contrato"
+                url = "{{ route('guardar_contratos') }}";
                 method = 'post';
             }
 
             if ($('#cod_cups').val() == '' || $('#nombre').val() == '' || $('#estado').val() == '') {
                 Swal.fire({
                     title: "Debes de rellenar todos los campos del formulario",
-                    text: "Respuesta Paliativos",
+                    text: "Sistema de Historias Clínicas",
                     icon: "warning",
                     showCloseButton: true,
                     confirmButtonText: 'Aceptar',
@@ -187,7 +187,7 @@ Procedimientos
                                     $('#listasGeneral').DataTable().ajax.reload();
                                     Swal.fire({
                                         icon: 'success',
-                                        title: 'Procedimiento creado correctamente',
+                                        title: 'Contrato creado correctamente',
                                         showConfirmButton: false,
                                         timer: 2000
                                     })
@@ -226,7 +226,7 @@ Procedimientos
                     _token: $('input[name=_token]').val()
                 }
             }
-            ajaxRequest('procedimiento-estado', data);
+            ajaxRequest('contrato-estado', data);
         });
 
 
@@ -269,7 +269,7 @@ Procedimientos
             }
 
             $.ajax({
-                url: "editar_procedimientos/" + idlist + "",
+                url: "editar_contratos/" + idlist + "",
                 dataType: "json",
                 success: function(result) {
                     $.each(result, function(i, items) {

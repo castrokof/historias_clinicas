@@ -142,6 +142,15 @@ Route::get('profesionalvsmedicamento', 'RelProfesionalvsmedicamentosController@i
 Route::delete('medicamentovsprofesional/{id}', 'RelProfesionalvsmedicamentosController@eliminar')->name('eliminar_medicamentos')->middleware('superEditor');
 Route::get('relmedicamentoIndex', 'DefMedicamentosSuministrosController@rel_index')->name('relmedicamentoIndex')->middleware('superEditor');
 
+//RUTA PARA CREAR CONTRATOS
+Route::get('contratos', 'DefContratosController@index')->name('contratosIndex')->middleware('superEditor');
+Route::get('contratos/crear', 'DefContratosController@crear')->name('crear_contratos')->middleware('superEditor');
+Route::post('contratos', 'DefContratosController@guardar')->name('guardar_contratos')->middleware('superEditor');
+Route::get('editar_contratos/{id}', 'DefContratosController@editar')->name('editar_contratos')->middleware('superEditor');
+Route::put('contratos/{id}', 'DefContratosController@actualizar')->name('actualizar_contratos')->middleware('superEditor');
+Route::post('contrato-estado', 'DefContratosController@updateestado')->name('contrato-estado')->middleware('superEditor');
+
+
 /* RUTAS DEL USUARIO */
 Route::get('usuario', 'UsuarioController@index')->name('usuario')->middleware('superEditor');
 Route::get('usuario/crear', 'UsuarioController@crear')->name('crear_usuario')->middleware('superEditor');

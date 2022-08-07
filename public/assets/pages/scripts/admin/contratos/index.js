@@ -16,7 +16,7 @@ $(document).ready(function () {
 
         $('#modal-listas').modal({ backdrop: 'static', keyboard: false });
         $('#modal-listas').modal('show');
-        
+
     });
     
 
@@ -37,7 +37,8 @@ $(document).ready(function () {
     }
 
     $("#customSwitch1").change(customSwitch1);
-
+   
+    
     //Recuperar el valor del radio button de detalle de items
     function customSwitch2() {
 
