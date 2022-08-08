@@ -4,8 +4,9 @@
         @include('includes.form-mensaje')
         <div class="card card-info">
             <div class="card-header with-border">
-                <h3 class="card-title-1">Contratos</h3>
+                <h3 class="card-title">Contratos</h3>
                 <div class="card-tools pull-right">
+                    <button type="button" class="btn crear_contrato btn-default" name="crear_contrato" id="crear_contrato"><i class="fa fa-fw fa-plus-circle"></i>Agregar</button>
                 </div>
             </div>
             <div class="x_panel">
@@ -21,7 +22,7 @@
                         </div>
                     </div>
 
-                    <form id="form-general1" class="form-horizontal" method="POST">
+                    <form id="form-general2" class="form-horizontal" method="POST">
                         <div class="form-group row">
                             <div class="col-lg-3">
                                 <label for="contrato" class="col-xs-4 control-label ">Contrato</label>

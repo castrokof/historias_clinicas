@@ -21,12 +21,12 @@ Contratos
 @endsection
 
 @section('contenido')
-@include('admin.financiero.contratos.tablas.tablaIndexContratos') 
-@include('admin.financiero.contratos.modal.modalContratos') 
-@include('admin.financiero.contratos.modal.modalContDetalle') 
+@include('admin.financiero.contratos.tablas.tablaIndexContratos')
+@include('admin.financiero.contratos.modal.modalContratos')
+@include('admin.financiero.contratos.modal.modalContDetalle')
 
 <!-- Modal para relacionar los EPS EMPRESAS -->
-@include('admin.financiero.contratos.modal.modalContEps') 
+@include('admin.financiero.contratos.modal.modalContEps')
 <!-- Modal para relacionar los procedimientos -->
 @include('admin.financiero.contratos.modal.modalContProcedimiento')
 <!-- Modal para relacionar los servicios -->
@@ -34,7 +34,7 @@ Contratos
 <!-- Modal para relacionar los medicamentos -->
 @include('admin.financiero.contratos.modal.modalContMedicamento')
 <!-- Modal para relacionar las sedes -->
-@include('admin.financiero.contratos.modal.modalContSedes') 
+@include('admin.financiero.contratos.modal.modalContSedes')
 
 <!-- Modal que carga las tablas y los botones para realizar las relaciones -->
 @include('admin.financiero.contratos.modal.modalContDetalleIndex')
@@ -85,7 +85,7 @@ Contratos
                 {
                     data: 'contrato'
                 },
-                {                
+                {
                     data: 'nombre'
                 },
                 {
@@ -143,7 +143,7 @@ Contratos
 
         // Función que envía los datos de contratos al controlador ademas controla los input con sweat alert2
 
-        $('#form-general1').on('submit', function(event) {
+        /* $('#form-general1').on('submit', function(event) {
             event.preventDefault();
             var url = '';
             var method = '';
@@ -155,8 +155,9 @@ Contratos
                 url = "{{ route('guardar_contratos') }}";
                 method = 'post';
             }
-
-            if ($('#cod_cups').val() == '' || $('#nombre').val() == '' || $('#estado').val() == '') {
+            console.log("#contrato");
+            console.log("#nombre");
+            if ($('#contrato').val() == '' || $('#nombre').val() == '' || $('#tipo_contrato').val() == '' || $('#estado').val() == '' ) {
                 Swal.fire({
                     title: "Debes de rellenar todos los campos del formulario",
                     text: "Sistema de Historias Clínicas",
@@ -183,7 +184,7 @@ Contratos
                             success: function(data) {
                                 if (data.success == 'ok') {
                                     $('#form-general1')[0].reset();
-                                    $('#modal-listas').modal('hide');
+                                    $('#modal-contratos').modal('hide');
                                     $('#listasGeneral').DataTable().ajax.reload();
                                     Swal.fire({
                                         icon: 'success',
@@ -206,6 +207,101 @@ Contratos
                 });
 
             }
+
+        }); */
+
+        $('#crear_contrato').click(function() {
+            $('#form-general1')[0].reset();
+            //$('.card-title').text('Agregar Nuevo paciente');
+            $('#action_button').val('Add');
+            $('#action').val('Add');
+            $('#form_result').html('');
+            $('#modal-contratos').modal({ backdrop: 'static', keyboard: false });
+            $('#modal-contratos').modal('show');
+        });
+
+        $('#form-general1').on('submit', function(event) {
+            event.preventDefault();
+            var url = '';
+            var method = '';
+            var text = '';
+
+            if ($('#action').val() == 'Add') {
+                text = "Estás por crear un contrato"
+                url = "{{route('guardar_contratos')}}";
+                method = 'post';
+            }
+
+            if ($('#action').val() == 'Edit') {
+                text = "Estás por actualizar un contrato"
+                var updateid = $('#hidden_id').val();
+                url = "/contratos/" + updateid;
+                method = 'put';
+            }
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: text,
+                icon: "success",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: $(this).serialize(),
+                        dataType: "json",
+                        success: function(data) {
+                            var html = '';
+                            if (data.errors) {
+
+                                html =
+                                    '<div class="alert alert-danger alert-dismissible">' +
+                                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+                                    '<h5><i class="icon fas fa-ban"></i> Alerta! Verifica los siguientes datos: </h5>';
+
+                                for (var count = 0; count < data.errors.length; count++) {
+                                    html += '<p>' + data.errors[count] + '<p>';
+                                }
+                                html += '</div>';
+                            }
+
+                            if (data.success == 'ok') {
+                                $('#form-general1')[0].reset();
+                                $('#modal-contratos').modal('hide');
+                                //$('#pacientes').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Contrato creado correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1500
+
+                                })
+
+
+                            } else if (data.success == 'ok1') {
+                                $('#form-general1')[0].reset();
+                                $('#modal-contratos').modal('hide');
+                                //$('#pacientes').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Contrato actualizado correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1500
+
+                                })
+
+
+                            }
+                            $('#form_result').html(html)
+                        }
+
+
+                    });
+                }
+            });
+
 
         });
 
@@ -244,6 +340,7 @@ Contratos
                 }
             });
         }
+
 
 
 

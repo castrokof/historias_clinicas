@@ -2,25 +2,25 @@
 $(document).ready(function () {
 
     //Función para convertir minuscula en mayuscula en el form
-    // $(".UpperCase").on("keypress", function () {
-    //     $input = $(this);
-    //     setTimeout(function () {
-    //         $input.val($input.val().toUpperCase());
-    //     }, 50);
-    // });
+    $(".UpperCase").on("keypress", function () {
+        $input = $(this);
+        setTimeout(function () {
+            $input.val($input.val().toUpperCase());
+        }, 50);
+    });
 
     //------------------------------------------------------Funciones de Listas-----------------------------------------//
 
-    //Función para abrir modal y prevenir el cierre de creación de listas
-    $(document).on('click', '.create_listas', function () {
+    //Función para abrir modal y prevenir el cierre de creación de contratos
+    $(document).on('click', '.crear_contrato2', function () {
 
-        $('#modal-listas').modal({ backdrop: 'static', keyboard: false });
-        $('#modal-listas').modal('show');
+        $('#modal-contratos').modal({ backdrop: 'static', keyboard: false });
+        $('#modal-contratos').modal('show');
 
     });
     
 
-    //Recuperar el valor del radio button de listas
+    //Recuperar el valor del radio button de contratos
 
     function customSwitch1() {
 
@@ -57,7 +57,7 @@ $(document).ready(function () {
     $("#customSwitch2").change(customSwitch2);
 
 
-    // Función que envía los datos de listas al controlador ademas controla los input con sweat alert2
+    // Función que envía los datos de contratos al controlador ademas controla los input con sweat alert2
 
     $('#form-general2').on('submit', function (event) {
         event.preventDefault();
@@ -68,12 +68,12 @@ $(document).ready(function () {
 
         if ($('#action').val() == 'Add') {
             text = "Estás por crear un item"
-            url = "/detallecrear-listas";
+            url = "/guardar_contratos";
             method = 'post';
         }
+        
 
-        if ($('#nombre1').val() == '' || $('#descripcion1').val() == '' || $('#slug1').val() == '' ||
-            $('#estado1').val() == '') {
+        if ($('#contrato').val() == '' || $('#nombre').val() == '' || $('#tipo_contrato').val() == '' || $('#estado').val() == '' ) {
             Swal.fire({
                 title: "Debes de rellenar todos los campos del formulario",
                 text: "Sistema Historias Clínicas",
@@ -83,7 +83,7 @@ $(document).ready(function () {
             });
         } else {
             Swal.fire({
-                target: document.getElementById('modal-profesional'),
+                target: document.getElementById('modal-contratos'),
                 title: "¿Estás seguro?",
                 text: text,
                 icon: "success",
@@ -93,7 +93,7 @@ $(document).ready(function () {
             }).then((result) => {
                 if (result.value) {
                     Swal.fire({
-                        target: document.getElementById('modal-profesional'),
+                        target: document.getElementById('modal-contratos'),
                         icon: "success",
                         title: 'Espere por favor !',
                         html: 'Creando item..',
@@ -111,11 +111,11 @@ $(document).ready(function () {
                             success: function (data) {
                                 if (data.success == 'ok') {
                                     $('#form-general2')[0].reset();
-                                    $('#modal-profesional').modal('hide');
+                                    $('#modal-contratos').modal('hide');
                                     $('#listasGeneralDetalle').DataTable().ajax.reload();
                                     Swal.fire({
                                         icon: 'success',
-                                        title: 'Item creado correctamente',
+                                        title: 'Contrato creado correctamente',
                                         showConfirmButton: false,
                                         timer: 2000
                                     })

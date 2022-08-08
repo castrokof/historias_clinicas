@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Def_Contratos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 
 class DefContratosController extends Controller
 {
@@ -96,6 +99,38 @@ class DefContratosController extends Controller
         }
 
         return view('admin.financiero.procedimientos.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function guardar(Request $request)
+    {
+
+        if ($request->ajax()) {
+
+            $usuario_id = $request->session()->get('usuario_id');
+
+            $rules = array(
+                'contrato'=> 'required',
+                'nombre'=> 'required',
+                'descripcion',
+                'tipo_contrato'=> 'required',
+                'estado'
+            );
+
+            $error = Validator::make($request->all(), $rules);
+
+            if ($error->fails()) {
+                return response()->json(['errors' => $error->errors()->all()]);
+            }
+
+            Def_Contratos::create($request->all());
+
+            return response()->json(['success' => 'ok']);
+        }
     }
 
     /**
