@@ -25,7 +25,7 @@ class RelContratovsmedicamentosController extends Controller
             ->Join('def__medicamentos_suministros', 'rel__contratovsmedicamentos.medicamento_id', '=', 'def__medicamentos_suministros.id_medicamento')
             ->select('rel__contratovsmedicamentos.id_contratovsmedicamento as idd','def__contratos.contrato as contrato', 'def__contratos.nombre as nombre','rel__contratovsmedicamentos.valor as precio',
                     'def__medicamentos_suministros.codigo as codigo','def__medicamentos_suministros.nombre as Medicamento')
-            ->where('rel__contratovsmedicamentos.contrato_id', '=', $idlist )
+            ->where('rel__contratovsmedicamentos.contrato_id', '=', $idlist)
             ->get();
           
         return  DataTables()->of($datast)
@@ -124,7 +124,7 @@ class RelContratovsmedicamentosController extends Controller
  
             rel__contratovsmedicamentos::where('id_contratovsmedicamento', $id)->delete();
 
-        return response()->json(['success' => 'ok1']);
+        return response()->json(['success' => 'ok5']);
         }
     }
 }

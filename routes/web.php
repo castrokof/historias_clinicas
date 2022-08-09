@@ -152,18 +152,21 @@ Route::post('contrato-estado', 'DefContratosController@updateestado')->name('con
 
 //Ruta para consultar las relaciones de Contrato vs EPS
 Route::get('contratovsEPS', 'RelContratovsepsController@index')->name('contratovsEPS')->middleware('superEditor');
+Route::get('RelEpsIndex', 'EpsController@rel_index')->name('RelEpsIndex')->middleware('superEditor');
 Route::delete('contratovsEPS/{id}', 'RelContratovsepsController@eliminar')->name('eliminar_conteps')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Contrato vs Servicio
 Route::get('relserviciovsContrato', 'RelContratovsservicioController@index')->name('relserviciovsContrato')->middleware('superEditor');
-Route::delete('serviciovsprocedimiento/{id}', 'RelServiciovsprocedimientosController@eliminar')->name('eliminar_servicio')->middleware('superEditor');
+Route::delete('serviciovscontrato/{id}', 'RelContratovsservicioController@eliminar')->name('eliminar_relservicio')->middleware('superEditor');
 Route::get('relservicioIndex', 'ServiciosController@rel_index')->name('relservicioIndex')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Contrato vs Medicamento
 Route::get('contrato-medicamento', 'RelContratovsmedicamentosController@index')->name('contrato-medicamento')->middleware('superEditor');
+Route::delete('contratovsmedicamento/{id}', 'RelContratovsmedicamentosController@eliminar')->name('eliminar_relmedicamento')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Contrato vs Procedimientos
 Route::get('contrato-procedimiento', 'RelContratovsprocedimientosController@indexProce')->name('contrato-procedimiento')->middleware('superEditor');
+
 
 /* RUTAS DEL USUARIO */
 Route::get('usuario', 'UsuarioController@index')->name('usuario')->middleware('superEditor');

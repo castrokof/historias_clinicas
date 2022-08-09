@@ -32,10 +32,14 @@
                                         <div class="card-header p-0 pt-1">
                                             <ul class="nav nav-tabs nav-justified" id="custom-tabs-one-tab" role="tablist">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" id="custom-tabs-one-eps-tab" data-toggle="pill" href="#custom-tabs-one-eps" role="tab" aria-controls="custom-tabs-one-eps" aria-selected="false">EPS Empresa</a>
+                                                    <a class="nav-link active" id="custom-tabs-one-eps-tab" 
+                                                    data-toggle="pill" href="#custom-tabs-one-eps" role="tab" 
+                                                    aria-controls="custom-tabs-one-eps" aria-selected="false">EPS Empresa</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="custom-tabs-one-datos-del-servicio-tab" data-toggle="pill" href="#custom-tabs-one-datos-del-servicio" role="tab" aria-controls="custom-tabs-one-datos-del-servicio" aria-selected="false">Servicios</a>
+                                                    <a class="nav-link" id="custom-tabs-one-datos-del-servicio-tab" 
+                                                    data-toggle="pill" href="#custom-tabs-one-datos-del-servicio" role="tab" 
+                                                    aria-controls="custom-tabs-one-datos-del-servicio" aria-selected="false">Servicios</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" id="custom-tabs-one-sede-tab" data-toggle="pill" href="#custom-tabs-one-sede" role="tab" aria-controls="custom-tabs-one-sede" aria-selected="false">Sedes</a>

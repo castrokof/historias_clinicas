@@ -56,6 +56,8 @@ class DefContratosController extends Controller
         return view('admin.financiero.contratos.index');
     }
 
+    
+
     public function rel_index(Request $request)
     {
 
@@ -95,6 +97,8 @@ class DefContratosController extends Controller
 
         return view('admin.financiero.procedimientos.index');
     }
+
+    
 
     /**
      * Show the form for creating a new resource.

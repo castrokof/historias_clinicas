@@ -748,6 +748,7 @@ Profesionales
             table_medicamento();
         });
 
+        //--------------------------------Tabla para cargar los Medicamentos y hacer la relacion----------------------------//
         function table_medicamento() {
             var trelcontrato = $('#trelmedicamento').DataTable({
                 language: idioma_espanol,

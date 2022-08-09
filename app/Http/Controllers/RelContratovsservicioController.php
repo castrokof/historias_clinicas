@@ -29,8 +29,8 @@ class RelContratovsservicioController extends Controller
           
         return  DataTables()->of($datast)
         ->addColumn('actionsr', function($datast){
-        $button = '<button type="button" name="eliminarsr" id="'.$datast->idd.'"
-        class = "eliminarsr btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
+        $button = '<button type="button" name="eliminarss" id="'.$datast->idd.'"
+        class = "eliminarss btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
                
         return $button;
 
@@ -123,7 +123,7 @@ class RelContratovsservicioController extends Controller
  
             rel__contratovsservicio::where('id_contratovsservicios', $id)->delete();
 
-        return response()->json(['success' => 'ok1']);
+        return response()->json(['success' => 'ok2']);
         }
     }
 }

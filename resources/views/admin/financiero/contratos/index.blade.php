@@ -154,7 +154,7 @@ Contratos
             }
             // console.log("#contrato");
             // console.log("#nombre");
-            if ($('#contrato').val() == '' || $('#nombre').val() == '' || $('#tipo_contrato').val() == '' || $('#estado').val() == '' ) {
+            if ($('#contrato').val() == '' || $('#nombre').val() == '' || $('#tipo_contrato').val() == '' || $('#estado').val() == '') {
                 Swal.fire({
                     title: "Debes de rellenar todos los campos del formulario",
                     text: "Sistema de Historias Clínicas",
@@ -645,22 +645,22 @@ Contratos
 
         //------------------------------------------------------Funciones de relaciones-----------------------------------------//
 
-        //Función para abrir modal y prevenir el cierre de la relacion con los profesionales
-        $(document).on('click', '.relacion_profesional', function() {
+        //Función para abrir modal y prevenir el cierre de la relacion con las EPS
+        $(document).on('click', '.relacion_eps', function() {
 
-            $('#modal-profesional').modal({
+            $('#modal-eps').modal({
                 backdrop: 'static',
                 keyboard: false
             });
-            $('#modal-profesional').modal('show');
-            $('#trelprofesional').DataTable().destroy();
-            table_profesional();
+            $('#modal-eps').modal('show');
+            $('#treleps').DataTable().destroy();
+            table_eps();
         });
 
-        //--------------------------------Tabla para cargar los profesionales y hacer la relacion----------------------------//
+        //--------------------------------Tabla para cargar las EPS y hacer la relacion----------------------------//
 
-        function table_profesional() {
-            var datatablep = $('#trelprofesional').DataTable({
+        function table_eps() {
+            var datatablep = $('#treleps').DataTable({
                 language: idioma_espanol,
                 lengthMenu: [
                     [25, 50, 100, 500, -1],
@@ -672,7 +672,7 @@ Contratos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('relprofeIndex')}}",
+                    url: "{{ route('RelEpsIndex')}}",
                     type: "get",
                 },
                 columns: [
@@ -692,14 +692,6 @@ Contratos
                     {
                         data: 'nombre',
                         name: 'nombre'
-                    },
-                    {
-                        data: 'especialidad',
-                        name: 'especialidad'
-                    },
-                    {
-                        data: 'sede',
-                        name: 'sede'
                     }
 
                 ],
@@ -781,7 +773,6 @@ Contratos
                                                 data: 'action',
                                                 //orderable: false
                                             }, */
-
                     {
                         data: 'estado',
                         name: 'estado'
@@ -840,20 +831,22 @@ Contratos
             });
         }
 
-        //Función para abrir modal y prevenir el cierre de la relacion con los contratos
-        $(document).on('click', '.relacion_contrato', function() {
-            $('#modal-contrato').modal({
+        //Función para abrir modal y prevenir el cierre de la relacion con los profesionales
+        $(document).on('click', '.relacion_procedimiento', function() {
+
+            $('#modal-procedimiento').modal({
                 backdrop: 'static',
                 keyboard: false
             });
-            $('#modal-contrato').modal('show');
-            $('#trelcontrato').DataTable().destroy();
-            table_contrato();
+            $('#modal-procedimiento').modal('show');
+            $('#trelprocedimiento').DataTable().destroy();
+            table_procedimiento();
         });
 
-        //--------------------------------Tabla para cargar los contratos y hacer la relacion----------------------------//
-        function table_contrato() {
-            var trelcontrato = $('#trelcontrato').DataTable({
+        //--------------------------------Tabla para cargar los procedimientos y hacer la relacion----------------------------//
+
+        function table_procedimiento() {
+            var trelprocedimiento = $('#trelprocedimiento').DataTable({
                 language: idioma_espanol,
                 lengthMenu: [
                     [25, 50, 100, 500, -1],
@@ -865,7 +858,99 @@ Contratos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('relcontratoIndex')}}",
+                    url: "{{ route('relproceIndex')}}",
+                    type: "get",
+                },
+                columns: [
+                    /* {
+                                            data: 'actionpp',
+                                            orderable: false
+                                        }, */
+
+                    {
+                        data: 'estado',
+                        name: 'estado'
+                    },
+                    {
+                        data: 'cod_cups',
+                        name: 'cod_cups'
+                    },
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    }
+
+                ],
+
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+
+
+                buttons: [{
+
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
+        }
+
+        //Función para abrir modal y prevenir el cierre de la relacion con los medicamento
+        $(document).on('click', '.relacion_medicamento', function() {
+            $('#modal-medicamento').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $('#modal-medicamento').modal('show');
+            $('#trelmedicamento').DataTable().destroy();
+            table_medicamento();
+        });
+
+        //--------------------------------Tabla para cargar los Medicamentos y hacer la relacion----------------------------//
+        function table_medicamento() {
+            var trelcontrato = $('#trelmedicamento').DataTable({
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('relmedicamentoIndex')}}",
                     type: "get",
                 },
                 columns: [
@@ -879,12 +964,16 @@ Contratos
                         name: 'estado'
                     },
                     {
-                        data: 'contrato',
-                        name: 'contrato'
+                        data: 'codigo',
+                        name: 'codigo'
                     },
                     {
                         data: 'nombre',
                         name: 'nombre'
+                    },
+                    {
+                        data: 'CUMS',
+                        name: 'CUMS'
                     }
 
                 ],
@@ -984,7 +1073,7 @@ Contratos
             var id = $(this).attr('id');
 
             var text = "Estás por retirar un servicio"
-            var url = "/serviciovsprocedimiento/" + id;
+            var url = "/serviciovscontrato/" + id;
             var method = 'delete';
 
             Swal.fire({
@@ -1004,7 +1093,7 @@ Contratos
                         },
                         dataType: "json",
                         success: function(data) {
-                            if (data.success == 'ok4') {
+                            if (data.success == 'ok2') {
 
                                 $('#tservicio').DataTable().ajax.reload();
                                 Swal.fire({
@@ -1024,9 +1113,9 @@ Contratos
 
         });
 
-        //-- Eliminar Contrato de la relación 
+        //-- Eliminar Procedimiento de la relación 
 
-        $(document).on('click', '.eliminarco', function() {
+        $(document).on('click', '.eliminarcp', function() {
             var id = $(this).attr('id');
 
             var text = "Estás por retirar un servicio"
@@ -1050,12 +1139,58 @@ Contratos
                         },
                         dataType: "json",
                         success: function(data) {
-                            if (data.success == 'ok4') {
+                            if (data.success == 'ok1') {
 
-                                $('#tcontrato').DataTable().ajax.reload();
+                                $('#tprocedimiento').DataTable().ajax.reload();
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Contrato ha sido retirado correctamente',
+                                    title: 'Procedimiento ha sido retirado correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1000
+
+                                })
+
+                            }
+                        }
+                    });
+
+                }
+            })
+
+        });
+
+        //-- Eliminar Medicamento de la relación 
+
+        $(document).on('click', '.eliminarmd', function() {
+            var id = $(this).attr('id');
+
+            var text = "Estás por retirar un servicio"
+            var url = "/contratovsmedicamento/" + id;
+            var method = 'delete';
+
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: text,
+                icon: "success",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: {
+                            "_token": $("meta[name='csrf-token']").attr("content")
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data.success == 'ok5') {
+
+                                $('#tmed').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Medicamento ha sido retirado correctamente',
                                     showConfirmButton: false,
                                     timer: 1000
 

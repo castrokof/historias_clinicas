@@ -36,7 +36,13 @@
     </div>
     <div class="col-lg-3">
         <label for="tipo_contrato" class="col-xs-4 control-label requerido">Tipo de Contrato</label>
-        <input type="text" name="tipo_contrato" id="tipo_contrato" class="form-control">
+        <!-- <input type="text" name="tipo_contrato" id="tipo_contrato" class="form-control"> -->
+        <select name="tipo_contrato" id="tipo_contrato" class="form-control select2bs4" style="width: 100%;" required>
+                <option value="">---seleccione---</option>
+                <option value="Capita">Capita</option>
+                <option value="Evento">Evento</option>
+                <option value="PFM">PFM</option>
+            </select>
     </div>
 
     <input type="hidden" name="user_id" id="user_id" class="form-control" value="{{Session()->get('usuario_id')}}">
