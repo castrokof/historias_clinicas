@@ -382,7 +382,7 @@ class UsuarioAdministradorSeeder extends Seeder
 
             'menu_id'=> 34,
             'nombre'=>'Documentos',
-            'url'=>'documentos',
+            'url'=>'documento_financiero',
             'orden'=>0,
             'icono'=>'fas fa-angle-right'
         ]);

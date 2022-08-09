@@ -31,24 +31,21 @@
                                     <div class="card card-primary card-tabs">
                                         <div class="card-header p-0 pt-1">
                                             <ul class="nav nav-tabs nav-justified" id="custom-tabs-one-tab" role="tablist">
-                                                
+
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" id="custom-tabs-one-profesional-tab" 
-                                                    data-toggle="pill" href="#custom-tabs-one-profesional" role="tab" 
-                                                    aria-controls="custom-tabs-one-profesional" aria-selected="false">Profesional</a>
+                                                    <a class="nav-link active" id="custom-tabs-one-profesional-tab" data-toggle="pill" href="#custom-tabs-one-profesional" role="tab" aria-controls="custom-tabs-one-profesional" aria-selected="false">Profesional</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="custom-tabs-one-servicios-tab" 
-                                                    data-toggle="pill" href="#custom-tabs-one-servicios" role="tab" 
-                                                    aria-controls="custom-tabs-one-servicios" aria-selected="false">Servicios</a>
+                                                    <a class="nav-link" id="custom-tabs-one-servicios-tab" data-toggle="pill" href="#custom-tabs-one-servicios" role="tab" aria-controls="custom-tabs-one-servicios" aria-selected="false">Servicios</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="custom-tabs-one-contrato-tab" 
-                                                    data-toggle="pill" href="#custom-tabs-one-contrato" role="tab" 
-                                                    aria-controls="custom-tabs-one-contrato" aria-selected="false">Contrato</a>
+                                                    <a class="nav-link" id="custom-tabs-one-contrato-tab" data-toggle="pill" href="#custom-tabs-one-contrato" role="tab" aria-controls="custom-tabs-one-contrato" aria-selected="false">Contrato</a>
                                                 </li>
                                             </ul>
                                         </div>
+
+                                        <!-- Es estas tablas se pintan los datos que ya estan relacionados entre si -->
+                                        <!-- Los button abren un modal donde se visualiza los datos de cada item para hacer la relacion -->
                                         <div class="card-body">
                                             <div class="tab-content" id="custom-tabs-one-tabContent">
                                                 <div class="tab-pane fade active show" id="custom-tabs-one-profesional" role="tabpanel" aria-labelledby="custom-tabs-one-profesional-tab">
@@ -58,6 +55,9 @@
                                                         @include('admin.financiero.procedimientos.tablas.table-profesionales')
 
                                                     </div>
+                                                    <button type="button" class="btn relacion_profesional btn-success" name="relacion_profesional" id="relacion_profesional">
+                                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Profesionales
+                                                    </button>
                                                 </div>
                                                 <div class="tab-pane fade" id="custom-tabs-one-servicios" role="tabpanel" aria-labelledby="custom-tabs-one-servicios-tab">
                                                     <div class="card-body">
@@ -66,6 +66,9 @@
                                                         @include('admin.financiero.procedimientos.tablas.table-servicios')
 
                                                     </div>
+                                                    <button type="button" class="btn relacion_servicio btn-success" name="relacion_servicio" id="relacion_servicio">
+                                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Servicios
+                                                    </button>
                                                 </div>
                                                 <div class="tab-pane fade" id="custom-tabs-one-contrato" role="tabpanel" aria-labelledby="custom-tabs-one-contrato-tab">
                                                     <div class="card-body">
@@ -74,6 +77,9 @@
                                                         @include('admin.financiero.procedimientos.tablas.table-contratos')
 
                                                     </div>
+                                                    <button type="button" class="btn relacion_contrato btn-success" name="relacion_contrato" id="relacion_contrato">
+                                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Contrato
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,22 +88,6 @@
                                 </div>
 
                             </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                    <!-- Cada Boton abre un modal donde se visualiza los datos de cada item para hacer la relacion entre las partes -->
-                                    <button type="button" class="btn relacion_profesional btn-success" name="relacion_profesional" id="relacion_profesional">
-                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Profesionales
-                                    </button>
-                                    <button type="button" class="btn relacion_servicio btn-success" name="relacion_servicio" id="relacion_servicio">
-                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Servicios
-                                    </button>
-                                    <button type="button" class="btn relacion_contrato btn-success" name="relacion_contrato" id="relacion_contrato">
-                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Contrato
-                                    </button>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

@@ -200,6 +200,14 @@ Route::post('servicios', 'ServiciosController@guardar')->name('guardar_servicio'
 Route::get('servicios/{id}/editar', 'ServiciosController@editar')->name('editar_servicio')->middleware('superEditor');
 Route::put('servicios/{id}', 'ServiciosController@actualizar')->name('actualizar_servicio')->middleware('superEditor');
 
+/* RUTAS DE DOCUMENTOS FINANCIEROS */
+Route::get('documento_financiero', 'DefDocumentosController@index')->name('documento_financiero')->middleware('superEditor');
+Route::get('documento_financiero/crear', 'DefDocumentosController@crear')->name('crear_doc_fin')->middleware('superEditor');
+Route::post('documento_financiero', 'DefDocumentosController@guardar')->name('guardar_doc_fin')->middleware('superEditor');
+Route::get('documento_financiero/{id}/editar', 'DefDocumentosController@editar')->name('editar_doc_fin')->middleware('superEditor');
+Route::put('documento_financiero/{id}', 'DefDocumentosController@actualizar')->name('actualizar_doc_fin')->middleware('superEditor');
+Route::post('documento_fin_estado', 'DefDocumentosController@updateestado')->name('documento_fin_estado')->middleware('superEditor');
+
 /* RUTAS DEL CITA */
 Route::get('cita', 'CitaController@index')->name('cita')->middleware('superEditor');
 Route::get('cita/crear', 'CitaController@crear')->name('crear_cita')->middleware('superEditor');

@@ -58,7 +58,7 @@ Procedimientos
 <script>
     $(document).ready(function() {
 
-        // Funcion 2 para pintar con data table tabla de financiero.procedimientos generales
+        // Funcion 2 para pintar con data table de financiero.procedimientos generales
         var datatable = $('#listasGeneral').DataTable({
             language: idioma_espanol,
             processing: true,
@@ -159,7 +159,7 @@ Procedimientos
             if ($('#cod_cups').val() == '' || $('#nombre').val() == '' || $('#estado').val() == '') {
                 Swal.fire({
                     title: "Debes de rellenar todos los campos del formulario",
-                    text: "Respuesta Paliativos",
+                    text: "Sistema de Historias Clínicas",
                     icon: "warning",
                     showCloseButton: true,
                     confirmButtonText: 'Aceptar',

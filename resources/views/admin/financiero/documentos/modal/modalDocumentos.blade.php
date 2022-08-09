@@ -1,11 +1,11 @@
-<div class="modal fade" tabindex="-1" id="modal-listas" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade" tabindex="-1" id="modal-documentos" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog  modal-xl" role="document">
         <div class="modal-content">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card card-primary">
                         <div class="card-header with-border">
-                            <h3 class="card-title">Procedimientos</h3>
+                            <h3 class="card-title">Documentos Financieros</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -22,7 +22,7 @@
                         <div class="card-body">
                             <form id="form-general1" class="form-horizontal" method="POST">
                                 @csrf
-                                @include('admin.financiero.procedimientos.form.form')
+                                @include('admin.financiero.documentos.form.form')
                                 @include('includes.boton-form-crear-empresa-empleado-usuario')
                             </form>
                         </div>

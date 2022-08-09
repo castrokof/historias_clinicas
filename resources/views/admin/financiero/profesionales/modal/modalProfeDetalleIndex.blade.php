@@ -32,25 +32,20 @@
                                         <div class="card-header p-0 pt-1">
                                             <ul class="nav nav-tabs nav-justified" id="custom-tabs-one-tab" role="tablist">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" id="custom-tabs-one-datos-del-procedimientos-tab" 
-                                                    data-toggle="pill" href="#custom-tabs-one-datos-del-procedimientos" role="tab" 
-                                                    aria-controls="custom-tabs-one-datos-del-procedimientos" aria-selected="false">Procedimientos</a>
+                                                    <a class="nav-link active" id="custom-tabs-one-datos-del-procedimientos-tab" data-toggle="pill" href="#custom-tabs-one-datos-del-procedimientos" role="tab" aria-controls="custom-tabs-one-datos-del-procedimientos" aria-selected="false">Procedimientos</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="custom-tabs-one-datos-del-servicio-tab" 
-                                                    data-toggle="pill" href="#custom-tabs-one-datos-del-servicio" role="tab" 
-                                                    aria-controls="custom-tabs-one-datos-del-servicio" aria-selected="false">Servicios</a>
+                                                    <a class="nav-link" id="custom-tabs-one-datos-del-servicio-tab" data-toggle="pill" href="#custom-tabs-one-datos-del-servicio" role="tab" aria-controls="custom-tabs-one-datos-del-servicio" aria-selected="false">Servicios</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="custom-tabs-one-medicamentos-tab" 
-                                                    data-toggle="pill" href="#custom-tabs-one-medicamentos" role="tab"
-                                                    aria-controls="custom-tabs-one-medicamentos" aria-selected="false">Medicamentos</a>
+                                                    <a class="nav-link" id="custom-tabs-one-medicamentos-tab" data-toggle="pill" href="#custom-tabs-one-medicamentos" role="tab" aria-controls="custom-tabs-one-medicamentos" aria-selected="false">Medicamentos</a>
                                                 </li>
                                             </ul>
                                         </div>
 
 
                                         <!-- Es estas tablas se pintan los datos que ya estan relacionados entre si -->
+                                        <!-- Los button abren un modal donde se visualiza los datos de cada item para hacer la relacion -->
                                         <div class="card-body">
 
                                             <div class="tab-content" id="custom-tabs-one-tabContent">
@@ -59,6 +54,9 @@
                                                         @csrf
                                                         @include('admin.financiero.profesionales.tablas.table-procedimientos')
                                                     </div>
+                                                    <button type="button" class="btn relacion_procedimiento btn-success" name="relacion_procedimiento" id="relacion_procedimiento">
+                                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Procedimientos
+                                                    </button>
                                                 </div>
 
                                                 <div class="tab-pane fade" id="custom-tabs-one-datos-del-servicio" role="tabpanel" aria-labelledby="custom-tabs-one-datos-del-servicio-tab">
@@ -66,33 +64,23 @@
                                                         @csrf
                                                         @include('admin.financiero.profesionales.tablas.table-servicios')
                                                     </div>
+                                                    <button type="button" class="btn relacion_servicio btn-success" name="relacion_servicio" id="relacion_servicio">
+                                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Servicios
+                                                    </button>
                                                 </div>
                                                 <div class="tab-pane fade" id="custom-tabs-one-medicamentos" role="tabpanel" aria-labelledby="custom-tabs-one-medicamentos-tab">
                                                     <div class="card-body">
                                                         @csrf
                                                         @include('admin.financiero.profesionales.tablas.table-medicamentos')
                                                     </div>
+                                                    <button type="button" class="btn relacion_medicamento btn-success" name="relacion_medicamento" id="relacion_medicamento">
+                                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Medicamentos
+                                                    </button>
                                                 </div>
                                             </div>
 
                                         </div> <!-- card -->
                                     </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row">
-                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                    <!-- Cada Boton abre un modal donde se visualiza los datos de cada item para hacer la relacion entre las partes -->
-                                    <button type="button" class="btn relacion_procedimiento btn-success" name="relacion_procedimiento" id="relacion_procedimiento">
-                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Procedimientos
-                                    </button>
-                                    <button type="button" class="btn relacion_servicio btn-success" name="relacion_servicio" id="relacion_servicio">
-                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Servicios
-                                    </button>
-                                    <button type="button" class="btn relacion_medicamento btn-success" name="relacion_medicamento" id="relacion_medicamento">
-                                        <i class="fa fa-fw fa-plus-circle"></i>Relacionar Medicamentos
-                                    </button>
                                 </div>
                             </div>
                         </div>

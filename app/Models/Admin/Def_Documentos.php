@@ -5,7 +5,7 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Def__Documentos extends Model
+class Def_Documentos extends Model
 {
     protected $table = 'def__documentos';
     protected $primary_key = 'id_documento';
