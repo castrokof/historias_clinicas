@@ -15,10 +15,12 @@ class CreateDefContratosTable extends Migration
     {
         Schema::create('def__contratos', function (Blueprint $table) {
             $table->bigIncrements('id_contrato');
-            $table->string('contrato',10)->unique();
+            $table->string('contrato',20)->unique();
             $table->string('nombre',200);
             $table->string('descripcion',200)->nullable();
             $table->string('tipo_contrato',200);
+            $table->dateTime('fecha_ini')->nullable();
+            $table->dateTime('fecha_fin')->nullable();
             $table->char('estado',1);
             $table->timestamps();
         });

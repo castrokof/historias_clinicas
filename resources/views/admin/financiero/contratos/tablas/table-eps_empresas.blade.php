@@ -10,8 +10,8 @@
                     <thead>
                         <tr>
                             <th>Acciones</th>
-                            <th>Código</th>
                             <th>EPS</th>
+                            <th>Empresa</th>
                             <th>Contrato</th>
                             <th>Nombre</th>
                         </tr>

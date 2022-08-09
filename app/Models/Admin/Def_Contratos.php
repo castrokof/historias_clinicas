@@ -14,6 +14,8 @@ class Def_Contratos extends Model
         'nombre',
         'descripcion',
         'tipo_contrato',
+        'fecha_ini',
+        'fecha_fin',
         'estado'
     ];
     public function contratoeps(){

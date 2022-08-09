@@ -27,6 +27,14 @@
 </div>
 <div class="form-group row">
     <div class="col-lg-3">
+        <label for="fecha_ini" class="col-xs-4 control label">Fecha Inicial</label>
+        <input type="date" name="fecha_ini" id="fecha_ini" class="form-control">
+    </div>
+    <div class="col-lg-3">
+        <label for="fecha_fin" class="col-xs-4 control label">Fecha Final</label>
+        <input type="date" name="fecha_fin" id="fecha_fin" class="form-control">
+    </div>
+    <div class="col-lg-3">
         <label for="tipo_contrato" class="col-xs-4 control-label requerido">Tipo de Contrato</label>
         <input type="text" name="tipo_contrato" id="tipo_contrato" class="form-control">
     </div>

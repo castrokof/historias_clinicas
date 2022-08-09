@@ -22,43 +22,38 @@ class DefContratosController extends Controller
 
 
             $datas = Def_Contratos::orderBy('id_contrato', 'asc')->get();
-     
-             return  DataTables()->of($datas)
-                 ->addColumn('action', function($datas){
-                     $button ='<button type="button" name="Detalle" id="'.$datas->id_contrato.'" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Relacionar Item"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
-     
-                 return $button;
-     
-             })->addColumn('estado', function($datas){
-     
-     
-                 if ($datas->estado == "1") {
-     
-                 $button ='
+
+            return  DataTables()->of($datas)
+                ->addColumn('action', function ($datas) {
+                    $button = '<button type="button" name="Detalle" id="' . $datas->id_contrato . '" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Relacionar Item"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
+
+                    return $button;
+                })->addColumn('estado', function ($datas) {
+
+
+                    if ($datas->estado == "1") {
+
+                        $button = '
                  <div class="custom-control custom-switch ">
-                 <input type="checkbox"  class="check_98 custom-control-input"  id="customSwitch99'.$datas->id_contrato.'" value="'.$datas->id_contrato.'"  checked>
-                 <label class="custom-control-label" for="customSwitch99'.$datas->id_contrato.'"  valueid="'.$datas->id_contrato.'"></label>
+                 <input type="checkbox"  class="check_98 custom-control-input"  id="customSwitch99' . $datas->id_contrato . '" value="' . $datas->id_contrato . '"  checked>
+                 <label class="custom-control-label" for="customSwitch99' . $datas->id_contrato . '"  valueid="' . $datas->id_contrato . '"></label>
                  </div>';
-     
-             }else{
-     
-                 $button ='
+                    } else {
+
+                        $button = '
                  <div class="custom-control custom-switch ">
-                 <input type="checkbox" class="check_98 custom-control-input" id="customSwitch99'.$datas->id_contrato.'" value="'.$datas->id_contrato.'" >
-                 <label class="custom-control-label" for="customSwitch99'.$datas->id_contrato.'"  valueid="'.$datas->id_contrato.'"></label>
+                 <input type="checkbox" class="check_98 custom-control-input" id="customSwitch99' . $datas->id_contrato . '" value="' . $datas->id_contrato . '" >
+                 <label class="custom-control-label" for="customSwitch99' . $datas->id_contrato . '"  valueid="' . $datas->id_contrato . '"></label>
                  </div>';
-     
-             }
-     
-             return $button;
-     
-         })
-             ->rawColumns(['action', 'estado'])
-             ->make(true);
-     
-         }
-     
-         return view('admin.financiero.contratos.index');
+                    }
+
+                    return $button;
+                })
+                ->rawColumns(['action', 'estado'])
+                ->make(true);
+        }
+
+        return view('admin.financiero.contratos.index');
     }
 
     public function rel_index(Request $request)
@@ -114,10 +109,12 @@ class DefContratosController extends Controller
             $usuario_id = $request->session()->get('usuario_id');
 
             $rules = array(
-                'contrato'=> 'required',
-                'nombre'=> 'required',
+                'contrato' => 'required',
+                'nombre' => 'required',
                 'descripcion',
-                'tipo_contrato'=> 'required',
+                'tipo_contrato' => 'required',
+                'fecha_ini',
+                'fecha_fin',
                 'estado'
             );
 
@@ -131,6 +128,64 @@ class DefContratosController extends Controller
 
             return response()->json(['success' => 'ok']);
         }
+    }
+
+    /**
+     * Display the specified resource.
+     *@param  int  $id
+     * @param  \App\Models\Admin\Def_Contratos  $def__contratos
+     * @return \Illuminate\Http\Response
+     */
+    public function editar($id)
+    {
+        //
+        // $data = Def_Procedimientos::findOrFail($id);
+        // return response()->json(['result'=>$data]);
+        if (request()->ajax()) {
+
+            $data = Def_Contratos::where('id_contrato', $id)->first();
+
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.financiero.contratos.index');
+    }
+
+    public function updateestado(Request $request)
+    {
+
+            if ($request->ajax()) {
+
+                //$procedimientoestado = new Def_Procedimientos();
+                
+
+                $datas = DB::table('def__contratos')->select('estado')->where('id_contrato', $request->input('id'))->first();
+
+                //dd($datas);
+                //return($datas);
+
+                foreach($datas as $data){
+
+                  if($data == '1'){
+
+                    DB::table('def__contratos')
+                    ->where('id_contrato',$request->input('id'))
+                    ->update([
+                     'estado' => '0'
+                            ]);
+
+                    return response()->json(['respuesta' => 'Contrato desactivado', 'titulo' => 'Sistema de Historias Clínicas', 'icon' => 'warning']);
+                    }else if($data == '0'){
+                        DB::table('def__contratos')
+                        ->where('id_contrato',$request->input('id'))
+                        ->update([
+                         'estado' => '1'
+                                ]);
+
+                        return response()->json(['respuesta' => 'Contrato activado correctamente', 'titulo' => 'Sistema de Historias Clínicas', 'icon' => 'warning']);
+
+                    }
+                }
+            }
     }
 
     /**
@@ -198,4 +253,5 @@ class DefContratosController extends Controller
     {
         //
     }
+
 }

@@ -89,9 +89,6 @@ Contratos
                     data: 'nombre'
                 },
                 {
-                    data: 'descripcion'
-                },
-                {
                     data: 'tipo_contrato'
                 },
                 {
@@ -143,7 +140,7 @@ Contratos
 
         // Función que envía los datos de contratos al controlador ademas controla los input con sweat alert2
 
-        /* $('#form-general1').on('submit', function(event) {
+        $('#form-general1').on('submit', function(event) {
             event.preventDefault();
             var url = '';
             var method = '';
@@ -155,8 +152,8 @@ Contratos
                 url = "{{ route('guardar_contratos') }}";
                 method = 'post';
             }
-            console.log("#contrato");
-            console.log("#nombre");
+            // console.log("#contrato");
+            // console.log("#nombre");
             if ($('#contrato').val() == '' || $('#nombre').val() == '' || $('#tipo_contrato').val() == '' || $('#estado').val() == '' ) {
                 Swal.fire({
                     title: "Debes de rellenar todos los campos del formulario",
@@ -208,101 +205,6 @@ Contratos
 
             }
 
-        }); */
-
-        $('#crear_contrato').click(function() {
-            $('#form-general1')[0].reset();
-            //$('.card-title').text('Agregar Nuevo paciente');
-            $('#action_button').val('Add');
-            $('#action').val('Add');
-            $('#form_result').html('');
-            $('#modal-contratos').modal({ backdrop: 'static', keyboard: false });
-            $('#modal-contratos').modal('show');
-        });
-
-        $('#form-general1').on('submit', function(event) {
-            event.preventDefault();
-            var url = '';
-            var method = '';
-            var text = '';
-
-            if ($('#action').val() == 'Add') {
-                text = "Estás por crear un contrato"
-                url = "{{route('guardar_contratos')}}";
-                method = 'post';
-            }
-
-            if ($('#action').val() == 'Edit') {
-                text = "Estás por actualizar un contrato"
-                var updateid = $('#hidden_id').val();
-                url = "/contratos/" + updateid;
-                method = 'put';
-            }
-            Swal.fire({
-                title: "¿Estás seguro?",
-                text: text,
-                icon: "success",
-                showCancelButton: true,
-                showCloseButton: true,
-                confirmButtonText: 'Aceptar',
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url: url,
-                        method: method,
-                        data: $(this).serialize(),
-                        dataType: "json",
-                        success: function(data) {
-                            var html = '';
-                            if (data.errors) {
-
-                                html =
-                                    '<div class="alert alert-danger alert-dismissible">' +
-                                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-                                    '<h5><i class="icon fas fa-ban"></i> Alerta! Verifica los siguientes datos: </h5>';
-
-                                for (var count = 0; count < data.errors.length; count++) {
-                                    html += '<p>' + data.errors[count] + '<p>';
-                                }
-                                html += '</div>';
-                            }
-
-                            if (data.success == 'ok') {
-                                $('#form-general1')[0].reset();
-                                $('#modal-contratos').modal('hide');
-                                //$('#pacientes').DataTable().ajax.reload();
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Contrato creado correctamente',
-                                    showConfirmButton: false,
-                                    timer: 1500
-
-                                })
-
-
-                            } else if (data.success == 'ok1') {
-                                $('#form-general1')[0].reset();
-                                $('#modal-contratos').modal('hide');
-                                //$('#pacientes').DataTable().ajax.reload();
-                                Swal.fire({
-                                    icon: 'warning',
-                                    title: 'Contrato actualizado correctamente',
-                                    showConfirmButton: false,
-                                    timer: 1500
-
-                                })
-
-
-                            }
-                            $('#form_result').html(html)
-                        }
-
-
-                    });
-                }
-            });
-
-
         });
 
         // Función para cambio de check y obtener el cambio del dom
@@ -342,8 +244,6 @@ Contratos
         }
 
 
-
-
         //Función para abrir detalle del registro
 
         $(document).on('click', '.listasDetalleAll', function() {
@@ -357,12 +257,16 @@ Contratos
                 fill_datatable(idlistp);
             }
             if (idlistf != '') {
-                $('#tprofesional').DataTable().destroy();
-                fill_tableprofe(idlistf);
+                $('#tepsempresa').DataTable().destroy();
+                fill_tableeps(idlistf);
             }
             if (idlistp != '') {
-                $('#tcontrato').DataTable().destroy();
-                fill_tablecontrato(idlistp);
+                $('#tprocedimiento').DataTable().destroy();
+                fill_tableproce(idlistp);
+            }
+            if (idlistp != '') {
+                $('#tmed').DataTable().destroy();
+                fill_tmed(idlistp);
             }
 
             $.ajax({
@@ -370,13 +274,13 @@ Contratos
                 dataType: "json",
                 success: function(result) {
                     $.each(result, function(i, items) {
-                        $('#title-procedimiento-detalle').text(items.nombre);
-                        $('#modal-procedimiento-detalle').modal({
+                        $('#title-contrato-detalle').text(items.nombre);
+                        $('#modal-contrato-detalle').modal({
 
                             backdrop: 'static',
                             keyboard: false
                         });
-                        $('#modal-procedimiento-detalle').modal('show');
+                        $('#modal-contrato-detalle').modal('show');
 
                     });
                 }
@@ -391,8 +295,8 @@ Contratos
             });
 
         });
-        //--------------------------------Tabla relacion procedimiento vs servicios----------------------------//
-        //fill_datatable();
+        //--------------------------------Tabla relacion contrato vs servicios----------------------------//
+
         function fill_datatable(idlistp = '') {
             var tservicio = $('#tservicio').DataTable({
                 language: idioma_espanol,
@@ -406,7 +310,7 @@ Contratos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('relserviciovsprocedimiento')}}",
+                    url: "{{ route('relserviciovsContrato')}}",
                     type: "get",
                     // data: {"idlist": procedimiento_idp}
                     data: {
@@ -414,7 +318,7 @@ Contratos
                     }
                 },
                 columns: [{
-                        data: 'actionpt',
+                        data: 'actionsr',
                         //orderable: false
                     },
                     {
@@ -422,16 +326,16 @@ Contratos
                         name: 'cod_servicio'
                     },
                     {
+                        data: 'Servicio',
+                        name: 'Servicio'
+                    },
+                    {
+                        data: 'contrato',
+                        name: 'contrato'
+                    },
+                    {
                         data: 'nombre',
                         name: 'nombre'
-                    },
-                    {
-                        data: 'cups',
-                        name: 'cups'
-                    },
-                    {
-                        data: 'Procedimiento',
-                        name: 'Procedimiento'
                     }
                 ],
 
@@ -478,9 +382,9 @@ Contratos
             });
         }
 
-        //--------------------------------Tabla relacion procedimiento vs profesionales----------------------------//
-        function fill_tableprofe(idlistf = '') {
-            var tprofesional = $('#tprofesional').DataTable({
+        //--------------------------------Tabla relacion contrato vs eps----------------------------//
+        function fill_tableeps(idlistf = '') {
+            var tepsempresa = $('#tepsempresa').DataTable({
                 language: idioma_espanol,
                 lengthMenu: [
                     [25, 50, 100, 500, -1],
@@ -492,7 +396,7 @@ Contratos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('profesionalvsprocedimiento')}}",
+                    url: "{{ route('contratovsEPS')}}",
                     type: "get",
                     // data: {"idlist": procedimiento_idp}
                     data: {
@@ -504,20 +408,20 @@ Contratos
                         //orderable: false
                     },
                     {
-                        data: 'codigo',
-                        name: 'codigo'
+                        data: 'EPS',
+                        name: 'EPS'
+                    },
+                    {
+                        data: 'Empresa',
+                        name: 'Empresa'
+                    },
+                    {
+                        data: 'contrato',
+                        name: 'contrato'
                     },
                     {
                         data: 'nombre',
                         name: 'nombre'
-                    },
-                    {
-                        data: 'cups',
-                        name: 'cups'
-                    },
-                    {
-                        data: 'Procedimiento',
-                        name: 'Procedimiento'
                     }
                 ],
 
@@ -564,9 +468,9 @@ Contratos
             });
         }
 
-        //--------------------------------Tabla relacion procedimiento vs contratos----------------------------//
-        function fill_tablecontrato(idlistp = '') {
-            var datatable2 = $('#tcontrato').DataTable({
+        //--------------------------------Tabla relacion contrato vs procedimiento----------------------------//
+        function fill_tableproce(idlistp = '') {
+            var datatable2 = $('#tprocedimiento').DataTable({
                 language: idioma_espanol,
                 lengthMenu: [
                     [25, 50, 100, 500, -1],
@@ -578,28 +482,16 @@ Contratos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('contratovsprocedimiento')}}",
-                    type: "get",
+                    url: "{{ route('contrato-procedimiento')}}",
+                    //type: "get",
                     // data: {"idlist": procedimiento_idp}
                     data: {
                         id: idlistp
                     }
                 },
                 columns: [{
-                        data: 'actionpt',
-                        //orderable: false
-                    },
-                    {
-                        data: 'contrato',
-                        name: 'contrato'
-                    },
-                    {
-                        data: 'nombre',
-                        name: 'nombre'
-                    },
-                    {
-                        data: 'precio',
-                        name: 'precio'
+                        data: 'actioncp',
+                        orderable: false
                     },
                     {
                         data: 'cups',
@@ -608,6 +500,101 @@ Contratos
                     {
                         data: 'Procedimiento',
                         name: 'Procedimiento'
+                    },
+                    {
+                        data: 'contrato',
+                        name: 'contrato'
+                    },
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
+                    }
+
+                ],
+
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+
+
+                buttons: [{
+
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+
+                    }
+                ],
+            });
+        }
+
+        //--------------------------------Tabla relacion contrato vs medicamento----------------------------//
+        function fill_tmed(idlistp = '') {
+            var datatable2 = $('#tmed').DataTable({
+                language: idioma_espanol,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('contrato-medicamento')}}",
+                    //type: "get",
+                    // data: {"idlist": procedimiento_idp}
+                    data: {
+                        id: idlistp
+                    }
+                },
+                columns: [{
+                        data: 'actionmd',
+                        orderable: false
+                    },
+                    {
+                        data: 'codigo',
+                        name: 'codigo'
+                    },
+                    {
+                        data: 'Medicamento',
+                        name: 'Medicamento'
+                    },
+                    {
+                        data: 'contrato',
+                        name: 'contrato'
+                    },
+                    {
+                        data: 'nombre',
+                        name: 'nombre'
                     }
 
                 ],
@@ -945,13 +932,13 @@ Contratos
             });
         }
 
-        //-- Eliminar Profesional de la relación 
+        //-- Eliminar EPS de la relación 
 
-        $(document).on('click', '.eliminarpp', function() {
+        $(document).on('click', '.eliminarce', function() {
             var id = $(this).attr('id');
 
             var text = "Estás por retirar un profesional"
-            var url = "/profesionalvsprocedimiento/" + id;
+            var url = "/contratovsEPS/" + id;
             var method = 'delete';
 
             Swal.fire({
@@ -973,10 +960,10 @@ Contratos
                         success: function(data) {
                             if (data.success == 'ok3') {
 
-                                $('#tprofesional').DataTable().ajax.reload();
+                                $('#tepsempresa').DataTable().ajax.reload();
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Profesional ha sido retirado correctamente',
+                                    title: 'EPS ha sido retirada correctamente',
                                     showConfirmButton: false,
                                     timer: 1000
 

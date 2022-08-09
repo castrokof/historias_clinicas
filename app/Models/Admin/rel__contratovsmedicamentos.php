@@ -11,7 +11,8 @@ class rel__contratovsmedicamentos extends Model
     protected $primary_key = 'id_contratovsmedicamento';
     protected $fillable = [
         'contrato_id',
-        'medicamento_id'
+        'medicamento_id',
+        'valor'
     ];
     public function contratomed(){
         return $this->belongsTo(Def_Contratos::class, 'id_contrato');

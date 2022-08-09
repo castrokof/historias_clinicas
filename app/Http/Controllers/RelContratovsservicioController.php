@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\rel__contratovsservicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class RelContratovsservicioController extends Controller
 {
@@ -12,9 +14,35 @@ class RelContratovsservicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $usuario_id = $request->session()->get('usuario_id');
+        $idlist = $request->id;
+
+        if($request->ajax()){
+            $datast = DB::table('rel__contratovsservicios')
+            ->Join('def__contratos', 'rel__contratovsservicios.contrato_id', '=', 'def__contratos.id_contrato')
+            ->Join('servicios', 'rel__contratovsservicios.servicio_id', '=', 'servicios.id_servicio')
+            ->select('rel__contratovsservicios.id_contratovsservicios as idd','def__contratos.contrato as contrato', 'def__contratos.nombre as nombre','servicios.cod_servicio','servicios.nombre as Servicio')
+            ->where('rel__contratovsservicios.contrato_id', '=', $idlist )
+            ->get();
+          
+        return  DataTables()->of($datast)
+        ->addColumn('actionsr', function($datast){
+        $button = '<button type="button" name="eliminarsr" id="'.$datast->idd.'"
+        class = "eliminarsr btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
+               
+        return $button;
+
+        }) 
+        ->rawColumns(['actionsr'])
+        ->make(true);
+        
+     }
+
+     
+      /* return view('admin.financiero.contratos.index', compact('datast')); */
+      return view('admin.financiero.contratos.index');
     }
 
     /**

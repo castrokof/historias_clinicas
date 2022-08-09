@@ -5,7 +5,7 @@
         <div class="card card-info">
             <div class="card-body table-responsive p-2">
 
-                <table id="tmedicamento" class="table table-hover  text-nowrap">
+                <table id="tmed" class="table table-hover  text-nowrap">
 
                     <thead>
                         <tr>

@@ -14,9 +14,35 @@ class RelContratovsepsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $usuario_id = $request->session()->get('usuario_id');
+        $idlist = $request->id;
+
+        if($request->ajax()){
+            $datast = DB::table('rel__contratovseps')
+            ->Join('def__contratos', 'rel__contratovseps.contrato_id', '=', 'def__contratos.id_contrato')
+            ->Join('eps_empresas', 'rel__contratovseps.eps_id', '=', 'eps_empresas.id_eps_empresas')
+            ->select('rel__contratovseps.id_contratovseps as idd','def__contratos.contrato as contrato', 'def__contratos.nombre as nombre','eps_empresas.codigo as EPS','eps_empresas.nombre as Empresa')
+            ->where('rel__contratovseps.contrato_id', '=', $idlist )
+            ->get();
+          
+        return  DataTables()->of($datast)
+        ->addColumn('actionpt', function($datast){
+        $button = '<button type="button" name="eliminarce" id="'.$datast->idd.'"
+        class = "eliminarce btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
+               
+        return $button;
+
+        }) 
+        ->rawColumns(['actionpt'])
+        ->make(true);
+        
+     }
+
+     
+      /* return view('admin.financiero.contratos.index', compact('datast')); */
+      return view('admin.financiero.contratos.index');
     }
 
     /**

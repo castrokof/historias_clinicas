@@ -12,7 +12,7 @@ $(document).ready(function () {
     //------------------------------------------------------Funciones de Listas-----------------------------------------//
 
     //Función para abrir modal y prevenir el cierre de creación de contratos
-    $(document).on('click', '.crear_contrato2', function () {
+    $(document).on('click', '.crear_contrato', function () {
 
         $('#modal-contratos').modal({ backdrop: 'static', keyboard: false });
         $('#modal-contratos').modal('show');
