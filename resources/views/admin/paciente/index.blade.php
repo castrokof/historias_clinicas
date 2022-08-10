@@ -355,6 +355,7 @@ Pacientes
 
     });
 
+    //Select para consultar los Paises
     $("#paciente_pais").select2({
       theme: "bootstrap",
       ajax: {
@@ -379,7 +380,7 @@ Pacientes
     });
     //Select para consultar la EPS, Niveles
     $("#eps").select2({
-        language: "es",
+      language: "es",
       theme: "bootstrap",
       ajax: {
         url: "{{ route('eps')}}",
@@ -392,7 +393,7 @@ Pacientes
               return {
 
                 //text: data.codigo,
-                text: data.codigo+" - "+data.nombre,
+                text: data.codigo + " - " + data.nombre,
                 id: data.id_eps_empresas
 
               }
@@ -408,54 +409,54 @@ Pacientes
 
   $("#plan").select2({
     language: "es",
-      theme: "bootstrap",
-      placeholder: 'Seleccione regimen',
-      ajax: {
-        url: "{{ route('selectlist')}}",
-        dataType: 'json',
-        delay: 250,
-        processResults: function(data) {
-          return {
-            results: $.map(data.regimen, function(data) {
+    theme: "bootstrap",
+    placeholder: 'Seleccione regimen',
+    ajax: {
+      url: "{{ route('selectlist')}}",
+      dataType: 'json',
+      delay: 250,
+      processResults: function(data) {
+        return {
+          results: $.map(data.regimen, function(data) {
 
-              return {
+            return {
 
-                text: data.nombre,
-                id: data.nombre
+              text: data.nombre,
+              id: data.nombre
 
-              }
-            })
-          };
-        },
-        cache: true
-      }
-    });
+            }
+          })
+        };
+      },
+      cache: true
+    }
+  });
 
 
 
-    $("#tipo_documento").select2({
-      theme: "bootstrap",
-      placeholder: 'tipo documento',
-      ajax: {
-        url: "{{ route('selectlist')}}",
-        dataType: 'json',
-        delay: 250,
-        processResults: function(data) {
-          return {
-            results: $.map(data.type, function(data) {
+  $("#tipo_documento").select2({
+    theme: "bootstrap",
+    placeholder: 'tipo documento',
+    ajax: {
+      url: "{{ route('selectlist')}}",
+      dataType: 'json',
+      delay: 250,
+      processResults: function(data) {
+        return {
+          results: $.map(data.type, function(data) {
 
-              return {
+            return {
 
-                text: data.nombre,
-                id: data.nombre
+              text: data.nombre,
+              id: data.nombre
 
-              }
-            })
-          };
-        },
-        cache: true
-      }
-    });
+            }
+          })
+        };
+      },
+      cache: true
+    }
+  });
 
 
 

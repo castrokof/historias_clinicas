@@ -208,6 +208,15 @@ Route::get('documento_financiero/{id}/editar', 'DefDocumentosController@editar')
 Route::put('documento_financiero/{id}', 'DefDocumentosController@actualizar')->name('actualizar_doc_fin')->middleware('superEditor');
 Route::post('documento_fin_estado', 'DefDocumentosController@updateestado')->name('documento_fin_estado')->middleware('superEditor');
 
+/* RUTAS DE DOCUMENTOS CONSECUTIVOS */
+Route::get('documentos_consecutivo', 'DefDocumentosConsecutivoController@index')->name('documentos_consecutivo')->middleware('superEditor');
+Route::get('documentos_consecutivo/crear', 'DefDocumentosConsecutivoController@crear')->name('crear_doc_conse')->middleware('superEditor');
+Route::post('documentos_consecutivo', 'DefDocumentosConsecutivoController@guardar')->name('guardar_doc_conse')->middleware('superEditor');
+Route::get('documentos_consecutivo/{id}/editar', 'DefDocumentosConsecutivoController@editar')->name('editar_doc_conse')->middleware('superEditor');
+Route::put('documentos_consecutivo/{id}', 'DefDocumentosConsecutivoController@actualizar')->name('actualizar_doc_conse')->middleware('superEditor');
+Route::post('documento_conse_estado', 'DefDocumentosConsecutivoController@updateestado')->name('documento_conse_estado')->middleware('superEditor');
+Route::get('documento', 'DefDocumentosConsecutivoController@selectdoc')->name('documento')->middleware('superEditor');
+
 /* RUTAS DEL CITA */
 Route::get('cita', 'CitaController@index')->name('cita')->middleware('superEditor');
 Route::get('cita/crear', 'CitaController@crear')->name('crear_cita')->middleware('superEditor');

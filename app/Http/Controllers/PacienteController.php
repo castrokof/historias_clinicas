@@ -179,6 +179,7 @@ class PacienteController extends Controller
         return response()->json(['success' => 'ok1']);
     }
 
+    //Funcion para seleccionar el País desde la tabla paises
     public function selectpa(Request $request)
     {
         $paisp = [];
@@ -194,6 +195,7 @@ class PacienteController extends Controller
         }
     }
 
+    //Funcion para seleccionar la EPS desde la tabla eps_empresas
     public function selecteps(Request $request)
     {
         $paisp = [];
