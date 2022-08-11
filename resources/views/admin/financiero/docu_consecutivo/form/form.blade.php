@@ -1,7 +1,7 @@
 <div class="form-group row">
     <div class="col-lg-3">
         <label for="doc_conse" class="col-xs-4 control-label requerido">Documento</label>
-        <select name="documento_id" id="doc_conse" class="form-control" style="width: 100%;" value="{{old('doc_conse')}}" required>
+        <select name="documento_id" id="doc_conse" class="form-control" style="width: 100%;" required>
         </select>
     </div>
     <div class="col-lg-3">

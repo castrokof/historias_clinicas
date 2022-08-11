@@ -10,42 +10,46 @@
             </div>
             <div class="x_panel">
                 <div class="card-body">
-                    <div class="form-group row">
-                        <div class="input-group input-group col-lg-3">
-                            <input type="search" name="key" id="key" class="form-control form-control-mb" placeholder="Buscar paciente digite documento....">
-                            <div class="input-group-append">
-                                <button type="button" class="btn btn-mb btn-default" id="buscarp">
-                                    <i class="fa fa-search"></i>
-                                </button>
+                    <form id="form-general2" class="form-horizontal" method="POST">
+                        <div class="form-group row">
+                            <div class="input-group input-group col-lg-3">
+                                <input type="search" name="key" id="key" class="form-control form-control-mb" placeholder="Buscar paciente digite documento....">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-mb btn-default" id="buscarp">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="input-group input-group col-lg-2">
-                            <input type="text" name="cod_documentos" id="cod_documentos" class="form-control form-control-mb" placeholder="Documento factura..." value="">
-                            <div class="input-group-append">
-                                <span type="button" class="btn btn-mb btn-default">
-                                    <i class="fas fa-file"></i>
-                                </span>
+                            <div class="input-group input-group col-lg-2">
+                                <input type="search" name="key2" id="key2" class="form-control form-control-mb" placeholder="Documento factura..." value="">
+                                <div class="input-group-append">
+                                    <span type="button" class="btn btn-mb btn-default" id="doc_conse">
+                                        <i class="fas fa-file"></i>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-group input-group col-lg-1">
-                            <input type="text" name="numero_factura" id="numero_factura" class="form-control form-control-mb" placeholder="Número..." value="" readonly>
-                            <div class="input-group-append">
-                                <span type="button" class="btn btn-mb btn-default">
-                                    <i class="fas fa-tag"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="input-group input-group col-lg-2">
-                            <input type="text" name="created_at" id="created_at" class="form-control form-control-mb" placeholder="Fecha y hora del sistema" value="{{now() ?? ''}}" readonly>
-                            <div class="input-group-append">
-                                <span type="button" class="btn btn-mb btn-default">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                            </div>
-                        </div>
 
-                    </div>
+                            <div class="input-group input-group col-lg-1">
+                                <input type="text" name="numero_factura" id="numero_factura" class="form-control form-control-mb" placeholder="Número..." value="" readonly>
+                                <div class="input-group-append">
+                                    <span type="button" class="btn btn-mb btn-default">
+                                        <i class="fas fa-tag"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="input-group input-group col-lg-2">
+                                <input type="text" name="created_at" id="created_at" class="form-control form-control-mb" placeholder="Fecha y hora del sistema" value="{{now() ?? ''}}" readonly>
+                                <div class="input-group-append">
+                                    <span type="button" class="btn btn-mb btn-default">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Aqui termina el form2 -->
+                    </form>
 
                     <form id="form-general1" class="form-horizontal" method="POST">
                         <div class="form-group row">

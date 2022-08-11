@@ -6,13 +6,9 @@ Documentos Consecutivos
 @section("styles")
 <link href="{{asset("assets/$theme/plugins/datatables-bs4/css/dataTables.bootstrap4.css")}}" rel="stylesheet" type="text/css" />
 <link href="{{asset("assets/css/select2.min.css")}}" rel="stylesheet" type="text/css" />
-<link href="{{ asset("assets/$theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
-
-<!-- <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" /> -->
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 
@@ -30,9 +26,6 @@ Documentos Consecutivos
 <script src="{{asset("assets/$theme/plugins/datatables/jquery.dataTables.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/$theme/plugins/datatables-bs4/js/dataTables.bootstrap4.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/js/jquery-select2/select2.min.js")}}" type="text/javascript"></script>
-<script src="{{ asset('assets/js/jquery-select2/select2.min.js') }}" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-
 
 <script src="https://cdn.datatables.net/plug-ins/1.10.20/api/sum().js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
@@ -187,7 +180,7 @@ Documentos Consecutivos
 
         });
 
-        let nombreinput;
+        
         // Funcion para editar el documento
 
         $(document).on('click', '.edit', function() {
@@ -221,7 +214,7 @@ Documentos Consecutivos
 
         });
 
-        //Select para consultar los Paises
+        //Select para consultar los Documentos
         $("#doc_conse").select2({
             theme: "bootstrap",
             ajax: {
@@ -235,7 +228,7 @@ Documentos Consecutivos
 
                             return {
 
-                                text: data.documento_id + " - " + data.consecutivo,
+                                text: data.cod_documentos + " - " + data.nombre,
                                 id: data.id_documento,
 
                             }
@@ -247,7 +240,6 @@ Documentos Consecutivos
                 cache: true
             }
         });
-
 
 
     });

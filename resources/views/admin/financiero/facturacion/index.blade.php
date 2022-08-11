@@ -132,7 +132,6 @@ Facturación
 
         });
 
-
         // Callback para filtrar el paciente
         $('#buscarp').click(function() {
 
@@ -198,6 +197,56 @@ Facturación
             });
         }
 
+        // Callback para filtrar el Documentos
+        $('#doc_conse').click(function() {
+
+            const document = $('#key2').val();
+
+            if (document != '') {
+
+                fill_documentos(document);
+
+
+            } else {
+
+                Swal.fire({
+                    title: 'Debes digitar un documento valido',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+            }
+
+        });
+
+        function fill_documentos(document = '') {
+
+            $('#form-general2')[0].reset();
+
+            $.ajax({
+                url: "{{ route('documento') }}",
+                data: {
+                    document: document
+                },
+                dataType: "json",
+                success: function(data) {
+                    if (data.pacientes == null) {
+                        Manteliviano.notificaciones('Documento no encontrado', 'Sistema Historias Clínicas', 'warning');
+                    } else {
+                        //Pintar formulario
+                        console.log(data);
+                        $.each(data, function(i, paciente) {
+                            $("#pnombre").val(paciente.pnombre);
+                            $("#snombre").val(paciente.snombre);
+                            $("#papellido").val(paciente.papellido);
+                        });
+                    }
+
+                }
+            });
+        }
 
         // Agregar filas a tabla para guardar
         $('#addfila').click(function() {

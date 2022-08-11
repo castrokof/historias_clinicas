@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 
 use App\Models\Admin\def__documentos_consecutivo;
 use App\Models\Admin\Def_Documentos;
@@ -36,63 +37,8 @@ class DefDocumentosConsecutivoController extends Controller
 
             return  DataTables()->of($datas)
                 ->addColumn('action', function ($datas) {
-                    $button = '<button type="button" name="edit" id="' . $datas->id_documento_consecutivo . '"
+                    $button = '<button type="button" name="edit" id="' . $datas->idd . '"
                     class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar"><i class="far fa-edit"></i></button>';
-
-                    return $button;
-                })->addColumn('estado', function ($datas) {
-
-
-                    if ($datas->estado == "1") {
-
-                        $button = '
-                 <div class="custom-control custom-switch ">
-                 <input type="checkbox"  class="check_98 custom-control-input"  id="customSwitch99' . $datas->id_documento_consecutivo . '" value="' . $datas->id_documento_consecutivo . '"  checked>
-                 <label class="custom-control-label" for="customSwitch99' . $datas->id_documento_consecutivo . '"  valueid="' . $datas->id_documento_consecutivo . '"></label>
-                 </div>';
-                    } else {
-
-                        $button = '
-                 <div class="custom-control custom-switch ">
-                 <input type="checkbox" class="check_98 custom-control-input" id="customSwitch99' . $datas->id_documento_consecutivo . '" value="' . $datas->id_documento_consecutivo . '" >
-                 <label class="custom-control-label" for="customSwitch99' . $datas->id_documento_consecutivo . '"  valueid="' . $datas->id_documento_consecutivo . '"></label>
-                 </div>';
-                    }
-
-                    return $button;
-                })
-                ->rawColumns(['action', 'estado'])
-                ->make(true);
-        }
-
-        return view('admin.financiero.docu_consecutivo.index');
-    }
-
-    public function index_2(Request $request) // Este index es de prueba
-    {
-        $usuario_id = $request->session()->get('usuario_id');
-        $idlist = $request->id;
-
-        if ($request->ajax()) {
-            //$idlist = def__documentos_consecutivo::orderBy('id_documento_consecutivo', 'asc')->get();
-
-            $datast = DB::table('def__documentos_consecutivos')
-                ->Join('def__documentos', 'def__documentos_consecutivos.documento_id', '=', 'def__documentos.id_documento')
-                ->select(
-                    'def__documentos_consecutivos.id_documento_consecutivo as idd',
-                    'def__documentos.cod_documentos as codigo',
-                    'def__documentos.nombre as nombre',
-                    'def__documentos_consecutivos.consecutivo as consecutivo',
-                    'def__documentos_consecutivos.sede as sede'
-                )
-                ->where('def__documentos_consecutivos.id_documento_consecutivo', '=', $idlist)
-                ->get();
-
-
-            return  DataTables()->of($datast)
-                ->addColumn('action', function ($datast) {
-                    $button = '<button type="button" name="eliminarpp" id="' . $datast->idd . '" 
-        class = "eliminarpp btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relacion"><i class=""><i class="fa fa-trash"></i></i></a>';
 
                     return $button;
                 })
@@ -148,6 +94,27 @@ class DefDocumentosConsecutivoController extends Controller
                 ->get();
             return response()->json($docuc);
         }
+    }
+
+    public function buscarp(Request $request)
+    {
+        $usuario_id = $request->session()->get('usuario_id');
+        $fechaActual= Carbon::now()->toDateString()." 00:00:01";
+
+        $paises = Def_Documentos::orderBy('id_documento')->select('id_documento', 'cod_documentos', 'consecutivo')->get();
+
+        if (request()->ajax()) {
+
+            /* $data = Paciente::where('documento', $request->document)->first(); */
+            $data = DB::table('paciente') 
+            ->Join('paises','paciente.pais_id','=','paises.id_documento')
+            /* ->select(DB::raw('paises.nombre as pais'),'paciente.documento as documento',) */
+            ->where('paciente.documento', $request->document)
+            ->first();
+
+            return response()->json(['pacientes' => $data]);
+        }
+
     }
 
     /**
