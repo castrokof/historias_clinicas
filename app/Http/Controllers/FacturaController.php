@@ -124,7 +124,7 @@ class FacturaController extends Controller
         if (request()->ajax()) {
 
             /* $data = Paciente::where('documento', $request->document)->first(); */
-            $data = DB::table('paciente') 
+            $data = DB::table('paciente')
             ->Join('paises','paciente.pais_id','=','paises.id_pais')
             /* ->select(DB::raw('paises.nombre as pais'),'paciente.documento as documento',) */
             ->where('paciente.documento', $request->document)

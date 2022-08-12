@@ -144,9 +144,7 @@ class DefProfesionalesController extends Controller
      */
     public function editar($id)
     {
-        //
-        // $data = Def_Procedimientos::findOrFail($id);
-        // return response()->json(['result'=>$data]);
+
         if (request()->ajax()) {
 
             $data = Def_Profesionales::where('id_profesional', $id)->first();
@@ -179,7 +177,7 @@ class DefProfesionalesController extends Controller
                             'estado' => '0'
                         ]);
 
-                    return response()->json(['respuesta' => 'Profesional desactivado', 'titulo' => 'System Fidem', 'icon' => 'warning']);
+                    return response()->json(['respuesta' => 'Profesional desactivado', 'titulo' => 'Sistema Historias Clínicas', 'icon' => 'warning']);
                 } else if ($data == '0') {
                     DB::table('def__profesionales')
                         ->where('id_profesional', $request->input('id'))
@@ -187,7 +185,7 @@ class DefProfesionalesController extends Controller
                             'estado' => '1'
                         ]);
 
-                    return response()->json(['respuesta' => 'Profesional habilitado correctamente', 'titulo' => 'System Fidem', 'icon' => 'warning']);
+                    return response()->json(['respuesta' => 'Profesional habilitado correctamente', 'titulo' => 'Sistema Historias Clínicas', 'icon' => 'warning']);
                 }
             }
         }

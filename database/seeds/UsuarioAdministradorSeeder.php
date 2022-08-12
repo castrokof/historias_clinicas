@@ -800,8 +800,8 @@ class UsuarioAdministradorSeeder extends Seeder
         ]);
         DB::table('listasdetalle')->insert([
             'slug'=> 'VI',
-            'nombre'=> 'SALUD VITALIA',
-            'descripcion'=> 'SALUD VITALIA',
+            'nombre'=> 'SALUD VITALIA S.A.S',
+            'descripcion'=> 'SALUD VITALIA S.A.S',
             'activo'=> 'SI',
             'listas_id'=> 1,
             'user_id'=> 1
@@ -918,5 +918,62 @@ class UsuarioAdministradorSeeder extends Seeder
             'listas_id'=> 3,
             'user_id'=> 1
         ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'FI',
+            'nombre'=> 'ATENCIÓN FIDEM S.A.S',
+            'descripcion'=> 'ATENCIÓN FIDEM S.A.S',
+            'activo'=> 'SI',
+            'listas_id'=> 1,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> 'MC',
+            'nombre'=> 'SALUD MEDCOL S.A.S',
+            'descripcion'=> 'SALUD MEDCOL S.A.S',
+            'activo'=> 'SI',
+            'listas_id'=> 1,
+            'user_id'=> 1
+        ]);
+
+        //Creación de Grupos y Subgrupos
+
+        DB::table('def__grupoysubgrupomeds')->insert([
+
+            'cod_grupo'=> 1,
+            'nombre_grupo'=>'MEDICAMENTO CONTROLADO',
+            'estado'=>1
+        ]);
+        DB::table('def__grupoysubgrupomeds')->insert([
+
+            'cod_grupo'=> 2,
+            'nombre_grupo'=>'MEDICAMENTO NO CONTROLADO',
+            'estado'=>1
+        ]);
+
+        DB::table('def__subgrupomeds')->insert([
+
+            'cod_subgrupo'=> 01,            
+            'descripcion_subgrupo'=>'MEDICAMENTO REGULADO',
+            'grupo_id'=>1
+        ]);
+        DB::table('def__subgrupomeds')->insert([
+
+            'cod_subgrupo'=> 02,
+            'descripcion_subgrupo'=>'MEDICAMENTO NO REGULADO',
+            'grupo_id'=>1
+        ]);
+        DB::table('def__subgrupomeds')->insert([
+
+            'cod_subgrupo'=> 03,
+            'descripcion_subgrupo'=>'MEDICAMENTO REGULADO',
+            'grupo_id'=>2
+        ]);
+        DB::table('def__subgrupomeds')->insert([
+
+            'cod_subgrupo'=> 04,
+            'descripcion_subgrupo'=>'MEDICAMENTO NO REGULADO',
+            'grupo_id'=>2
+        ]);
+        
     }
 }
