@@ -138,6 +138,24 @@ class DefDocumentosController extends Controller
         return view('admin.financiero.documentos.index');
     }
 
+    //Funcion para seleccionar el Tipo de Documento
+    public function selectdo(Request $request)
+    {
+        $tipodo = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+
+            $tipodo = DB::table('def__tipos_documentos')
+                ->where('cod_tipos_documento', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->get();
+
+            return response()->json($tipodo);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

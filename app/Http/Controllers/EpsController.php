@@ -138,7 +138,7 @@ class EpsController extends Controller
                 'regimen' => 'required|max:20',
                 'tipo_recuperacion' => 'required|max:20',
                 'afiliacion' => '',
-                'servicios' => 'required',
+                'servicio_id' => 'required',
                 'vlr_copago' => 'numeric|required',
                 'estado'  => 'required'
 
@@ -152,6 +152,24 @@ class EpsController extends Controller
 
             Eps_niveles::create($request->all());
             return response()->json(['success' => 'okn1']);
+        }
+    }
+
+    //Funcion para seleccionar el Servicios de la tabla servicios
+    public function selectser(Request $request)
+    {
+        $tipodo = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+
+            $tipodo = DB::table('servicios')
+                ->where('cod_servicio', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->get();
+
+            return response()->json($tipodo);
         }
     }
 

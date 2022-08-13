@@ -215,6 +215,30 @@ Documentos Financieros
             });
         }
 
+        //Select para consultar los tipos de documentos
+        $("#tipo_documento").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('tipo_documento')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.cod_tipos_documento + "-" + data.nombre,
+                                id: data.id_tipo_doc
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
 
         // Funcion para editar el documento
 

@@ -266,6 +266,30 @@ Eps Empresas
 
     });
 
+    //Select para consultar los Servicios
+    $("#servicio").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('select_servicios')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.cod_servicio + "-" + data.nombre,
+                                id: data.id_servicio
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
 
     // Edición de cliente
 
@@ -320,7 +344,7 @@ Eps Empresas
       url: "/eps_niveles/" + id + "/editarn",
       dataType: "json",
       success: function(data) {
-        $('#codigo_n').val(data.result.codigo);
+        $('#codigo_empresa').val(data.result.codigo);
         $('#nombre_n').val(data.result.nombre);
         $('#NIT_n').val(data.result.NIT);
         $('#eps_empresas_id').val(id);

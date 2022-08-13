@@ -238,7 +238,6 @@ Medicamentos
 
 
 
-
         //Función para abrir detalle del registro
 
         $(document).on('click', '.listasDetalleAll', function() {

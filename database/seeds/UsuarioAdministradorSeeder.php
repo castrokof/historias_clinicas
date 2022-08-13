@@ -975,5 +975,31 @@ class UsuarioAdministradorSeeder extends Seeder
             'grupo_id'=>2
         ]);
         
+        //Volcado de datos a la tabla def__tipos_documentos
+        DB::table('def__tipos_documentos')->insert([
+
+            'cod_tipos_documento'=> 'FV',
+            'nombre'=>'Factura de venta',
+            'estado'=>1
+        ]);
+        DB::table('def__tipos_documentos')->insert([
+
+            'cod_tipos_documento'=> 'NC',
+            'nombre'=>'Nota crédito',
+            'estado'=>1
+        ]);
+        DB::table('def__tipos_documentos')->insert([
+
+            'cod_tipos_documento'=> 'ND',
+            'nombre'=>'Nota débito',
+            'estado'=>1
+        ]);
+        DB::table('def__tipos_documentos')->insert([
+
+            'cod_tipos_documento'=> 'OI',
+            'nombre'=>'Orden de internación',
+            'estado'=>1
+        ]);
+        
     }
 }

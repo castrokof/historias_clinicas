@@ -216,6 +216,7 @@ Route::post('documento_financiero', 'DefDocumentosController@guardar')->name('gu
 Route::get('documento_financiero/{id}/editar', 'DefDocumentosController@editar')->name('editar_doc_fin')->middleware('superEditor');
 Route::put('documento_financiero/{id}', 'DefDocumentosController@actualizar')->name('actualizar_doc_fin')->middleware('superEditor');
 Route::post('documento_fin_estado', 'DefDocumentosController@updateestado')->name('documento_fin_estado')->middleware('superEditor');
+Route::get('tipo_documento', 'DefDocumentosController@selectdo')->name('tipo_documento')->middleware('superEditor');
 
 /* RUTAS DE DOCUMENTOS CONSECUTIVOS */
 Route::get('documentos_consecutivo', 'DefDocumentosConsecutivoController@index')->name('documentos_consecutivo')->middleware('superEditor');
@@ -277,6 +278,7 @@ Route::get('eps_niveles', 'EpsController@indexnivel')->name('eps_niveles')->midd
 Route::get('eps_niveles/{id}/editarn', 'EpsController@editarn')->name('niveles_eps_empresas')->middleware('superEditor');
 Route::post('eps_niveles', 'EpsController@guardarnivel')->name('agregarnivel_eps_empresas')->middleware('superEditor');
 Route::put('eps_niveles/{id}', 'EpsController@actualizar')->name('actualizarnivel_eps_empresas')->middleware('superEditor');
+Route::get('select_servicios', 'EpsController@selectser')->name('select_servicios')->middleware('superEditor');
 
 /* RUTAS DEL DIAGNOSTICO */
 Route::get('diagnostico', 'DiagnosticoController@index')->name('diagnostico')->middleware('superEditor');

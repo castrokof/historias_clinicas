@@ -1,7 +1,3 @@
-<!-- <p><a style="color:#0071c5;"> Niveles y cuotas de recuperación:</a> </p>
-    <hr>-->
-
-
 
 <div class="card card-info p-2">
   <!--<div class="card-header with-border row p-2"> -->
@@ -57,11 +53,16 @@
             <option value="Todos">Todos</option>
           </select>
         </div>
-
-        <div class="col-lg-4">
+        
+        <div class="col-lg-2">
+          <label for="servicio" class="col-xs-4 control-label requerido">Servicios</label>
+          <select name="servicio_id" id="servicio" class="form-control" style="width: 100%;" required>
+          </select>
+        </div>
+        <!-- <div class="col-lg-4">
           <label for="servicios" class="col-xs-6 control-label">Servicios</label>
           <input type="text" name="servicios" id="servicios" class="form-control" value="{{old('servicios')}}" required>
-        </div>
+        </div> -->
         <div class="col-lg-2">
           <label for="vlr_copago" class="col-xs-6 control-label">Valor</label>
           <input type="number" name="vlr_copago" id="vlr_copago" class="validanumericos form-control" placeholder="$" value="{{old('vlr_copago')}}" required>
@@ -81,7 +82,7 @@
         <input type="hidden" name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario_id') ?? ''}}" readonly>
       </div>
       <div class="col-lg-2">
-        <input type="hidden" name="codigo_empresa" id="codigo_n" class="form-control" value="{{Session()->get('codigo_empresa') ?? ''}}" readonly>
+        <input type="hidden" name="codigo_empresa" id="codigo_empresa" class="form-control" value="{{old('codigo_empresa')}}" readonly>
       </div>
       <div class="col-lg-3">
         <input type="hidden" name="eps_empresas_id" id="eps_empresas_id" class="form-control" value="{{old('eps_empresas_id')}}" readonly>

@@ -17,8 +17,8 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-lg-2">
-                                        <label for="codigo_n" class="col-xs-4 control-label ">Código</label>
-                                        <input type="text" name="codigo_n" id="codigo_n" class="form-control" readonly>
+                                        <label for="codigo" class="col-xs-4 control-label ">Código</label>
+                                        <input type="text" name="codigo" id="codigo_empresa" class="form-control" readonly>
                                     </div>
                                     <div class="col-lg-4">
                                         <label for="nombre_n" class="col-xs-4 control-label requerido">Razón Social</label>
