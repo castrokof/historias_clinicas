@@ -12,8 +12,8 @@
                             <th>Acciones</th>
                             <th>Código</th>
                             <th>Profesional</th>
-                            <th>Cups</th>
-                            <th>Procedimiento</th>
+                            <th>Código Medicamento</th>
+                            <th>Medicamento</th>
                         </tr>
                     </thead>
                     <tbody>

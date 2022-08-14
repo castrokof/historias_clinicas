@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin\Def_MedicamentosSuministros;
+use App\Models\Admin\Def_ATC_Medicamentos;
+use App\Models\Admin\def__grupoysubgrupomed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -91,7 +93,7 @@ class DefMedicamentosSuministrosController extends Controller
                 ->rawColumns(['action', 'estado'])
                 ->make(true);
         }
-        
+
         return view('admin.financiero.profesionales.index');
     }
 
@@ -109,6 +111,8 @@ class DefMedicamentosSuministrosController extends Controller
                 'marca' => 'required',
                 'CUMS',
                 'ATC_id',
+                'grupo_id',
+                'subgrupo_id' => 'required',
                 'IUM',
                 'invima' => 'required',
                 'tipo' => 'required',
@@ -131,6 +135,56 @@ class DefMedicamentosSuministrosController extends Controller
 
             return response()->json(['success' => 'ok']);
         }
+    }
+
+    //Funcion para seleccionar la EPS desde la tabla eps_empresas
+    public function selectatc(Request $request)
+    {
+        $atcmed = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $atcmed = Def_ATC_Medicamentos::orderBy('id_ATC')
+                ->where('cod_atc', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%' . $term . '%')
+                ->orwhere('forma', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($atcmed);
+        }
+    }
+
+    /* //Funcion para seleccionar el grupo
+    public function selectgrupo(Request $request)
+    {
+        $grupmed = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $grupmed = def__grupoysubgrupomed::orderBy('id')
+                ->where('nombre_grupo', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($grupmed);
+        }
+    } */
+
+    //Funcion para seleccionar el grupo
+    public function selectsubgrupo(Request $request)
+    {
+        $grupmed = [];
+
+        $term = $request->get('q');
+
+        if ($request->ajax()) {
+            $grupmed = DB::table('def__subgrupomeds')
+                ->Join('def__grupoysubgrupomeds', 'def__subgrupomeds.grupo_id', '=', 'def__grupoysubgrupomeds.id')
+                
+                ->where('def__grupoysubgrupomeds.nombre_grupo', 'LIKE', '%' . $term . '%')
+                ->orwhere('def__subgrupomeds.descripcion_subgrupo', 'LIKE', '%' . $term . '%')
+                ->get();
+        }
+        return response()->json($grupmed);
     }
 
     /**

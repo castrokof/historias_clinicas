@@ -14,10 +14,11 @@
                             </div>
                         </div>
                         <form id="form-general-n" class="form-horizontal" method="POST">
+
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-lg-2">
-                                        <label for="codigo" class="col-xs-4 control-label ">Código</label>
+                                        <label for="codigo_empresa" class="col-xs-4 control-label ">Código</label>
                                         <input type="text" name="codigo" id="codigo_empresa" class="form-control" readonly>
                                     </div>
                                     <div class="col-lg-4">
@@ -31,8 +32,8 @@
                                 </div>
                             </div>
 
-                            @csrf
                             <div class="card-body">
+                                @csrf
                                 @include('admin.eps_empresa.form-niveles')
                             </div>
                             <!-- /.card-body -->

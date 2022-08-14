@@ -31,8 +31,7 @@
           </select>
         </div>
         <div class="col-lg-3">
-          <label for="tipo_recuperacion" class="col-xs-6 control-label">Tipo Recaudo</label>
-          <!-- <input type="text" name="tipo_recuperacion" id="tipo_recuperacion" class="form-control" value="{{old('tipo_recuperacion')}}" required> -->
+          <label for="tipo_recuperacion" class="col-xs-6 control-label">Tipo Recaudo</label>          
           <select name="tipo_recuperacion" id="tipo_recuperacion" class="form-control" style="width: 100%;" value="{{old('tipo_recuperacion')}}" required>
             <option value="" selected>-- Seleccionar --</option>
             <option value="Copago">Copago</option>
@@ -81,8 +80,9 @@
       <div class="col-lg-3">
         <input type="hidden" name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario_id') ?? ''}}" readonly>
       </div>
-      <div class="col-lg-2">
+      <div class="col-lg-4">
         <input type="hidden" name="codigo_empresa" id="codigo_empresa" class="form-control" value="{{old('codigo_empresa')}}" readonly>
+        <input type="hidden" name="nombre" id="nombre_n" class="form-control" readonly>
       </div>
       <div class="col-lg-3">
         <input type="hidden" name="eps_empresas_id" id="eps_empresas_id" class="form-control" value="{{old('eps_empresas_id')}}" readonly>

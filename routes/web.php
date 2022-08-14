@@ -128,7 +128,12 @@ Route::post('medicamentos', 'DefMedicamentosSuministrosController@guardar')->nam
 Route::get('editar_medicamentos/{id}', 'DefMedicamentosSuministrosController@editar')->name('editar_medicamentos')->middleware('superEditor');
 Route::put('medicamentos/{id}', 'DefMedicamentosSuministrosController@actualizar')->name('actualizar_medicamentos')->middleware('superEditor');
 Route::post('medicamento-estado', 'DefMedicamentosSuministrosController@updateestado')->name('med_estado')->middleware('superEditor');
+Route::get('atc_medicamento', 'DefMedicamentosSuministrosController@selectatc')->name('atc_medicamento')->middleware('superEditor');
+// Route::get('grupo_medicamento', 'DefMedicamentosSuministrosController@selectgrupo')->name('grupo_medicamento')->middleware('superEditor');
+Route::get('grupo_subgrupo_med', 'DefMedicamentosSuministrosController@selectsubgrupo')->name('grupo_subgrupo_med')->middleware('superEditor');
 
+//Ruta para consultar las relaciones de Medicamento vs Servicios
+Route::get('servicio_medicamento', 'RelServiciovsmedicamentosController@index')->name('servicio_medicamento')->middleware('superEditor');
 
 //RUTA PARA CREAR PROFESIONALES
 Route::get('profesionales', 'DefProfesionalesController@index')->name('profesionalesIndex')->middleware('superEditor');
@@ -150,6 +155,7 @@ Route::get('relproceIndex', 'DefProcedimientosController@rel_index')->name('relp
 Route::get('profesionalvsmedicamento', 'RelProfesionalvsmedicamentosController@index')->name('profesionalvsmedicamento')->middleware('superEditor');
 Route::delete('medicamentovsprofesional/{id}', 'RelProfesionalvsmedicamentosController@eliminar')->name('eliminar_medicamentos')->middleware('superEditor');
 Route::get('relmedicamentoIndex', 'DefMedicamentosSuministrosController@rel_index')->name('relmedicamentoIndex')->middleware('superEditor');
+Route::get('profesional_medicamento', 'RelProfesionalvsmedicamentosController@indexProfe')->name('profesional_medicamento')->middleware('superEditor');
 
 //RUTA PARA CREAR CONTRATOS
 Route::get('contratos', 'DefContratosController@index')->name('contratosIndex')->middleware('superEditor');

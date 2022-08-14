@@ -219,6 +219,56 @@ Medicamentos
             ajaxRequest('medicamento-estado', data);
         });
 
+        //Select para consultar los ATC del medicamento
+        $("#atc_med").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('atc_medicamento')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.cod_atc + " - " + data.nombre + " - " + data.forma,
+                                id: data.id_ATC
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        
+
+        //Select para consultar Grupo y SubGrups
+        $("#subgrupo_med").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('grupo_subgrupo_med')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.cod_subgrupo + " - " + data.nombre_grupo + " - " + data.descripcion_subgrupo,
+                                id: data.id_subgrupo
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
 
         // Función envío de datos para activar o desactivar
 
@@ -251,8 +301,8 @@ Medicamentos
                 fill_datatable(idlistp);
             }
             if (idlistp != '') {
-                $('#tprocedimiento').DataTable().destroy();
-                fill_tableproce(idlistp);
+                $('#tprofesional').DataTable().destroy();
+                fill_tableprofe(idlistp);
             }
             if (idlistp != '') {
                 $('#tmedicamento').DataTable().destroy();
@@ -284,7 +334,7 @@ Medicamentos
             });
 
         });
-        //--------------------------------Tabla relacion profesional vs servicios----------------------------//
+        //--------------------------------Tabla relacion medicamento vs servicios----------------------------//
         //fill_datatable();
         function fill_datatable(idlistp = '') {
             var datatable1 = $('#tservicio').DataTable({
@@ -299,7 +349,7 @@ Medicamentos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('relserviciovsprofesional')}}",
+                    url: "{{ route('servicio_medicamento')}}",
                     type: "get",
                     // data: {"idlist": procedimiento_idp}
                     data: {
@@ -315,16 +365,16 @@ Medicamentos
                         name: 'cod_servicio'
                     },
                     {
-                        data: 'nombre',
-                        name: 'nombre'
+                        data: 'servicio',
+                        name: 'servicio'
                     },
                     {
-                        data: 'codigo',
-                        name: 'codigo'
+                        data: 'cod_medicamento',
+                        name: 'cod_medicamento'
                     },
                     {
-                        data: 'Profesional',
-                        name: 'Profesional'
+                        data: 'medicamento',
+                        name: 'medicamento'
                     }
                 ],
 
@@ -371,8 +421,8 @@ Medicamentos
         }
 
         //--------------------------------Tabla relacion profesional vs procedimiento----------------------------//
-        function fill_tableproce(idlistp = '') {
-            var datatable2 = $('#tprocedimiento').DataTable({
+        function fill_tableprofe(idlistp = '') {
+            var tprofesional = $('#tprofesional').DataTable({
                 language: idioma_espanol,
                 lengthMenu: [
                     [25, 50, 100, 500, -1],
@@ -384,7 +434,7 @@ Medicamentos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('procedimientovsprofesional')}}",
+                    url: "{{ route('profesional_medicamento')}}",
                     //type: "get",
                     // data: {"idlist": procedimiento_idp}
                     data: {
@@ -396,20 +446,20 @@ Medicamentos
                         orderable: false
                     },
                     {
-                        data: 'cups',
-                        name: 'cups'
-                    },
-                    {
-                        data: 'Procedimiento',
-                        name: 'Procedimiento'
-                    },
-                    {
                         data: 'codigo',
                         name: 'codigo'
                     },
                     {
-                        data: 'nombre',
-                        name: 'nombre'
+                        data: 'Profesional',
+                        name: 'Profesional'
+                    },
+                    {
+                        data: 'cod_medicamento',
+                        name: 'cod_medicamento'
+                    },
+                    {
+                        data: 'medicamento',
+                        name: 'medicamento'
                     }
 
                 ],
@@ -828,13 +878,13 @@ Medicamentos
             });
         }
 
-        //-- Eliminar Procedimiento de la relación 
+        //-- Eliminar Profesinal de la relación 
 
         $(document).on('click', '.eliminarpp', function() {
             var id = $(this).attr('id');
 
-            var text = "Estás por retirar un Procedimiento"
-            var url = "/profesionalvsprocedimiento/" + id;
+            var text = "Estás por retirar un Profesinal"
+            var url = "/medicamentovsprofesional/" + id;
             var method = 'delete';
 
             Swal.fire({
@@ -856,10 +906,10 @@ Medicamentos
                         success: function(data) {
                             if (data.success == 'ok3') {
 
-                                $('#tprocedimiento').DataTable().ajax.reload();
+                                $('#tprofesional').DataTable().ajax.reload();
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Procedimiento ha sido retirado correctamente',
+                                    title: 'Profesinal ha sido retirado correctamente',
                                     showConfirmButton: false,
                                     timer: 1000
 

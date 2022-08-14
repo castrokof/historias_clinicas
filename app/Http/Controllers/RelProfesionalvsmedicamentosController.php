@@ -19,43 +19,71 @@ class RelProfesionalvsmedicamentosController extends Controller
         $usuario_id = $request->session()->get('usuario_id');
         $idlist = $request->id;
 
-        if($request->ajax()){
-           /* $datast = rel__profesionalvsmedicamentos::orderBy('id', 'asc')
+        if ($request->ajax()) {
+            /* $datast = rel__profesionalvsmedicamentos::orderBy('id', 'asc')
            ->where('profesional_id', "=", $idlist)->get(); */
             $datast = DB::table('rel__profesionalvsmedicamentos')
-            ->Join('def__medicamentos_suministros', 'rel__profesionalvsmedicamentos.medicamento_id', '=', 'def__medicamentos_suministros.id_medicamento')
-            ->Join('def__profesionales', 'rel__profesionalvsmedicamentos.profesional_id', '=', 'def__profesionales.id_profesional')
-            ->select('rel__profesionalvsmedicamentos.id_profesionalvsmedicamentos as idd','def__medicamentos_suministros.codigo as cod_medicamento', 'def__medicamentos_suministros.nombre as medicamento',
-                    'def__profesionales.codigo as codigo','def__profesionales.nombre as Profesional')
-            ->where('rel__profesionalvsmedicamentos.profesional_id', '=', $idlist )
-            ->get();
-          
-        return  DataTables()->of($datast)
-        ->addColumn('actionpm', function($datast){
-        $button = '<button type="button" name="eliminarpm" id="'.$datast->idd.'"
+                ->Join('def__medicamentos_suministros', 'rel__profesionalvsmedicamentos.medicamento_id', '=', 'def__medicamentos_suministros.id_medicamento')
+                ->Join('def__profesionales', 'rel__profesionalvsmedicamentos.profesional_id', '=', 'def__profesionales.id_profesional')
+                ->select(
+                    'rel__profesionalvsmedicamentos.id_profesionalvsmedicamentos as idd',
+                    'def__medicamentos_suministros.codigo as cod_medicamento',
+                    'def__medicamentos_suministros.nombre as medicamento',
+                    'def__profesionales.codigo as codigo',
+                    'def__profesionales.nombre as Profesional'
+                )
+                ->where('rel__profesionalvsmedicamentos.profesional_id', '=', $idlist)
+                ->get();
+
+            return  DataTables()->of($datast)
+                ->addColumn('actionpm', function ($datast) {
+                    $button = '<button type="button" name="eliminarpm" id="' . $datast->idd . '"
         class = "eliminarpm btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
-               
-        return $button;
 
-        }) 
-        ->rawColumns(['actionpm'])
-        ->make(true);
-        
-     }
+                    return $button;
+                })
+                ->rawColumns(['actionpm'])
+                ->make(true);
+        }
 
-     
-      /* return view('admin.financiero.profesionales.index', compact('datast')); */
-      return view('admin.financiero.profesionales.index');
+
+        /* return view('admin.financiero.profesionales.index', compact('datast')); */
+        return view('admin.financiero.profesionales.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function indexProfe(Request $request)
     {
-        //
+        $usuario_id = $request->session()->get('usuario_id');
+        $idlist = $request->id;
+
+        if ($request->ajax()) {
+            $datast = DB::table('rel__profesionalvsmedicamentos')
+                ->Join('def__medicamentos_suministros', 'rel__profesionalvsmedicamentos.medicamento_id', '=', 'def__medicamentos_suministros.id_medicamento')
+                ->Join('def__profesionales', 'rel__profesionalvsmedicamentos.profesional_id', '=', 'def__profesionales.id_profesional')
+                ->select(
+                    'rel__profesionalvsmedicamentos.id_profesionalvsmedicamentos as idd',
+                    'def__medicamentos_suministros.codigo as cod_medicamento',
+                    'def__medicamentos_suministros.nombre as medicamento',
+                    'def__profesionales.codigo as codigo',
+                    'def__profesionales.nombre as Profesional'
+                )
+                ->where('rel__profesionalvsmedicamentos.medicamento_id', '=', $idlist)
+                ->get();
+
+            return  DataTables()->of($datast)
+                ->addColumn('actionpp', function ($datast) {
+                    $button = '<button type="button" name="eliminarpp" id="' . $datast->idd . '"
+        class = "eliminarpp btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
+
+                    return $button;
+                })
+                ->rawColumns(['actionpp'])
+                ->make(true);
+        }
+
+
+        /* return view('admin.financiero.procedimientos.index', compact('datast')); */
+        return view('admin.financiero.medicamentos.index');
     }
 
     /**
@@ -122,11 +150,11 @@ class RelProfesionalvsmedicamentosController extends Controller
      */
     public function eliminar(Request $request, $id)
     {
-        if($request->ajax()){
- 
+        if ($request->ajax()) {
+
             rel__profesionalvsmedicamentos::where('id_profesionalvsmedicamentos', $id)->delete();
 
-        return response()->json(['success' => 'ok2']);
+            return response()->json(['success' => 'ok2']);
         }
     }
 }

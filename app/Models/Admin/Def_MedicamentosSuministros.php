@@ -15,6 +15,8 @@ class Def_MedicamentosSuministros extends Model
         'detalle',
         'marca',
         'ATC_id',
+        'grupo_id',
+        'subgrupo_id',
         'IUM',
         'invima',
         'tipo',

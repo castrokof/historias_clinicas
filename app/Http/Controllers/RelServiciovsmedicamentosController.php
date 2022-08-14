@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\rel__serviciovsmedicamentos;
+use App\Models\Admin\rel__serviciovsmedicamentos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class RelServiciovsmedicamentosController extends Controller
 {
@@ -12,9 +14,39 @@ class RelServiciovsmedicamentosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $usuario_id = $request->session()->get('usuario_id');
+        $idlist = $request->id;
+
+        if ($request->ajax()) {
+            $datast = DB::table('rel__serviciovsmedicamentos')
+                ->Join('def__medicamentos_suministros', 'rel__serviciovsmedicamentos.medicamento_id', '=', 'def__medicamentos_suministros.id_medicamento')
+                ->Join('servicios', 'rel__serviciovsmedicamentos.servicio_id', '=', 'servicios.id_servicio')
+                ->select(
+                    'rel__serviciovsmedicamentos.id_serviciovsmedicamentos as idd',
+                    'def__medicamentos_suministros.codigo as cod_medicamento',
+                    'def__medicamentos_suministros.nombre as medicamento',
+                    'servicios.cod_servicio as cod_servicio',
+                    'servicios.nombre as servicio'
+                )
+                ->where('rel__serviciovsmedicamentos.medicamento_id', '=', $idlist)
+                ->get();
+
+            return  DataTables()->of($datast)
+                ->addColumn('actionps', function ($datast) {
+                    $button = '<button type="button" name="eliminarpm" id="' . $datast->idd . '"
+        class = "eliminarpm btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
+
+                    return $button;
+                })
+                ->rawColumns(['actionps'])
+                ->make(true);
+        }
+
+
+        /* return view('admin.financiero.profesionales.index', compact('datast')); */
+        return view('admin.financiero.medicamentos.index');
     }
 
     /**

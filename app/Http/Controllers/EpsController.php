@@ -201,11 +201,12 @@ class EpsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editar($id)
+    public function editar(Request $request)
     {
         if (request()->ajax()) {
 
-            $data = Eps_empresa::where('id_eps_empresas', $id)->first();
+            //$datas = DB::table('def__procedimientos')->select('estado')->where('id_cups', $request->input('id'))->first();
+            $data = Eps_empresa::where('id_eps_empresas', $request->input('id'))->first();
 
             return response()->json(['result' => $data]);
         }

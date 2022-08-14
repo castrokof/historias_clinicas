@@ -1,7 +1,7 @@
 <div class="form-group row">
     <div class="col-lg-2">
         <label for="codigo" class="col-xs-4 control-label requerido">Código</label>
-        <input name="codigo" id="codigo" class="form-control " value="{{old('codigo')}}" required>
+        <input name="codigo" id="codigo" class="form-control UpperCase" value="{{old('codigo')}}" required>
     </div>
     <div class="col-lg-7">
         <label for="nombre" class="col-xs-4 control-label requerido">Nombre medicamento</label>
@@ -21,7 +21,7 @@
 <div class="form-group row">
     <div class="col-lg-12">
         <label for="detalle" class="col-xs-4 control-label ">Detalle</label>
-        <input type="text" name="detalle" id="detalle" class="form-control" value="{{old('detalle')}}">
+        <input type="text" name="detalle" id="detalle" class="form-control UpperCase" value="{{old('detalle')}}">
     </div>
 </div>
 <div class="form-group row">
@@ -34,16 +34,17 @@
         <input name="CUMS" id="CUMS" class="form-control" value="{{old('CUMS')}}"></input>
     </div>
     <div class="col-lg-2">
-        <label for="ATC_id" class="col-xs-4 control-label ">ATC</label>
-        <input name="ATC_id" id="ATC_id" class="form-control" value="{{old('ATC_id')}}"></input>
-    </div>
-    <div class="col-lg-2">
         <label for="IUM" class="col-xs-4 control-label ">IUM</label>
         <input name="IUM" id="IUM" class="form-control" value="{{old('IUM')}}"></input>
     </div>
     <div class="col-lg-2">
         <label for="invima" class="col-xs-4 control-label requerido">Invima</label>
         <input name="invima" id="invima" class="form-control" value="{{old('invima')}}"></input>
+    </div>
+    <div class="col-lg-4">
+        <label for="atc_med" class="col-xs-4 control-label ">ATC</label>
+        <select name="ATC_id" id="atc_med" class="form-control" style="width: 100%;" required>
+        </select>
     </div>
 </div>
 <div class="form-group row">
@@ -63,6 +64,12 @@
         <label for="stock_min" class="col-xs-4 control-label ">Stock Min</label>
         <input type="number" name="stock_min" id="stock_min" class="form-control" value="{{old('stock_min')}}"></input>
     </div>
+    
+    <div class="col-lg-4">
+        <label for="subgrupo_med" class="col-xs-4 control-label ">Grupo/SubGrupo</label>        
+        <select name="subgrupo_id" id="subgrupo_med" class="form-control" style="width: 100%;" required>
+        </select>
+    </div>
 </div>
 <div class="form-group row">
     <div class="col-lg-6">
@@ -74,6 +81,7 @@
         <input type="number" name="cantidad_dias" id="cantidad_dias" class="form-control" placeholder="Cantidad de días entre cada formula médica..." value="{{old('cantidad_dias')}}"></input>
     </div>
 
-    <input type="hidden" name="user_id" id="user_id" class="form-control" value="{{Session()->get('usuario_id')}}">
+    <input type="hidden" name="user_id" id="user_id" class="form-control" value="{{Session()->get('usuario_id')}}">    
+    <input type="hidden" name="grupo_id" id="subgrupo_med" class="form-control" >
     <input type="hidden" name="estado" id="estado" class="form-control" value="1">
 </div>
