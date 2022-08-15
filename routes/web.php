@@ -134,6 +134,9 @@ Route::get('grupo_subgrupo_med', 'DefMedicamentosSuministrosController@selectsub
 
 //Ruta para consultar las relaciones de Medicamento vs Servicios
 Route::get('servicio_medicamento', 'RelServiciovsmedicamentosController@index')->name('servicio_medicamento')->middleware('superEditor');
+Route::delete('serviciovsmedicamento/{id}', 'RelServiciovsmedicamentosController@eliminar')->name('serviciovsmedicamento')->middleware('superEditor');
+Route::get('rel_serv_med', 'ServiciosController@rel_med_index')->name('rel_serv_med')->middleware('superEditor');
+
 
 //RUTA PARA CREAR PROFESIONALES
 Route::get('profesionales', 'DefProfesionalesController@index')->name('profesionalesIndex')->middleware('superEditor');
@@ -156,6 +159,7 @@ Route::get('profesionalvsmedicamento', 'RelProfesionalvsmedicamentosController@i
 Route::delete('medicamentovsprofesional/{id}', 'RelProfesionalvsmedicamentosController@eliminar')->name('eliminar_medicamentos')->middleware('superEditor');
 Route::get('relmedicamentoIndex', 'DefMedicamentosSuministrosController@rel_index')->name('relmedicamentoIndex')->middleware('superEditor');
 Route::get('profesional_medicamento', 'RelProfesionalvsmedicamentosController@indexProfe')->name('profesional_medicamento')->middleware('superEditor');
+Route::get('rel_med_profe', 'DefProfesionalesController@rel_med_index')->name('rel_med_profe')->middleware('superEditor');
 
 //RUTA PARA CREAR CONTRATOS
 Route::get('contratos', 'DefContratosController@index')->name('contratosIndex')->middleware('superEditor');
@@ -178,9 +182,11 @@ Route::get('relservicioIndex', 'ServiciosController@rel_index')->name('relservic
 //Ruta para consultar las relaciones de Contrato vs Medicamento
 Route::get('contrato-medicamento', 'RelContratovsmedicamentosController@index')->name('contrato-medicamento')->middleware('superEditor');
 Route::delete('contratovsmedicamento/{id}', 'RelContratovsmedicamentosController@eliminar')->name('eliminar_relmedicamento')->middleware('superEditor');
+Route::get('contrato_medicamento', 'RelContratovsmedicamentosController@indexContr')->name('contrato_medicamento')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Contrato vs Procedimientos
 Route::get('contrato-procedimiento', 'RelContratovsprocedimientosController@indexProce')->name('contrato-procedimiento')->middleware('superEditor');
+Route::get('rel_med_cont', 'DefContratosController@rel_med_index')->name('rel_med_cont')->middleware('superEditor');
 
 
 /* RUTAS DEL USUARIO */

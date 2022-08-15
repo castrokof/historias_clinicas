@@ -46,6 +46,38 @@ class RelContratovsmedicamentosController extends Controller
       return view('admin.financiero.contratos.index');
     }
 
+    public function indexContr(Request $request)
+    {
+        $usuario_id = $request->session()->get('usuario_id');
+        $idlist = $request->id;
+
+        if($request->ajax()){
+            $datast = DB::table('rel__contratovsmedicamentos')
+            ->Join('def__contratos', 'rel__contratovsmedicamentos.contrato_id', '=', 'def__contratos.id_contrato')
+            ->Join('def__medicamentos_suministros', 'rel__contratovsmedicamentos.medicamento_id', '=', 'def__medicamentos_suministros.id_medicamento')
+            ->select('rel__contratovsmedicamentos.id_contratovsmedicamento as idd','def__contratos.contrato as contrato', 'def__contratos.nombre as nombre','rel__contratovsmedicamentos.valor as precio',
+                    'def__medicamentos_suministros.codigo as codigo','def__medicamentos_suministros.nombre as Medicamento')
+            ->where('rel__contratovsmedicamentos.medicamento_id', '=', $idlist)
+            ->get();
+          
+        return  DataTables()->of($datast)
+        ->addColumn('actionpm', function($datast){
+        $button = '<button type="button" name="eliminarmd" id="'.$datast->idd.'"
+        class = "eliminarmd btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
+               
+        return $button;
+
+        }) 
+        ->rawColumns(['actionpm'])
+        ->make(true);
+        
+     }
+
+     
+      /* return view('admin.financiero.contratos.index', compact('datast')); */
+      return view('admin.financiero.medicamentos.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

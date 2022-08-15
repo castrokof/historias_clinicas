@@ -154,21 +154,6 @@ class DefMedicamentosSuministrosController extends Controller
         }
     }
 
-    /* //Funcion para seleccionar el grupo
-    public function selectgrupo(Request $request)
-    {
-        $grupmed = [];
-
-        if ($request->has('q')) {
-
-            $term = $request->get('q');
-            $grupmed = def__grupoysubgrupomed::orderBy('id')
-                ->where('nombre_grupo', 'LIKE', '%' . $term . '%')
-                ->get();
-            return response()->json($grupmed);
-        }
-    } */
-
     //Funcion para seleccionar el grupo
     public function selectsubgrupo(Request $request)
     {
@@ -186,6 +171,21 @@ class DefMedicamentosSuministrosController extends Controller
         }
         return response()->json($grupmed);
     }
+
+    /* //Funcion para seleccionar el grupo
+    public function selectgrupo(Request $request)
+    {
+        $grupmed = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $grupmed = def__grupoysubgrupomed::orderBy('id')
+                ->where('nombre_grupo', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($grupmed);
+        }
+    } */
 
     /**
      * Display the specified resource.

@@ -12,9 +12,9 @@
                             <th>Acciones</th>
                             <th>Contrato</th>
                             <th>Descripcion</th>
-                            <th>Precio</th>
-                            <th>Cups</th>
-                            <th>Procedimiento</th>
+                            <!-- <th>Precio</th> -->
+                            <th>Código Medicamento</th>
+                            <th>Medicamento</th>
                         </tr>
                     </thead>
                     <tbody>

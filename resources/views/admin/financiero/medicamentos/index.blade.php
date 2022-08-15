@@ -305,8 +305,8 @@ Medicamentos
                 fill_tableprofe(idlistp);
             }
             if (idlistp != '') {
-                $('#tmedicamento').DataTable().destroy();
-                fill_tablemedicamento(idlistp);
+                $('#tcontrato').DataTable().destroy();
+                fill_tablecontrato(idlistp);
             }
 
             $.ajax({
@@ -335,7 +335,6 @@ Medicamentos
 
         });
         //--------------------------------Tabla relacion medicamento vs servicios----------------------------//
-        //fill_datatable();
         function fill_datatable(idlistp = '') {
             var datatable1 = $('#tservicio').DataTable({
                 language: idioma_espanol,
@@ -420,7 +419,7 @@ Medicamentos
             });
         }
 
-        //--------------------------------Tabla relacion profesional vs procedimiento----------------------------//
+        //--------------------------------Tabla relacion medicamento vs profesional----------------------------//
         function fill_tableprofe(idlistp = '') {
             var tprofesional = $('#tprofesional').DataTable({
                 language: idioma_espanol,
@@ -507,9 +506,9 @@ Medicamentos
             });
         }
 
-        //--------------------------------Tabla relacion profesional vs medicamento----------------------------//
-        function fill_tablemedicamento(idlistp = '') {
-            var datatable3 = $('#tmedicamento').DataTable({
+        //--------------------------------Tabla relacion medicamento vs cotrato----------------------------//
+        function fill_tablecontrato(idlistp = '') {
+            var tcontrato = $('#tcontrato').DataTable({
                 language: idioma_espanol,
                 lengthMenu: [
                     [25, 50, 100, 500, -1],
@@ -521,7 +520,7 @@ Medicamentos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('profesionalvsmedicamento')}}",
+                    url: "{{ route('contrato_medicamento')}}",
                     //type: "get",
                     // data: {"idlist": procedimiento_idp}
                     data: {
@@ -533,20 +532,20 @@ Medicamentos
                         orderable: false
                     },
                     {
-                        data: 'cod_medicamento',
-                        name: 'cod_medicamento'
+                        data: 'contrato',
+                        name: 'contrato'
                     },
                     {
-                        data: 'medicamento',
-                        name: 'medicamento'
+                        data: 'nombre',
+                        name: 'nombre'
                     },
                     {
                         data: 'codigo',
                         name: 'codigo'
                     },
                     {
-                        data: 'Profesional',
-                        name: 'Profesional'
+                        data: 'Medicamento',
+                        name: 'Medicamento'
                     }
 
                 ],
@@ -597,21 +596,21 @@ Medicamentos
         //------------------------------------------------------Funciones de relaciones-----------------------------------------//
 
         //Función para abrir modal y prevenir el cierre de la relacion con los medicamentos
-        $(document).on('click', '.relacion_procedimiento', function() {
+        $(document).on('click', '.relacion_profesional', function() {
 
-            $('#modal-procedimiento').modal({
+            $('#modal-profesional').modal({
                 backdrop: 'static',
                 keyboard: false
             });
-            $('#modal-procedimiento').modal('show');
-            $('#trelprocedimiento').DataTable().destroy();
-            table_procedimiento();
+            $('#modal-profesional').modal('show');
+            $('#trelprofesional').DataTable().destroy();
+            table_profecional();
         });
 
-        //--------------------------------Tabla para cargar los procedimientos y hacer la relacion----------------------------//
+        //--------------------------------Tabla para cargar los profesionales y hacer la relacion----------------------------//
 
-        function table_procedimiento() {
-            var trelprocedimiento = $('#trelprocedimiento').DataTable({
+        function table_profecional() {
+            var trelprofesional = $('#trelprofesional').DataTable({
                 language: idioma_espanol,
                 lengthMenu: [
                     [25, 50, 100, 500, -1],
@@ -623,7 +622,7 @@ Medicamentos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('relproceIndex')}}",
+                    url: "{{ route('rel_med_profe')}}",
                     type: "get",
                 },
                 columns: [
@@ -637,12 +636,20 @@ Medicamentos
                         name: 'estado'
                     },
                     {
-                        data: 'cod_cups',
-                        name: 'cod_cups'
+                        data: 'codigo',
+                        name: 'codigo'
                     },
                     {
                         data: 'nombre',
                         name: 'nombre'
+                    },
+                    {
+                        data: 'especialidad',
+                        name: 'especialidad'
+                    },
+                    {
+                        data: 'sede',
+                        name: 'sede'
                     }
 
                 ],
@@ -715,7 +722,7 @@ Medicamentos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('relservicioIndex')}}",
+                    url: "{{ route('rel_serv_med')}}",
                     type: "get",
                 },
                 columns: [
@@ -782,20 +789,20 @@ Medicamentos
             });
         }
 
-        //Función para abrir modal y prevenir el cierre de la relacion con los medicamento
-        $(document).on('click', '.relacion_medicamento', function() {
-            $('#modal-medicamento').modal({
+        //Función para abrir modal y prevenir el cierre de la relacion con los contratos
+        $(document).on('click', '.relacion_contrato', function() {
+            $('#modal-contrato').modal({
                 backdrop: 'static',
                 keyboard: false
             });
-            $('#modal-medicamento').modal('show');
-            $('#trelmedicamento').DataTable().destroy();
-            table_medicamento();
+            $('#modal-contrato').modal('show');
+            $('#trelcontrato').DataTable().destroy();
+            table_contrato();
         });
 
-        //--------------------------------Tabla para cargar los Medicamentos y hacer la relacion----------------------------//
-        function table_medicamento() {
-            var trelcontrato = $('#trelmedicamento').DataTable({
+        //--------------------------------Tabla para cargar los Contratos y hacer la relacion----------------------------//
+        function table_contrato() {
+            var trelcontrato = $('#trelcontrato').DataTable({
                 language: idioma_espanol,
                 lengthMenu: [
                     [25, 50, 100, 500, -1],
@@ -807,7 +814,7 @@ Medicamentos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('relmedicamentoIndex')}}",
+                    url: "{{ route('rel_med_cont')}}",
                     type: "get",
                 },
                 columns: [
@@ -821,16 +828,12 @@ Medicamentos
                         name: 'estado'
                     },
                     {
-                        data: 'codigo',
-                        name: 'codigo'
+                        data: 'contrato',
+                        name: 'contrato'
                     },
                     {
                         data: 'nombre',
                         name: 'nombre'
-                    },
-                    {
-                        data: 'CUMS',
-                        name: 'CUMS'
                     }
 
                 ],
@@ -930,7 +933,7 @@ Medicamentos
             var id = $(this).attr('id');
 
             var text = "Estás por retirar un Servicio"
-            var url = "/serviciovsprofesional/" + id;
+            var url = "/serviciovsmedicamento/" + id;
             var method = 'delete';
 
             Swal.fire({
@@ -970,13 +973,13 @@ Medicamentos
 
         });
 
-        //-- Eliminar Medicamento de la relación 
+        //-- Eliminar Contrato de la relación 
 
-        $(document).on('click', '.eliminarpm', function() {
+        $(document).on('click', '.eliminarmd', function() {
             var id = $(this).attr('id');
 
-            var text = "Estás por retirar un Medicamento"
-            var url = "/medicamentovsprofesional/" + id;
+            var text = "Estás por retirar un Contrato"
+            var url = "/contratovsmedicamento/" + id;
             var method = 'delete';
 
             Swal.fire({
@@ -996,12 +999,12 @@ Medicamentos
                         },
                         dataType: "json",
                         success: function(data) {
-                            if (data.success == 'ok2') {
+                            if (data.success == 'ok5') {
 
-                                $('#tmedicamento').DataTable().ajax.reload();
+                                $('#tcontrato').DataTable().ajax.reload();
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Medicamento ha sido retirado correctamente',
+                                    title: 'Contrato ha sido retirado correctamente',
                                     showConfirmButton: false,
                                     timer: 1000
 

@@ -154,7 +154,7 @@ class RelProfesionalvsmedicamentosController extends Controller
 
             rel__profesionalvsmedicamentos::where('id_profesionalvsmedicamentos', $id)->delete();
 
-            return response()->json(['success' => 'ok2']);
+            return response()->json(['success' => 'ok3']);
         }
     }
 }

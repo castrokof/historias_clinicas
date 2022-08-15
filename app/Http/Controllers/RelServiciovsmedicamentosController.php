@@ -35,8 +35,8 @@ class RelServiciovsmedicamentosController extends Controller
 
             return  DataTables()->of($datast)
                 ->addColumn('actionps', function ($datast) {
-                    $button = '<button type="button" name="eliminarpm" id="' . $datast->idd . '"
-        class = "eliminarpm btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
+                    $button = '<button type="button" name="eliminarps" id="' . $datast->idd . '"
+        class = "eliminarps btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
 
                     return $button;
                 })
@@ -47,6 +47,22 @@ class RelServiciovsmedicamentosController extends Controller
 
         /* return view('admin.financiero.profesionales.index', compact('datast')); */
         return view('admin.financiero.medicamentos.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function eliminar(Request $request, $id)
+    {
+        if ($request->ajax()) {
+
+            rel__serviciovsmedicamentos::where('id_serviciovsmedicamentos', $id)->delete();
+
+            return response()->json(['success' => 'ok1']);
+        }
     }
 
     /**
