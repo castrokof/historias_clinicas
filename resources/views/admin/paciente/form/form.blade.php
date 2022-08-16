@@ -48,12 +48,12 @@
             <label for="orientacion_sexual" class="col-xs-4 control-label requerido">Orientación Sexual</label>
             <select name="orientacion_sexual" id="orientacion_sexual" class="form-control select2bs4" style="width: 100%;" required>
                 <option value="">---seleccione---</option>
-                <option value="He">Heterosexual</option>
-                <option value="Ho">Homosexual</option>
-                <option value="Bi">Bisexual</option>
-                <option value="Tr">Transexual</option>
-                <option value="In">Intersexual</option>
-                <option value="Ot">Otra</option>
+                <option value="Heterosexual">Heterosexual</option>
+                <option value="Homosexual">Homosexual</option>
+                <option value="Bisexual">Bisexual</option>
+                <option value="Transexual">Transexual</option>
+                <option value="Intersexual">Intersexual</option>
+                <option value="Otra">Otra</option>
             </select>
         </div>
 

@@ -733,6 +733,13 @@ class UsuarioAdministradorSeeder extends Seeder
             'activo'=> 'SI',
             'user_id'=> 1
         ]);
+        DB::table('listas')->insert([
+            'slug'=> 'MC',
+            'nombre'=> 'MARCAS PRODUCTOS',
+            'descripcion'=> 'Aquí se deben parametrizar las marcas de los medicamentos o suministros',
+            'activo'=> 'SI',
+            'user_id'=> 1
+        ]);
 
         DB::table('listasdetalle')->insert([
             'slug'=> 'PA',
@@ -932,6 +939,46 @@ class UsuarioAdministradorSeeder extends Seeder
             'descripcion'=> 'SALUD MEDCOL S.A.S',
             'activo'=> 'SI',
             'listas_id'=> 1,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> '01',
+            'nombre'=> '3M COLOMBIA S.A.',
+            'descripcion'=> '3M COLOMBIA S.A.',
+            'activo'=> 'SI',
+            'listas_id'=> 4,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> '02',
+            'nombre'=> 'A.H. ROBINS S.A.S.',
+            'descripcion'=> 'A.H. ROBINS S.A.S.',
+            'activo'=> 'SI',
+            'listas_id'=> 4,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> '03',
+            'nombre'=> 'GRUPO SINERGIA S.A.S.',
+            'descripcion'=> 'GRUPO SINERGIA S.A.S.',
+            'activo'=> 'SI',
+            'listas_id'=> 4,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> '04',
+            'nombre'=> 'ASOFARMA S.A.',
+            'descripcion'=> 'ASOFARMA S.A.',
+            'activo'=> 'SI',
+            'listas_id'=> 4,
+            'user_id'=> 1
+        ]);
+        DB::table('listasdetalle')->insert([
+            'slug'=> '05',
+            'nombre'=> 'GRUPO AFIN',
+            'descripcion'=> 'GRUPO AFIN',
+            'activo'=> 'SI',
+            'listas_id'=> 4,
             'user_id'=> 1
         ]);
 

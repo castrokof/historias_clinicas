@@ -16,7 +16,7 @@
             <form id="form-general" class="form-horizontal" method="POST">
               @csrf
               <div class="card-body">
-                @include('admin.eps_empresa.form')
+                @include('admin.eps_empresa.form.form')
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
@@ -28,8 +28,6 @@
               </div>
               <!-- /.card-footer -->
             </form>
-
-
 
           </div>
         </div>

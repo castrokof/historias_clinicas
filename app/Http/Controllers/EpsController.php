@@ -31,8 +31,8 @@ class EpsController extends Controller
                 ->addColumn('action', function ($datas) {
                     $button = '<button type="button" name="edit" id="' . $datas->id_eps_empresas . '"
         class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar EPS"><i class="fas fa-clinic-medical"></i></button>'
-                        . '<button type="button" name="edit" id="' . $datas->id_eps_empresas . '"
-        class = "agregarnivel btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Agregar Nivel"><i class="far fa-calendar-plus"></i></button>';
+                        . '<button type="button" name="Agregar" id="' . $datas->id_eps_empresas . '"
+        class = "agregarnivel btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Agregar Nivel"><i class="far fa-calendar-plus"></i></button> ';
 
                     return $button;
                 })
@@ -43,17 +43,37 @@ class EpsController extends Controller
         return view('admin.eps_empresa.index');
     }
 
-    public function indexnivel(Request $request)
+    public function indexProce(Request $request)
     {
+        $usuario_id = $request->session()->get('usuario_id');
+        $idlist = $request->id;
 
-        if (request()->ajax()) {
+        if($request->ajax()){
+             $datast = DB::table('eps_niveles')
+             ->Join('eps_empresas', 'eps_niveles.eps_empresas_id', '=', 'eps_empresas.id_eps_empresas')
+             ->Join('servicios', 'eps_niveles.servicio_id', '=', 'servicios.id_servicio')
+             ->select('eps_niveles.id_eps_niveles as idd','eps_empresas.codigo as eps', 'eps_empresas.nombre as nombre',
+                     'eps_niveles.nivel as nivel','eps_niveles.descripcion_nivel as detalle','eps_niveles.regimen as regimen',
+                     'eps_niveles.tipo_recuperacion as recuperado','eps_niveles.afiliacion as afiliacion','servicios.nombre as servicio',
+                     'eps_niveles.vlr_copago as valor','eps_niveles.estado as estado')
+             ->where('eps_niveles.eps_empresas_id', '=', $idlist )
+             ->get();
+           
+         return  DataTables()->of($datast)
+         ->addColumn('actionlv', function($datast){
+         $button = '<button type="button" name="eliminarlv" id="'.$datast->idd.'"
+         class = "eliminarlv btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Nivel"><i class=""><i class="fa fa-trash"></i></i></a>';
+                
+         return $button;
+ 
+         }) 
+         ->rawColumns(['actionlv'])
+         ->make(true);
+         
+      } 
 
-            $datas = Eps_niveles::where('eps_empresas_id', $request->nivel_idp2)->get();
-            return  DataTables()->of($datas)
-            ->make(true);
-        }
 
-
+      return view('admin.eps_empresa.index');
     }
 
     public function rel_index(Request $request)
@@ -205,7 +225,6 @@ class EpsController extends Controller
     {
         if (request()->ajax()) {
 
-            //$datas = DB::table('def__procedimientos')->select('estado')->where('id_cups', $request->input('id'))->first();
             $data = Eps_empresa::where('id_eps_empresas', $request->input('id'))->first();
 
             return response()->json(['result' => $data]);
@@ -223,29 +242,6 @@ class EpsController extends Controller
         }
         return view('admin.eps_empresa.index');
     }
-
-    /* public function agregar_nivel(Request $request, $id)
-    {
-        if(request()->ajax()){
-
-            $data = Eps_empresa::where('id_eps_empresas', $id)->first();
-
-                return response()->json(['result'=>$data]);
-
-            }
-            return view('admin.eps_empresa.index');
-
-        if ($request->ajax()) {
-            $datas1 = DB::table('eps_niveles')
-                ->Join('eps_empresas', 'eps_niveles.eps_empresas_id', '=', 'eps_empresas.id_eps_empresas')
-                ->where('eps_niveles.id_eps_niveles', '=', $id)
-                ->get();
-
-
-            return response()->json(['result' => $datas1]);
-        }
-        return view('admin.eps_empresa.index');
-    } */
 
     /**
      * Update the specified resource in storage.
@@ -324,6 +320,16 @@ class EpsController extends Controller
             ]);
         // $data->update($request->all());
         return response()->json(['success' => 'ok1']);
+    }
+
+    public function eliminar(Request $request, $id)
+    {
+        if($request->ajax()){
+ 
+            Eps_niveles::where('id_eps_niveles', $id)->delete();
+
+        return response()->json(['success' => 'ok5']);
+        }
     }
 
 

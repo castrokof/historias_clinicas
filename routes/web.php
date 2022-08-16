@@ -285,11 +285,12 @@ Route::get('eps_empresas/crear', 'EpsController@crear')->name('crear_eps_empresa
 Route::post('eps_empresas', 'EpsController@guardar')->name('guardar_eps_empresas')->middleware('superEditor');
 Route::get('eps_empresas/{id}/editar', 'EpsController@editar')->name('editar_eps_empresas')->middleware('superEditor');
 Route::put('eps_empresas/{id}', 'EpsController@actualizar')->name('actualizar_eps_empresas')->middleware('superEditor');
-//Route::get('eps_empresas/{id}/agregar_nivel', 'EpsController@agregar_nivel')->name('agregarnivel_eps_empresas')->middleware('superEditor');
-Route::get('eps_niveles', 'EpsController@indexnivel')->name('eps_niveles')->middleware('superEditor');
+
+Route::get('eps-nivel', 'EpsController@indexProce')->name('eps-nivel')->middleware('superEditor');
 Route::get('eps_niveles/{id}/editarn', 'EpsController@editarn')->name('niveles_eps_empresas')->middleware('superEditor');
 Route::post('eps_niveles', 'EpsController@guardarnivel')->name('agregarnivel_eps_empresas')->middleware('superEditor');
 Route::put('eps_niveles/{id}', 'EpsController@actualizar')->name('actualizarnivel_eps_empresas')->middleware('superEditor');
+Route::delete('rel_epsnivel/{id}', 'EpsController@eliminar')->name('eliminar_nivel')->middleware('superEditor');
 Route::get('select_servicios', 'EpsController@selectser')->name('select_servicios')->middleware('superEditor');
 
 /* RUTAS DEL DIAGNOSTICO */

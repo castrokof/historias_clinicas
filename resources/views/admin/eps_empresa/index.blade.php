@@ -18,45 +18,9 @@ Eps Empresas
 @endsection
 
 @section('contenido')
-<div class="row">
-  <div class="col-lg-12">
-    @include('includes.form-error')
-    @include('includes.form-mensaje')
-    <div class="card card-success">
-      <div class="card-header with-border form-group row">
-        <h3 class="card-title-1 col-lg-10">Eps Empresas</h3>
-        <div class="card-tools pull-right col-lg-2">
-          <button type="button" class="btn btn-default" name="create_eps" id="create_eps" data-toggle="modal" data-target="#modal-u"><i class="fa fa-fw fa-plus-circle"></i> Crear EPS</button>
-          </button>
-        </div>
-      </div>
-      <div class="card-body table-responsive p-2">
-
-        <table id="eps" class="table table-hover  text-nowrap">
-          {{-- class="table table-hover table-bordered text-nowrap" --}}
-          <thead>
-            <tr>
-              <th>Acciones</th>
-              <th>Código</th>
-              <th>Nombre EPS</th>
-              <th>NIT</th>
-              <!--<th>Color</th>         -->
-              <th>Fecha de creacion</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-      </form>
-      <!-- /.card-body -->
-    </div>
-  </div>
-</div>
-
+@include('admin.eps_empresa.tablas.tablaIndexEPS_Empresa')
 @include('admin.eps_empresa.modal.modalEpsEmpresa')
 @include('admin.eps_empresa.modal.modalEpsNiveles')
-
 
 @endsection
 
@@ -77,10 +41,6 @@ Eps Empresas
 
 <script>
   $(document).ready(function() {
-
-
-
-
 
     //initiate dataTables plugin
     var myTable =
@@ -121,8 +81,8 @@ Eps Empresas
           name:'color'
           },*/
           {
-            data: 'created_at',
-            name: 'created_at'
+            data: 'estado',
+            name: 'estado'
           }
 
         ],
@@ -167,6 +127,22 @@ Eps Empresas
 
           }
         ],
+        "columnDefs": [{
+
+          "render": function(data, type, row) {
+            if (row["estado"] == 1) {
+              return ' Activo';
+              /* return data + ' - Activo'; */
+            } else {
+
+              return ' Inactivo';
+              /* return data + ' - Inactivo'; */
+
+            }
+
+          },
+          "targets": [4]
+        }, ],
 
       });
 
@@ -176,6 +152,10 @@ Eps Empresas
       $('#action_button').val('Add');
       $('#action').val('Add');
       $('#form_result').html('');
+      $('#modal-u').modal({
+        backdrop: 'static',
+        keyboard: false
+      });
       $('#modal-u').modal('show');
     });
 
@@ -229,7 +209,6 @@ Eps Empresas
               if (data.success == 'ok') {
                 $('#form-general')[0].reset();
                 $('#modal-u').modal('hide');
-                //$('#modal-n').modal('hide');
                 $('#eps').DataTable().ajax.reload();
                 Swal.fire({
                   icon: 'success',
@@ -243,7 +222,6 @@ Eps Empresas
               } else if (data.success == 'ok1') {
                 $('#form-general')[0].reset();
                 $('#modal-u').modal('hide');
-                /* $('#modal-n').modal('hide'); */
                 $('#eps').DataTable().ajax.reload();
                 Swal.fire({
                   icon: 'warning',
@@ -266,32 +244,7 @@ Eps Empresas
 
     });
 
-    //Select para consultar los Servicios
-    $("#servicio").select2({
-            theme: "bootstrap",
-            ajax: {
-                url: "{{ route('select_servicios')}}",
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data) {
-                    return {
-                        results: $.map(data, function(data) {
-
-                            return {
-
-                                text: data.cod_servicio + "-" + data.nombre,
-                                id: data.id_servicio
-
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
-
-
-    // Edición de cliente
+    // Edición de EPS
 
     $(document).on('click', '.edit', function() {
       var id = $(this).attr('id');
@@ -305,7 +258,7 @@ Eps Empresas
           $('#NIT').val(data.result.NIT);
           $('#color').val(data.result.color);
           $('#hidden_id').val(id);
-          $('.card-title').text('Editar EPS');
+          //$('.card-title').text('Editar EPS');
           $('#action_button').val('Edit');
           $('#action').val('Edit');
           $('#modal-u').modal('show');
@@ -323,250 +276,325 @@ Eps Empresas
 
     });
 
-  });
 
+    // Funcion para abrir modal y agregar los Niveles, Tabla para consultar los niveles
+    $(document).on('click', '.agregarnivel', function() {
+      var id = $(this).attr('id');
+      var nivel_idp2 = $(this).attr('id');
+      //var  nivel_idp2 = id;
 
-  // Tabla para consultar los niveles
-  $(document).on('click', '.agregarnivel', function() {
-    var id = $(this).attr('id');
-    var nivel_idp2 = $(this).attr('id');
-    //var  nivel_idp2 = id;
-    
-    if (nivel_idp2 != '') {
-      $('#tniveles').DataTable().destroy();
-      fill_datatable_f(nivel_idp2);
-    }
-
-    // $('#tniveles').DataTable().destroy();
-    // fill_datatable_f(nivel_idp2);
-
-    $.ajax({
-      url: "/eps_niveles/" + id + "/editarn",
-      dataType: "json",
-      success: function(data) {
-        $('#codigo_empresa').val(data.result.codigo);
-        $('#nombre_n').val(data.result.nombre);
-        $('#NIT_n').val(data.result.NIT);
-        $('#eps_empresas_id').val(id);
-        $('.card-title').text('Agregar Nivel');
-        $('#action_button').val('Add');
-        $('#action').val('Add');
-        $('#modal-n').modal('show');
+      if (nivel_idp2 != '') {
+        $('#tniveles').DataTable().destroy();
+        fill_datatable_f(nivel_idp2);
       }
 
-      /*  var nivel_idp2 = $('#nivel_idp').val();
-       $('#tniveles').DataTable().destroy();
-       fill_datatable_f(nivel_idp2); */
+      $.ajax({
+        url: "/eps_niveles/" + id + "/editarn",
+        dataType: "json",
+        success: function(data) {
+          $('#codigo_n').val(data.result.codigo);
+          $('#nombre_n').val(data.result.nombre);
+          $('#NIT_n').val(data.result.NIT);
+          $('#eps_empresas_id').val(id);
+          $('.card-title').text('Agregar Nivel');
+          $('#action_button').val('Add');
+          $('#action').val('Add');
+          $('#modal-n').modal({
+            backdrop: 'static',
+            keyboard: false
+          });
+          $('#modal-n').modal('show');
+        }
 
-    }).fail(function(jqXHR, textStatus, errorThrown) {
+      }).fail(function(jqXHR, textStatus, errorThrown) {
 
-      if (jqXHR.status === 403) {
+        if (jqXHR.status === 403) {
 
-        Manteliviano.notificaciones('No tienes permisos para realizar esta accion', 'Sistema Fidem', 'warning');
-      }
+          Manteliviano.notificaciones('No tienes permisos para realizar esta accion', 'Sistema Fidem', 'warning');
+        }
+      });
+
     });
 
-  });
-
-  function fill_datatable_f(nivel_idp2 = '') {
-    var myTable2 = $('#tniveles').DataTable({
-      language: idioma_espanol,
-      processing: true,
-      lengthMenu: [
-        [25, 50, 100, 500, -1],
-        [25, 50, 100, 500, "Mostrar Todo"]
-      ],
-      processing: true,
-      serverSide: true,
-      aaSorting: [
-        [1, "asc"]
-      ],
+    //Select para consultar los Servicios
+    $("#servicio").select2({
+      theme: "bootstrap",
       ajax: {
-        url: "{{ route('eps_niveles')}}",
-        //type: "get",
-        data: {
-          id: nivel_idp2
-        }
-      },
-      columns: [
-        /* {
-                  data: 'action',
-                  name: 'action',
-                  orderable: false
-                }, */
-        {
-          data: 'nivel',
-          name: 'nivel'
+        url: "{{ route('select_servicios')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data, function(data) {
+
+              return {
+
+                text: data.cod_servicio + "-" + data.nombre,
+                id: data.id_servicio
+
+              }
+            })
+          };
         },
-        {
-          data: 'descripcion_nivel',
-          name: 'descripcion_nivel'
-        },
-        {
-          data: 'regimen',
-          name: 'regimen'
-        },
-        {
-          data: 'tipo_recuperacion',
-          name: 'tipo_recuperacion'
-        },
-        {
-          data: 'afiliacion',
-          name: 'afiliacion'
-        },
-        {
-          data: 'servicios',
-          name: 'servicios'
-        },
-        {
-          data: 'vlr_copago',
-          name: 'vlr_copago'
-        },
-        {
-          data: 'estado',
-          name: 'estado'
-        },
-        {
-          data: 'created_at',
-          name: 'created_at'
-        }
-
-      ],
-
-      //Botones----------------------------------------------------------------------
-
-      "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
-
-
-      buttons: [{
-
-          extend: 'copyHtml5',
-          titleAttr: 'Copiar Registros',
-          title: "seguimiento",
-          className: "btn  btn-outline-primary btn-sm"
-
-
-        },
-        {
-
-          extend: 'excelHtml5',
-          titleAttr: 'Exportar Excel',
-          title: "seguimiento",
-          className: "btn  btn-outline-success btn-sm"
-
-
-        },
-        {
-
-          extend: 'csvHtml5',
-          titleAttr: 'Exportar csv',
-          className: "btn  btn-outline-warning btn-sm"
-          //text: '<i class="fas fa-file-excel"></i>'
-
-        },
-        {
-
-          extend: 'pdfHtml5',
-          titleAttr: 'Exportar pdf',
-          className: "btn  btn-outline-secondary btn-sm"
-
-
-        }
-      ],
-
+        cache: true
+      }
     });
 
-  }
-  //Funcion para agregar niveles y copagos
-
-
-  $('#form-general-n').on('submit', function(event) {
-    event.preventDefault();
-    var url = '';
-    var method = '';
-    var text = '';
-
-    if ($('#action').val() == 'Add') {
-      text = "Estás por crear un Nivel"
-      url = "{{route('agregarnivel_eps_empresas')}}";
-      method = 'post';
-    }
-    if ($('#action').val() == 'Edit') {
-      text = "Estás por actualizar un Nivel"
-      var updateid = $('#id_eps_niveles').val();
-      url = "/eps_niveles/" + updateid;
-      method = 'put';
-    }
-
-    Swal.fire({
-      title: "¿Estás seguro?",
-      text: text,
-      icon: "success",
-      showCancelButton: true,
-      showCloseButton: true,
-      confirmButtonText: 'Aceptar',
-    }).then((result) => {
-      if (result.value) {
-        $.ajax({
-          url: url,
-          method: method,
-          data: $(this).serialize(),
-          dataType: "json",
-          success: function(data) {
-            var html = '';
-            if (data.errors) {
-
-              html =
-                '<div class="alert alert-danger alert-dismissible">' +
-                '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-                '<h5><i class="icon fas fa-ban"></i> Mensaje fidem</h5>';
-
-              for (var count = 0; count < data.errors.length; count++) {
-                html += '<p>' + data.errors[count] + '<p>';
-              }
-              html += '</div>';
-            }
-
-            if (data.success == 'okn1') {
-              $('#form-general-n')[0].reset();
-              //$('#modal-u').modal('hide');
-              $('#modal-n').modal('hide');
-              $('#tniveles').DataTable().ajax.reload();
-              Swal.fire({
-                icon: 'success',
-                title: 'NIVEL creado correctamente',
-                showConfirmButton: false,
-                timer: 1500
-
-              })
-
-
-            } else if (data.success == 'okn2') {
-              $('#form-general-n')[0].reset();
-              /* $('#modal-u').modal('hide'); */
-              $('#modal-n').modal('hide');
-              $('#tniveles').DataTable().ajax.reload();
-              Swal.fire({
-                icon: 'warning',
-                title: 'NIVEL actualizada correctamente',
-                showConfirmButton: false,
-                timer: 1500
-
-              })
-
-
-            }
-            $('#form_result_n').html(html)
+    //--------------------------------Tabla relacion EPS vs Niveles y cuotas de recuperacion----------------------------//
+    function fill_datatable_f(nivel_idp2 = '') {
+      var tniveles = $('#tniveles').DataTable({
+        language: idioma_espanol,
+        processing: true,
+        lengthMenu: [
+          [25, 50, 100, 500, -1],
+          [25, 50, 100, 500, "Mostrar Todo"]
+        ],
+        processing: true,
+        serverSide: true,
+        aaSorting: [
+          [1, "asc"]
+        ],
+        ajax: {
+          url: "{{ route('eps-nivel')}}",
+          //type: "get",
+          data: {
+            id: nivel_idp2
+          }
+        },
+        columns: [{
+            data: 'actionlv',
+            name: 'actionlv',
+            orderable: false
+          },
+          {
+            data: 'nivel',
+            name: 'nivel'
+          },
+          {
+            data: 'detalle',
+            name: 'detalle'
+          },
+          {
+            data: 'regimen',
+            name: 'regimen'
+          },
+          {
+            data: 'recuperado',
+            name: 'recuperado'
+          },
+          {
+            data: 'afiliacion',
+            name: 'afiliacion'
+          },
+          {
+            data: 'servicio',
+            name: 'servicio'
+          },
+          {
+            data: 'valor',
+            name: 'valor'
+          },
+          {
+            data: 'estado',
+            name: 'estado'
           }
 
+        ],
 
-        });
+        //Botones----------------------------------------------------------------------
+
+        "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+
+
+        buttons: [{
+
+            extend: 'copyHtml5',
+            titleAttr: 'Copiar Registros',
+            title: "seguimiento",
+            className: "btn  btn-outline-primary btn-sm"
+
+
+          },
+          {
+
+            extend: 'excelHtml5',
+            titleAttr: 'Exportar Excel',
+            title: "seguimiento",
+            className: "btn  btn-outline-success btn-sm"
+
+
+          },
+          {
+
+            extend: 'csvHtml5',
+            titleAttr: 'Exportar csv',
+            className: "btn  btn-outline-warning btn-sm"
+            //text: '<i class="fas fa-file-excel"></i>'
+
+          },
+          {
+
+            extend: 'pdfHtml5',
+            titleAttr: 'Exportar pdf',
+            className: "btn  btn-outline-secondary btn-sm"
+
+
+          }
+        ],
+        "columnDefs": [{
+
+          "render": function(data, type, row) {
+            if (row["estado"] == 1) {
+              return ' Activo';
+              /* return data + ' - Activo'; */
+            } else {
+
+              return ' Inactivo';
+              /* return data + ' - Inactivo'; */
+
+            }
+
+          },
+          "targets": [8]
+        }, ],
+
+      });
+
+    }
+
+    //Funcion para agregar niveles y copagos
+
+    $('#form-general-n').on('submit', function(event) {
+      event.preventDefault();
+      var url = '';
+      var method = '';
+      var text = '';
+
+      if ($('#action').val() == 'Add') {
+        text = "Estás por crear un Nivel"
+        url = "{{route('agregarnivel_eps_empresas')}}";
+        method = 'post';
       }
+      if ($('#action').val() == 'Edit') {
+        text = "Estás por actualizar un Nivel"
+        var updateid = $('#id_eps_niveles').val();
+        url = "/eps_niveles/" + updateid;
+        method = 'put';
+      }
+
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: text,
+        icon: "success",
+        showCancelButton: true,
+        showCloseButton: true,
+        confirmButtonText: 'Aceptar',
+      }).then((result) => {
+        if (result.value) {
+          $.ajax({
+            url: url,
+            method: method,
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(data) {
+              var html = '';
+              if (data.errors) {
+
+                html =
+                  '<div class="alert alert-danger alert-dismissible">' +
+                  '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+                  '<h5><i class="icon fas fa-ban"></i> Mensaje fidem</h5>';
+
+                for (var count = 0; count < data.errors.length; count++) {
+                  html += '<p>' + data.errors[count] + '<p>';
+                }
+                html += '</div>';
+              }
+
+              if (data.success == 'okn1') {
+                $('#form-general-n')[0].reset();
+                $('#modal-n').modal('hide');
+                $('#tniveles').DataTable().ajax.reload();
+                Swal.fire({
+                  icon: 'success',
+                  title: 'NIVEL creado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500
+
+                })
+
+              } else if (data.success == 'okn2') {
+                $('#form-general-n')[0].reset();
+                $('#modal-n').modal('hide');
+                $('#tniveles').DataTable().ajax.reload();
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'NIVEL actualizado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500
+
+                })
+
+              }
+              $('#form_result_n').html(html)
+            }
+
+
+          });
+        }
+      });
+
+
+    });
+
+    //-- Eliminar Nivel de la relación 
+
+    $(document).on('click', '.eliminarlv', function() {
+      var id = $(this).attr('id');
+
+      var text = "Estás por retirar un nivel"
+      var url = "/rel_epsnivel/" + id;
+      var method = 'delete';
+
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: text,
+        icon: "success",
+        showCancelButton: true,
+        showCloseButton: true,
+        confirmButtonText: 'Aceptar',
+      }).then((result) => {
+        if (result.value) {
+          $.ajax({
+            url: url,
+            method: method,
+            data: {
+              "_token": $("meta[name='csrf-token']").attr("content")
+            },
+            dataType: "json",
+            success: function(data) {
+              if (data.success == 'ok5') {
+
+                $('#tniveles').DataTable().ajax.reload();
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Nivel ha sido retirado correctamente',
+                  showConfirmButton: false,
+                  timer: 1000
+
+                })
+
+              }
+            }
+          });
+
+        }
+      })
+
     });
 
 
   });
-
 
 
   var idioma_espanol = {

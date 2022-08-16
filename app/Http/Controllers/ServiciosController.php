@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin\Servicios;
+use App\Models\Admin\Def_MedicamentosSuministros;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -81,6 +82,7 @@ class ServiciosController extends Controller
         if ($request->ajax()) {
 
             $datas = Servicios::orderBy('id_servicio', 'asc')->get();
+            $med= Def_MedicamentosSuministros::orderBy('id_medicamento', 'asc')->get();
 
             return  DataTables()->of($datas)
                 ->addColumn('action', function ($datas) {

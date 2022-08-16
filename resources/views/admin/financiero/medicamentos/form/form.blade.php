@@ -43,14 +43,20 @@
     </div>
     <div class="col-lg-4">
         <label for="atc_med" class="col-xs-4 control-label ">ATC</label>
-        <select name="ATC_id" id="atc_med" class="form-control" style="width: 100%;" required>
+        <select name="ATC_id" id="atc_med" class="form-control select2bs4" style="width: 100%;" required>
         </select>
     </div>
 </div>
 <div class="form-group row">
     <div class="col-lg-2">
-        <label for="tipo" class="col-xs-4 control-label requerido">Tipo Medicamento</label>
-        <input name="tipo" id="tipo" class="form-control" value="{{old('tipo')}}"></input>
+        <label for="tipo" class="col-xs-4 control-label requerido">Tipo Medicamento</label>        
+        <select name="tipo" id="tipo" class="form-control select2bs4" style="width: 100%;" required>
+            <option value="">--seleccione--</option>
+            <option value="Medicamento POS">Medicamento POS</option>
+            <option value="Medicamento NO POS">Medicamento NO POS</option>
+            <option value="Suministro">Suministro</option>
+            <option value="Otro">Otro</option>
+        </select>
     </div>
     <div class="col-lg-2">
         <label for="valor_particular" class="col-xs-4 control-label ">Valor Particular</label>
@@ -64,10 +70,10 @@
         <label for="stock_min" class="col-xs-4 control-label ">Stock Min</label>
         <input type="number" name="stock_min" id="stock_min" class="form-control" value="{{old('stock_min')}}"></input>
     </div>
-    
+
     <div class="col-lg-4">
-        <label for="subgrupo_med" class="col-xs-4 control-label ">Grupo/SubGrupo</label>        
-        <select name="subgrupo_id" id="subgrupo_med" class="form-control" style="width: 100%;" required>
+        <label for="subgrupo_med" class="col-xs-4 control-label ">Grupo/SubGrupo</label>
+        <select name="subgrupo_id" id="subgrupo_med" class="form-control select2bs4" style="width: 100%;" required>
         </select>
     </div>
 </div>
@@ -81,7 +87,7 @@
         <input type="number" name="cantidad_dias" id="cantidad_dias" class="form-control" placeholder="Cantidad de días entre cada formula médica..." value="{{old('cantidad_dias')}}"></input>
     </div>
 
-    <input type="hidden" name="user_id" id="user_id" class="form-control" value="{{Session()->get('usuario_id')}}">    
-    <input type="hidden" name="grupo_id" id="subgrupo_med" class="form-control" >
+    <input type="hidden" name="user_id" id="user_id" class="form-control" value="{{Session()->get('usuario_id')}}">
+    <input type="hidden" name="grupo_id" id="subgrupo_med" class="form-control">
     <input type="hidden" name="estado" id="estado" class="form-control" value="1">
 </div>

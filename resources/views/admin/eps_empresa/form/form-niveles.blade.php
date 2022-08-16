@@ -1,4 +1,3 @@
-
 <div class="card card-info p-2">
   <!--<div class="card-header with-border row p-2"> -->
   <div class="card-header with-border">
@@ -31,7 +30,7 @@
           </select>
         </div>
         <div class="col-lg-3">
-          <label for="tipo_recuperacion" class="col-xs-6 control-label">Tipo Recaudo</label>          
+          <label for="tipo_recuperacion" class="col-xs-6 control-label">Tipo Recaudo</label>
           <select name="tipo_recuperacion" id="tipo_recuperacion" class="form-control" style="width: 100%;" value="{{old('tipo_recuperacion')}}" required>
             <option value="" selected>-- Seleccionar --</option>
             <option value="Copago">Copago</option>
@@ -52,7 +51,7 @@
             <option value="Todos">Todos</option>
           </select>
         </div>
-        
+
         <div class="col-lg-2">
           <label for="servicio" class="col-xs-4 control-label requerido">Servicios</label>
           <select name="servicio_id" id="servicio" class="form-control" style="width: 100%;" required>
@@ -75,45 +74,15 @@
           </select>
         </div>
 
+        <input type="hidden" name="user_id" id="user_id1" class="form-control" value="{{Session()->get('usuario_id')}}">
+        <input type="hidden" name="eps_empresas_id" id="eps_empresas_id" class="form-control" readonly>
+        <!-- <input type="hidden" name="id_eps_niveles" id="id_eps_niveles" class="form-control" readonly> -->
+
       </div>
 
-      <div class="col-lg-3">
-        <input type="hidden" name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario_id') ?? ''}}" readonly>
-      </div>
-      <div class="col-lg-4">
-        <input type="hidden" name="codigo_empresa" id="codigo_empresa" class="form-control" value="{{old('codigo_empresa')}}" readonly>
-        <input type="hidden" name="nombre" id="nombre_n" class="form-control" readonly>
-      </div>
-      <div class="col-lg-3">
-        <input type="hidden" name="eps_empresas_id" id="eps_empresas_id" class="form-control" value="{{old('eps_empresas_id')}}" readonly>
-      </div>
-      <div class="col-lg-3">
-        <input type="hidden" name="id_eps_niveles" id="id_eps_niveles" class="form-control" value="{{old('id_eps_niveles')}}" readonly>
-      </div>
+      
       @include('includes.boton-form-crear-empresa-empleado-usuario')
     </div>
   </div>
-  <div class="card-body with-border">
-    <div class="card-body table-responsive p-2">
-
-      <table id="tniveles" class="table table-hover  text-nowrap">
-
-        <thead>
-          <tr>
-            <th>Acciones</th>
-            <th>Nivel</th>
-            <th>Descripcion</th>
-            <th>Régimen</th>
-            <th>Recuperación</th>
-            <th>Afiliación</th>
-            <th>Servicios</th>
-            <th>Valor</th>
-            <th>Habilitado</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  @include('admin.eps_empresa.tablas.table-eps-niveles')
 </div>
