@@ -13,15 +13,14 @@ class Def_Procedimientos extends Model
         'cod_cups',
         'cod_alterno',
         'nombre',
-        'grupo',
-        'finalidad',
+        'subgrupo_id',
+        'finalidad_id',
         'descripcion',
         'observacion',
         'genero',
         'edad_1',
         'edad_2',
         'cantidad_maxima',
-        'valor_SOAT',
         'valor_particular',
         'estado'
     ];

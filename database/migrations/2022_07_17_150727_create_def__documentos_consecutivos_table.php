@@ -18,7 +18,7 @@ class CreateDefDocumentosConsecutivosTable extends Migration
             $table->unsignedBigInteger('documento_id')->unique();
             $table->unsignedBigInteger('consecutivo');
             $table->string('sede',200);
-            $table->string('observaciones',200)->nullable();//Este campo sirve para poner un pie de pagina en la factura cuando se deba generar la RES DIAN            
+            $table->string('observaciones',200)->nullable();//Este campo sirve para poner un pie de pagina en la factura cuando se deba generar la RES DIAN
             $table->foreign('documento_id', 'fk_documento_consecutivo')->references('id_documento')->on('def__documentos')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps(); 
         });

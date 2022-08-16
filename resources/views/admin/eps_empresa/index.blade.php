@@ -277,11 +277,10 @@ Eps Empresas
     });
 
 
-    // Funcion para abrir modal y agregar los Niveles, Tabla para consultar los niveles
+    // Función para abrir modal y agregar los Niveles, Tabla para consultar los niveles
     $(document).on('click', '.agregarnivel', function() {
       var id = $(this).attr('id');
       var nivel_idp2 = $(this).attr('id');
-      //var  nivel_idp2 = id;
 
       if (nivel_idp2 != '') {
         $('#tniveles').DataTable().destroy();
