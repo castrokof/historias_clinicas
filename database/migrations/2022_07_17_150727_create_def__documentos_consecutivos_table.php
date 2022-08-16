@@ -15,7 +15,7 @@ class CreateDefDocumentosConsecutivosTable extends Migration
     {
         Schema::create('def__documentos_consecutivos', function (Blueprint $table) {
             $table->bigIncrements('id_documento_consecutivo');
-            $table->unsignedBigInteger('documento_id');
+            $table->unsignedBigInteger('documento_id')->unique();
             $table->unsignedBigInteger('consecutivo');
             $table->string('sede',200);
             $table->string('observaciones',200)->nullable();//Este campo sirve para poner un pie de pagina en la factura cuando se deba generar la RES DIAN            
