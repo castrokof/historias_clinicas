@@ -28,14 +28,17 @@
                                 <div class="tab-pane fade active show" id="custom-tabs-one-datos-del-relprocedimientos" role="tabpanel" aria-labelledby="custom-tabs-one-datos-del-relprocedimientos-tab">
                                     <div class="card-body">
                                         @csrf
-                                        @include('admin.financiero.profesionales.tablas.table-relprocedimientos') 
-                                    </div> 
+                                        @include('admin.financiero.profesionales.tablas.table-relprocedimientos')
+                                    </div>
                                 </div>
                             </div>
 
                             <form id="form-general2" class="form-horizontal" method="POST">
                                 @csrf
-                                @include('includes.boton-form-crear-empresa-empleado-usuario')
+                                <button value ="addp" id="addp" name="addp" type="button" class="btn btn-success btn-xm col-xs-2">Add+</button>
+                                <button value ="desaddp" id= "desaddp" name="desaddp" type="button" class="btn btn-danger btn-xm col-xs-2">Add-</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                                <input type="hidden" name="profesional_id" id="profesional_id" value="Add" />
 
                             </form>
 

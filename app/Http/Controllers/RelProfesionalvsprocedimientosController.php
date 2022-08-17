@@ -19,33 +19,36 @@ class RelProfesionalvsprocedimientosController extends Controller
         $usuario_id = $request->session()->get('usuario_id');
         $idlist = $request->id;
 
-        if($request->ajax()){
-           /* $datast = rel__profesionalvsprocedimientos::orderBy('id', 'asc')
+        if ($request->ajax()) {
+            /* $datast = rel__profesionalvsprocedimientos::orderBy('id', 'asc')
            ->where('procedimiento_id', "=", $idlist)->get(); */
             $datast = DB::table('rel__profesionalvsprocedimientos')
-            ->Join('def__profesionales', 'rel__profesionalvsprocedimientos.profesional_id', '=', 'def__profesionales.id_profesional')
-            ->Join('def__procedimientos', 'rel__profesionalvsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
-            ->select('rel__profesionalvsprocedimientos.id_profesionalvsprocedimientos as idd','def__profesionales.codigo as codigo', 'def__profesionales.nombre as nombre',
-                    'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
-            ->where('rel__profesionalvsprocedimientos.procedimiento_id', '=', $idlist )
-            ->get();
-          
-        return  DataTables()->of($datast)
-        ->addColumn('actionpt', function($datast){
-        $button = '<button type="button" name="eliminarpp" id="'.$datast->idd.'" 
+                ->Join('def__profesionales', 'rel__profesionalvsprocedimientos.profesional_id', '=', 'def__profesionales.id_profesional')
+                ->Join('def__procedimientos', 'rel__profesionalvsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
+                ->select(
+                    'rel__profesionalvsprocedimientos.id_profesionalvsprocedimientos as idd',
+                    'def__profesionales.codigo as codigo',
+                    'def__profesionales.nombre as nombre',
+                    'def__procedimientos.cod_cups as cups',
+                    'def__procedimientos.nombre as Procedimiento'
+                )
+                ->where('rel__profesionalvsprocedimientos.procedimiento_id', '=', $idlist)
+                ->get();
+
+            return  DataTables()->of($datast)
+                ->addColumn('actionpt', function ($datast) {
+                    $button = '<button type="button" name="eliminarpp" id="' . $datast->idd . '"
         class = "eliminarpp btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relacion"><i class=""><i class="fa fa-trash"></i></i></a>';
-               
-        return $button;
 
-        }) 
-        ->rawColumns(['actionpt'])
-        ->make(true);
-        
-     } 
+                    return $button;
+                })
+                ->rawColumns(['actionpt'])
+                ->make(true);
+        }
 
-     
-      /* return view('admin.financiero.procedimientos.index', compact('datast')); */
-      return view('admin.financiero.procedimientos.index');
+
+        /* return view('admin.financiero.procedimientos.index', compact('datast')); */
+        return view('admin.financiero.procedimientos.index');
     }
 
     public function indexProfe(Request $request)
@@ -53,33 +56,36 @@ class RelProfesionalvsprocedimientosController extends Controller
         $usuario_id = $request->session()->get('usuario_id');
         $idlist = $request->id;
 
-        if($request->ajax()){
-           /* $datast = rel__profesionalvsprocedimientos::orderBy('id', 'asc')
+        if ($request->ajax()) {
+            /* $datast = rel__profesionalvsprocedimientos::orderBy('id', 'asc')
            ->where('procedimiento_id', "=", $idlist)->get(); */
             $datast = DB::table('rel__profesionalvsprocedimientos')
-            ->Join('def__profesionales', 'rel__profesionalvsprocedimientos.profesional_id', '=', 'def__profesionales.id_profesional')
-            ->Join('def__procedimientos', 'rel__profesionalvsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
-            ->select('rel__profesionalvsprocedimientos.id_profesionalvsprocedimientos as idd','def__profesionales.codigo as codigo', 'def__profesionales.nombre as nombre',
-                    'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
-            ->where('rel__profesionalvsprocedimientos.profesional_id', '=', $idlist )
-            ->get();
-          
-        return  DataTables()->of($datast)
-        ->addColumn('actionpp', function($datast){
-        $button = '<button type="button" name="eliminarpp" id="'.$datast->idd.'"
+                ->Join('def__profesionales', 'rel__profesionalvsprocedimientos.profesional_id', '=', 'def__profesionales.id_profesional')
+                ->Join('def__procedimientos', 'rel__profesionalvsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
+                ->select(
+                    'rel__profesionalvsprocedimientos.id_profesionalvsprocedimientos as idd',
+                    'def__profesionales.codigo as codigo',
+                    'def__profesionales.nombre as nombre',
+                    'def__procedimientos.cod_cups as cups',
+                    'def__procedimientos.nombre as Procedimiento'
+                )
+                ->where('rel__profesionalvsprocedimientos.profesional_id', '=', $idlist)
+                ->get();
+
+            return  DataTables()->of($datast)
+                ->addColumn('actionpp', function ($datast) {
+                    $button = '<button type="button" name="eliminarpp" id="' . $datast->idd . '"
         class = "eliminarpp btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
-               
-        return $button;
 
-        }) 
-        ->rawColumns(['actionpp'])
-        ->make(true);
-        
-     } 
+                    return $button;
+                })
+                ->rawColumns(['actionpp'])
+                ->make(true);
+        }
 
-     
-      /* return view('admin.financiero.procedimientos.index', compact('datast')); */
-      return view('admin.financiero.profesionales.index');
+
+        /* return view('admin.financiero.procedimientos.index', compact('datast')); */
+        return view('admin.financiero.profesionales.index');
     }
 
     /**
@@ -87,10 +93,7 @@ class RelProfesionalvsprocedimientosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -100,13 +103,56 @@ class RelProfesionalvsprocedimientosController extends Controller
      */
     public function eliminar(Request $request, $id)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
 
             $datasp = DB::table('rel__profesionalvsprocedimientos')
-            ->where('id_profesionalvsprocedimientos', '=', $id )
-            ->delete();
+                ->where('id_profesionalvsprocedimientos', '=', $id)
+                ->delete();
 
-        return response()->json(['success' => 'ok3']);
+            return response()->json(['success' => 'ok3']);
+        }
+    }
+
+
+
+    public function create(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $idps = $request->procedimiento_id;
+
+            foreach ($idps as $idp) {
+
+                $count = DB::table('rel__profesionalvsprocedimientos')->where([
+                    ['procedimiento_id', $idp],
+                    ['profesional_id', $request->profesional_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__profesionalvsprocedimientos')
+                   ->where([
+                        ['procedimiento_id', $idp],
+                        ['profesional_id', $request->profesional_id]
+                    ])->update(
+                        [
+                            'procedimiento_id' => $idp,
+                            'profesional_id' => $request->profesional_id
+
+                        ]
+                    );
+                }else{
+                DB::table('rel__profesionalvsprocedimientos')
+                    ->insert(
+                        [
+                            'procedimiento_id' => $idp,
+                            'profesional_id' => $request->profesional_id
+
+                        ]
+                    );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
         }
     }
 }

@@ -241,7 +241,7 @@ Profesionales
 
 
 
-
+        var idprofesional;
 
         //Función para abrir detalle del registro
 
@@ -249,7 +249,7 @@ Profesionales
 
             var idlist = $(this).attr('id');
             var idlistp = $(this).attr('id');
-            // var idlistf = $(this).attr('id');
+            idprofesional = $(this).attr('id');
 
             if (idlistp != '') {
                 $('#tservicio').DataTable().destroy();
@@ -258,6 +258,7 @@ Profesionales
             if (idlistp != '') {
                 $('#tprocedimiento').DataTable().destroy();
                 fill_tableproce(idlistp);
+                //function_addp(idlistp);
             }
             if (idlistp != '') {
                 $('#tmedicamento').DataTable().destroy();
@@ -582,14 +583,11 @@ Profesionales
                     type: "get",
                 },
                 columns: [
-                    /* {
-                                            data: 'actionpp',
-                                            orderable: false
-                                        }, */
-
                     {
-                        data: 'estado',
-                        name: 'estado'
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'cod_cups',
@@ -833,7 +831,102 @@ Profesionales
             });
         }
 
-        //-- Eliminar Procedimiento de la relación 
+
+
+     //Función para enviar los procedimientos seleccionados al controlador
+
+
+    $(document).on('click', '#addp', function(){
+
+     var profesional = idprofesional;
+
+     var idp = [];
+     if(profesional == ''){
+
+           Swal.fire({
+            target: document.getElementById('modal-procedimiento'),
+            title: 'No hay asociado ningun profesional',
+            icon: 'warning',
+            buttons:{
+                cancel: "Cerrar"
+
+                    }
+              })
+
+     }else{
+
+   Swal.fire({
+        target: document.getElementById('modal-procedimiento'),
+        title: "¿Estás seguro?",
+        text: "Estás por asignar ordenes",
+        icon: "success",
+        showCancelButton: true,
+        showCloseButton: true,
+        confirmButtonText: 'Aceptar',
+        }).then((result)=>{
+       if(result.value){
+        $('input[type=checkbox]:checked.case').each(function() {
+            idp.push($(this).val());
+           });
+
+       if(idp.length > 0)
+        {
+
+          $.ajax({
+            beforeSend: function(){
+            $('.loader').css("visibility", "visible"); },
+                url:"{{ route('add_procedimiento')}}",
+                method:'post',
+                data:{procedimiento_id:idp, profesional_id:profesional,
+
+                  "_token": $("meta[name='csrf-token']").attr("content")
+
+                },
+                success:function(respuesta)
+                {
+                  if(respuesta.mensaje = 'ok') {
+                    $('#modal-procedimiento').modal('hide');
+                    $('#tprocedimiento').DataTable().ajax.reload();
+                  Manteliviano.notificaciones('Procedimientos relacionados correctamente', 'Sistema Ips', 'success');
+                  }else if(respuesta.mensaje = 'ng'){
+                    $('#modal-procedimiento').modal('hide');
+                    $('#tprocedimiento').DataTable().ajax.reload();
+                    Manteliviano.notificaciones('Se elimino la relación correctamente', 'Sistema Ips');
+                }else if(respuesta.mensaje = 'ok1'){
+                    $('#modal-procedimiento').modal('hide');
+                    $('#tprocedimiento').DataTable().ajax.reload();
+                    Manteliviano.notificaciones('Ya existe la realación', 'Sistema Ips');
+                }
+                },
+                complete: function(){
+                  $('.loader').css("visibility", "hide");
+                 }
+                 });
+
+          }
+          else
+          {
+
+        Swal.fire({
+            target: document.getElementById('modal-procedimiento'),
+            title: 'Por favor seleccione un procedimiento del checkbox',
+            icon: 'warning',
+            buttons:{
+                cancel: "Cerrar"
+
+                    }
+              })
+            }
+       }});
+       }
+    });
+
+
+
+
+
+
+        //-- Eliminar Procedimiento de la relación
 
         $(document).on('click', '.eliminarpp', function() {
             var id = $(this).attr('id');
@@ -879,7 +972,7 @@ Profesionales
 
         });
 
-        //-- Eliminar Servicio de la relación 
+        //-- Eliminar Servicio de la relación
 
         $(document).on('click', '.eliminarps', function() {
             var id = $(this).attr('id');
@@ -889,6 +982,7 @@ Profesionales
             var method = 'delete';
 
             Swal.fire({
+
                 title: "¿Estás seguro?",
                 text: text,
                 icon: "success",
@@ -925,7 +1019,7 @@ Profesionales
 
         });
 
-        //-- Eliminar Medicamento de la relación 
+        //-- Eliminar Medicamento de la relación
 
         $(document).on('click', '.eliminarpm', function() {
             var id = $(this).attr('id');
@@ -972,6 +1066,12 @@ Profesionales
         });
 
     });
+
+//Función asignar y desasignar
+
+$("#selectallp").on('click', function() {
+  $(".case").prop("checked", this.checked);
+});
 
     // Función para multimodal
 

@@ -18,7 +18,7 @@ class CreateDefSubgrupoProcedimientosTable extends Migration
             $table->string('codigo_sub')->unique(); //codigo subgrupo
             $table->unsignedBigInteger('grupo_id'); //grupo
             $table->string('nombre_subgrupo',255);
-            $table->foreign('grupo_id', 'fk_subgrupo_grupo')->references('id_grupo')->on('def__grupo_procedimientos')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('grupo_id', 'fk_subgrupo_grupo_p')->references('id_grupo')->on('def__grupo_procedimientos')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }
