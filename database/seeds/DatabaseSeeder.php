@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
 
         );
 
-
             $this->call(RolTablaSeeder::class);
             $this->call(UsuarioAdministradorSeeder::class);
             $this->call(cie10Seeder::class);
