@@ -28,13 +28,14 @@
                                     <div class="card-body">
                                         @csrf
                                         @include('admin.financiero.profesionales.tablas.table-relservicio')
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
 
-                            <form id="form-general2" class="form-horizontal" method="POST">
+                            <form id="form-general3" class="form-horizontal" method="POST">
                                 @csrf
-                                @include('includes.boton-form-crear-empresa-empleado-usuario')
+                                <button id="adds" name="adds" type="button" class="addss btn btn-success btn-xm col-xs-2">Add+</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
 
                             </form>
 

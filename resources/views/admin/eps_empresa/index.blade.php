@@ -511,8 +511,8 @@ Eps Empresas
               }
 
               if (data.success == 'okn1') {
-                $('#form-general-n')[0].reset();
-                $('#modal-n').modal('hide');
+                limpiar_input_niveles();
+                //$('#modal-n').modal('hide');
                 $('#tniveles').DataTable().ajax.reload();
                 Swal.fire({
                   icon: 'success',
@@ -546,7 +546,20 @@ Eps Empresas
 
     });
 
-    //-- Eliminar Nivel de la relación 
+
+   function limpiar_input_niveles() {
+
+    $('#nivel').val('');
+    $('#descripcion_nivel').val('');
+    $('#regimen').val('');
+    $('#tipo_recuperacion').val('');
+    $('#afiliacion').val('');
+    $('#servicio').val('');
+    $('#vlr_copago').val('');
+
+   }
+
+    //-- Eliminar Nivel de la relación
 
     $(document).on('click', '.eliminarlv', function() {
       var id = $(this).attr('id');

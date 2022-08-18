@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Admin\def__documentos_consecutivo;
 use Carbon\Carbon;
 
 use App\Models\Admin\Eps_empresa;
@@ -11,6 +13,7 @@ use App\Models\Admin\Paciente;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Admin\Factura;
+use App\Models\Admin\Fc_Factura_Procedimientos;
 use App\Models\Admin\Paises;
 use Illuminate\Http\Request;
 
@@ -25,22 +28,53 @@ class FacturaController extends Controller
     {
         //
         $usuario_id = $request->session()->get('usuario_id');
+        $documento_consecutivo = DB::table('def__documentos_consecutivos')
+        ->join('def__documentos', 'def__documentos.id_documento', '=', 'def__documentos_consecutivos.documento_id')
+        ->where('def__documentos.cod_documentos', 'DS')
+        ->select('def__documentos_consecutivos.consecutivo', 'def__documentos.cod_documentos')
+        ->get();
+
+
+              return view('admin.financiero.facturacion.index', compact('documento_consecutivo'));
+    }
+
+
+    public function indexGuardarFactura(Request $request)
+    {
+        //
+        $usuario_id = $request->session()->get('usuario_id');
+
         if ($request->ajax()) {
-            $datas = Factura::orderBy('id_factura')
-                ->get();
 
-            return  DataTables()->of($datas)
-                ->addColumn('action', function ($datas) {
-                    $button = '<button type="button" name="edit" id="' . $datas->id_factura . '"
-        class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar paciente"><i class="far fa-edit"></i></button>';
 
-                    return $button;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+            $cuenta_conse = DB::table('def__documentos_consecutivos')
+            ->join('def__documentos', 'def__documentos.id_documento', '=', 'def__documentos_consecutivos.documento_id')
+            ->where([['def__documentos.cod_documentos', $request->consecutivo],
+            ['def__documentos.cod_documentos', $request->cod_documentos]
+                    ])
+            ->count();
+
+            if ($cuenta_conse == 0) {
+                Fc_Factura_Procedimientos::create($request->all());
+                // def__documentos_consecutivos::update(
+                //     'consecutivo' -> $request->consecutivo + 1
+                // );
+            }
+
+
+
+            $documento_consecutivo = DB::table('def__documentos_consecutivos')
+            ->join('def__documentos', 'def__documentos.id_documento', '=', 'def__documentos_consecutivos.documento_id')
+            ->where('def__documentos.cod_documentos', 'DS')
+            ->select('def__documentos_consecutivos.consecutivo', 'def__documentos.cod_documentos')
+            ->get();
+
+            return response()->json([$documento_consecutivo,'ok']);
+
         }
 
-        return view('admin.financiero.facturacion.index');
+
+              return view('admin.financiero.facturacion.index', compact('documento_consecutivo'));
     }
 
     /**

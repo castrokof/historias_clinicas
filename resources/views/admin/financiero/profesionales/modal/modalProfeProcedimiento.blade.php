@@ -36,9 +36,8 @@
                             <form id="form-general2" class="form-horizontal" method="POST">
                                 @csrf
                                 <button value ="addp" id="addp" name="addp" type="button" class="btn btn-success btn-xm col-xs-2">Add+</button>
-                                <button value ="desaddp" id= "desaddp" name="desaddp" type="button" class="btn btn-danger btn-xm col-xs-2">Add-</button>
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                                <input type="hidden" name="profesional_id" id="profesional_id" value="Add" />
+
 
                             </form>
 

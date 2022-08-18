@@ -65,32 +65,12 @@ class DefMedicamentosSuministrosController extends Controller
             $datas = Def_MedicamentosSuministros::orderBy('id_medicamento', 'asc')->get();
 
             return  DataTables()->of($datas)
-                ->addColumn('action', function ($datas) {
-                    $button = '<button type="button" name="Detalle" id="' . $datas->id_medicamento . '" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Relacionar Item"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
+                ->addColumn('checkbox', function ($datas) {
+                    $checkbox = '<input type="checkbox" name="case[]" value="' . $datas->id_medicamento . '" class="casem tooltipsC" title="Relacionar Medicamento" />';
 
-                    return $button;
-                })->addColumn('estado', function ($datas) {
-
-
-                    if ($datas->estado == "1") {
-
-                        $button = '
-                 <div class="custom-control custom-switch ">
-                 <input type="checkbox"  class="check_98 custom-control-input"  id="customSwitch99' . $datas->id_medicamento . '" value="' . $datas->id_medicamento . '"  checked>
-                 <label class="custom-control-label" for="customSwitch99' . $datas->id_medicamento . '"  valueid="' . $datas->id_medicamento . '"></label>
-                 </div>';
-                    } else {
-
-                        $button = '
-                 <div class="custom-control custom-switch ">
-                 <input type="checkbox" class="check_98 custom-control-input" id="customSwitch99' . $datas->id_medicamento . '" value="' . $datas->id_medicamento . '" >
-                 <label class="custom-control-label" for="customSwitch99' . $datas->id_medicamento . '"  valueid="' . $datas->id_medicamento . '"></label>
-                 </div>';
-                    }
-
-                    return $button;
+                    return $checkbox;
                 })
-                ->rawColumns(['action', 'estado'])
+                ->rawColumns(['checkbox'])
                 ->make(true);
         }
 
@@ -164,7 +144,7 @@ class DefMedicamentosSuministrosController extends Controller
         if ($request->ajax()) {
             $grupmed = DB::table('def__subgrupomeds')
                 ->Join('def__grupoysubgrupomeds', 'def__subgrupomeds.grupo_id', '=', 'def__grupoysubgrupomeds.id')
-                
+
                 ->where('def__grupoysubgrupomeds.nombre_grupo', 'LIKE', '%' . $term . '%')
                 ->orwhere('def__subgrupomeds.descripcion_subgrupo', 'LIKE', '%' . $term . '%')
                 ->get();

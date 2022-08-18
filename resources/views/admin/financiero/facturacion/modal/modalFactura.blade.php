@@ -21,8 +21,11 @@
                                 </div>
                             </div>
 
+                            @foreach ( $documento_consecutivo as $item)
+
+
                             <div class="input-group input-group col-lg-2">
-                                <input type="search" name="key2" id="key2" class="form-control form-control-mb" placeholder="Documento factura..." value="">
+                                <input type="search" name="key2" id="key2" class="form-control form-control-mb" placeholder="Documento factura..." value="{{$item->cod_documentos}}" readonly>
                                 <div class="input-group-append">
                                     <span type="button" class="btn btn-mb btn-default" id="doc_conse">
                                         <i class="fas fa-file"></i>
@@ -31,13 +34,14 @@
                             </div>
 
                             <div class="input-group input-group col-lg-1">
-                                <input type="text" name="numero_factura" id="numero_factura" class="form-control form-control-mb" placeholder="Número..." value="" readonly>
+                                <input type="text" name="numero_factura" id="numero_factura" class="form-control form-control-mb" placeholder="Número..." value="{{$item->consecutivo}}" readonly>
                                 <div class="input-group-append">
                                     <span type="button" class="btn btn-mb btn-default">
                                         <i class="fas fa-tag"></i>
                                     </span>
                                 </div>
                             </div>
+                            @endforeach
                             <div class="input-group input-group col-lg-2">
                                 <input type="text" name="created_at" id="created_at" class="form-control form-control-mb" placeholder="Fecha y hora del sistema" value="{{now() ?? ''}}" readonly>
                                 <div class="input-group-append">
