@@ -834,8 +834,6 @@ Profesionales
 
 
      //Función para enviar los procedimientos seleccionados al controlador
-
-
     $(document).on('click', '#addp', function(){
 
      var profesional = idprofesional;
@@ -920,9 +918,6 @@ Profesionales
        }});
        }
     });
-
-
-
 
 
 

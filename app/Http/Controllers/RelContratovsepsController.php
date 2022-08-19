@@ -50,9 +50,63 @@ class RelContratovsepsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if ($request->ajax()) {
+
+            $idps = $request->contrato_id;
+
+            foreach ($idps as $idp) {
+
+                $count = DB::table('rel__contratovseps')->where([
+                    ['contrato_id', $idp],
+                    ['eps_id', $request->eps_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__contratovseps')
+                   ->where([
+                        ['contrato_id', $idp],
+                        ['eps_id', $request->eps_id]
+                    ])->update(
+                        [
+                            'contrato_id' => $idp,
+                            'eps_id' => $request->eps_id
+
+                        ]
+                    );
+                }else{
+                DB::table('rel__contratovseps')
+                    ->insert(
+                        [
+                            'contrato_id' => $idp,
+                            'eps_id' => $request->eps_id
+
+                        ]
+                    );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */    
+    public function eliminar(Request $request, $id)
+    {
+        if($request->ajax()){
+
+            $datasp = DB::table('rel__contratovseps')
+            ->where('id_contratovseps', '=', $id )
+            ->delete();
+
+        return response()->json(['success' => 'ok3']);
+        }
     }
 
     /**
@@ -111,21 +165,5 @@ class RelContratovsepsController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */    
-    public function eliminar(Request $request, $id)
-    {
-        if($request->ajax()){
-
-            $datasp = DB::table('rel__contratovseps')
-            ->where('id_contratovseps', '=', $id )
-            ->delete();
-
-        return response()->json(['success' => 'ok3']);
-        }
-    }
+    
 }

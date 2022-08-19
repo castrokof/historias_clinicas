@@ -174,6 +174,7 @@ Route::post('contrato-estado', 'DefContratosController@updateestado')->name('con
 Route::get('contratovsEPS', 'RelContratovsepsController@index')->name('contratovsEPS')->middleware('superEditor');
 Route::get('RelEpsIndex', 'EpsController@rel_index')->name('RelEpsIndex')->middleware('superEditor');
 Route::delete('contratovsEPS/{id}', 'RelContratovsepsController@eliminar')->name('eliminar_conteps')->middleware('superEditor');
+Route::post('add_eps', 'RelContratovsepsController@create')->name('add_eps')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Contrato vs Servicio
 Route::get('relserviciovsContrato', 'RelContratovsservicioController@index')->name('relserviciovsContrato')->middleware('superEditor');

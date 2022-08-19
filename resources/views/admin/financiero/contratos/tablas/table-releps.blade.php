@@ -9,7 +9,7 @@
 
                     <thead>
                         <tr>
-                            <th>Asociar</th>
+                            <th class="width40"><input id="selectallp" type="checkbox" class="select-all" /> Des/Seleccione Todos</th>
                             <th>EPS</th>
                             <th>Empresa</th>
                         </tr>
