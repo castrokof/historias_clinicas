@@ -19,33 +19,36 @@ class RelProfesionalvsservicioController extends Controller
         $usuario_id = $request->session()->get('usuario_id');
         $idlist = $request->id;
 
-        if($request->ajax()){
-           /* $datast = rel__profesionalvsservicio::orderBy('id', 'asc')
+        if ($request->ajax()) {
+            /* $datast = rel__profesionalvsservicio::orderBy('id', 'asc')
            ->where('profesional_id', "=", $idlist)->get(); */
             $datast = DB::table('rel__profesionalvsservicio')
-            ->Join('servicios', 'rel__profesionalvsservicio.servicio_id', '=', 'servicios.id_servicio')
-            ->Join('def__profesionales', 'rel__profesionalvsservicio.profesional_id', '=', 'def__profesionales.id_profesional')
-            ->select('rel__profesionalvsservicio.id_profesionalvsservicio as idd','servicios.cod_servicio as cod_servicio', 'servicios.nombre as nombre',
-                    'def__profesionales.codigo as codigo','def__profesionales.nombre as Profesional')
-            ->where('rel__profesionalvsservicio.profesional_id', '=', $idlist )
-            ->get();
-          
-        return  DataTables()->of($datast)
-        ->addColumn('actionps', function($datast){
-        $button = '<button type="button" name="eliminarps" id="'.$datast->idd.'"
+                ->Join('servicios', 'rel__profesionalvsservicio.servicio_id', '=', 'servicios.id_servicio')
+                ->Join('def__profesionales', 'rel__profesionalvsservicio.profesional_id', '=', 'def__profesionales.id_profesional')
+                ->select(
+                    'rel__profesionalvsservicio.id_profesionalvsservicio as idd',
+                    'servicios.cod_servicio as cod_servicio',
+                    'servicios.nombre as nombre',
+                    'def__profesionales.codigo as codigo',
+                    'def__profesionales.nombre as Profesional'
+                )
+                ->where('rel__profesionalvsservicio.profesional_id', '=', $idlist)
+                ->get();
+
+            return  DataTables()->of($datast)
+                ->addColumn('actionps', function ($datast) {
+                    $button = '<button type="button" name="eliminarps" id="' . $datast->idd . '"
         class = "eliminarps btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
-               
-        return $button;
 
-        }) 
-        ->rawColumns(['actionps'])
-        ->make(true);
-        
-     }
+                    return $button;
+                })
+                ->rawColumns(['actionps'])
+                ->make(true);
+        }
 
-     
-      /* return view('admin.financiero.profesionales.index', compact('datast')); */
-      return view('admin.financiero.profesionales.index');
+
+        /* return view('admin.financiero.profesionales.index', compact('datast')); */
+        return view('admin.financiero.profesionales.index');
     }
 
     /**
@@ -53,11 +56,46 @@ class RelProfesionalvsservicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
+        if ($request->ajax()) {
 
+            $idss = $request->servicio_id;
+
+            foreach ($idss as $ids) {
+
+                $count = DB::table('rel__profesionalvsservicio')->where([
+                    ['servicio_id', $ids],
+                    ['profesional_id', $request->profesional_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__profesionalvsservicio')
+                        ->where([
+                            ['servicio_id', $ids],
+                            ['profesional_id', $request->profesional_id]
+                        ])->update(
+                            [
+                                'servicio_id' => $ids,
+                                'profesional_id' => $request->profesional_id
+
+                            ]
+                        );
+                } else {
+                    DB::table('rel__profesionalvsservicio')
+                        ->insert(
+                            [
+                                'servicio_id' => $ids,
+                                'profesional_id' => $request->profesional_id
+
+                            ]
+                        );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -122,11 +160,11 @@ class RelProfesionalvsservicioController extends Controller
      */
     public function eliminar(Request $request, $id)
     {
-        if($request->ajax()){
- 
+        if ($request->ajax()) {
+
             rel__profesionalvsservicio::where('id_profesionalvsservicio', $id)->delete();
 
-        return response()->json(['success' => 'ok1']);
+            return response()->json(['success' => 'ok1']);
         }
     }
 }

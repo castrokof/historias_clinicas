@@ -222,8 +222,23 @@ class ServiciosController extends Controller
      * @param  \App\Models\Admin\Servicios  $servicios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Servicios $servicios)
+    public function rel_index1(Request $request)
     {
-        //
+
+        if ($request->ajax()) {
+
+            $datas = Servicios::orderBy('id_servicio', 'asc')->get();
+
+            return  DataTables()->of($datas)
+                ->addColumn('checkbox', function ($datas) {
+                    $checkbox = '<input type="checkbox" name="case[]"  value="' . $datas->id_servicio . '" class="cases tooltipsC" title="Relacionar servicio"/>';
+
+                    return $checkbox;
+                })
+                ->rawColumns(['checkbox'])
+                ->make(true);
+        }
+
+        return view('admin.financiero.procedimientos.index');
     }
 }

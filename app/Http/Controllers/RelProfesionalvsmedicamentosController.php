@@ -92,9 +92,45 @@ class RelProfesionalvsmedicamentosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        //
+        if ($request->ajax()) {
+
+            $idms = $request->medicamento_id;
+
+            foreach ($idms as $idm) {
+
+                $count = DB::table('rel__profesionalvsmedicamentos')->where([
+                    ['medicamento_id', $idm],
+                    ['profesional_id', $request->profesional_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__profesionalvsmedicamentos')
+                   ->where([
+                        ['medicamento_id', $idm],
+                        ['profesional_id', $request->profesional_id]
+                    ])->update(
+                        [
+                            'medicamento_id' => $idm,
+                            'profesional_id' => $request->profesional_id
+
+                        ]
+                    );
+                }else{
+                DB::table('rel__profesionalvsmedicamentos')
+                    ->insert(
+                        [
+                            'medicamento_id' => $idm,
+                            'profesional_id' => $request->profesional_id
+
+                        ]
+                    );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
+        }
     }
 
     /**
