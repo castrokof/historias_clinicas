@@ -91,7 +91,6 @@ class DefMedicamentosSuministrosController extends Controller
                 'marca' => 'required',
                 'CUMS',
                 'ATC_id',
-                'grupo_id',
                 'subgrupo_id' => 'required',
                 'IUM',
                 'invima' => 'required',

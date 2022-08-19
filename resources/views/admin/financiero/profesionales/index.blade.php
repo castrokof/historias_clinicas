@@ -920,13 +920,12 @@
                                     buttons: {
                                         cancel: "Cerrar"
 
-                                    }
-                                })
-                            }
-                        }
-                    });
-                }
-            });
+                    }
+              })
+            }
+       }});
+       }
+    });
 
 
 
@@ -999,79 +998,10 @@
 
                         }
                     })
-
-                } else {
-
-                    Swal.fire({
-                        target: document.getElementById('modal-servicio'),
-                        title: "¿Estás seguro?",
-                        text: "Estás por asociar un/unos servicio/s",
-                        icon: "success",
-                        showCancelButton: true,
-                        showCloseButton: true,
-                        confirmButtonText: 'Aceptar',
-                    }).then((result) => {
-                        if (result.value) {
-                            $('input[type=checkbox]:checked.cases').each(function() {
-                                ids.push($(this).val());
-                            });
-
-                            if (ids.length > 0) {
-
-                                $.ajax({
-                                    beforeSend: function() {
-                                        $('.loader').css("visibility", "visible");
-                                    },
-                                    url: "{{ route('add_servicio') }}",
-                                    method: 'post',
-                                    data: {
-                                        servicio_id: ids,
-                                        profesional_id: profesional,
-
-                                        "_token": $("meta[name='csrf-token']").attr(
-                                            "content")
-
-                                    },
-                                    success: function(respuesta) {
-                                        if (respuesta.mensaje = 'ok') {
-                                            $('#modal-servicio').modal('hide');
-                                            $('#tservicio').DataTable().ajax.reload();
-                                            Manteliviano.notificaciones(
-                                                'Servicios relacionados correctamente',
-                                                'Sistema Ips', 'success');
-
-                                        } else if (respuesta.mensaje = 'ok1') {
-                                            $('#modal-servicio').modal('hide');
-                                            $('#tservicio').DataTable().ajax.reload();
-                                            Manteliviano.notificaciones(
-                                                'Ya existe la relación',
-                                                'Sistema Ips');
-                                        }
-                                    },
-                                    complete: function() {
-                                        $('.loader').css("visibility", "hide");
-                                    }
-                                });
-
-                            } else {
-
-                                Swal.fire({
-                                    target: document.getElementById('modal-servicio'),
-                                    title: 'Por favor seleccione un servicio del checkbox',
-                                    icon: 'warning',
-                                    buttons: {
-                                        cancel: "Cerrar"
-
-                                    }
-                                })
-                            }
-                        }
-                    });
                 }
-            });
+        });
 
-
-            //-- Eliminar Servicio de la relación
+        //-- Eliminar Servicio de la relación
 
             $(document).on('click', '.eliminarps', function() {
                 var id = $(this).attr('id');
@@ -1109,121 +1039,16 @@
 
                                     })
 
-                                }
-                            }
-                        });
-
-                    }
-                })
-
-            });
-
-
-            //Función para enviar los servicios seleccionados al controlador
-
-            $(document).on('click', '#addm', function() {
-
-                var profesional = idprofesional;
-
-                var idm = [];
-                if (profesional == '') {
-
-                    Swal.fire({
-                        target: document.getElementById('modal-medicamento'),
-                        title: 'No hay asociado ningun profesional',
-                        icon: 'warning',
-                        buttons: {
-                            cancel: "Cerrar"
-
-                        }
-                    })
-
-                } else {
-
-                    Swal.fire({
-                        target: document.getElementById('modal-medicamento'),
-                        title: "¿Estás seguro?",
-                        text: "Estás por asociar un/unos medicamento/s",
-                        icon: "success",
-                        showCancelButton: true,
-                        showCloseButton: true,
-                        confirmButtonText: 'Aceptar',
-                    }).then((result) => {
-                        if (result.value) {
-                            $('input[type=checkbox]:checked.casem').each(function() {
-                                idm.push($(this).val());
-                            });
-
-                            if (idm.length > 0) {
-
-                                $.ajax({
-                                    beforeSend: function() {
-                                        $('.loader').css("visibility", "visible");
-                                    },
-                                    url: "{{ route('add_medicamento') }}",
-                                    method: 'post',
-                                    data: {
-                                        medicamento_id: idm,
-                                        profesional_id: profesional,
-
-                                        "_token": $("meta[name='csrf-token']").attr(
-                                            "content")
-
-                                    },
-                                    success: function(respuesta) {
-                                        if (respuesta.mensaje = 'ok') {
-                                            $('#modal-medicamento').modal('hide');
-                                            $('#tmedicamento').DataTable().ajax.reload();
-                                            Manteliviano.notificaciones(
-                                                'Servicios relacionados correctamente',
-                                                'Sistema Ips', 'success');
-                                        }else if (respuesta.mensaje = 'ok1') {
-                                            $('#modal-medicamento').modal('hide');
-                                            $('#tmedicamento').DataTable().ajax.reload();
-                                            Manteliviano.notificaciones(
-                                                'Ya existe la relación',
-                                                'Sistema Ips');
-                                        }
-                                    },
-                                    complete: function() {
-                                        $('.loader').css("visibility", "hide");
-                                    }
-                                });
-
-                            } else {
-
-                                Swal.fire({
-                                    target: document.getElementById('modal-medicamento'),
-                                    title: 'Por favor seleccione un medicamento del checkbox',
-                                    icon: 'warning',
-                                    buttons: {
-                                        cancel: "Cerrar"
-
-                                    }
-                                })
                             }
                         }
                     });
+
                 }
-            });
+            })
 
+        });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //-- Eliminar Medicamento de la relación
+        //-- Eliminar Medicamento de la relación
 
             $(document).on('click', '.eliminarpm', function() {
                 var id = $(this).attr('id');
@@ -1269,9 +1094,9 @@
 
             });
 
+    });
 
-
-            //Función asignar y desasignar procedimientos a relacionar
+//Función asignar y desasignar
 
             $("#selectallp").on('click', function() {
                 $(".case").prop("checked", this.checked);
@@ -1352,20 +1177,17 @@
                     });
                 }
 
-                $.fn.multiModal = Plugin;
-                $.fn.multiModal.Constructor = MultiModal;
+        $.fn.multiModal = Plugin;
+        $.fn.multiModal.Constructor = MultiModal;
 
-                $(document).on('show.bs.modal', function(e) {
-                    $(document).multiModal('show', e.target);
-                });
-
-                $(document).on('hidden.bs.modal', function(e) {
-                    $(document).multiModal('hidden', e.target);
-                });
-            }(jQuery, window));
-
-
+        $(document).on('show.bs.modal', function(e) {
+            $(document).multiModal('show', e.target);
         });
+
+        $(document).on('hidden.bs.modal', function(e) {
+            $(document).multiModal('hidden', e.target);
+        });
+    }(jQuery, window));
 
 
 

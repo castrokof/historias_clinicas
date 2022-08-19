@@ -243,6 +243,8 @@ Contratos
             });
         }
 
+        var idepsempresa;
+
 
         //Función para abrir detalle del registro
 
@@ -251,6 +253,7 @@ Contratos
             var idlist = $(this).attr('id');
             var idlistp = $(this).attr('id');
             var idlistf = $(this).attr('id');
+            idepsempresa = $(this).attr('id');
 
             if (idlistp != '') {
                 $('#tservicio').DataTable().destroy();
@@ -675,15 +678,11 @@ Contratos
                     url: "{{ route('RelEpsIndex')}}",
                     type: "get",
                 },
-                columns: [
-                    /* {
-                                                data: 'action',
-                                                //orderable: false
-                                            }, */
-
-                    {
-                        data: 'estado',
-                        name: 'estado'
+                columns: [{
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'codigo',
@@ -1021,6 +1020,92 @@ Contratos
             });
         }
 
+        //Función para enviar los procedimientos seleccionados al controlador
+        $(document).on('click', '#addeps', function() {
+
+            var eps_rel = idepsempresa;
+
+            var idp = [];
+            if (eps_rel == '') {
+
+                Swal.fire({
+                    target: document.getElementById('modal-eps'),
+                    title: 'No hay asociada ninguna EPS',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+
+            } else {
+
+                Swal.fire({
+                    target: document.getElementById('modal-eps'),
+                    title: "¿Estás seguro?",
+                    text: "Estás por asignar una EPS",
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $('input[type=checkbox]:checked.case').each(function() {
+                            idp.push($(this).val());
+                        });
+
+                        if (idp.length > 0) {
+
+                            $.ajax({
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('add_eps')}}",
+                                method: 'post',
+                                data: {
+                                    contrato_id: idp,
+                                    eps_id: eps_rel,
+
+                                    "_token": $("meta[name='csrf-token']").attr("content")
+
+                                },
+                                success: function(respuesta) {
+                                    if (respuesta.mensaje = 'ok') {
+                                        $('#modal-eps').modal('hide');
+                                        $('#treleps').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones('EPS relacionadas correctamente', 'Sistema Ips', 'success');
+                                    } else if (respuesta.mensaje = 'ng') {
+                                        $('#modal-eps').modal('hide');
+                                        $('#treleps').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones('Se elimino la relación correctamente', 'Sistema Ips');
+                                    } else if (respuesta.mensaje = 'ok1') {
+                                        $('#modal-eps').modal('hide');
+                                        $('#treleps').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones('Ya existe la realación', 'Sistema Ips');
+                                    }
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hide");
+                                }
+                            });
+
+                        } else {
+
+                            Swal.fire({
+                                target: document.getElementById('modal-eps'),
+                                title: 'Por favor seleccione una EPS del checkbox',
+                                icon: 'warning',
+                                buttons: {
+                                    cancel: "Cerrar"
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+        });
+
         //-- Eliminar EPS de la relación 
 
         $(document).on('click', '.eliminarce', function() {
@@ -1205,7 +1290,19 @@ Contratos
 
         });
 
+        /* Funciónes para asignar y desasignar las relaciones de los contratos con EPS, Servicios, Sedes, Procedimientos,
+        Medicamentos */
+
+        $("#selectallp").on('click', function() {
+            $(".case").prop("checked", this.checked);
+        });
+
     });
+
+
+
+
+
 
     // Función para multimodal
 

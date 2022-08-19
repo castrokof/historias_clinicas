@@ -176,6 +176,7 @@ Route::post('contrato-estado', 'DefContratosController@updateestado')->name('con
 Route::get('contratovsEPS', 'RelContratovsepsController@index')->name('contratovsEPS')->middleware('superEditor');
 Route::get('RelEpsIndex', 'EpsController@rel_index')->name('RelEpsIndex')->middleware('superEditor');
 Route::delete('contratovsEPS/{id}', 'RelContratovsepsController@eliminar')->name('eliminar_conteps')->middleware('superEditor');
+Route::post('add_eps', 'RelContratovsepsController@create')->name('add_eps')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Contrato vs Servicio
 Route::get('relserviciovsContrato', 'RelContratovsservicioController@index')->name('relserviciovsContrato')->middleware('superEditor');
@@ -216,6 +217,20 @@ Route::get('paises/crear', 'PaisController@crear')->name('crear_pais')->middlewa
 Route::post('paises', 'PaisController@guardar')->name('guardar_pais')->middleware('superEditor');
 Route::get('paises/{id}/editar', 'PaisController@editar')->name('editar_pais')->middleware('superEditor');
 Route::put('paises/{id}', 'PaisController@actualizar')->name('actualizar_pais')->middleware('superEditor');
+
+/* RUTAS DE DEPARTAMENTOS */
+Route::get('departamentos', 'DepartamentosController@index')->name('departamentos')->middleware('superEditor');
+Route::get('departamentos/crear', 'DepartamentosController@crear')->name('crear_departamentos')->middleware('superEditor');
+Route::post('departamentos', 'DepartamentosController@guardar')->name('guardar_departamentos')->middleware('superEditor');
+Route::get('departamentos/{id}/editar', 'DepartamentosController@editar')->name('editar_departamentos')->middleware('superEditor');
+Route::put('departamentos/{id}', 'DepartamentosController@actualizar')->name('actualizar_departamentos')->middleware('superEditor');
+
+/* RUTAS DE CIUDADES */
+Route::get('ciudades', 'CiudadesController@index')->name('ciudades')->middleware('superEditor');
+Route::get('ciudades/crear', 'CiudadesController@crear')->name('crear_ciudades')->middleware('superEditor');
+Route::post('ciudades', 'CiudadesController@guardar')->name('guardar_ciudades')->middleware('superEditor');
+Route::get('ciudades/{id}/editar', 'CiudadesController@editar')->name('editar_ciudades')->middleware('superEditor');
+Route::put('ciudades/{id}', 'CiudadesController@actualizar')->name('actualizar_ciudades')->middleware('superEditor');
 
 /* RUTAS DE SERVICIOS */
 Route::get('servicios', 'ServiciosController@index')->name('servicios')->middleware('superEditor');

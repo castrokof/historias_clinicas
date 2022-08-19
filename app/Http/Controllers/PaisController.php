@@ -60,28 +60,7 @@ class PaisController extends Controller
         return response()->json(['success' => 'ok']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pais  $pais
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Paises $pais)
-    {
-        //
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      *

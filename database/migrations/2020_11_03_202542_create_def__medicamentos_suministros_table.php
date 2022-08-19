@@ -18,11 +18,11 @@ class CreateDefMedicamentosSuministrosTable extends Migration
             $table->string('codigo',20)->unique();
             $table->string('nombre',255);
             $table->string('detalle',255)->nullable();
-            $table->string('marca',255);
+            $table->string('marca',255)->nullable();
             $table->string('CUMS',100)->nullable();
             $table->unsignedBigInteger('ATC_id')->nullable();
             //$table->string('cod_atc',5)->nullable();
-            $table->unsignedBigInteger('grupo_id');//Este campo va relacionado el Grupo (Controlado, No controlado, etc...)
+            /* $table->unsignedBigInteger('grupo_id');//Este campo va relacionado el Grupo (Controlado, No controlado, etc...) */
             $table->unsignedBigInteger('subgrupo_id');//Este campo va relacionado el Subgrupo (Controlado, No controlado, etc...)
             $table->string('IUM',10)->nullable();
             $table->string('invima',50)->nullable();
@@ -30,8 +30,7 @@ class CreateDefMedicamentosSuministrosTable extends Migration
             $table->string('stock_max',10)->nullable();
             $table->string('stock_min',10)->nullable();
             $table->unsignedBigInteger('cantidad_maxima')->nullable();//Cantidad maxima de medicamento por preescripcion
-            $table->unsignedBigInteger('cantidad_dias')->nullable();//Cantidad de dias entre cada preescripcion
-            // $table->unsignedBigInteger('valor_SOAT')->nullable();
+            $table->unsignedBigInteger('cantidad_dias')->nullable();//Cantidad de dias entre cada preescripcion            
             $table->unsignedBigInteger('valor_particular')->nullable();
             $table->char('estado',1);
             $table->foreign('ATC_id', 'fk_ATC_medicamento')->references('id_ATC')->on('def__a_t_c__medicamentos')->onDelete('restrict')->onUpdate('restrict');
