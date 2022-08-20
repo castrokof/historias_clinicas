@@ -16,4 +16,7 @@ class Ocupaciones extends Model
         'nombre',
         'estado'
     ];
+    public function pacienteocu(){
+        return $this->hasMany(Paciente::class, 'ocupacion_id');
+    }
 }

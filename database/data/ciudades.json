@@ -1,6 +1,11 @@
 [
     {"cod_ciudad":"001","nombre":"MEDELLIN"},
-    {"cod_ciudad":"002","nombre":"ABEJORRAL"},    
-    {"cod_ciudad":"004","nombre":"ABRIAQUI"}   
+    {"cod_ciudad":"002","nombre":"ABEJORRAL"},
+    {"cod_ciudad":"004","nombre":"ABRIAQUI"},
+    {"cod_ciudad":"076","nombre":"CALI"},
+    {"cod_ciudad":"111","nombre":"BUGA"},
+    {"cod_ciudad":"892","nombre":"YUMBO"},
+    {"cod_ciudad":"520","nombre":"PALMIRA"},
+    {"cod_ciudad":"890","nombre":"YOTOCO"}
 
 ]

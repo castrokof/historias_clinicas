@@ -14,7 +14,7 @@ class CreateOcupacionesTable extends Migration
     public function up()
     {
         Schema::create('ocupaciones', function (Blueprint $table) {
-            $table->Increments('id_ocupacion');
+            $table->bigIncrements('id_ocupacion');
             $table->string('codigo',10)->unique();
             $table->string('nombre',150);
             $table->char('estado',1);

@@ -14,4 +14,7 @@ class Ciudades extends Model
         'nombre',
         'estado'
     ];
+    public function pacientepciu(){
+        return $this->hasMany(Ciudades::class, 'ciudad_id');
+    }
 }

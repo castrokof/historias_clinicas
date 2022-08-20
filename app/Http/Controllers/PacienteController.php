@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Barrios;
 use App\Models\Admin\Eps_empresa;
 use App\Models\Admin\Paciente;
+use App\Models\Admin\Ocupaciones;
 use App\Models\Admin\Paises;
+use App\Models\Admin\Departamentos;
+use App\Models\Admin\Ciudades;
 use App\Models\Seguridad\Usuario;
 //use App\Models\Admin\Eps_niveles;
 use Illuminate\Http\Request;
@@ -56,11 +60,17 @@ class PacienteController extends Controller
             'tipo_documento' => 'required',
             'documento' => 'numeric|required|min:19|max:9999999999',
             'celular' => 'numeric|required|min:50|max:9999999999',
-            'Ocupacion' => 'required',
-            'eps' => 'required',
+            'ocupacion_id' => 'required',
+            'eps_id' => 'required',
+            'regimen',
+            'afiliacion',
+            'nivel',
+            'futuro2', //Este dato es la fecha de nacimiento del paciente
             'Poblacion_especial' => 'required',
             'pais_id' => 'required',
-            'ciudad' => 'required',
+            'departamento_id' => 'required',
+            'ciudad_id' => 'required',
+            'barrio_id' => 'required',
             'direccion' => 'required',
             'sexo' => 'required',
             'orientacion_sexual' => 'required',
@@ -77,28 +87,6 @@ class PacienteController extends Controller
 
         Paciente::create($request->all());
         return response()->json(['success' => 'ok']);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -130,14 +118,20 @@ class PacienteController extends Controller
         $rules = array(
             'pnombre'  => 'required|max:100',
             'papellido'  => 'required|max:100',
-            'documento' => 'numeric|required|min:19|max:9999999999',
             'celular' => 'numeric|required|min:50|max:9999999999',
             'tipo_documento' => 'required',
-            'Ocupacion' => 'required',
-            'eps' => 'required',
+            'documento' => 'numeric|required|min:19|max:9999999999',
+            'ocupacion_id' => 'required',
+            'eps_id' => 'required',
+            'regimen',
+            'afiliacion',
+            'nivel',
+            'futuro2', //Este dato es la fecha de nacimiento del paciente
             'Poblacion_especial' => 'required',
             'pais_id' => 'required',
-            'ciudad' => 'required',
+            'departamento_id' => 'required',
+            'ciudad_id' => 'required',
+            'barrio_id' => 'required',
             'direccion' => 'required',
             'sexo' => 'required',
             'orientacion_sexual' => 'required',
@@ -158,17 +152,21 @@ class PacienteController extends Controller
                 'snombre' => $request->snombre,
                 'tipo_documento' => $request->tipo_documento,
                 'documento' => $request->documento,
+                'ocupacion_id' => $request->ocupacion_id,
+                'eps_id' => $request->eps_id,
                 'edad' => $request->edad,
                 'sexo' => $request->sexo,
                 'pais_id' => $request->pais_id,
-                'futuro3' => $request->futuro3,
+                'departamento_id' => $request->departamento_id,
                 'direccion' => $request->direccion,
                 'celular' => $request->celular,
                 'telefono' => $request->telefono,
-                'plan' => $request->plan,
-                'Ocupacion' => $request->Ocupacion,
+                'regimen' => $request->regimen,
+                'nivel' => $request->nivel,
+                'futuro2'=> $request->futuro2,
                 'Poblacion_especial' => $request->Poblacion_especial,
-                'ciudad' => $request->ciudad,
+                'ciudad_id' => $request->ciudad_id,
+                'barrio_id' => $request->barrio_id,
                 'operador' => $request->operador,
                 'correo' => $request->correo,
                 'observaciones' => $request->observaciones,
@@ -177,6 +175,26 @@ class PacienteController extends Controller
             ]);
         // $data->update($request->all());
         return response()->json(['success' => 'ok1']);
+    }
+
+    //Funcion para seleccionar el País desde la tabla paises
+    public function selectocu(Request $request)
+    {
+        $ocupacionp = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $ocupacionp = Ocupaciones::orderBy('id_ocupacion')
+                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->where('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($ocupacionp);
+        } else {
+            $term = $request->get('q');
+            $ocupacionp = Ocupaciones::orderBy('id_ocupacion')->get();
+            return response()->json($ocupacionp);
+        }
     }
 
     //Funcion para seleccionar el País desde la tabla paises
@@ -192,29 +210,90 @@ class PacienteController extends Controller
                 ->where('nombre', 'LIKE', '%' . $term . '%')
                 ->get();
             return response()->json($paisp);
-        }else{
+        } else {
             $term = $request->get('q');
-            $paisp = Paises::orderBy('id_pais')
-               
-                ->get();
+            $paisp = Paises::orderBy('id_pais')->get();
             return response()->json($paisp);
-
         }
     }
 
     //Funcion para seleccionar la EPS desde la tabla eps_empresas
     public function selecteps(Request $request)
     {
-        $paisp = [];
+        $epsp = [];
 
         if ($request->has('q')) {
 
             $term = $request->get('q');
-            $paisp = Eps_empresa::orderBy('id_eps_empresas')                
+            $epsp = Eps_empresa::orderBy('id_eps_empresas')
                 ->where('codigo', 'LIKE', '%' . $term . '%')
-                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')                
+                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')
                 ->get();
-            return response()->json($paisp);
+            return response()->json($epsp);
+        } else {
+            $term = $request->get('q');
+            $epsp = Eps_empresa::orderBy('id_eps_empresas')->get();
+            return response()->json($epsp);
+        }
+    }
+
+    //Funcion para seleccionar el Departamento desde la tabla departamentos
+    public function selectde(Request $request)
+    {
+        $departamentop = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $departamentop = Departamentos::orderBy('id_departamento')
+                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->where('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($departamentop);
+        } else {
+            $term = $request->get('q');
+            $departamentop = Departamentos::orderBy('id_departamento')->get();
+            return response()->json($departamentop);
+        }
+    }
+
+    //Funcion para seleccionar el Ciudad desde la tabla ciudades
+    public function selectci(Request $request)
+    {
+        $ciudadp = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $ciudadp = Ciudades::orderBy('id_ciudad')
+                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->where('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($ciudadp);
+        } else {
+            $term = $request->get('q');
+            $ciudadp = Ciudades::orderBy('id_ciudad')->get();
+            return response()->json($ciudadp);
+        }
+    }
+
+    //Funcion para seleccionar el Barrio desde la tabla barrios
+    public function selectbar(Request $request)
+    {
+        $ciudadp = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $ciudadp = Barrios::orderBy('id_barrio')
+                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->where('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($ciudadp);
+        } else {
+            $term = $request->get('q');
+            $ciudadp = Barrios::orderBy('id_barrio')->get();
+            return response()->json($ciudadp);
         }
     }
 

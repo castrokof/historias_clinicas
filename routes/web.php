@@ -219,6 +219,10 @@ Route::get('paciente/{id}/editar', 'PacienteController@editar')->name('editar_pa
 Route::put('paciente/{id}', 'PacienteController@actualizar')->name('actualizar_paciente')->middleware('superEditor');
 Route::get('pais', 'PacienteController@selectpa')->name('pais')->middleware('superEditor');
 Route::get('eps', 'PacienteController@selecteps')->name('eps')->middleware('superEditor');
+Route::get('ciudad', 'PacienteController@selectci')->name('ciudad')->middleware('superEditor');
+Route::get('departamento', 'PacienteController@selectde')->name('departamento')->middleware('superEditor');
+Route::get('ocupacion', 'PacienteController@selectocu')->name('ocupacion')->middleware('superEditor');
+Route::get('barrio', 'PacienteController@selectbar')->name('barrio')->middleware('superEditor');
 
 /* RUTAS DE PAISES */
 Route::get('paises', 'PaisController@index')->name('paises')->middleware('superEditor');

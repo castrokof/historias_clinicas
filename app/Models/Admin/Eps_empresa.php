@@ -18,6 +18,9 @@ class Eps_empresa extends Model
         'color',
         'estado'
     ];
+    public function pacienteeps(){
+        return $this->hasMany(Paciente::class, 'eps_id');
+    }
     public function niveleps(){
         return $this->hasMany(Eps_niveles::class, 'eps_empresas_id');
     }
@@ -29,3 +32,4 @@ class Eps_empresa extends Model
     }
 
 }
+

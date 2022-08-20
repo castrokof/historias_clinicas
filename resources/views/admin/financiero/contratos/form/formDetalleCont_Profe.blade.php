@@ -1,5 +1,5 @@
 <div class="form-group row">
-    <div class="col-lg-6">
+    <div class="col-lg-8">
         <label for="nombre_n" class="col-xs-4 control-label ">Contrato</label>
         <input type="text" name="nombre_c" id="nombre_n" class="form-control" readonly></input>
     </div>
