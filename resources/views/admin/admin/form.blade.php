@@ -1,6 +1,6 @@
 <div class="form-group row">
     <div class="col-md-4">
-        <label for="fechadegestion" class="col-xs-12 control-label requerido">Fecha de Informes</label>
+        <label for="fechadegestion" class="col-xs-12 control-label requerido">Rango de fechas</label>
         <div class="form-group row">
             <input type="date" name="fechaini" id="fechaini" class="form-control col-md-6 " value="">
             <input type="date" name="fechafin" id="fechafin" class="form-control col-md-6 " value="">
@@ -12,14 +12,7 @@
         <select name="profesional_select" id="profesional_select" class="form-control select2bs4" style="width: 100%;">
         </select>
     </div>
-    <div class="col-md-4">
-        <label>&nbsp;</label>
-        <div class="form-group row">
-            <button type="submit" name="reset" id="reset"
-                class="btn btn-default btn-xl col-md-5">Limpiar</button>
-            <button type="submit" name="buscar" id="buscar" class="btn btn-success btn-xl col-md-5">Buscar</button>
-        </div>
-    </div>
+
     <div class="col-md-2" id="festivos_id">
         <label for="festivos" class="col-xs-2 control-label">Festivos</label>
         <input type="checkbox" name="festivos" id="festivos" class="form-control select2bs4" style="width: 10%;">
@@ -58,9 +51,9 @@
         </div>
 
 
-    <div class="card card-cyan card-outline form-group row col-xs-12 p-2" id="semana_id">
+    <div class="card card-cyan card-outline form-group row col-md-10 p-2" style="padding: 0px, 0px, 0px, 0px">
         <div class="card-title">
-            <p> Selecciona el día para agregar el horario</p>
+            <b><p> Selecciona el día para agregar el horario</p></b>
         </div>
         <div class="form-group row p-2">
             <div class="col-md-1" id="festivos_id">
@@ -85,7 +78,7 @@
             </div>
             <div class="col-md-1" id="festivos_id">
                 <label for="diasemanv" class="control-label">V</label>
-                <input type="checkbox" name="diasemanv" id="diasemanv" class="case_semana form-control select2bs4"
+                <input type="checkbox" name="diasemanav" id="diasemanav" class="case_semana form-control select2bs4"
                     style="width: 100%;">
             </div>
             <div class="col-md-1" id="festivos_id">
@@ -99,7 +92,16 @@
                     style="width: 100%;">
             </div>
         </div>
+        <div class="col-md-6">
+
+                 <label for="agregar_horario" class="control-label">Agregar horario</label><br><br><br>
+                 <button type="button" class="btn btn-primary col-md-8" name="agregar_horario" id="agregar_horario"><i class="fa fa-plus-circle"></i> Agregar</button>
+
+        </div>
 
     </div>
+    {{-- <div class="card card-cyan card-outline form-group row col-md-12 p-2" id="semana_id">
+
+</div> --}}
 </div>
 
