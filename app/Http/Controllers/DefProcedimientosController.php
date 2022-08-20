@@ -84,6 +84,28 @@ class DefProcedimientosController extends Controller
         return view('admin.financiero.profesionales.index');
     }
 
+    public function rel_cont_index(Request $request)
+    {
+
+        if ($request->ajax()) {
+
+            $datas = Def_Procedimientos::orderBy('id_cups', 'asc')->get();
+
+            return  DataTables()->of($datas)
+                ->addColumn('checkbox', function ($datas){
+
+                  $checkbox =  '<input type="checkbox" name="case[]" value="'.$datas->id_cups.'" class="casepr" title="Selecciona Orden"/>';
+
+                  return $checkbox;
+                })
+                ->rawColumns(['checkbox'])
+                ->make(true);
+
+            }
+
+        return view('admin.financiero.contratos.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -17,7 +17,7 @@ class CreateRelContratovsmedicamentosTable extends Migration
             $table->bigIncrements('id_contratovsmedicamento');
             $table->unsignedBigInteger('contrato_id');
             $table->unsignedBigInteger('medicamento_id');
-            $table->string('valor', 200);
+            $table->string('valor', 200)->nullable();
             $table->foreign('contrato_id', 'fk_contrato_medicamento')->references('id_contrato')->on('def__contratos')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('medicamento_id', 'fk_medicamento_contrato')->references('id_medicamento')->on('def__medicamentos_suministros')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();

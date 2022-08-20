@@ -192,6 +192,13 @@ class PacienteController extends Controller
                 ->where('nombre', 'LIKE', '%' . $term . '%')
                 ->get();
             return response()->json($paisp);
+        }else{
+            $term = $request->get('q');
+            $paisp = Paises::orderBy('id_pais')
+               
+                ->get();
+            return response()->json($paisp);
+
         }
     }
 

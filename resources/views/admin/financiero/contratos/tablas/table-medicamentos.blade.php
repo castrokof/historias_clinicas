@@ -14,6 +14,7 @@
                             <th>Medicamento</th>
                             <th>Contrato</th>
                             <th>Nombre</th>
+                            <th>Valor</th>
                         </tr>
                     </thead>
                     <tbody>

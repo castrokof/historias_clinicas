@@ -34,7 +34,8 @@
 
                             <form id="form-general2" class="form-horizontal" method="POST">
                                 @csrf
-                                @include('includes.boton-form-crear-empresa-empleado-usuario')
+                                <button value ="addm"  id="addm" name="addm" type="button" class="addss btn btn-success btn-xm col-xs-2">Add+</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
 
                             </form>
 

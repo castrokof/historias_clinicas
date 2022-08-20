@@ -17,7 +17,7 @@ class CreateRelContratovsprocedimientosTable extends Migration
             $table->bigIncrements('id_contratovsprocedimiento');
             $table->unsignedBigInteger('contrato_id');
             $table->unsignedBigInteger('procedimiento_id');
-            $table->string('valor', 200);
+            $table->string('valor', 200)->nullable();
             $table->foreign('contrato_id', 'fk_contrato_procedimiento')->references('id_contrato')->on('def__contratos')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('procedimiento_id', 'fk_procedimiento_contrato')->references('id_cups')->on('def__procedimientos')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();

@@ -31,7 +31,8 @@ class RelContratovsmedicamentosController extends Controller
         return  DataTables()->of($datast)
         ->addColumn('actionmd', function($datast){
         $button = '<button type="button" name="eliminarmd" id="'.$datast->idd.'"
-        class = "eliminarmd btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
+        class = "eliminarmd btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>'. 
+        '<button type="button" name="editm" id="'.$datast->idd.'" class = "editm btn-float  bg-gradient-info btn-sm tooltipsC"  title="Editar Items"><i class=""><i class="fa fa-edit"></i></i></a>';
                
         return $button;
 
@@ -63,7 +64,8 @@ class RelContratovsmedicamentosController extends Controller
         return  DataTables()->of($datast)
         ->addColumn('actionpm', function($datast){
         $button = '<button type="button" name="eliminarmd" id="'.$datast->idd.'"
-        class = "eliminarmd btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
+        class = "eliminarmd btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>'. 
+        '<button type="button" name="editm" id="'.$datast->idd.'" class = "editm btn-float  bg-gradient-info btn-sm tooltipsC"  title="Editar Item"><i class=""><i class="fa fa-edit"></i></i></a>';
                
         return $button;
 
@@ -83,9 +85,91 @@ class RelContratovsmedicamentosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if ($request->ajax()) {
+
+            $idps = $request->medicamento_id;
+
+            foreach ($idps as $idp) {
+
+                $count = DB::table('rel__contratovsmedicamentos')->where([
+                    ['medicamento_id',  $idp],
+                    ['contrato_id', $request->contrato_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__contratovsmedicamentos')
+                   ->where([
+                    ['medicamento_id',  $idp],
+                    ['contrato_id', $request->contrato_id]
+                    ])->update(
+                        [
+                            'medicamento_id' => $idp,
+                            'contrato_id' => $request->contrato_id
+
+                        ]
+                    );
+                }else{
+                DB::table('rel__contratovsmedicamentos')
+                    ->insert(
+                        [
+                            'medicamento_id' => $idp,
+                            'contrato_id' => $request->contrato_id
+
+                        ]
+                    );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
+        }
+    }
+
+    public function editar($id)
+    {
+        if (request()->ajax()) {
+
+            // $data = DB::table('rel__contratovsprocedimientos')
+            //  ->Join('def__contratos', 'rel__contratovsprocedimientos.contrato_id', '=', 'def__contratos.id_contrato')
+            //  ->Join('def__procedimientos', 'rel__contratovsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
+            //  ->select('rel__contratovsprocedimientos.id_contratovsprocedimiento as idd','def__contratos.contrato as contrato', 'def__contratos.nombre as nombre_c','rel__contratovsprocedimientos.valor as precio',
+            //          'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
+            //  ->where('rel__contratovsprocedimientos.id_contratovsprocedimiento', '=', $id )
+            //  ->first();
+            $data = DB::table('rel__contratovsmedicamentos')
+            ->Join('def__contratos', 'rel__contratovsmedicamentos.contrato_id', '=', 'def__contratos.id_contrato')
+            ->Join('def__medicamentos_suministros', 'rel__contratovsmedicamentos.medicamento_id', '=', 'def__medicamentos_suministros.id_medicamento')
+            ->select('rel__contratovsmedicamentos.id_contratovsmedicamento as idd','def__contratos.contrato as contrato', 'def__contratos.nombre as nombre_contrato','rel__contratovsmedicamentos.valor as precio',
+                    'def__medicamentos_suministros.codigo as codigo_med','def__medicamentos_suministros.nombre as Medicamento')
+            ->where('rel__contratovsmedicamentos.id_contratovsmedicamento', '=', $id)
+            ->first();
+
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.financiero.contratos.index');
+    }
+
+    public function actualizar(Request $request, $id)
+    {
+        $rules = array(
+            
+            'valor'  => 'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $data = DB::table('rel__contratovsmedicamentos')->where('id_contratovsmedicamento', '=', $id)
+            ->update([
+                'valor' => $request->valor,
+                'updated_at' => now()
+            ]);
+        //$data->update($request->all());
+        return response()->json(['success' => 'ok1']);
     }
 
     /**

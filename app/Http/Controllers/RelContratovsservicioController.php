@@ -50,9 +50,45 @@ class RelContratovsservicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if ($request->ajax()) {
+
+            $idms = $request->servicio_id;
+
+            foreach ($idms as $idm) {
+
+                $count = DB::table('rel__contratovsservicios')->where([
+                    ['servicio_id', $idm],
+                    ['contrato_id', $request->contrato_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__contratovsservicios')
+                   ->where([
+                        ['servicio_id', $idm],
+                        ['contrato_id', $request->contrato_id]
+                    ])->update(
+                        [
+                            'servicio_id' => $idm,
+                            'contrato_id' => $request->contrato_id
+
+                        ]
+                    );
+                }else{
+                DB::table('rel__contratovsservicios')
+                    ->insert(
+                        [
+                            'servicio_id' => $idm,
+                            'contrato_id' => $request->contrato_id
+
+                        ]
+                    );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
+        }
     }
 
     /**

@@ -182,15 +182,24 @@ Route::post('add_eps', 'RelContratovsepsController@create')->name('add_eps')->mi
 Route::get('relserviciovsContrato', 'RelContratovsservicioController@index')->name('relserviciovsContrato')->middleware('superEditor');
 Route::delete('serviciovscontrato/{id}', 'RelContratovsservicioController@eliminar')->name('eliminar_relservicio')->middleware('superEditor');
 Route::get('relservicioIndex', 'ServiciosController@rel_index')->name('relservicioIndex')->middleware('superEditor');
+Route::post('add_servicio_2', 'RelContratovsservicioController@create')->name('add_servicio_2')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Contrato vs Medicamento
 Route::get('contrato-medicamento', 'RelContratovsmedicamentosController@index')->name('contrato-medicamento')->middleware('superEditor');
 Route::delete('contratovsmedicamento/{id}', 'RelContratovsmedicamentosController@eliminar')->name('eliminar_relmedicamento')->middleware('superEditor');
 Route::get('contrato_medicamento', 'RelContratovsmedicamentosController@indexContr')->name('contrato_medicamento')->middleware('superEditor');
+Route::get('rel_med_contrato', 'DefMedicamentosSuministrosController@relacion_med_index')->name('rel_med_contrato')->middleware('superEditor');
+Route::post('add_medicamento_2', 'RelContratovsmedicamentosController@create')->name('add_medicamento_2')->middleware('superEditor');
+Route::get('cont_medicamento/{id}/editar', 'RelContratovsmedicamentosController@editar')->name('editar_rel_cont_med')->middleware('superEditor');
+Route::put('cont_medicamento/{id}', 'RelContratovsmedicamentosController@actualizar')->name('actualizar_cont_med')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Contrato vs Procedimientos
 Route::get('contrato-procedimiento', 'RelContratovsprocedimientosController@indexProce')->name('contrato-procedimiento')->middleware('superEditor');
 Route::get('rel_med_cont', 'DefContratosController@rel_med_index')->name('rel_med_cont')->middleware('superEditor');
+Route::post('add_procedimiento_2', 'RelContratovsprocedimientosController@create')->name('add_procedimiento_2')->middleware('superEditor');
+Route::get('rel_cont_procedimiento', 'DefProcedimientosController@rel_cont_index')->name('rel_cont_procedimiento')->middleware('superEditor');
+Route::get('cont_proce/{id}/editar', 'RelContratovsprocedimientosController@editar')->name('editar_rel_contrato')->middleware('superEditor');
+Route::put('cont_proce/{id}', 'RelContratovsprocedimientosController@actualizar')->name('actualizar_cont_proce')->middleware('superEditor');
 
 
 /* RUTAS DEL USUARIO */

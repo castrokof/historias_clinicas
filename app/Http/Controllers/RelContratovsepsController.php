@@ -54,24 +54,24 @@ class RelContratovsepsController extends Controller
     {
         if ($request->ajax()) {
 
-            $idps = $request->contrato_id;
+            $idps = $request->eps_id;
 
             foreach ($idps as $idp) {
 
                 $count = DB::table('rel__contratovseps')->where([
-                    ['contrato_id', $idp],
-                    ['eps_id', $request->eps_id]
+                    ['eps_id',  $idp],
+                    ['contrato_id', $request->contrato_id]
                 ])->count();
 
                 if ($count > 0) {
                     DB::table('rel__contratovseps')
                    ->where([
-                        ['contrato_id', $idp],
-                        ['eps_id', $request->eps_id]
+                    ['eps_id',  $idp],
+                    ['contrato_id', $request->contrato_id]
                     ])->update(
                         [
-                            'contrato_id' => $idp,
-                            'eps_id' => $request->eps_id
+                            'eps_id' => $idp,
+                            'contrato_id' => $request->contrato_id
 
                         ]
                     );
@@ -79,8 +79,8 @@ class RelContratovsepsController extends Controller
                 DB::table('rel__contratovseps')
                     ->insert(
                         [
-                            'contrato_id' => $idp,
-                            'eps_id' => $request->eps_id
+                            'eps_id' => $idp,
+                            'contrato_id' => $request->contrato_id
 
                         ]
                     );

@@ -34,7 +34,7 @@ class FacturaController extends Controller
         ->select('def__documentos_consecutivos.consecutivo', 'def__documentos.cod_documentos')
         ->get();
 
-
+        //DD($documento_consecutivo);
               return view('admin.financiero.facturacion.index', compact('documento_consecutivo'));
     }
 

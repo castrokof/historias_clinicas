@@ -77,6 +77,28 @@ class DefMedicamentosSuministrosController extends Controller
         return view('admin.financiero.profesionales.index');
     }
 
+    public function relacion_med_index(Request $request)
+    {
+
+        if ($request->ajax()) {
+
+            $datas = Def_MedicamentosSuministros::orderBy('id_medicamento', 'asc')->get();
+
+            return  DataTables()->of($datas)
+                ->addColumn('checkbox', function ($datas){
+
+                  $checkbox =  '<input type="checkbox" name="case[]" value="'.$datas->id_medicamento.'" class="caseme" title="Selecciona Orden"/>';
+
+                  return $checkbox;
+                })
+                ->rawColumns(['checkbox'])
+                ->make(true);
+
+            }
+
+        return view('admin.financiero.contratos.index');
+    }
+
     public function guardar(Request $request)
     {
 

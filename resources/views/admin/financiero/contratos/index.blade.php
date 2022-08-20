@@ -24,6 +24,7 @@ Contratos
 @include('admin.financiero.contratos.tablas.tablaIndexContratos')
 @include('admin.financiero.contratos.modal.modalContratos')
 @include('admin.financiero.contratos.modal.modalContDetalle')
+@include('admin.financiero.contratos.modal.modalCont_Edit_Med')
 
 <!-- Modal para relacionar los EPS EMPRESAS -->
 @include('admin.financiero.contratos.modal.modalContEps')
@@ -243,7 +244,7 @@ Contratos
             });
         }
 
-        var idepsempresa;
+        var idcontrato;
 
 
         //Función para abrir detalle del registro
@@ -253,7 +254,7 @@ Contratos
             var idlist = $(this).attr('id');
             var idlistp = $(this).attr('id');
             var idlistf = $(this).attr('id');
-            idepsempresa = $(this).attr('id');
+            idcontrato = $(this).attr('id');
 
             if (idlistp != '') {
                 $('#tservicio').DataTable().destroy();
@@ -511,6 +512,10 @@ Contratos
                     {
                         data: 'nombre',
                         name: 'nombre'
+                    },
+                    {
+                        data: 'precio',
+                        name: 'precio'
                     }
 
                 ],
@@ -767,14 +772,11 @@ Contratos
                     url: "{{ route('relservicioIndex')}}",
                     type: "get",
                 },
-                columns: [
-                    /* {
-                                                data: 'action',
-                                                //orderable: false
-                                            }, */
-                    {
-                        data: 'estado',
-                        name: 'estado'
+                columns: [{
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'cod_servicio',
@@ -857,18 +859,14 @@ Contratos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('relproceIndex')}}",
+                    url: "{{ route('rel_cont_procedimiento')}}",
                     type: "get",
                 },
-                columns: [
-                    /* {
-                                            data: 'actionpp',
-                                            orderable: false
-                                        }, */
-
-                    {
-                        data: 'estado',
-                        name: 'estado'
+                columns: [{
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'cod_cups',
@@ -949,18 +947,15 @@ Contratos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('relmedicamentoIndex')}}",
+                    url: "{{ route('rel_med_contrato')}}",
                     type: "get",
                 },
                 columns: [
-                    /* {
-                                                data: 'action',
-                                                //orderable: false
-                                            }, */
-
                     {
-                        data: 'estado',
-                        name: 'estado'
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'codigo',
@@ -1023,10 +1018,10 @@ Contratos
         //Función para enviar los procedimientos seleccionados al controlador
         $(document).on('click', '#addeps', function() {
 
-            var eps_rel = idepsempresa;
+            var contrato = idcontrato;
 
             var idp = [];
-            if (eps_rel == '') {
+            if (contrato == '') {
 
                 Swal.fire({
                     target: document.getElementById('modal-eps'),
@@ -1063,25 +1058,24 @@ Contratos
                                 url: "{{ route('add_eps')}}",
                                 method: 'post',
                                 data: {
-                                    contrato_id: idp,
-                                    eps_id: eps_rel,
+                                    eps_id: idp,
+                                    contrato_id: contrato,
 
-                                    "_token": $("meta[name='csrf-token']").attr("content")
+                                    "_token": $("meta[name='csrf-token']").attr(
+                                        "content")
 
                                 },
                                 success: function(respuesta) {
                                     if (respuesta.mensaje = 'ok') {
                                         $('#modal-eps').modal('hide');
-                                        $('#treleps').DataTable().ajax.reload();
+                                        $('#tepsempresa').DataTable().ajax.reload();
                                         Manteliviano.notificaciones('EPS relacionadas correctamente', 'Sistema Ips', 'success');
-                                    } else if (respuesta.mensaje = 'ng') {
-                                        $('#modal-eps').modal('hide');
-                                        $('#treleps').DataTable().ajax.reload();
-                                        Manteliviano.notificaciones('Se elimino la relación correctamente', 'Sistema Ips');
                                     } else if (respuesta.mensaje = 'ok1') {
                                         $('#modal-eps').modal('hide');
-                                        $('#treleps').DataTable().ajax.reload();
-                                        Manteliviano.notificaciones('Ya existe la realación', 'Sistema Ips');
+                                        $('#tepsempresa').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Ya existe la realación',
+                                            'Sistema Ips');
                                     }
                                 },
                                 complete: function() {
@@ -1152,6 +1146,95 @@ Contratos
 
         });
 
+        //Función para enviar los servicios seleccionados al controlador
+
+        $(document).on('click', '#adds', function() {
+
+            var contrato = idcontrato;
+
+            var ids = [];
+            if (contrato == '') {
+
+                Swal.fire({
+                    target: document.getElementById('modal-servicio'),
+                    title: 'No hay asociado ningun servicio',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+
+            } else {
+
+                Swal.fire({
+                    target: document.getElementById('modal-servicio'),
+                    title: "¿Estás seguro?",
+                    text: "Estás por asociar un/unos servicio/s",
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $('input[type=checkbox]:checked.cases').each(function() {
+                            ids.push($(this).val());
+                        });
+
+                        if (ids.length > 0) {
+
+                            $.ajax({
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('add_servicio_2') }}",
+                                method: 'post',
+                                data: {
+                                    servicio_id: ids,
+                                    contrato_id: contrato,
+
+                                    "_token": $("meta[name='csrf-token']").attr(
+                                        "content")
+
+                                },
+                                success: function(respuesta) {
+                                    if (respuesta.mensaje = 'ok') {
+                                        $('#modal-servicio').modal('hide');
+                                        $('#tservicio').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Servicios relacionados correctamente',
+                                            'Sistema Ips', 'success');
+
+                                    } else if (respuesta.mensaje = 'ok1') {
+                                        $('#modal-servicio').modal('hide');
+                                        $('#tservicio').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Ya existe la relación',
+                                            'Sistema Ips');
+                                    }
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hide");
+                                }
+                            });
+
+                        } else {
+
+                            Swal.fire({
+                                target: document.getElementById('modal-servicio'),
+                                title: 'Por favor seleccione un servicio del checkbox',
+                                icon: 'warning',
+                                buttons: {
+                                    cancel: "Cerrar"
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+        });
+
         //-- Eliminar Servicio de la relación 
 
         $(document).on('click', '.eliminarss', function() {
@@ -1198,6 +1281,98 @@ Contratos
 
         });
 
+        //Función para enviar los procedimientos seleccionados al controlador
+
+
+        $(document).on('click', '#addpr', function() {
+
+            var contrato = idcontrato;
+
+            var idp = [];
+            if (contrato == '') {
+
+                Swal.fire({
+                    target: document.getElementById('modal-procedimiento'),
+                    title: 'No hay asociado ningun contrato',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+
+            } else {
+
+                Swal.fire({
+                    target: document.getElementById('modal-procedimiento'),
+                    title: "¿Estás seguro?",
+                    text: "Estás por asignar ordenes",
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $('input[type=checkbox]:checked.casepr').each(function() {
+                            idp.push($(this).val());
+                        });
+
+                        if (idp.length > 0) {
+
+                            $.ajax({
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('add_procedimiento_2') }}",
+                                method: 'post',
+                                data: {
+                                    procedimiento_id: idp,
+                                    contrato_id: contrato,
+
+                                    "_token": $("meta[name='csrf-token']").attr(
+                                        "content")
+
+                                },
+                                success: function(respuesta) {
+                                    if (respuesta.mensaje = 'ok') {
+                                        $('#modal-procedimiento').modal('hide');
+                                        $('#tprocedimiento').DataTable().ajax
+                                            .reload();
+                                        Manteliviano.notificaciones(
+                                            'Procedimientos relacionados correctamente',
+                                            'Sistema Ips', 'success');
+                                    } else if (respuesta.mensaje = 'ok1') {
+                                        $('#modal-procedimiento').modal('hide');
+                                        $('#tprocedimiento').DataTable().ajax
+                                            .reload();
+                                        Manteliviano.notificaciones(
+                                            'Ya existe la realación',
+                                            'Sistema Ips');
+                                    }
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hide");
+                                }
+                            });
+
+                        } else {
+
+                            Swal.fire({
+                                target: document.getElementById('modal-procedimiento'),
+                                title: 'Por favor seleccione un procedimiento del checkbox',
+                                icon: 'warning',
+                                buttons: {
+                                    cancel: "Cerrar"
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+        });
+
+
         //-- Eliminar Procedimiento de la relación 
 
         $(document).on('click', '.eliminarcp', function() {
@@ -1242,6 +1417,94 @@ Contratos
                 }
             })
 
+        });
+
+        //Función para enviar los medicamentos seleccionados al controlador
+
+        $(document).on('click', '#addm', function() {
+
+            var contrato = idcontrato;
+
+            var idm = [];
+            if (contrato == '') {
+
+                Swal.fire({
+                    target: document.getElementById('modal-medicamento'),
+                    title: 'No hay asociado ningun medicamento',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+
+            } else {
+
+                Swal.fire({
+                    target: document.getElementById('modal-medicamento'),
+                    title: "¿Estás seguro?",
+                    text: "Estás por asociar un/unos medicamento/s",
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $('input[type=checkbox]:checked.caseme').each(function() {
+                            idm.push($(this).val());
+                        });
+
+                        if (idm.length > 0) {
+
+                            $.ajax({
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('add_medicamento_2') }}",
+                                method: 'post',
+                                data: {
+                                    medicamento_id: idm,
+                                    contrato_id: contrato,
+
+                                    "_token": $("meta[name='csrf-token']").attr(
+                                        "content")
+
+                                },
+                                success: function(respuesta) {
+                                    if (respuesta.mensaje = 'ok') {
+                                        $('#modal-medicamento').modal('hide');
+                                        $('#tmed').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'medicamento relacionados correctamente',
+                                            'Sistema Ips', 'success');
+                                    } else if (respuesta.mensaje = 'ok1') {
+                                        $('#modal-medicamento').modal('hide');
+                                        $('#tmed').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Ya existe la relación',
+                                            'Sistema Ips');
+                                    }
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hide");
+                                }
+                            });
+
+                        } else {
+
+                            Swal.fire({
+                                target: document.getElementById('modal-medicamento'),
+                                title: 'Por favor seleccione un medicamento del checkbox',
+                                icon: 'warning',
+                                buttons: {
+                                    cancel: "Cerrar"
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
         });
 
         //-- Eliminar Medicamento de la relación 
@@ -1290,11 +1553,246 @@ Contratos
 
         });
 
-        /* Funciónes para asignar y desasignar las relaciones de los contratos con EPS, Servicios, Sedes, Procedimientos,
-        Medicamentos */
+        /* Funciónes para asignar y desasignar las relaciones de los contratos con EPS */
 
         $("#selectallp").on('click', function() {
             $(".case").prop("checked", this.checked);
+        });
+
+        /* Funciónes para asignar y desasignar las relaciones de los contratos con Servicios */
+
+        $("#selectalls").on('click', function() {
+            $(".cases").prop("checked", this.checked);
+        });
+
+        /* Funciónes para asignar y desasignar las relaciones de los contratos con Procedimientos */
+
+        $("#selectallpr").on('click', function() {
+            $(".casepr").prop("checked", this.checked);
+        });
+
+        /* Funciónes para asignar y desasignar las relaciones de los contratos con Medicamentos */
+
+        $("#selectallme").on('click', function() {
+            $(".caseme").prop("checked", this.checked);
+        });
+
+
+        // Funcion para editar la relacion del Procedimiento para agregar el valor
+
+        $(document).on('click', '.editp', function() {
+            var id = $(this).attr('id');
+
+            $.ajax({
+                url: "/cont_proce/" + id + "/editar",
+                dataType: "json",
+                success: function(data) {
+                    $('#nombre_n').val(data.result.nombre_c);
+                    $('#cod_cups').val(data.result.cups);
+                    $('#procedimiento_n').val(data.result.Procedimiento);
+                    $('#valor').val(data.result.valor);
+                    $('#hidden_id').val(id);
+                    $('.card-title').text('Editar Relación');
+                    $('#action_button').val('Edit');
+                    $('#action').val('Edit');
+                    $('#modal-u').modal('show');
+
+                }
+
+
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+
+                if (jqXHR.status === 403) {
+
+                    Manteliviano.notificaciones('No tienes permisos para realizar esta accion', 'Sistema Historias Clínicas', 'warning');
+
+                }
+            });
+
+        });
+
+        $('#form-general').on('submit', function(event) {
+            event.preventDefault();
+            var url = '';
+            var method = '';
+            var text = '';
+
+            if ($('#action').val() == 'Add') {
+                text = "Estás por crear un País"
+                url = "{{route('guardar_pais')}}";
+                method = 'post';
+            }
+
+            if ($('#action').val() == 'Edit') {
+                text = "Estás por actualizar un País"
+                var updateid = $('#hidden_id').val();
+                url = "/cont_proce/" + updateid;
+                method = 'put';
+            }
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: text,
+                icon: "success",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: $(this).serialize(),
+                        dataType: "json",
+                        success: function(data) {
+                            var html = '';
+                            if (data.errors) {
+
+                                html =
+                                    '<div class="alert alert-danger alert-dismissible">' +
+                                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+                                    '<h5><i class="icon fas fa-ban"></i> Alerta! Verifica los siguientes datos: </h5>';
+
+                                for (var count = 0; count < data.errors.length; count++) {
+                                    html += '<p>' + data.errors[count] + '<p>';
+                                }
+                                html += '</div>';
+                            }
+
+                            if (data.success == 'ok') {
+                                $('#form-general')[0].reset();
+                                $('#modal-u').modal('hide');
+                                $('#tprocedimiento').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Relación creado correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1500
+
+                                })
+
+
+                            } else if (data.success == 'ok1') {
+                                $('#form-general')[0].reset();
+                                $('#modal-u').modal('hide');
+                                $('#tprocedimiento').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Relación actualizada correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1500
+
+                                })
+
+
+                            }
+                            $('#form_result').html(html)
+                        }
+
+
+                    });
+                }
+            });
+
+
+        });
+
+        // Funcion para editar la relacion del Medicamento para agregar el valor
+
+        $(document).on('click', '.editm', function() {
+            var id = $(this).attr('id');
+
+            $.ajax({
+                url: "/cont_medicamento/" + id + "/editar",
+                dataType: "json",
+                success: function(data) {
+                    $('#nombre_med').val(data.result.nombre_contrato);
+                    $('#med_c').val(data.result.codigo_med);
+                    $('#medicamento_n').val(data.result.Medicamento);
+                    $('#valor').val(data.result.valor);
+                    $('#hidden_id').val(id);
+                    $('.card-title').text('Editar Relación');
+                    $('#action_button').val('Editm');
+                    $('#action').val('Editm');
+                    $('#modal-med').modal('show');
+
+                }
+
+
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+
+                if (jqXHR.status === 403) {
+
+                    Manteliviano.notificaciones('No tienes permisos para realizar esta accion', 'Sistema Historias Clínicas', 'warning');
+
+                }
+            });
+
+        });
+
+        $('#form-general').on('submit', function(event) {
+            event.preventDefault();
+            var url = '';
+            var method = '';
+            var text = '';
+
+            if ($('#action').val() == 'Editm') {
+                text = "Estás por actualizar un Medicamento en la relación"
+                var updateid = $('#hidden_id').val();
+                url = "/cont_medicamento/" + updateid;
+                method = 'put';
+            }
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: text,
+                icon: "success",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: $(this).serialize(),
+                        dataType: "json",
+                        success: function(data) {
+                            var html = '';
+                            if (data.errors) {
+
+                                html =
+                                    '<div class="alert alert-danger alert-dismissible">' +
+                                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+                                    '<h5><i class="icon fas fa-ban"></i> Alerta! Verifica los siguientes datos: </h5>';
+
+                                for (var count = 0; count < data.errors.length; count++) {
+                                    html += '<p>' + data.errors[count] + '<p>';
+                                }
+                                html += '</div>';
+                            }
+
+                            if (data.success == 'ok1') {
+                                $('#form-general')[0].reset();
+                                $('#modal-med').modal('hide');
+                                $('#tmed').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Relación actualizada correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1500
+
+                                })
+
+
+                            }
+                            $('#form_result').html(html)
+                        }
+
+
+                    });
+                }
+            });
+
+
         });
 
     });

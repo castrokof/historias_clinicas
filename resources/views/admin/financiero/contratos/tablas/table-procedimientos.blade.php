@@ -9,11 +9,12 @@
 
                     <thead>
                         <tr>
-                            <th>Acciones</th>
+                            <th>Acciones</th>                            
                             <th>Cups</th>
                             <th>Procedimiento</th>
                             <th>Contrato</th>
                             <th>Nombre</th>
+                            <th>Valor</th>
                         </tr>
                     </thead>
                     <tbody>

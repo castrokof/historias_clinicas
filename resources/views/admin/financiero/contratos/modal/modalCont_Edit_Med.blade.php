@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" id="modal-u" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade" tabindex="-1" id="modal-med" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="row">
@@ -16,7 +16,7 @@
             <form id="form-general" class="form-horizontal" method="POST">
               @csrf
               <div class="card-body">
-                @include('admin.financiero.contratos.form.formDetalleCont_Profe')
+                @include('admin.financiero.contratos.form.formDetalleCont_Med')
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
