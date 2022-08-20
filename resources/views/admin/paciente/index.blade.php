@@ -104,8 +104,8 @@ Pacientes
             orderable: false
           },
           {
-            data: 'id_paciente',
-            name: 'id_paciente'
+            data: 'idd',
+            name: 'idd'
           },
           {
             data: 'pnombre',
@@ -136,8 +136,8 @@ Pacientes
             name: 'edad'
           },
           {
-            data: 'ciudad_id',
-            name: 'ciudad_id'
+            data: 'nombre_ciudad',
+            name: 'nombre_ciudad'
           },
           {
             data: 'direccion',
@@ -152,8 +152,8 @@ Pacientes
             name: 'telefono'
           },
           {
-            data: 'eps_id',
-            name: 'eps_id'
+            data: 'eps_nombre',
+            name: 'eps_nombre'
           },
           {
             data: 'nivel',

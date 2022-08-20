@@ -26,14 +26,30 @@ class PacienteController extends Controller
     public function index(Request $request)
     {
         $usuario_id = $request->session()->get('usuario_id');
+        $idlist = $request->id;
+
         if ($request->ajax()) {
-            $datas = Paciente::orderBy('id_paciente')
+            $datas = DB::table('paciente')
+                ->Join('ocupaciones', 'paciente.ocupacion_id', '=', 'ocupaciones.id_ocupacion')
+                ->Join('eps_empresas', 'paciente.eps_id', '=', 'eps_empresas.id_eps_empresas')
+                ->Join('ciudades', 'paciente.ciudad_id', '=', 'ciudades.id_ciudad')
+                ->select('*',
+                    'paciente.id_paciente as idd', 
+                    'ocupaciones.codigo as cod_ocu',
+                    'ocupaciones.nombre as nombre_ocu',
+                    'eps_empresas.codigo as codigo_eps',
+                    'eps_empresas.nombre as eps_nombre',
+                    'ciudades.cod_ciudad as cod_ciudad',
+                    'ciudades.nombre as nombre_ciudad'
+                )
+                // ->where('paciente.id_paciente', '=', $idlist)
+                // ->orderBy('id_paciente')
                 ->get();
 
 
             return  DataTables()->of($datas)
                 ->addColumn('action', function ($datas) {
-                    $button = '<button type="button" name="edit" id="' . $datas->id_paciente . '"
+                    $button = '<button type="button" name="edit" id="' . $datas->idd . '"
         class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar paciente"><i class="far fa-edit"></i></button>';
 
                     return $button;
@@ -163,7 +179,7 @@ class PacienteController extends Controller
                 'telefono' => $request->telefono,
                 'regimen' => $request->regimen,
                 'nivel' => $request->nivel,
-                'futuro2'=> $request->futuro2,
+                'futuro2' => $request->futuro2,
                 'Poblacion_especial' => $request->Poblacion_especial,
                 'ciudad_id' => $request->ciudad_id,
                 'barrio_id' => $request->barrio_id,
