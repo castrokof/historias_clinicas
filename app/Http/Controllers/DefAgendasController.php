@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Def_Profesionales;
 use App\Models\Def_Agendas;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class DefAgendasController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.agenda.index');
     }
 
     /**
@@ -22,11 +23,26 @@ class DefAgendasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function selectprofesional(Request $request)
     {
-        //
-    }
+        $profesionales = [];
 
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $profesionales = Def_Profesionales::orderBy('id_profesional')
+                ->where('nombre', 'LIKE', '%' . $term . '%')
+                ->orWhere('codigo', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($profesionales);
+        }else {
+
+            $profesionales = Def_Profesionales::orderBy('id_profesional')
+                ->get();
+
+            return response()->json($profesionales);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -44,7 +60,7 @@ class DefAgendasController extends Controller
      * @param  \App\Models\Def_Agendas  $def_Agendas
      * @return \Illuminate\Http\Response
      */
-    public function show(Def_Agendas $def_Agendas)
+    public function show(Request $request)
     {
         //
     }
@@ -55,7 +71,7 @@ class DefAgendasController extends Controller
      * @param  \App\Models\Def_Agendas  $def_Agendas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Def_Agendas $def_Agendas)
+    public function edit(Request $request)
     {
         //
     }
@@ -67,7 +83,7 @@ class DefAgendasController extends Controller
      * @param  \App\Models\Def_Agendas  $def_Agendas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Def_Agendas $def_Agendas)
+    public function update(Request $request)
     {
         //
     }
@@ -78,7 +94,7 @@ class DefAgendasController extends Controller
      * @param  \App\Models\Def_Agendas  $def_Agendas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Def_Agendas $def_Agendas)
+    public function destroy(Request $request)
     {
         //
     }
