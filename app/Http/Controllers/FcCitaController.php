@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fc_Cita;
+use App\Models\Admin\Fc_Cita;
 use Illuminate\Http\Request;
 
 class FcCitaController extends Controller
@@ -41,7 +41,7 @@ class FcCitaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Fc_Cita  $fc_Cita
+     * @param  \App\Models\Admin\Fc_Cita  $fc_Cita
      * @return \Illuminate\Http\Response
      */
     public function show(Fc_Cita $fc_Cita)
@@ -52,7 +52,7 @@ class FcCitaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Fc_Cita  $fc_Cita
+     * @param  \App\Models\Admin\Fc_Cita  $fc_Cita
      * @return \Illuminate\Http\Response
      */
     public function edit(Fc_Cita $fc_Cita)
@@ -64,7 +64,7 @@ class FcCitaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Fc_Cita  $fc_Cita
+     * @param  \App\Models\Admin\Fc_Cita  $fc_Cita
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Fc_Cita $fc_Cita)
@@ -75,7 +75,7 @@ class FcCitaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Fc_Cita  $fc_Cita
+     * @param  \App\Models\Admin\Fc_Cita  $fc_Cita
      * @return \Illuminate\Http\Response
      */
     public function destroy(Fc_Cita $fc_Cita)
