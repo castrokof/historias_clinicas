@@ -246,6 +246,14 @@ Route::post('ciudades', 'CiudadesController@guardar')->name('guardar_ciudades')-
 Route::get('ciudades/{id}/editar', 'CiudadesController@editar')->name('editar_ciudades')->middleware('superEditor');
 Route::put('ciudades/{id}', 'CiudadesController@actualizar')->name('actualizar_ciudades')->middleware('superEditor');
 
+/* RUTAS DE SEDES */
+Route::get('sedes', 'DefSedesController@index')->name('sedes')->middleware('superEditor');
+Route::get('sedes/crear', 'DefSedesController@crear')->name('crear_sedes')->middleware('superEditor');
+Route::post('sedes', 'DefSedesController@guardar')->name('guardar_sedes')->middleware('superEditor');
+Route::get('sedes/{id}/editar', 'DefSedesController@editar')->name('editar_sedes')->middleware('superEditor');
+Route::put('sedes/{id}', 'DefSedesController@actualizar')->name('actualizar_sedes')->middleware('superEditor');
+Route::get('sede_ciudad', 'DefSedesController@selectci')->name('sede_ciudad')->middleware('superEditor');
+
 /* RUTAS DE SERVICIOS */
 Route::get('servicios', 'ServiciosController@index')->name('servicios')->middleware('superEditor');
 Route::get('servicios/crear', 'ServiciosController@crear')->name('crear_servicio')->middleware('superEditor');
