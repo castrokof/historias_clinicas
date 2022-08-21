@@ -85,9 +85,6 @@ Profesionales
                     data: 'especialidad_id'
                 },
                 {
-                    data: 'sede'
-                },
-                {
                     data: 'estado'
                 }
             ],

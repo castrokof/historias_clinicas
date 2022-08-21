@@ -15,7 +15,7 @@ class CreateDefProfesionalesTable extends Migration
     {
         Schema::create('def__profesionales', function (Blueprint $table) {
             $table->bigIncrements('id_profesional');
-            $table->string('codigo',10);
+            $table->string('codigo',10)->unique();
             $table->string('nombre',200);
             $table->string('reg_profesional',20);
             $table->string('cod_usuario',100)->unique();
