@@ -9,20 +9,14 @@
         <input type="number" name="consecutivo" id="consecutivo" class="form-control UpperCase" value="{{old('consecutivo')}}">
     </div>
     <div class="col-lg-6">
-        <label for="sede" class="col-xs-4 control-label requerido">Sede</label>
-        <select name="sede" id="sede" class="form-control" style="width: 100%;" value="{{old('sede')}}" required>
-            <option value="" selected>-- Seleccionar Sede--</option>
-            <option value="ATENCION FIDEM S.A.S">ATENCION FIDEM S.A.S</option>
-            <option value="SALUD MEDCOL S.A.S">SALUD MEDCOL S.A.S</option>
-            <option value="OPORTUNIDAD DE VIDAD S.A.S">OPORTUNIDAD DE VIDAD S.A.S</option>
-            <option value="TEMPUS ATENCION INTEGRAL EN SALUD EU">TEMPUS ATENCION INTEGRAL EN SALUD EU</option>
-            <option value="SALUD VITALIA S.A.S">SALUD VITALIA S.A.S</option>
+        <label for="sede_docu" class="col-xs-4 control-label requerido">Sede</label>
+        <select name="sede_id" id="sede_docu" class="form-control" style="width: 100%;" required>
         </select>
     </div>
-    
+
 </div>
 <div class="form-group row">
-    
+
     <div class="col-lg-12">
         <label for="observaciones" class="col-xs-8 control-label ">Observación</label>
         <textarea name="observaciones" id="observaciones" class="form-control" rows="3" placeholder="Enter ..."></textarea>
@@ -37,6 +31,6 @@
             </div>
         </div>
     </div> -->
-    <input type="hidden" name="user_id" id="user_id" class="form-control" value="{{Session()->get('usuario_id')}}">    
+    <input type="hidden" name="user_id" id="user_id" class="form-control" value="{{Session()->get('usuario_id')}}">
     <!-- <input type="hidden" name="nombre" id="nombre" class="form-control" value="1"> -->
 </div>

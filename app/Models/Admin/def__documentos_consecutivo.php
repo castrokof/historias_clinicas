@@ -14,7 +14,7 @@ class def__documentos_consecutivo extends Model
 
         'documento_id',
         'consecutivo',
-        'sede',
+        'sede_id',
         'observaciones'
     ];
     public function documentotipo(){

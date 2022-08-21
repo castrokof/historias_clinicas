@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Carbon\Carbon;
 
 use App\Models\Admin\def__documentos_consecutivo;
 use App\Models\Admin\Def_Documentos;
+use App\Models\Admin\Def_Sedes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -25,12 +27,13 @@ class DefDocumentosConsecutivoController extends Controller
 
             $datas = def__documentos_consecutivo::orderBy('id_documento_consecutivo', 'asc')
                 ->Join('def__documentos', 'def__documentos_consecutivos.documento_id', '=', 'def__documentos.id_documento')
+                ->Join('def__sedes', 'def__documentos_consecutivos.sede_id', '=', 'def__sedes.id_sede')
                 ->select(
                     'def__documentos_consecutivos.id_documento_consecutivo as idd',
                     'def__documentos.cod_documentos as codigo',
                     'def__documentos.nombre as nombre',
                     'def__documentos_consecutivos.consecutivo as consecutivo',
-                    'def__documentos_consecutivos.sede as sede'
+                    'def__sedes.sede as nombre_sede'
                 )
                 //->where('def__documentos_consecutivos.id_documento_consecutivo', '=', $idlist)
                 ->get();
@@ -64,7 +67,7 @@ class DefDocumentosConsecutivoController extends Controller
             $rules = array(
                 'documento_id' => 'required',
                 'consecutivo' => 'required',
-                'sede',
+                'sede_id',
                 'observaciones'
             );
 
@@ -80,7 +83,7 @@ class DefDocumentosConsecutivoController extends Controller
         }
     }
 
-    //Funcion para seleccionar el Documento desde la tabla def__documentos
+    //Funcion para seleccionar el Documento desde la tabla def__documentos    
     public function selectdoc(Request $request)
     {
         $docuc = [];
@@ -93,28 +96,51 @@ class DefDocumentosConsecutivoController extends Controller
                 ->orwhere('nombre', 'LIKE', '%' . $term . '%')
                 ->get();
             return response()->json($docuc);
+        } else {
+            $term = $request->get('q');
+            $docuc = Def_Documentos::orderBy('id_documento')->get();
+            return response()->json($docuc);
+        }
+    }
+
+    //Funcion para seleccionar la Sede desde la tabla def__sedes
+    public function selectsede(Request $request)
+    {
+        $sede = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $sede = Def_Sedes::orderBy('id_sede')
+                ->where('cod_sede', 'LIKE', '%' . $term . '%')
+                ->orwhere('sede', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($sede);
+        } else {
+            $term = $request->get('q');
+            $sede = Def_Sedes::orderBy('id_sede')->get();
+            return response()->json($sede);
         }
     }
 
     public function buscarp(Request $request)
     {
         $usuario_id = $request->session()->get('usuario_id');
-        $fechaActual= Carbon::now()->toDateString()." 00:00:01";
+        $fechaActual = Carbon::now()->toDateString() . " 00:00:01";
 
         $paises = Def_Documentos::orderBy('id_documento')->select('id_documento', 'cod_documentos', 'consecutivo')->get();
 
         if (request()->ajax()) {
 
             /* $data = Paciente::where('documento', $request->document)->first(); */
-            $data = DB::table('paciente') 
-            ->Join('paises','paciente.pais_id','=','paises.id_documento')
-            /* ->select(DB::raw('paises.nombre as pais'),'paciente.documento as documento',) */
-            ->where('paciente.documento', $request->document)
-            ->first();
+            $data = DB::table('paciente')
+                ->Join('paises', 'paciente.pais_id', '=', 'paises.id_documento')
+                /* ->select(DB::raw('paises.nombre as pais'),'paciente.documento as documento',) */
+                ->where('paciente.documento', $request->document)
+                ->first();
 
             return response()->json(['pacientes' => $data]);
         }
-
     }
 
     /**
@@ -141,51 +167,6 @@ class DefDocumentosConsecutivoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin\def__documentos_consecutivo  $def__documentos_consecutivo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(def__documentos_consecutivo $def__documentos_consecutivo)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin\def__documentos_consecutivo  $def__documentos_consecutivo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(def__documentos_consecutivo $def__documentos_consecutivo)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\def__documentos_consecutivo  $def__documentos_consecutivo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, def__documentos_consecutivo $def__documentos_consecutivo)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin\def__documentos_consecutivo  $def__documentos_consecutivo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(def__documentos_consecutivo $def__documentos_consecutivo)
     {
         //
     }

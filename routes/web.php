@@ -285,6 +285,7 @@ Route::get('documentos_consecutivo/{id}/editar', 'DefDocumentosConsecutivoContro
 Route::put('documentos_consecutivo/{id}', 'DefDocumentosConsecutivoController@actualizar')->name('actualizar_doc_conse')->middleware('superEditor');
 Route::post('documento_conse_estado', 'DefDocumentosConsecutivoController@updateestado')->name('documento_conse_estado')->middleware('superEditor');
 Route::get('documento', 'DefDocumentosConsecutivoController@selectdoc')->name('documento')->middleware('superEditor');
+Route::get('sede_documento', 'DefDocumentosConsecutivoController@selectsede')->name('sede_documento')->middleware('superEditor');
 
 /* RUTAS DEL CITA */
 Route::get('cita', 'CitaController@index')->name('cita')->middleware('superEditor');
