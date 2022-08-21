@@ -20,7 +20,7 @@ class CreateDefProfesionalesTable extends Migration
             $table->string('reg_profesional',20);
             $table->string('cod_usuario',100)->unique();
             $table->string('tipo',100);//Ej: Médico especialista, Médico general, Enfermera, Auxiliar de enfermería, Otro
-            $table->string('especialidad',255);
+            $table->unsignedBigInteger('especialidad_id');
             $table->string('sede',45)->nullable();
             $table->dateTime('fecha_inicio',5)->nullable();//Campo para especificar la fecha de la agenda del medico
             $table->dateTime('fecha_fin',5)->nullable();//Campo para especificar la fecha de la agenda del medico
@@ -32,6 +32,7 @@ class CreateDefProfesionalesTable extends Migration
             $table->string('min_citas_sabado',5)->nullable();
             $table->string('min_citas_domingo',5)->nullable();
             $table->char('estado',1);
+            $table->foreign('especialidad_id', 'fk_profesional_especialidad')->references('id_especialidad')->on('def__especialidades')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
             
         });

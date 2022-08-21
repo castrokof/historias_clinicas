@@ -32,6 +32,7 @@ class PacienteController extends Controller
             $datas = DB::table('paciente')
                 ->Join('ocupaciones', 'paciente.ocupacion_id', '=', 'ocupaciones.id_ocupacion')
                 ->Join('eps_empresas', 'paciente.eps_id', '=', 'eps_empresas.id_eps_empresas')
+                ->Join('paises', 'paciente.pais_id', '=', 'paises.id_pais')
                 ->Join('ciudades', 'paciente.ciudad_id', '=', 'ciudades.id_ciudad')
                 ->select('*',
                     'paciente.id_paciente as idd', 
@@ -39,6 +40,8 @@ class PacienteController extends Controller
                     'ocupaciones.nombre as nombre_ocu',
                     'eps_empresas.codigo as codigo_eps',
                     'eps_empresas.nombre as eps_nombre',
+                    'paises.cod_pais as cod_pais',
+                    'paises.nombre as nombre_pais',
                     'ciudades.cod_ciudad as cod_ciudad',
                     'ciudades.nombre as nombre_ciudad'
                 )
@@ -114,6 +117,7 @@ class PacienteController extends Controller
     public function editar($id)
     {
         if (request()->ajax()) {
+            
 
             $data = Paciente::where('id_paciente', $id)->first();
 
@@ -172,6 +176,7 @@ class PacienteController extends Controller
                 'eps_id' => $request->eps_id,
                 'edad' => $request->edad,
                 'sexo' => $request->sexo,
+                'orientacion_sexual' => $request->orientacion_sexual,
                 'pais_id' => $request->pais_id,
                 'departamento_id' => $request->departamento_id,
                 'direccion' => $request->direccion,

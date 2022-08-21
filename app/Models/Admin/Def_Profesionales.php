@@ -15,7 +15,7 @@ class Def_Profesionales extends Model
         'reg_profesional',
         'cod_usuario',
         'tipo',
-        'especialidad',
+        'especialidad_id',
         'sede',
         'fecha_inicio',
         'fecha_fin',

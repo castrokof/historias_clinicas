@@ -330,8 +330,12 @@ Pacientes
           $('#celular').val(data.result.celular);
           $('#telefono').val(data.result.telefono);
           $('#eps_id').val(data.result.eps_id);
-          $('#sexo').val(data.result.sexo);
           $('#regimen').val(data.result.regimen);
+          $('#afiliacion').val(data.result.afiliacion);
+          $('#nivel').val(data.result.nivel);
+          $('#sexo').val(data.result.sexo);
+          $('#orientacion_sexual').val(data.result.orientacion_sexual);
+          $('#Poblacion_especial').val(data.result.Poblacion_especial);
           $('#Ocupacion').val(data.result.Ocupacion);
           $('#observacion').val(data.result.observacion);
           $('#hidden_id').val(id);

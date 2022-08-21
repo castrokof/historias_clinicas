@@ -145,6 +145,7 @@ Route::post('profesionales', 'DefProfesionalesController@guardar')->name('guarda
 Route::get('editar_profesionales/{id}', 'DefProfesionalesController@editar')->name('editar_profesionales')->middleware('superEditor');
 Route::put('profesionales/{id}', 'DefProfesionalesController@actualizar')->name('actualizar_profesionales')->middleware('superEditor');
 Route::post('profesional-estado', 'DefProfesionalesController@updateestado')->name('profe_estado')->middleware('superEditor');
+Route::get('especialidad', 'DefProfesionalesController@selectespe')->name('especialidad')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Profesional vs Servicio
 Route::get('relserviciovsprofesional', 'RelProfesionalvsservicioController@index')->name('relserviciovsprofesional')->middleware('superEditor');

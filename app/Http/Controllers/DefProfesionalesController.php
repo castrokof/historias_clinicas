@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Def_Especialidades;
 use App\Models\Admin\Def_Profesionales;
 use App\Models\Admin\rel__profesionalvsprocedimientos;
 use Illuminate\Http\Request;
@@ -150,7 +151,7 @@ class DefProfesionalesController extends Controller
                 'reg_profesional' => 'required',
                 'cod_usuario' => 'required',
                 'tipo' => 'required',
-                'especialidad' => 'required',
+                'especialidad_id' => 'required',
                 'sede',
                 'fecha_inicio',
                 'fecha_fin',
@@ -228,6 +229,26 @@ class DefProfesionalesController extends Controller
                     return response()->json(['respuesta' => 'Profesional habilitado correctamente', 'titulo' => 'Sistema Historias Clínicas', 'icon' => 'warning']);
                 }
             }
+        }
+    }
+
+    //Funcion para seleccionar la Especialidad desde la tabla def__especialidades
+    public function selectespe(Request $request)
+    {
+        $ocupacionp = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $ocupacionp = Def_Especialidades::orderBy('id_especialidad')
+                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->where('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($ocupacionp);
+        } else {
+            $term = $request->get('q');
+            $ocupacionp = Def_Especialidades::orderBy('id_especialidad')->get();
+            return response()->json($ocupacionp);
         }
     }
 
