@@ -1265,7 +1265,7 @@ Profesionales
             $(".cases").prop("checked", this.checked);
         });
 
-        //Select para consultar los Paises
+        //Select para consultar las especialidades de los profesionales
         $("#profesional_especialidad").select2({
             theme: "bootstrap",
             ajax: {
@@ -1280,6 +1280,30 @@ Profesionales
 
                                 text: data.codigo +' - '+data.nombre,
                                 id: data.id_especialidad
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar el usuario del sistema que le sera asignado al profesional
+        $("#profe_usuario").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('users')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.usuario +' - '+data.pnombre+' - '+data.papellido,
+                                id: data.id
 
                             }
                         })

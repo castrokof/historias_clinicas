@@ -152,6 +152,10 @@ class DefMedicamentosSuministrosController extends Controller
                 ->orwhere('forma', 'LIKE', '%' . $term . '%')
                 ->get();
             return response()->json($atcmed);
+        }else {
+            $term = $request->get('q');
+            $atcmed = Def_ATC_Medicamentos::orderBy('id_ATC')->get();
+            return response()->json($atcmed);
         }
     }
 

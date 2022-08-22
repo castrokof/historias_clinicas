@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Seguridad\Usuario;
 
 use App\Models\Admin\Def_Especialidades;
 use App\Models\Admin\Def_Profesionales;
@@ -149,7 +150,7 @@ class DefProfesionalesController extends Controller
                 'codigo' => 'required',
                 'nombre' => 'required',
                 'reg_profesional' => 'required',
-                'cod_usuario' => 'required',
+                'usuario_id' => 'required',
                 'tipo' => 'required',
                 'especialidad_id' => 'required',                
                 'fecha_inicio',
@@ -248,6 +249,26 @@ class DefProfesionalesController extends Controller
             $term = $request->get('q');
             $ocupacionp = Def_Especialidades::orderBy('id_especialidad')->get();
             return response()->json($ocupacionp);
+        }
+    }
+
+    //Funcion para seleccionar el Usuario desde la usuario
+    public function selectuser(Request $request)
+    {
+        $user = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $user = Usuario::orderBy('id')
+                ->where('usuario', 'LIKE', '%' . $term . '%')
+                // ->orwhere('usuario', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($user);
+        } else {
+            $term = $request->get('q');
+            $user = Usuario::orderBy('id')->get();
+            return response()->json($user);
         }
     }
 

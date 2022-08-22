@@ -11,8 +11,9 @@
 </div>
 <div class="form-group row">
     <div class="col-lg-4">
-        <label for="cod_usuario" class="col-xs-4 control-label">Usuario</label> <!-- Este es el usuario con el cual se ingresa al sistema -->
-        <input name="cod_usuario" id="cod_usuario" class="form-control" value="{{old('cod_usuario')}}"></input>
+        <label for="profe_usuario" class="col-xs-4 control-label">Usuario</label> <!-- Este es el usuario con el cual se ingresa al sistema -->        
+        <select name="usuario_id" id="profe_usuario" class="form-control" style="width: 100%;" required>
+        </select>
     </div>
     <div class="col-lg-4">
         <label for="tipo" class="col-xs-4 control-label">Tipo</label> <!-- Este es el tipo de profesional Ej:Auxiliar de enfermería,Médico especialista, Médico general     -->
