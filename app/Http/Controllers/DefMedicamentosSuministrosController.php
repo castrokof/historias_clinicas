@@ -115,7 +115,7 @@ class DefMedicamentosSuministrosController extends Controller
                 'ATC_id',
                 'subgrupo_id' => 'required',
                 'IUM',
-                'invima' => 'required',
+                'invima',
                 'tipo' => 'required',
                 'stock_max',
                 'stock_min',
@@ -176,21 +176,6 @@ class DefMedicamentosSuministrosController extends Controller
         }
         return response()->json($grupmed);
     }
-
-    /* //Funcion para seleccionar el grupo
-    public function selectgrupo(Request $request)
-    {
-        $grupmed = [];
-
-        if ($request->has('q')) {
-
-            $term = $request->get('q');
-            $grupmed = def__grupoysubgrupomed::orderBy('id')
-                ->where('nombre_grupo', 'LIKE', '%' . $term . '%')
-                ->get();
-            return response()->json($grupmed);
-        }
-    } */
 
     /**
      * Display the specified resource.

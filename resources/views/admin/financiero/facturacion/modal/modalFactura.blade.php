@@ -92,12 +92,12 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-2">
-                                <label for="pais_id" class="col-xs-4 control-label ">País de Residencia</label>
-                                <input name="pais_id" id="pais_id" class="form-control" readonly>
+                                <label for="nombre_pais" class="col-xs-4 control-label ">País de Residencia</label>
+                                <input name="nombre_pais" id="nombre_pais" class="form-control" readonly>
                             </div>
                             <div class="col-lg-2">
-                                <label for="ciudad" class="col-xs-4 control-label ">Ciudad</label>
-                                <input type="text" name="ciudad" id="ciudad" class="form-control" readonly>
+                                <label for="nombre_ciudad" class="col-xs-4 control-label ">Ciudad</label>
+                                <input name="nombre_ciudad" id="nombre_ciudad" class="form-control" readonly>
                             </div>
                             <div class="col-lg-2">
                                 <label for="direccion" class="col-xs-4 control-label ">Direccion</label>
@@ -120,39 +120,24 @@
                         <p><a style="color:#0071c5;"> Datos de afiliación:</a> </p>
                         <div class="form-group row">
                             <div class="col-lg-2">
-                                <label for="plan" class="col-xs-6 control-label">Régimen</label>
-                                <!--<input type="text" name="regimen" id="regimen" class="form-control" value="{{ old('regimen') }}" required> -->
-                                <select name="regimen" id="plan" class="form-control" style="width: 100%;" value="{{ old('regimen') }}" required>
-                                    <option value="" selected>-- Seleccionar --</option>
-                                    <!-- <option value="Particular">Particular</option> -->
-                                    <option value="Contributivo">Contributivo</option>
-                                    <option value="Subsidiado">Subsidiado</option>
-                                    <option value="Vinculado">Vinculado</option>
-                                    <option value="Otro régimen">Otro régimen</option>
-                                    <option value="Accidentes de tránsito">Accidentes de tránsito</option>
-                                    <option value="Riesgos profesionales">Riesgos profesionales</option>
-                                    <option value="Desplazado">Desplazado</option>
-                                </select>
+                                <label for="regimen" class="col-xs-4 control-label ">Régimen</label>
+                                <input name="regimen" id="regimen" class="form-control" readonly>
                             </div>
                             <div class="col-lg-1">
-                                <label for="codigo_n" class="col-xs-4 control-label ">EPS</label>
-                                <input type="text" name="codigo_empresa" id="codigo_n" class="form-control">
+                                <label for="codigo_eps" class="col-xs-4 control-label ">EPS</label>
+                                <input name="codigo_eps" id="codigo_eps" class="form-control" readonly>
                             </div>
                             <div class="col-lg-3">
-                                <label for="nombre_n" class="col-xs-4 control-label requerido"></label>
-                                <input type="text" name="nombre" id="nombre_n" class="form-control" placeholder="Razón Social" readonly>
+                                <label for="eps_nombre" class="col-xs-4 control-label requerido"></label>
+                                <input name="eps_nombre" id="eps_nombre" class="form-control" placeholder="Razón Social" readonly>
                             </div>
                             <div class="col-lg-1">
                                 <label for="nivel" class="col-xs-6 control-label">Nivel</label>
-                                <input type="text" name="nivel" id="nivel" class="form-control" value="{{ old('nivel') }}" required>
-                            </div>
-                            <div class="col-lg-2">
-                                <label for="descripcion_nivel" class="col-xs-6 control-label">Descripcion</label>
-                                <input type="text" name="descripcion_nivel" id="descripcion_nivel" class="form-control" value="{{ old('descripcion_nivel') }}" required>
+                                <input name="nivel" id="nivel" class="form-control" readonly>
                             </div>
                             <div class="col-lg-2">
                                 <label for="numero_afiliacion" class="col-xs-4 control-label ">Número Afiliación</label>
-                                <input type="number" name="numero_afiliacion" id="numero_afiliacion" class="form-control" value="{{ old('numero_afiliacion') }}">
+                                <input name="numero_afiliacion" id="numero_afiliacion" class="form-control" readonly>
                             </div>
                         </div>
                         <hr>
@@ -163,7 +148,7 @@
                                 <!--<input type="text" name="regimen" id="regimen" class="form-control" value="{{ old('regimen') }}" required> -->
                                 <select name="regimen" id="plan" class="form-control" style="width: 100%;" value="{{ old('regimen') }}" required>
                                     <option value="" selected>-- Seleccionar --</option>
-                                    <!-- <option value="Particular">Particular</option> -->
+                                    <option value="Particular">Particular</option>
                                     <option value="Contributivo">Contributivo</option>
                                     <option value="Subsidiado">Subsidiado</option>
                                     <option value="Vinculado">Vinculado</option>
@@ -173,14 +158,12 @@
                                     <option value="Desplazado">Desplazado</option>
                                 </select>
                             </div>
-                            <div class="col-lg-1">
-                                <label for="codigo_n" class="col-xs-4 control-label ">Cliente</label>
-                                <input type="text" name="codigo_empresa" id="codigo_n" class="form-control">
+                            <div class="col-lg-6">
+                                <label for="eps_fact" class="col-xs-4 control-label ">Cliente</label>                                
+                                <select name="eps_id" id="eps_fact" class="form-control" style="width: 100%;" required>
+                                </select>
                             </div>
-                            <div class="col-lg-3">
-                                <label for="nombre_n" class="col-xs-4 control-label requerido"></label>
-                                <input type="text" name="nombre" id="nombre_n" class="form-control" placeholder="Razón Social" readonly>
-                            </div>
+                            
                             <div class="col-lg-1">
                                 <label for="nivel" class="col-xs-6 control-label">Nivel</label>
                                 <input type="text" name="nivel" id="nivel" class="form-control" value="{{ old('nivel') }}" required>
@@ -255,7 +238,7 @@
                         </div>
                         <div class="col-lg-2">
                             <label for="pnombre" class="col-xs-4 control-label ">Valor a cancelar:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" >
+                            <input type="text" name="pnombre" id="pnombre" class="form-control">
                         </div>
                     </div>
                 </div>
