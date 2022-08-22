@@ -15,5 +15,8 @@ class Paises extends Model
         'estado'
         
     ];
+    public function pacientepais(){
+        return $this->hasMany(Paises::class, 'pais_id');
+    }
     
 }

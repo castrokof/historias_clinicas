@@ -71,8 +71,8 @@ Documentos Consecutivos
                     name: 'consecutivo'
                 },
                 {
-                    data: 'sede',
-                    name: 'sede'
+                    data: 'nombre_sede',
+                    name: 'nombre_sede'
                 }
             ],
 
@@ -230,6 +230,33 @@ Documentos Consecutivos
 
                                 text: data.cod_documentos + " - " + data.nombre,
                                 id: data.id_documento,
+
+                            }
+
+                        })
+
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar los Documentos
+        $("#sede_docu").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('sede_documento')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+
+                            return {
+
+                                text: data.cod_sede + " - " + data.sede,
+                                id: data.id_sede,
 
                             }
 

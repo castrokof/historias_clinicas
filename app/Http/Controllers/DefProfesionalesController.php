@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Seguridad\Usuario;
+
+use App\Models\Admin\Def_Especialidades;
 use App\Models\Admin\Def_Profesionales;
 use App\Models\Admin\rel__profesionalvsprocedimientos;
 use Illuminate\Http\Request;
@@ -22,7 +25,10 @@ class DefProfesionalesController extends Controller
         if ($request->ajax()) {
 
 
-            $datas = Def_Profesionales::orderBy('id_profesional', 'asc')->get();
+            $datas = Def_Profesionales::orderBy('id_profesional', 'asc')
+                ->Join('def__especialidades', 'def__profesionales.especialidad_id', '=', 'def__especialidades.id_especialidad')
+                ->select('*', 'def__profesionales.nombre as nombre_profesional', 'def__especialidades.nombre as nombre_especialidad')
+                ->get();
 
             return  DataTables()->of($datas)
                 ->addColumn('action', function ($datas) {
@@ -62,7 +68,10 @@ class DefProfesionalesController extends Controller
 
         if ($request->ajax()) {
 
-            $datas = Def_Profesionales::orderBy('id_profesional', 'asc')->get();
+            $datas = Def_Profesionales::orderBy('id_profesional', 'asc')
+                ->Join('def__especialidades', 'def__profesionales.especialidad_id', '=', 'def__especialidades.id_especialidad')
+                ->select('*', 'def__profesionales.nombre as nombre_profesional', 'def__especialidades.nombre as nombre_especialidad')
+                ->get();
 
             return  DataTables()->of($datas)
                 ->addColumn('action', function ($datas) {
@@ -93,7 +102,7 @@ class DefProfesionalesController extends Controller
                 ->rawColumns(['action', 'estado'])
                 ->make(true);
         }
-        
+
         return view('admin.financiero.procedimientos.index');
     }
 
@@ -133,7 +142,7 @@ class DefProfesionalesController extends Controller
                 ->rawColumns(['action', 'estado'])
                 ->make(true);
         }
-        
+
         return view('admin.financiero.medicamentos.index');
     }
 
@@ -148,10 +157,9 @@ class DefProfesionalesController extends Controller
                 'codigo' => 'required',
                 'nombre' => 'required',
                 'reg_profesional' => 'required',
-                'cod_usuario' => 'required',
+                'usuario_id' => 'required',
                 'tipo' => 'required',
-                'especialidad' => 'required',
-                'sede',
+                'especialidad_id' => 'required',
                 'fecha_inicio',
                 'fecha_fin',
                 'min_citas_lunes',
@@ -228,6 +236,46 @@ class DefProfesionalesController extends Controller
                     return response()->json(['respuesta' => 'Profesional habilitado correctamente', 'titulo' => 'Sistema Historias Clínicas', 'icon' => 'warning']);
                 }
             }
+        }
+    }
+
+    //Funcion para seleccionar la Especialidad desde la tabla def__especialidades
+    public function selectespe(Request $request)
+    {
+        $ocupacionp = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $ocupacionp = Def_Especialidades::orderBy('id_especialidad')
+                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->where('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($ocupacionp);
+        } else {
+            $term = $request->get('q');
+            $ocupacionp = Def_Especialidades::orderBy('id_especialidad')->get();
+            return response()->json($ocupacionp);
+        }
+    }
+
+    //Funcion para seleccionar el Usuario desde la usuario
+    public function selectuser(Request $request)
+    {
+        $user = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $user = Usuario::orderBy('id')
+                ->where('usuario', 'LIKE', '%' . $term . '%')
+                // ->orwhere('usuario', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($user);
+        } else {
+            $term = $request->get('q');
+            $user = Usuario::orderBy('id')->get();
+            return response()->json($user);
         }
     }
 

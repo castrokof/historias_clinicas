@@ -29,7 +29,7 @@ class Factura extends Model
         'edad', 
         'regimen',
         'eps',
-        //'plan',
+        'regimen',
         'eps_nombre',
         'afiliacion',
         'nivel',

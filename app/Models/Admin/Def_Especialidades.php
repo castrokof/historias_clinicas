@@ -16,4 +16,7 @@ class Def_Especialidades extends Model
         'nombre',
         'estado'
     ];
+    public function profesespecialidad(){
+        return $this->hasMany(Def_Profesionales::class, 'especialidad_id');
+    }
 }

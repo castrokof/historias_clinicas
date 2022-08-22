@@ -141,12 +141,12 @@ Medicamentos
 
 
             if ($('#action').val() == 'Add') {
-                text = "Estás por crear un profesional"
+                text = "Estás por crear un medicamento"
                 url = "{{ route('guardar_medicamentos') }}";
                 method = 'post';
             }
 
-            if ($('#codigo').val() == '' || $('#nombre').val() == '' || $('#invima').val() == '' || $('#tipo').val() == '' || $('#estado').val() == '') {
+            if ($('#codigo').val() == '' || $('#nombre').val() == '' || $('#tipo').val() == '' || $('#estado').val() == '') {
                 Swal.fire({
                     title: "Debes de rellenar todos los campos del formulario",
                     text: "Respuesta verifique los campos",

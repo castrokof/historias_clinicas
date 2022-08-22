@@ -145,6 +145,8 @@ Route::post('profesionales', 'DefProfesionalesController@guardar')->name('guarda
 Route::get('editar_profesionales/{id}', 'DefProfesionalesController@editar')->name('editar_profesionales')->middleware('superEditor');
 Route::put('profesionales/{id}', 'DefProfesionalesController@actualizar')->name('actualizar_profesionales')->middleware('superEditor');
 Route::post('profesional-estado', 'DefProfesionalesController@updateestado')->name('profe_estado')->middleware('superEditor');
+Route::get('especialidad', 'DefProfesionalesController@selectespe')->name('especialidad')->middleware('superEditor');
+Route::get('users', 'DefProfesionalesController@selectuser')->name('users')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Profesional vs Servicio
 Route::get('relserviciovsprofesional', 'RelProfesionalvsservicioController@index')->name('relserviciovsprofesional')->middleware('superEditor');
@@ -219,6 +221,10 @@ Route::get('paciente/{id}/editar', 'PacienteController@editar')->name('editar_pa
 Route::put('paciente/{id}', 'PacienteController@actualizar')->name('actualizar_paciente')->middleware('superEditor');
 Route::get('pais', 'PacienteController@selectpa')->name('pais')->middleware('superEditor');
 Route::get('eps', 'PacienteController@selecteps')->name('eps')->middleware('superEditor');
+Route::get('ciudad', 'PacienteController@selectci')->name('ciudad')->middleware('superEditor');
+Route::get('departamento', 'PacienteController@selectde')->name('departamento')->middleware('superEditor');
+Route::get('ocupacion', 'PacienteController@selectocu')->name('ocupacion')->middleware('superEditor');
+Route::get('barrio', 'PacienteController@selectbar')->name('barrio')->middleware('superEditor');
 
 /* RUTAS DE PAISES */
 Route::get('paises', 'PaisController@index')->name('paises')->middleware('superEditor');
@@ -240,6 +246,21 @@ Route::get('ciudades/crear', 'CiudadesController@crear')->name('crear_ciudades')
 Route::post('ciudades', 'CiudadesController@guardar')->name('guardar_ciudades')->middleware('superEditor');
 Route::get('ciudades/{id}/editar', 'CiudadesController@editar')->name('editar_ciudades')->middleware('superEditor');
 Route::put('ciudades/{id}', 'CiudadesController@actualizar')->name('actualizar_ciudades')->middleware('superEditor');
+
+/* RUTAS DE BARRIOS */
+Route::get('barrios', 'BarriosController@index')->name('barrios')->middleware('superEditor');
+Route::get('barrios/crear', 'BarriosController@crear')->name('crear_barrios')->middleware('superEditor');
+Route::post('barrios', 'BarriosController@guardar')->name('guardar_barrios')->middleware('superEditor');
+Route::get('barrios/{id}/editar', 'BarriosController@editar')->name('editar_barrios')->middleware('superEditor');
+Route::put('barrios/{id}', 'BarriosController@actualizar')->name('actualizar_barrios')->middleware('superEditor');
+
+/* RUTAS DE SEDES */
+Route::get('sedes', 'DefSedesController@index')->name('sedes')->middleware('superEditor');
+Route::get('sedes/crear', 'DefSedesController@crear')->name('crear_sedes')->middleware('superEditor');
+Route::post('sedes', 'DefSedesController@guardar')->name('guardar_sedes')->middleware('superEditor');
+Route::get('sedes/{id}/editar', 'DefSedesController@editar')->name('editar_sedes')->middleware('superEditor');
+Route::put('sedes/{id}', 'DefSedesController@actualizar')->name('actualizar_sedes')->middleware('superEditor');
+Route::get('sede_ciudad', 'DefSedesController@selectci')->name('sede_ciudad')->middleware('superEditor');
 
 /* RUTAS DE SERVICIOS */
 Route::get('servicios', 'ServiciosController@index')->name('servicios')->middleware('superEditor');
@@ -265,6 +286,7 @@ Route::get('documentos_consecutivo/{id}/editar', 'DefDocumentosConsecutivoContro
 Route::put('documentos_consecutivo/{id}', 'DefDocumentosConsecutivoController@actualizar')->name('actualizar_doc_conse')->middleware('superEditor');
 Route::post('documento_conse_estado', 'DefDocumentosConsecutivoController@updateestado')->name('documento_conse_estado')->middleware('superEditor');
 Route::get('documento', 'DefDocumentosConsecutivoController@selectdoc')->name('documento')->middleware('superEditor');
+Route::get('sede_documento', 'DefDocumentosConsecutivoController@selectsede')->name('sede_documento')->middleware('superEditor');
 
 /* RUTAS DEL CITA */
 Route::get('cita', 'CitaController@index')->name('cita')->middleware('superEditor');
@@ -282,6 +304,9 @@ Route::get('facturacion/{id}/editar', 'FacturaController@editar')->name('editar_
 Route::put('facturacion/{id}', 'FacturaController@actualizar')->name('actualizar_factura')->middleware('superEditor');
 Route::get('pacientefact', 'FacturaController@selectpa')->name('pacientefact')->middleware('superEditor');
 Route::get('pacientefill', 'FacturaController@buscarp')->name('pacientefill')->middleware('superEditor');
+
+//Rutas para seleccionar los items que se iran cargando a la Factura (Servicio, Profesional, Procedimiento, Medicamento, Contrato)
+Route::get('servicios_factura', 'FcFacturaProcedimientosController@selectservicio')->name('servicios_factura')->middleware('superEditor');
 
 
 /* RUTAS DE LA HISTORIA */

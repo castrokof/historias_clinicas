@@ -29,13 +29,13 @@ class FacturaController extends Controller
         //
         $usuario_id = $request->session()->get('usuario_id');
         $documento_consecutivo = DB::table('def__documentos_consecutivos')
-        ->join('def__documentos', 'def__documentos.id_documento', '=', 'def__documentos_consecutivos.documento_id')
-        ->where('def__documentos.cod_documentos', 'DS')
-        ->select('def__documentos_consecutivos.consecutivo', 'def__documentos.cod_documentos')
-        ->get();
+            ->join('def__documentos', 'def__documentos.id_documento', '=', 'def__documentos_consecutivos.documento_id')
+            ->where('def__documentos.cod_documentos', 'DS')
+            ->select('def__documentos_consecutivos.consecutivo', 'def__documentos.cod_documentos')
+            ->get();
 
         //DD($documento_consecutivo);
-              return view('admin.financiero.facturacion.index', compact('documento_consecutivo'));
+        return view('admin.financiero.facturacion.index', compact('documento_consecutivo'));
     }
 
 
@@ -48,11 +48,12 @@ class FacturaController extends Controller
 
 
             $cuenta_conse = DB::table('def__documentos_consecutivos')
-            ->join('def__documentos', 'def__documentos.id_documento', '=', 'def__documentos_consecutivos.documento_id')
-            ->where([['def__documentos.cod_documentos', $request->consecutivo],
-            ['def__documentos.cod_documentos', $request->cod_documentos]
-                    ])
-            ->count();
+                ->join('def__documentos', 'def__documentos.id_documento', '=', 'def__documentos_consecutivos.documento_id')
+                ->where([
+                    ['def__documentos.cod_documentos', $request->consecutivo],
+                    ['def__documentos.cod_documentos', $request->cod_documentos]
+                ])
+                ->count();
 
             if ($cuenta_conse == 0) {
                 Fc_Factura_Procedimientos::create($request->all());
@@ -64,17 +65,16 @@ class FacturaController extends Controller
 
 
             $documento_consecutivo = DB::table('def__documentos_consecutivos')
-            ->join('def__documentos', 'def__documentos.id_documento', '=', 'def__documentos_consecutivos.documento_id')
-            ->where('def__documentos.cod_documentos', 'DS')
-            ->select('def__documentos_consecutivos.consecutivo', 'def__documentos.cod_documentos')
-            ->get();
+                ->join('def__documentos', 'def__documentos.id_documento', '=', 'def__documentos_consecutivos.documento_id')
+                ->where('def__documentos.cod_documentos', 'DS')
+                ->select('def__documentos_consecutivos.consecutivo', 'def__documentos.cod_documentos')
+                ->get();
 
-            return response()->json([$documento_consecutivo,'ok']);
-
+            return response()->json([$documento_consecutivo, 'ok']);
         }
 
 
-              return view('admin.financiero.facturacion.index', compact('documento_consecutivo'));
+        return view('admin.financiero.facturacion.index', compact('documento_consecutivo'));
     }
 
     /**
@@ -151,22 +151,51 @@ class FacturaController extends Controller
     public function buscarp(Request $request)
     {
         $usuario_id = $request->session()->get('usuario_id');
-        $fechaActual= Carbon::now()->toDateString()." 00:00:01";
+        $fechaActual = Carbon::now()->toDateString() . " 00:00:01";
 
-        $paises = Paises::orderBy('id_pais')->select('id_pais', 'cod_pais', 'nombre',DB::raw("nombre as pais"))->get();
+        $paises = Paises::orderBy('id_pais')->select('id_pais', 'cod_pais', 'nombre', DB::raw("nombre as pais"))->get();
 
         if (request()->ajax()) {
 
             /* $data = Paciente::where('documento', $request->document)->first(); */
             $data = DB::table('paciente')
-            ->Join('paises','paciente.pais_id','=','paises.id_pais')
-            /* ->select(DB::raw('paises.nombre as pais'),'paciente.documento as documento',) */
-            ->where('paciente.documento', $request->document)
-            ->first();
+                ->Join('paises', 'paciente.pais_id', '=', 'paises.id_pais')
+                ->Join('departamentos', 'paciente.departamento_id', '=', 'departamentos.id_departamento')
+                ->Join('ciudades', 'paciente.ciudad_id', '=', 'ciudades.id_ciudad')
+                ->Join('eps_empresas', 'paciente.eps_id', '=', 'eps_empresas.id_eps_empresas')
+                ->select(
+                    '*',
+                    'paises.nombre as nombre_pais',
+                    'ciudades.nombre as nombre_ciudad',
+                    'eps_empresas.codigo as codigo_eps',
+                    'eps_empresas.nombre as eps_nombre',
+                )
+                ->where('paciente.documento', $request->document)
+                ->first();
 
             return response()->json(['pacientes' => $data]);
         }
+    }
 
+
+    //Funcion para seleccionar la EPS desde la tabla eps_empresas
+    public function selecteps(Request $request)
+    {
+        $epsf = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $epsf = Eps_empresa::orderBy('id_eps_empresas')
+                ->where('codigo', 'LIKE', '%' . $term . '%')
+                //   ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->get();
+            return response()->json($epsf);
+        } else {
+            $term = $request->get('q');
+            $epsf = Eps_empresa::orderBy('id_eps_empresas')->get();
+            return response()->json($epsf);
+        }
     }
 
 

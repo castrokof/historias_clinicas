@@ -295,7 +295,7 @@ Eps Empresas
           $('#nombre_n').val(data.result.nombre);
           $('#NIT_n').val(data.result.NIT);
           $('#eps_empresas_id').val(id);
-          $('.card-title').text('Agregar Nivel');
+          // $('.card-title').text('Agregar Nivel');
           $('#action_button').val('Add');
           $('#action').val('Add');
           $('#modal-n').modal({

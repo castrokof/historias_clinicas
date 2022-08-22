@@ -11,18 +11,15 @@ class Fc_Factura_Procedimientos extends Model
     protected $primary_key = 'id_fc_factura_procedimientos';
 
     protected $fillable = [
-        'cod_documentos', //Este es el codigo de la factura
-        'numero_factura', //Este es el consecutivo de la factura
-        'cod_cups',
-        'cod_alterno',
+        'factura_id', //Este fk apunta a la tabla factura
+        'procedimiento_id',
         'codigo_cie10',
         'tipo_diagnostico', // El mismo que se ingresa en la tabla diagnostico
         'cantidad',
         'unitario',
         'total',
-        'pagado',
-        'servicio',
-        'profesional',
-        'observaciones'
+        'pagado', //valor del copago o cuota moderadora
+        'servicio_id',
+        'profesional_id'
     ];
 }

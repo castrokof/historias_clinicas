@@ -172,6 +172,13 @@ class EpsController extends Controller
 
             return response()->json($tipodo);
         }
+        else {
+            $term = $request->get('q');
+            $tipodo = DB::table('servicios')
+                ->get();
+
+            return response()->json($tipodo);
+        }
     }
 
     /**

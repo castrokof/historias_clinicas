@@ -90,6 +90,8 @@ class UsuarioController extends Controller
         return view('admin.usuario.crear');
     }
 
+    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -105,9 +107,6 @@ class UsuarioController extends Controller
 
 
         return response()->json(['success' => 'ok']);
-
-
-
 
     }
 

@@ -16,4 +16,7 @@ class Departamentos extends Model
         'nombre',
         'estado'
     ];
+    public function pacientepdep(){
+        return $this->hasMany(Departamentos::class, 'departamento_id');
+    }
 }

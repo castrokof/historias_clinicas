@@ -8,7 +8,7 @@
             <input type="text" name="nombre" id="nombre" class="form-control" value="{{old('nombre')}}">
         </div>
         <div class="col-lg-3">
-            <!--Este es el estado de la EPS si esta activa o inactiva -->
+            
             <label for="estado" class="col-xs-4 control-label requerido">Estado</label>
             <select name="estado" id="estado" class="form-control" style="width: 100%;" value="{{old('estado')}}" required>
                 <option value="" selected>-- Selecciona estado --</option>

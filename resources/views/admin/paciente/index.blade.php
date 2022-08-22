@@ -104,8 +104,8 @@ Pacientes
             orderable: false
           },
           {
-            data: 'id_paciente',
-            name: 'id_paciente'
+            data: 'idd',
+            name: 'idd'
           },
           {
             data: 'pnombre',
@@ -136,8 +136,8 @@ Pacientes
             name: 'edad'
           },
           {
-            data: 'ciudad',
-            name: 'ciudad'
+            data: 'nombre_ciudad',
+            name: 'nombre_ciudad'
           },
           {
             data: 'direccion',
@@ -152,20 +152,16 @@ Pacientes
             name: 'telefono'
           },
           {
-            data: 'correo',
-            name: 'correo'
+            data: 'eps_nombre',
+            name: 'eps_nombre'
           },
           {
-            data: 'grupo',
-            name: 'grupo'
+            data: 'nivel',
+            name: 'nivel'
           },
           {
-            data: 'plan',
-            name: 'plan'
-          },
-          {
-            data: 'observaciones',
-            name: 'observaciones'
+            data: 'regimen',
+            name: 'regimen'
           },
           {
             data: 'created_at',
@@ -333,9 +329,13 @@ Pacientes
           $('#correo').val(data.result.correo);
           $('#celular').val(data.result.celular);
           $('#telefono').val(data.result.telefono);
-          $('#eps').val(data.result.eps);
+          $('#eps_id').val(data.result.eps_id);
+          $('#regimen').val(data.result.regimen);
+          $('#afiliacion').val(data.result.afiliacion);
+          $('#nivel').val(data.result.nivel);
           $('#sexo').val(data.result.sexo);
-          $('#plan').val(data.result.plan);
+          $('#orientacion_sexual').val(data.result.orientacion_sexual);
+          $('#Poblacion_especial').val(data.result.Poblacion_especial);
           $('#Ocupacion').val(data.result.Ocupacion);
           $('#observacion').val(data.result.observacion);
           $('#hidden_id').val(id);
@@ -353,6 +353,30 @@ Pacientes
         }
       });
 
+    });
+
+    //Select para consultar las Ocupaciones
+    $("#paciente_ocupacion").select2({
+      theme: "bootstrap",
+      ajax: {
+        url: "{{ route('ocupacion')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data, function(data) {
+
+              return {
+
+                text: data.nombre,
+                id: data.id_ocupacion
+
+              }
+            })
+          };
+        },
+        cache: true
+      }
     });
 
     //Select para consultar los Paises
@@ -378,6 +402,7 @@ Pacientes
         cache: true
       }
     });
+
     //Select para consultar la EPS, Niveles
     $("#eps").select2({
       language: "es",
@@ -403,11 +428,86 @@ Pacientes
         cache: true
       }
     });
+
+    //Select para consultar el Departamento
+    $("#paciente_departamento").select2({
+      theme: "bootstrap",
+      ajax: {
+        url: "{{ route('departamento')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data, function(data) {
+
+              return {
+
+                text: data.nombre,
+                id: data.id_departamento
+
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    });
+
+    //Select para consultar la Ciudad
+    $("#paciente_ciudad").select2({
+      theme: "bootstrap",
+      ajax: {
+        url: "{{ route('ciudad')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data, function(data) {
+
+              return {
+
+                text: data.nombre,
+                id: data.id_ciudad
+
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    });
+
+    //Select para consultar el Barrio
+    $("#paciente_barrio").select2({
+      theme: "bootstrap",
+      ajax: {
+        url: "{{ route('barrio')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data, function(data) {
+
+              return {
+
+                text: data.nombre,
+                id: data.id_barrio
+
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    });
+
   });
 
 
 
-  $("#plan").select2({
+
+//Consulta de datos de la tabla lista-detalle
+  $("#regimen").select2({
     language: "es",
     theme: "bootstrap",
     placeholder: 'Seleccione regimen',

@@ -8,7 +8,7 @@
                     <span id="form_result_n"></span>
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title"></h3>
+                            <h3 class="card-title">Agregar Nivel</h3>
                             <div class="card-tools pull-right">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>

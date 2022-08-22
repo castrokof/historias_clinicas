@@ -14,4 +14,7 @@ class Barrios extends Model
         'nombre',
         'estado'
     ];
+    public function pacientepbar(){
+        return $this->hasMany(Barrios::class, 'barrio_id');
+    }
 }

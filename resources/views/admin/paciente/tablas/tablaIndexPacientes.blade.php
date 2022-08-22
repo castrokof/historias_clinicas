@@ -29,10 +29,9 @@
               <th>Dirección</th>
               <th>Celular</th>
               <th>Telefono</th>
-              <th>Correo</th>
-              <th>Grupo</th>
+              <th>EPS</th>
+              <th>Nivel</th>
               <th>Régimen</th>
-              <th>Observaciones</th>
               <th>Fecha de creacion</th>
             </tr>
           </thead>

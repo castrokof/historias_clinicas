@@ -15,21 +15,25 @@ class CreateFcFacturaProcedimientosTable extends Migration
     {
         Schema::create('fc__factura__procedimientos', function (Blueprint $table) {
             $table->bigIncrements('id_fc_factura_procedimientos');
-            $table->string('cod_documentos',10); //Este es el codigo de la factura
-            $table->string('numero_factura',100);//Este es el consecutivo de la factura
-            $table->string('cod_cups',45);//Este codigo lo debe traer de la tabla def__procedimientos
-            $table->string('cod_alterno',45)->nullable();//Este codigo lo debe traer de la tabla def__procedimientos
-            $table->string('codigo_cie10',45);
-            $table->string('tipo_diagnostico',45);// El mismo que se ingresa en la tabla diagnostico
-            $table->string('cantidad',45);
-            $table->string('unitario',45); 
-            $table->string('total',45);
-            $table->string('pagado',45);//valor del copago o cuota moderadora
-            $table->string('servicio',20)->nullable();
-            $table->string('profesional',20)->nullable();
+            $table->unsignedBigInteger('factura_id'); //Este fk apunta a la tabla factura
+            $table->unsignedBigInteger('procedimiento_id');
+            $table->string('codigo_cie10',45)->nullable();
+            $table->string('tipo_diagnostico',45)->nullable();// El mismo que se ingresa en la tabla diagnostico
+            $table->unsignedBigInteger('cantidad');
+            $table->unsignedBigInteger('unitario');
+            $table->unsignedBigInteger('total_pro');
+            $table->unsignedBigInteger('pagado')->nullable();//valor del copago o cuota moderadora
+            $table->unsignedBigInteger('sede_id');
+            $table->unsignedBigInteger('servicio_id');
+            $table->unsignedBigInteger('profesional_id');
+            $table->unsignedBigInteger('contrato_id');
             $table->string('observaciones',255)->nullable();
-            // $table->unsignedBigInteger('usuario_id');
-            // $table->foreign('usuario_id', 'fk_proc_fac_usuario')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('factura_id', 'fk_fac_factura')->references('id_factura')->on('fc__facturas')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('sede_id', 'fk_fac_sede')->references('id_sede')->on('def__sedes')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('servicio_id', 'fk_fac_servicio')->references('id_servicio')->on('servicios')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('profesional_id', 'fk_fac_profesional')->references('id_profesional')->on('def__profesionales')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('contrato_id', 'fk_fac_contrato')->references('id_contrato')->on('def__contratos')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('procedimiento_id', 'fk_fac_procedimiento')->references('id_cups')->on('def__procedimientos')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

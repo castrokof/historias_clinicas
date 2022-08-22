@@ -38,7 +38,7 @@
         <input name="IUM" id="IUM" class="form-control" value="{{old('IUM')}}"></input>
     </div>
     <div class="col-lg-2">
-        <label for="invima" class="col-xs-4 control-label requerido">Invima</label>
+        <label for="invima" class="col-xs-4 control-label ">Invima</label>
         <input name="invima" id="invima" class="form-control" value="{{old('invima')}}"></input>
     </div>
     <div class="col-lg-4">

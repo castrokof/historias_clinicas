@@ -9,12 +9,11 @@
 
                     <thead>
                         <tr>
-                            <!-- <th>Acciones</th> -->
+                            
                             <th>Asociar</th>
                             <th>Código</th>
                             <th>Nombre</th>
                             <th>Especialidad</th>
-                            <th>Sede</th>
                         </tr>
                     </thead>
                     <tbody>

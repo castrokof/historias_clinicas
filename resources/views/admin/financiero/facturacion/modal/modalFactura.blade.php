@@ -4,8 +4,10 @@
         @include('includes.form-mensaje')
         <div class="card card-info">
             <div class="card-header with-border">
-                <h3 class="card-title-1">Facturación Ambulatoria</h3>
+                <h3 class="card-title">Facturación Ambulatoria</h3>
                 <div class="card-tools pull-right">
+                    <button type="button" class="btn create_listas btn-default" name="create_listas" id="create_listas"><i class="fa fa-user "></i> Paciente</button>
+                    <button type="button" class="btn create_listas btn-default" name="create_listas" id="create_listas"><i class="fa fa-calendar "></i> Citas</button>
                 </div>
             </div>
             <div class="x_panel">
@@ -90,12 +92,12 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-2">
-                                <label for="pais_id" class="col-xs-4 control-label ">País de Residencia</label>
-                                <input name="pais_id" id="pais_id" class="form-control" readonly>
+                                <label for="nombre_pais" class="col-xs-4 control-label ">País de Residencia</label>
+                                <input name="nombre_pais" id="nombre_pais" class="form-control" readonly>
                             </div>
                             <div class="col-lg-2">
-                                <label for="ciudad" class="col-xs-4 control-label ">Ciudad</label>
-                                <input type="text" name="ciudad" id="ciudad" class="form-control" readonly>
+                                <label for="nombre_ciudad" class="col-xs-4 control-label ">Ciudad</label>
+                                <input name="nombre_ciudad" id="nombre_ciudad" class="form-control" readonly>
                             </div>
                             <div class="col-lg-2">
                                 <label for="direccion" class="col-xs-4 control-label ">Direccion</label>
@@ -114,15 +116,39 @@
                                 <input type="email" name="correo" id="correo" class="form-control" readonly>
                             </div>
                         </div>
-                        <p><a style="color:#0071c5;"> Datos de afiliación:</a> </p>
                         <hr>
+                        <p><a style="color:#0071c5;"> Datos de afiliación:</a> </p>
+                        <div class="form-group row">
+                            <div class="col-lg-2">
+                                <label for="regimen" class="col-xs-4 control-label ">Régimen</label>
+                                <input name="regimen" id="regimen" class="form-control" readonly>
+                            </div>
+                            <div class="col-lg-1">
+                                <label for="codigo_eps" class="col-xs-4 control-label ">EPS</label>
+                                <input name="codigo_eps" id="codigo_eps" class="form-control" readonly>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="eps_nombre" class="col-xs-4 control-label requerido"></label>
+                                <input name="eps_nombre" id="eps_nombre" class="form-control" placeholder="Razón Social" readonly>
+                            </div>
+                            <div class="col-lg-1">
+                                <label for="nivel" class="col-xs-6 control-label">Nivel</label>
+                                <input name="nivel" id="nivel" class="form-control" readonly>
+                            </div>
+                            <div class="col-lg-2">
+                                <label for="numero_afiliacion" class="col-xs-4 control-label ">Número Afiliación</label>
+                                <input name="numero_afiliacion" id="numero_afiliacion" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <hr>
+                        <p><a style="color:#0071c5;"> Generar factura con cargo a:</a> </p>
                         <div class="form-group row">
                             <div class="col-lg-2">
                                 <label for="plan" class="col-xs-6 control-label">Régimen</label>
                                 <!--<input type="text" name="regimen" id="regimen" class="form-control" value="{{ old('regimen') }}" required> -->
                                 <select name="regimen" id="plan" class="form-control" style="width: 100%;" value="{{ old('regimen') }}" required>
                                     <option value="" selected>-- Seleccionar --</option>
-                                    <!-- <option value="Particular">Particular</option> -->
+                                    <option value="Particular">Particular</option>
                                     <option value="Contributivo">Contributivo</option>
                                     <option value="Subsidiado">Subsidiado</option>
                                     <option value="Vinculado">Vinculado</option>
@@ -132,26 +158,15 @@
                                     <option value="Desplazado">Desplazado</option>
                                 </select>
                             </div>
-                            <div class="col-lg-1">
-                                <label for="codigo_n" class="col-xs-4 control-label ">EPS</label>
-                                <input type="text" name="codigo_empresa" id="codigo_n" class="form-control">
+                            <div class="col-lg-6">
+                                <label for="eps_fact" class="col-xs-4 control-label ">Cliente</label>                                
+                                <select name="eps_id" id="eps_fact" class="form-control" style="width: 100%;" required>
+                                </select>
                             </div>
-                            <div class="col-lg-3">
-                                <label for="nombre_n" class="col-xs-4 control-label requerido"></label>
-                                <input type="text" name="nombre" id="nombre_n" class="form-control" placeholder="Razón Social" readonly>
-                            </div>
+                            
                             <div class="col-lg-1">
                                 <label for="nivel" class="col-xs-6 control-label">Nivel</label>
                                 <input type="text" name="nivel" id="nivel" class="form-control" value="{{ old('nivel') }}" required>
-                            </div>
-                            <div class="col-lg-2">
-                                <label for="descripcion_nivel" class="col-xs-6 control-label">Descripcion</label>
-                                <input type="text" name="descripcion_nivel" id="descripcion_nivel" class="form-control" value="{{ old('descripcion_nivel') }}" required>
-                            </div>
-                            <div class="col-lg-2">
-                                <label for="numero_afiliacion" class="col-xs-4 control-label ">Número
-                                    Afiliación</label>
-                                <input type="number" name="numero_afiliacion" id="numero_afiliacion" class="form-control" value="{{ old('numero_afiliacion') }}">
                             </div>
                         </div>
                     </form>
@@ -186,9 +201,46 @@
                             </div>
                         </div>
                     </div>
-                    <p><a style="color:#0071c5;"> Total documento:</a> </p>
                     <hr>
+                    <p><a style="color:#0071c5;"> Detalle del documento de venta:</a> </p>
 
+                    <div class="form-group row">
+                        <div class="col-lg-2">
+                            <label for="procedimiento" class="col-xs-4 control-label ">Procedimiento:</label>
+                            <input type="text" name="procedimiento" id="procedimiento" class="form-control" readonly>
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="pnombre" class="col-xs-4 control-label ">Subtotal:</label>
+                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="pnombre" class="col-xs-4 control-label ">IVA:</label>
+                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="pnombre" class="col-xs-4 control-label ">Total Facturado:</label>
+                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-2">
+                            <label for="procedimiento" class="col-xs-4 control-label ">Medicamento:</label>
+                            <input type="text" name="procedimiento" id="procedimiento" class="form-control" readonly>
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="pnombre" class="col-xs-4 control-label ">Descuentos:</label>
+                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="pnombre" class="col-xs-4 control-label ">Recuperado / Copago:</label>
+                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="pnombre" class="col-xs-4 control-label ">Valor a cancelar:</label>
+                            <input type="text" name="pnombre" id="pnombre" class="form-control">
+                        </div>
+                    </div>
                 </div>
             </div>
 
