@@ -79,10 +79,12 @@ Profesionales
                     data: 'codigo'
                 },
                 {
-                    data: 'nombre'
+                    data: 'nombre_profesional',
+                    nombre: 'nombre_profesional'
                 },
                 {
-                    data: 'especialidad_id'
+                    data: 'nombre_especialidad',
+                    nombre: 'nombre_especialidad'
                 },
                 {
                     data: 'estado'

@@ -44,7 +44,7 @@ Facturación
 
         $('#agregar_cups').click(function() {
             $('#form-general')[0].reset();
-            $('.card-title').text('Agregar Procedimiento');
+            // $('.card-title').text('Agregar Procedimiento');
             $('#action_button').val('Add');
             $('#action').val('Add');
             $('#form_result').html('');
@@ -58,12 +58,12 @@ Facturación
             var text = '';
 
             if ($('#action').val() == 'Add') {
-                text = "Estás por crear una EPS"
+                text = "Estás por Agregar los procedimientos a la factura"
                 url = "{{ route('guardar_eps_empresas') }}";
                 method = 'post';
             }
             if ($('#action').val() == 'Edit') {
-                text = "Estás por actualizar una EPS"
+                text = "Estás por actualizar los procedimientos"
                 var updateid = $('#hidden_id').val();
                 url = "/eps_empresas/" + updateid;
                 method = 'put';
@@ -309,6 +309,30 @@ Facturación
                                 //text: data.codigo,
                                 text: data.codigo + " - " + data.nombre,
                                 id: data.id_eps_empresas
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar los servicios
+        $("#fact_servicio").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('servicios_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.cod_servicio +' - '+data.nombre,
+                                id: data.id_servicio
 
                             }
                         })

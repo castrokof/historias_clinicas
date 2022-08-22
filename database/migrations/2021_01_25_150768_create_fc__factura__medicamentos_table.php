@@ -15,20 +15,26 @@ class CreateFcFacturaMedicamentosTable extends Migration
     {
         Schema::create('fc__factura__medicamentos', function (Blueprint $table) {
             $table->bigIncrements('id_fc_factura_medicamentos');
-            $table->string('cod_documentos',10); //Este es el codigo de la factura
-            $table->string('numero_factura',100);//Este es el consecutivo de la factura            
-            $table->string('codigo',20); //Este es el codigo del medicamento
-            $table->string('cantidad_ordenada',20)->nullable();
-            $table->string('cantidad_entregada',20);
-            $table->string('unitario',20);
-            $table->string('total',20);
-            $table->string('pagado',20)->nullable();
-            $table->string('servicio',20)->nullable();
-            $table->string('profesional',20)->nullable();
+            $table->unsignedBigInteger('factura_id'); //Este fk apunta a la tabla factura
+            $table->unsignedBigInteger('medicamento_id');
+            $table->unsignedBigInteger('cantidad_ordenada');
+            $table->unsignedBigInteger('cantidad_entregada');
+            $table->unsignedBigInteger('unitario');
+            $table->unsignedBigInteger('iva');
+            $table->unsignedBigInteger('total_med');
+            $table->unsignedBigInteger('pagado')->nullable();
+            $table->unsignedBigInteger('sede_id');
+            $table->unsignedBigInteger('servicio_id');
+            $table->unsignedBigInteger('profesional_id');
+            $table->unsignedBigInteger('contrato_id');
             $table->string('CUMS',100)->nullable();
             $table->string('observaciones',255)->nullable();
-            // $table->unsignedBigInteger('usuario_id');
-            // $table->foreign('usuario_id', 'fk_med_fac_usuario')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('factura_id', 'fk_fac_med_factura')->references('id_factura')->on('fc__facturas')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('sede_id', 'fk_fac_med_sede')->references('id_sede')->on('def__sedes')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('servicio_id', 'fk_fac_med_servicio')->references('id_servicio')->on('servicios')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('profesional_id', 'fk_fac_med_profesional')->references('id_profesional')->on('def__profesionales')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('contrato_id', 'fk_fac_med_contrato')->references('id_contrato')->on('def__contratos')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('medicamento_id', 'fk_fac_medicamento')->references('id_medicamento')->on('def__medicamentos_suministros')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

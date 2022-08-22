@@ -1,14 +1,16 @@
 <div class="form-group row">
   <div class="col-lg-2">
-        <label for="profesional" class="col-xs-4 control-label requerido">Profesional</label>
-        <select name="profesional" id="profesional" class="form-control " value="{{old('profesional')}}" required>
-        </select>
-  </div>
-  <div class="col-lg-2">
-    <label for="servicio" class="col-xs-4 control-label requerido">Servicio</label>
-    <select name="servicio" id="servicio" class="form-control " value="{{old('servicio')}}" required>
+    <label for="fact_servicio" class="col-xs-4 control-label requerido">Servicio</label>
+    <select name="servicio_id" id="fact_servicio" class="form-control " value="{{old('fact_servicio')}}" required>
     </select>
   </div>
+
+  <div class="col-lg-2">
+    <label for="profesional" class="col-xs-4 control-label requerido">Profesional</label>
+    <select name="profesional" id="profesional" class="form-control " value="{{old('profesional')}}" required>
+    </select>
+  </div>
+
   <div class="col-lg-2">
     <label for="codigo_cie10" class="col-xs-4 control-label requerido">Procedimiento</label>
     <select name="cod_cups" id="cod_cups" class="form-control " style="width: 100%;" required>
@@ -30,13 +32,15 @@
     <label for="usuario_id" class="col-xs-4 control-label ">Cajero</label>
     <input name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario') ?? ''}}" readonly>
   </div>
+
   <div class="col-lg-2">
     <label for="created_at" class="col-xs-4 control-label ">Fecha</label>
     <input name="created_at" id="created_at" class="form-control" value="{{now() ?? ''}}" readonly>
   </div>
+
   <div class="col-lg-2">
     <label for="valor" class="col-xs-4 control-label ">Valor Unitario</label>
-    <input type="number" name="valor" id="valor" class="form-control" placeholder="$0.00" value = "35000"readonly>
+    <input type="number" name="valor" id="valor" class="form-control" placeholder="$0.00" value="35000" readonly>
   </div>
 </div>
 

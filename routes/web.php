@@ -305,6 +305,9 @@ Route::put('facturacion/{id}', 'FacturaController@actualizar')->name('actualizar
 Route::get('pacientefact', 'FacturaController@selectpa')->name('pacientefact')->middleware('superEditor');
 Route::get('pacientefill', 'FacturaController@buscarp')->name('pacientefill')->middleware('superEditor');
 
+//Rutas para seleccionar los items que se iran cargando a la Factura (Servicio, Profesional, Procedimiento, Medicamento, Contrato)
+Route::get('servicios_factura', 'FcFacturaProcedimientosController@selectservicio')->name('servicios_factura')->middleware('superEditor');
+
 
 /* RUTAS DE LA HISTORIA */
 Route::get('paciente-pro', 'HistoriaController@indexpaciente')->name('cita-paciente')->middleware('superEditor');

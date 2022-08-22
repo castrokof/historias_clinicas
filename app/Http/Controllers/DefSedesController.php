@@ -23,10 +23,10 @@ class DefSedesController extends Controller
             /* $datas = Def_Sedes::orderBy('id_sede')
                 ->get(); */
 
-                $datas = DB::table('def__sedes')                
+                $datas = DB::table('def__sedes')
                 ->Join('ciudades', 'def__sedes.ciudad_id', '=', 'ciudades.id_ciudad')
                 ->select('*',
-                    'def__sedes.id_sede as idd',                     
+                    'def__sedes.id_sede as idd',
                     'ciudades.cod_ciudad as cod_ciudad',
                     'ciudades.nombre as nombre_ciudad'
                 )

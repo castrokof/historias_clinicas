@@ -606,16 +606,12 @@ Procedimientos
                         name: 'codigo'
                     },
                     {
-                        data: 'nombre',
-                        name: 'nombre'
+                        data: 'nombre_profesional',
+                        name: 'nombre_profesional'
                     },
                     {
-                        data: 'especialidad',
-                        name: 'especialidad'
-                    },
-                    {
-                        data: 'sede',
-                        name: 'sede'
+                        data: 'nombre_especialidad',
+                        name: 'nombre_especialidad'
                     }
 
                 ],

@@ -8,7 +8,7 @@
           <span id="form_result"></span>
           <div class="card card-success">
             <div class="card-header">
-              <h3 class="card-title"></h3>
+              <h3 class="card-title">Agregar Procedimiento</h3>
               <div class="card-tools pull-right">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
