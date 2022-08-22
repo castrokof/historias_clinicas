@@ -112,7 +112,47 @@
             // Agregar filas a tabla para horarios
             $('#agregar_horario').click(function() {
 
+
+                const timeini = $('#timeini').val();
+                const timefin = $('#timefin').val();
+                const intervalo = $('#intervalo').val();
+                const horariosa = [];
+
+                console.log(intervalo);
+
+                const now = new Date('2019-09-13 '+timeini);
+
+                const minutos_timeini = timeini.split(':')
+                 .reduce((p, c) => parseInt(p) * 60 + parseInt(c));
+
+                 const minutos_timefin = timefin.split(':')
+                 .reduce((p, c) => parseInt(p) * 60 + parseInt(c));
+
+                const  turnos = minutos_timefin - minutos_timeini;
+                const  turnos1 = (turnos/intervalo)-1;
+                const horarios = [];
+
+                now.setMinutes(now.getMinutes(timeini));
+                horarios.push(now.getHours() + ":" + ("00" + now.getMinutes()).slice(-2))
+
+                for(var i = 0; i < turnos1; i++){
+
+                now.setMinutes(now.getMinutes(timeini) + parseInt(intervalo));
+
+                horarios.push(now.getHours() + ":" + ("00" + now.getMinutes()).slice(-2));
+
+                }
+
+
+
+
+
                 const dias = [];
+
+
+
+
+
 
 
                 $('input[type=checkbox]:checked.case_semana').each(function() {
@@ -123,7 +163,9 @@
 
                     dias.forEach(element => {
 
-                            agregarhorario(element);
+
+
+                            agregarhorario(element, horarios);
 
                         }
 
@@ -138,10 +180,14 @@
 
 
 
+
+
+
+
             });
 
 
-            function agregarhorario(element = '') {
+            function agregarhorario(element = '', horarios = '') {
 
 
                 switch (element) {
@@ -149,93 +195,117 @@
 
                     case "diasemanal":
 
+                    $('#tlunes> tbody').empty();
+
+                    horarios.forEach(espacios =>{
+
+
                         $('#tlunes> tbody:last-child')
                             .append(
                                 '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                                 '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + "prueba" + '</td>' +
+                                '<td>' + espacios + '</td>' +
                                 '</tr>'
 
                             );
-
+                        });
                         break;
                     case "diasemanam":
 
+                    $('#tmartes> tbody').empty();
+                    horarios.forEach(espacios =>{
                         $('#tmartes> tbody:last-child')
                             .append(
                                 '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                                 '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + "prueba" + '</td>' +
+                                '<td>' + espacios + '</td>' +
                                 '</tr>'
 
                             );
-
+                    });
                         break;
 
                     case "diasemanami":
 
+
+                    $('#tmiercoles> tbody').empty();
+                    horarios.forEach(espacios =>{
                         $('#tmiercoles> tbody:last-child')
                             .append(
                                 '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                                 '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + "prueba" + '</td>' +
+                                '<td>' + espacios + '</td>' +
                                 '</tr>'
 
                             );
+                        });
 
                         break;
 
                     case "diasemanaj":
 
+                    $('#tjueves> tbody').empty();
+                    horarios.forEach(espacios =>{
                         $('#tjueves> tbody:last-child')
                             .append(
                                 '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                                 '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + "prueba" + '</td>' +
+                                '<td>' + espacios + '</td>' +
                                 '</tr>'
 
                             );
+                        });
 
                         break;
 
                     case "diasemanav":
 
+                    $('#tviernes> tbody').empty();
+                    horarios.forEach(espacios =>{
                         $('#tviernes> tbody:last-child')
                             .append(
                                 '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                                 '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + "prueba" + '</td>' +
+                                '<td>' + espacios + '</td>' +
                                 '</tr>'
 
                             );
+                        });
 
                         break;
 
                     case "diasemanas":
 
+                    $('#tsabado> tbody').empty();
+                    horarios.forEach(espacios =>{
                         $('#tsabado> tbody:last-child')
                             .append(
                                 '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                                 '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + "prueba" + '</td>' +
+                                '<td>' + espacios + '</td>' +
                                 '</tr>'
 
                             );
-
+                        });
                         break;
 
                     case "diasemanad":
 
+                    $('#tdomingo> tbody').empty();
+                    horarios.forEach(espacios =>{
                         $('#tdomingo> tbody:last-child')
                             .append(
                                 '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                                 '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + "prueba" + '</td>' +
+                                '<td>' + espacios + '</td>' +
                                 '</tr>'
 
                             );
 
-                        break;
+
+                    });
+
+                    break;
 
                     default:
                         0;
@@ -243,9 +313,35 @@
                 }
 
             }
+
+
             // eliminar filas de tabla para guardar
 
-            $("#tcups").on("click", "#eliminar", function() {
+            $("#tlunes").on("click", "#eliminar", function() {
+                $(this).closest("tr").remove();
+            });
+
+            $("#tmartes").on("click", "#eliminar", function() {
+                $(this).closest("tr").remove();
+            });
+
+            $("#tmiercoles").on("click", "#eliminar", function() {
+                $(this).closest("tr").remove();
+            });
+
+            $("#tjueves").on("click", "#eliminar", function() {
+                $(this).closest("tr").remove();
+            });
+
+            $("#tviernes").on("click", "#eliminar", function() {
+                $(this).closest("tr").remove();
+            });
+
+            $("#tsabado").on("click", "#eliminar", function() {
+                $(this).closest("tr").remove();
+            });
+
+            $("#tdomingo").on("click", "#eliminar", function() {
                 $(this).closest("tr").remove();
             });
 
