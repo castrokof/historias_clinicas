@@ -307,6 +307,9 @@ Route::get('pacientefill', 'FacturaController@buscarp')->name('pacientefill')->m
 
 //Rutas para seleccionar los items que se iran cargando a la Factura (Servicio, Profesional, Procedimiento, Medicamento, Contrato)
 Route::get('servicios_factura', 'FcFacturaProcedimientosController@selectservicio')->name('servicios_factura')->middleware('superEditor');
+Route::get('profesionales_factura', 'FcFacturaProcedimientosController@selectprof')->name('profesionales_factura')->middleware('superEditor');
+Route::get('procedimientos_factura', 'FcFacturaProcedimientosController@selectcups')->name('procedimientos_factura')->middleware('superEditor');
+Route::get('contratos_factura', 'FcFacturaProcedimientosController@selectcont')->name('contratos_factura')->middleware('superEditor');
 
 
 /* RUTAS DE LA HISTORIA */

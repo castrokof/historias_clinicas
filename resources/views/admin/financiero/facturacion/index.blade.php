@@ -342,6 +342,78 @@ Facturación
             }
         });
 
+        //Select para consultar los profesionales
+        $("#fact_profesional").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('profesionales_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.codigo +' - '+data.nombre,
+                                id: data.id_profesional
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar los procedimientos
+        $("#fact_procedimiento").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('procedimientos_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.cod_cups +' - '+data.nombre,
+                                id: data.id_cups
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar los contratos
+        $("#fact_contrato").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('contratos_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.contrato +' - '+data.nombre,
+                                id: data.id_contrato
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
 
         // function documentos_consecutivo(dc = '') {
 
