@@ -36,7 +36,6 @@ Pacientes
 <script>
   $(document).ready(function() {
 
-
     //funcion de edad
 
     function edad() {
@@ -48,15 +47,11 @@ Pacientes
 
       let edad = Math.round(resta);
 
-
     }
-
-
 
     function edad() {
 
       let hoy = new Date();
-
 
       if ($('#futuro2').val() != null) {
 
@@ -501,61 +496,58 @@ Pacientes
       }
     });
 
-  });
+    //Consulta de datos de la tabla lista-detalle
+    $("#regimen").select2({
+      language: "es",
+      theme: "bootstrap",
+      placeholder: 'Seleccione regimen',
+      ajax: {
+        url: "{{ route('selectlist')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data.regimen, function(data) {
+
+              return {
+
+                text: data.nombre,
+                id: data.nombre
+
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    });
 
 
 
+    $("#tipo_documento").select2({
+      theme: "bootstrap",
+      placeholder: 'tipo documento',
+      ajax: {
+        url: "{{ route('selectlist')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data.type, function(data) {
 
-//Consulta de datos de la tabla lista-detalle
-  $("#regimen").select2({
-    language: "es",
-    theme: "bootstrap",
-    placeholder: 'Seleccione regimen',
-    ajax: {
-      url: "{{ route('selectlist')}}",
-      dataType: 'json',
-      delay: 250,
-      processResults: function(data) {
-        return {
-          results: $.map(data.regimen, function(data) {
+              return {
 
-            return {
+                text: data.nombre,
+                id: data.nombre
 
-              text: data.nombre,
-              id: data.nombre
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    });
 
-            }
-          })
-        };
-      },
-      cache: true
-    }
-  });
-
-
-
-  $("#tipo_documento").select2({
-    theme: "bootstrap",
-    placeholder: 'tipo documento',
-    ajax: {
-      url: "{{ route('selectlist')}}",
-      dataType: 'json',
-      delay: 250,
-      processResults: function(data) {
-        return {
-          results: $.map(data.type, function(data) {
-
-            return {
-
-              text: data.nombre,
-              id: data.nombre
-
-            }
-          })
-        };
-      },
-      cache: true
-    }
   });
 
 

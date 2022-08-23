@@ -19,14 +19,16 @@ Facturación
 @include('admin.financiero.facturacion.modal.modalFactura')
 @include('admin.financiero.facturacion.modal.modalFacturaMedicamento')
 @include('admin.financiero.facturacion.modal.modalFacturaProcedimiento')
+
+@include('admin.paciente.modal.modalPacientes')
+
 @endsection
 
 
 @section('scriptsPlugins')
 <script src="{{ asset("assets/$theme/plugins/datatables/jquery.dataTables.js") }}" type="text/javascript"></script>
-<script src="{{ asset("assets/$theme/plugins/datatables-bs4/js/dataTables.bootstrap4.js") }}" type="text/javascript">
-</script>
-<script src="{{ asset('assets/js/jquery-select2/select2.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset("assets/$theme/plugins/datatables-bs4/js/dataTables.bootstrap4.js") }}" type="text/javascript"></script>
+<script src="{{asset("assets/js/jquery-select2/select2.min.js")}}" type="text/javascript"></script>
 
 <script src="https://cdn.datatables.net/plug-ins/1.10.20/api/sum().js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
@@ -41,15 +43,15 @@ Facturación
 
         //Funcion que abre modal donde se deben seleccionar los procedimientos que se iran cargando en la factura
         $('#agregar_cups').click(function() {
-            $('#form-general')[0].reset();
+            $('#form-general_1')[0].reset();
             // $('.card-title').text('Agregar Procedimiento');
             $('#action_button').val('Add');
             $('#action').val('Add');
-            $('#form_result').html('');
-            $('#modal-u').modal('show');
+            $('#form_result_1').html('');
+            $('#modal-procedimiento').modal('show');
         });
 
-        $('#form-general').on('submit', function(event) {
+        $('#form-general_1').on('submit', function(event) {
             event.preventDefault();
             var url = '';
             var method = '';
@@ -98,8 +100,8 @@ Facturación
                             }
 
                             if (data.success == 'ok') {
-                                $('#form-general')[0].reset();
-                                $('#modal-u').modal('hide');
+                                $('#form-general_1')[0].reset();
+                                $('#modal-procedimiento').modal('hide');
                                 //$('#modal-n').modal('hide');
                                 $('#tcups').DataTable().ajax.reload();
                                 Swal.fire({
@@ -112,8 +114,8 @@ Facturación
 
 
                             } else if (data.success == 'ok1') {
-                                $('#form-general')[0].reset();
-                                $('#modal-u').modal('hide');
+                                $('#form-general_1')[0].reset();
+                                $('#modal-procedimiento').modal('hide');
                                 /* $('#modal-n').modal('hide'); */
                                 $('#tcups').DataTable().ajax.reload();
                                 Swal.fire({
@@ -126,7 +128,7 @@ Facturación
 
 
                             }
-                            $('#form_result').html(html)
+                            $('#form_result_1').html(html)
                         }
 
                     });
@@ -255,7 +257,6 @@ Facturación
             }
 
         });
-
 
 
         function fill_resumen(document = '') {
@@ -514,53 +515,9 @@ Facturación
             }
         });
 
-        //Select para consultar los contratos
-        $("#fact_contrato").select2({
-            theme: "bootstrap",
-            ajax: {
-                url: "{{ route('contratos_factura')}}",
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data) {
-                    return {
-                        results: $.map(data, function(data) {
 
-                            return {
 
-                                text: data.contrato + ' - ' + data.nombre,
-                                id: data.id_contrato
 
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
-
-        //Select para consultar los medicamentos
-        $("#fact_medicamento").select2({
-            theme: "bootstrap",
-            ajax: {
-                url: "{{ route('medicamento_factura')}}",
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data) {
-                    return {
-                        results: $.map(data, function(data) {
-
-                            return {
-
-                                text: data.codigo + ' - ' + data.nombre,
-                                id: data.id_medicamento
-
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
 
 
         // function documentos_consecutivo(dc = '') {
@@ -573,9 +530,6 @@ Facturación
         // }
 
     });
-
-
-
 
 
     var idioma_espanol = {
@@ -606,5 +560,393 @@ Facturación
             "colvis": "Visibilidad"
         }
     }
+</script>
+
+
+<!-- Funcion para ingresar al modulo Pacientes y poder crearlos desde el modulo de Facturación -->
+<script>
+    $(document).ready(function() {
+            //funcion de edad
+
+            function edad() {
+
+                let fecha1 = new Date($("#futuro2").val());
+                let fecha2 = new Date();
+                let resta = new Date(fecha2.getDate - fecha1.getDate);
+                let edad = Math.round(resta);
+            }
+
+
+
+            function edad() {
+
+                let hoy = new Date();
+
+                if ($('#futuro2').val() != null) {
+
+                    var nacimiento = new Date($('#futuro2').val());
+                    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+                    let meses = hoy.getMonth() - nacimiento.getMonth();
+
+                    if (meses < 0 || (meses === 0 && hoy.getDate() < nacimiento.getDate())) {
+                        edad--;
+                    }
+                    console.log(edad);
+
+                    $('#edad').val(edad);
+
+                } else {
+
+                    $('#edad').val();
+                }
+            }
+
+            $("#futuro2").change(edad);
+
+
+            //Funcion para ingresar al modulo Pacientes y poder crearlos desde el modulo de Facturación
+            $('#create_paciente').click(function() {
+                $('#form-general')[0].reset();
+                $('.card-title').text('Agregar Nuevo paciente');
+                $('#action_button').val('Add');
+                $('#action').val('Add');
+                $('#form_result_1').html('');
+                $('#modal-u').modal('show');
+            });
+
+            $('#form-general').on('submit', function(event) {
+                event.preventDefault();
+                var url = '';
+                var method = '';
+                var text = '';
+
+                if ($('#action').val() == 'Add') {
+                    text = "Estás por crear un paciente"
+                    url = "{{route('guardar_paciente')}}";
+                    method = 'post';
+                }
+
+                if ($('#action').val() == 'Edit') {
+                    text = "Estás por actualizar un paciente"
+                    var updateid = $('#hidden_id').val();
+                    url = "/paciente/" + updateid;
+                    method = 'put';
+                }
+                Swal.fire({
+                    title: "¿Estás seguro?",
+                    text: text,
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: url,
+                            method: method,
+                            data: $(this).serialize(),
+                            dataType: "json",
+                            success: function(data) {
+                                var html = '';
+                                if (data.errors) {
+
+                                    html =
+                                        '<div class="alert alert-danger alert-dismissible">' +
+                                        '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+                                        '<h5><i class="icon fas fa-ban"></i> Alerta! Verifica los siguientes datos: </h5>';
+
+                                    for (var count = 0; count < data.errors.length; count++) {
+                                        html += '<p>' + data.errors[count] + '<p>';
+                                    }
+                                    html += '</div>';
+                                }
+
+                                if (data.success == 'ok') {
+                                    $('#form-general')[0].reset();
+                                    $('#modal-u').modal('hide');
+                                    $('#pacientes').DataTable().ajax.reload();
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'paciente creado correctamente',
+                                        showConfirmButton: false,
+                                        timer: 1500
+
+                                    })
+
+
+                                } else if (data.success == 'ok1') {
+                                    $('#form-general')[0].reset();
+                                    $('#modal-u').modal('hide');
+                                    $('#pacientes').DataTable().ajax.reload();
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'paciente actualizado correctamente',
+                                        showConfirmButton: false,
+                                        timer: 1500
+
+                                    })
+
+
+                                }
+                                $('#form_result_1').html(html)
+                            }
+
+
+                        });
+                    }
+                });
+
+
+            });
+
+            //Select para consultar los contratos
+            $("#fact_contrato").select2({
+                theme: "bootstrap",
+                ajax: {
+                    url: "{{ route('contratos_factura')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
+
+                                return {
+
+                                    text: data.contrato + ' - ' + data.nombre,
+                                    id: data.id_contrato
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            //Select para consultar los medicamentos
+            $("#fact_medicamento").select2({
+                theme: "bootstrap",
+                ajax: {
+                    url: "{{ route('medicamento_factura')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
+
+                                return {
+
+                                    text: data.codigo + ' - ' + data.nombre,
+                                    id: data.id_medicamento
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+
+            // Funciones para los select de Pacientes //
+
+            //Select para consultar las Ocupaciones
+            $("#paciente_ocupacion").select2({
+                theme: "bootstrap",
+                ajax: {
+                    url: "{{ route('ocupacion')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
+
+                                return {
+
+                                    text: data.nombre,
+                                    id: data.id_ocupacion
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            //Select para consultar los Paises
+            $("#paciente_pais").select2({
+                theme: "bootstrap",
+                ajax: {
+                    url: "{{ route('pais')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
+
+                                return {
+
+                                    text: data.nombre,
+                                    id: data.id_pais
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            //Select para consultar la EPS, Niveles
+            $("#eps").select2({
+                language: "es",
+                theme: "bootstrap",
+                ajax: {
+                    url: "{{ route('eps')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
+
+                                return {
+
+                                    //text: data.codigo,
+                                    text: data.codigo + " - " + data.nombre,
+                                    id: data.id_eps_empresas
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            //Select para consultar el Departamento
+            $("#paciente_departamento").select2({
+                theme: "bootstrap",
+                ajax: {
+                    url: "{{ route('departamento')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
+
+                                return {
+
+                                    text: data.nombre,
+                                    id: data.id_departamento
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            //Select para consultar la Ciudad
+            $("#paciente_ciudad").select2({
+                theme: "bootstrap",
+                ajax: {
+                    url: "{{ route('ciudad')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
+
+                                return {
+
+                                    text: data.nombre,
+                                    id: data.id_ciudad
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            //Select para consultar el Barrio
+            $("#paciente_barrio").select2({
+                theme: "bootstrap",
+                ajax: {
+                    url: "{{ route('barrio')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
+
+                                return {
+
+                                    text: data.nombre,
+                                    id: data.id_barrio
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            //Consulta de datos de la tabla lista-detalle
+            $("#regimen").select2({
+                language: "es",
+                theme: "bootstrap",
+                placeholder: 'Seleccione regimen',
+                ajax: {
+                    url: "{{ route('selectlist')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data.regimen, function(data) {
+
+                                return {
+
+                                    text: data.nombre,
+                                    id: data.nombre
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            $("#tipo_documento").select2({
+                theme: "bootstrap",
+                placeholder: 'tipo documento',
+                ajax: {
+                    url: "{{ route('selectlist')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data.type, function(data) {
+
+                                return {
+
+                                    text: data.nombre,
+                                    id: data.nombre
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+        }
+
+    )
 </script>
 @endsection
