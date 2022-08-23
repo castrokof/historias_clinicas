@@ -8,6 +8,7 @@ use App\Models\Admin\Servicios;
 use App\Models\Admin\Def_Profesionales;
 use App\Models\Admin\Def_Procedimientos;
 use App\Models\Admin\Def_Contratos;
+use App\Models\Admin\Def_MedicamentosSuministros;
 use App\Models\Admin\def__documentos_consecutivo;
 use App\Models\Admin\Eps_empresa;
 use App\Models\Admin\Eps_copago;
@@ -121,6 +122,26 @@ class FcFacturaProcedimientosController extends Controller
             $term = $request->get('q');
             $servf = Def_Contratos::orderBy('id_contrato')->get();
             return response()->json($servf);
+        }
+    }
+
+    //Función para seleccionar el Medicamento y agregarlo en la factura
+    public function selectmed(Request $request)
+    {
+        $medfac = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $medfac = Def_MedicamentosSuministros::orderBy('id_medicamento')
+                ->where('codigo', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($medfac);
+        } else {
+            $term = $request->get('q');
+            $medfac = Def_MedicamentosSuministros::orderBy('id_medicamento')->get();
+            return response()->json($medfac);
         }
     }
 

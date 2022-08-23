@@ -310,6 +310,7 @@ Route::get('servicios_factura', 'FcFacturaProcedimientosController@selectservici
 Route::get('profesionales_factura', 'FcFacturaProcedimientosController@selectprof')->name('profesionales_factura')->middleware('superEditor');
 Route::get('procedimientos_factura', 'FcFacturaProcedimientosController@selectcups')->name('procedimientos_factura')->middleware('superEditor');
 Route::get('contratos_factura', 'FcFacturaProcedimientosController@selectcont')->name('contratos_factura')->middleware('superEditor');
+Route::get('medicamento_factura', 'FcFacturaProcedimientosController@selectmed')->name('medicamento_factura')->middleware('superEditor');
 
 
 /* RUTAS DE LA HISTORIA */

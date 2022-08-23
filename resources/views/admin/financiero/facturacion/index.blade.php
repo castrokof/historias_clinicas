@@ -17,6 +17,7 @@ Facturación
 
 @section('contenido')
 @include('admin.financiero.facturacion.modal.modalFactura')
+@include('admin.financiero.facturacion.modal.modalFacturaMedicamento')
 @include('admin.financiero.facturacion.modal.modalFacturaProcedimiento')
 @endsection
 
@@ -38,10 +39,7 @@ Facturación
     $(document).ready(function() {
 
 
-        // var dc = documento_consecutivo;
-
-        // documentos_consecutivo(dc);
-
+        //Funcion que abre modal donde se deben seleccionar los procedimientos que se iran cargando en la factura
         $('#agregar_cups').click(function() {
             $('#form-general')[0].reset();
             // $('.card-title').text('Agregar Procedimiento');
@@ -103,7 +101,7 @@ Facturación
                                 $('#form-general')[0].reset();
                                 $('#modal-u').modal('hide');
                                 //$('#modal-n').modal('hide');
-                                $('#eps').DataTable().ajax.reload();
+                                $('#tcups').DataTable().ajax.reload();
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'EPS creada correctamente',
@@ -117,7 +115,7 @@ Facturación
                                 $('#form-general')[0].reset();
                                 $('#modal-u').modal('hide');
                                 /* $('#modal-n').modal('hide'); */
-                                $('#eps').DataTable().ajax.reload();
+                                $('#tcups').DataTable().ajax.reload();
                                 Swal.fire({
                                     icon: 'warning',
                                     title: 'EPS actualizada correctamente',
@@ -129,6 +127,103 @@ Facturación
 
                             }
                             $('#form_result').html(html)
+                        }
+
+                    });
+                }
+            });
+
+        });
+
+
+        //Funcion que abre modal donde se deben seleccionar los medicamentos que se iran cargando en la factura
+        $('#agregar_cums').click(function() {
+            $('#form-general_2')[0].reset();
+            // $('.card-title').text('Agregar Procedimiento');
+            $('#action_button').val('Add');
+            $('#action').val('Add');
+            $('#form_result_2').html('');
+            $('#modal-medicamento').modal('show');
+        });
+
+        $('#form-general_2').on('submit', function(event) {
+            event.preventDefault();
+            var url = '';
+            var method = '';
+            var text = '';
+
+            if ($('#action').val() == 'Add') {
+                text = "Estás por Agregar los medicamentos a la factura"
+                url = "{{ route('guardar_eps_empresas') }}";
+                method = 'post';
+            }
+            if ($('#action').val() == 'Edit') {
+                text = "Estás por actualizar los medicamentos de la factura"
+                var updateid = $('#hidden_id').val();
+                url = "/eps_empresas/" + updateid;
+                method = 'put';
+            }
+
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: text,
+                icon: "success",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: $(this).serialize(),
+                        dataType: "json",
+                        success: function(data) {
+                            var html = '';
+                            if (data.errors) {
+
+                                html =
+                                    '<div class="alert alert-danger alert-dismissible">' +
+                                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+                                    '<h5><i class="icon fas fa-ban"></i> Mensaje fidem</h5>';
+
+                                for (var count = 0; count < data.errors
+                                    .length; count++) {
+                                    html += '<p>' + data.errors[count] + '<p>';
+                                }
+                                html += '</div>';
+                            }
+
+                            if (data.success == 'ok') {
+                                $('#form-general_2')[0].reset();
+                                $('#modal-medicamento').modal('hide');
+                                //$('#modal-n').modal('hide');
+                                $('#tmedicamentos').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Factura con medicamentos creada correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1500
+
+                                })
+
+
+                            } else if (data.success == 'ok1') {
+                                $('#form-general_2')[0].reset();
+                                $('#modal-medicamento').modal('hide');
+                                /* $('#modal-n').modal('hide'); */
+                                $('#tmedicamentos').DataTable().ajax.reload();
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Factura con medicamentos actualizada correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1500
+
+                                })
+
+
+                            }
+                            $('#form_result_2').html(html)
                         }
 
                     });
@@ -286,9 +381,38 @@ Facturación
 
         });
 
-        // eliminar filas de tabla para guardar
+        $('#addfila').click(function() {
+
+            const total = parseFloat($('#cantidad').val() * $('#valor').val());
+
+            $('#tmedicamentos> tbody:last-child')
+                .append(
+                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
+                    '<i class="fas fa-trash"></i></button></td>' +
+                    '</td>' +
+                    '<td>' + $('#profesional').val() + '</td>' +
+                    '<td>' + $('#servicio').val() + '</td>' +
+                    '<td>' + $('#cod_cups').val() + '</td>' +
+                    '<td>' + $('#cod_cups').val() + '</td>' +
+                    '<td>' + $('#contrato').val() + '</td>' +
+                    '<td>' + $('#cantidad').val() + '</td>' +
+                    '<td>' + $('#valor').val() + '</td>' +
+                    '<td>' + total + '</td></tr>'
+
+                );
+
+
+        });
+
+        // eliminar filas de la tabla procedimientos para guardar
 
         $("#tcups").on("click", "#eliminar", function() {
+            $(this).closest("tr").remove();
+        });
+
+        // eliminar filas de la tabla procedimientos para guardar
+
+        $("#tmedicamentos").on("click", "#eliminar", function() {
             $(this).closest("tr").remove();
         });
 
@@ -331,7 +455,7 @@ Facturación
 
                             return {
 
-                                text: data.cod_servicio +' - '+data.nombre,
+                                text: data.cod_servicio + ' - ' + data.nombre,
                                 id: data.id_servicio
 
                             }
@@ -355,7 +479,7 @@ Facturación
 
                             return {
 
-                                text: data.codigo +' - '+data.nombre,
+                                text: data.codigo + ' - ' + data.nombre,
                                 id: data.id_profesional
 
                             }
@@ -379,7 +503,7 @@ Facturación
 
                             return {
 
-                                text: data.cod_cups +' - '+data.nombre,
+                                text: data.cod_cups + ' - ' + data.nombre,
                                 id: data.id_cups
 
                             }
@@ -403,8 +527,32 @@ Facturación
 
                             return {
 
-                                text: data.contrato +' - '+data.nombre,
+                                text: data.contrato + ' - ' + data.nombre,
                                 id: data.id_contrato
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar los medicamentos
+        $("#fact_medicamento").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('medicamento_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.codigo + ' - ' + data.nombre,
+                                id: data.id_medicamento
 
                             }
                         })
