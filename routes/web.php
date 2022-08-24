@@ -109,17 +109,20 @@ Route::post('procedimiento-estado', 'DefProcedimientosController@updateestado')-
 //Ruta para consultar las relaciones de Procedimientos vs Servicio
 Route::get('relserviciovsprocedimiento', 'RelServiciovsprocedimientosController@index')->name('relserviciovsprocedimiento')->middleware('superEditor');
 Route::delete('serviciovsprocedimiento/{id}', 'RelServiciovsprocedimientosController@eliminar')->name('eliminar_servicio')->middleware('superEditor');
-Route::get('relservicioIndex', 'ServiciosController@rel_index')->name('relservicioIndex')->middleware('superEditor');
+Route::get('proce_servicio', 'ServiciosController@rel_proce_index')->name('proce_servicio')->middleware('superEditor');
+Route::post('add_servicio_proce', 'RelServiciovsprocedimientosController@create')->name('add_servicio_proce')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Procedimientos vs Profesional
 Route::get('profesionalvsprocedimiento', 'RelProfesionalvsprocedimientosController@index')->name('profesionalvsprocedimiento')->middleware('superEditor');
 Route::get('relprofeIndex', 'DefProfesionalesController@rel_index')->name('relprofeIndex')->middleware('superEditor');
 Route::delete('profesionalvsprocedimiento/{id}', 'RelProfesionalvsprocedimientosController@eliminar')->name('eliminar_profesional')->middleware('superEditor');
+Route::post('add_profesional', 'RelProfesionalvsprocedimientosController@crear')->name('add_profesional')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Procedimientos vs Contrato
 Route::get('contratovsprocedimiento', 'RelContratovsprocedimientosController@index')->name('contratovsprocedimiento')->middleware('superEditor');
 Route::delete('contratovsprocedimiento/{id}', 'RelContratovsprocedimientosController@eliminar')->name('eliminar_contrato')->middleware('superEditor');
 Route::get('relcontratoIndex', 'DefContratosController@rel_index')->name('relcontratoIndex')->middleware('superEditor');
+Route::post('add_contrato', 'RelContratovsprocedimientosController@crear')->name('add_contrato')->middleware('superEditor');
 
 //RUTA PARA CREAR MEDICAMENTOS
 Route::get('medicamentos', 'DefMedicamentosSuministrosController@index')->name('medicamentosIndex')->middleware('superEditor');

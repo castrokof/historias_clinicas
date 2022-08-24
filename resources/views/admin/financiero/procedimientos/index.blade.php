@@ -11,7 +11,7 @@ Procedimientos
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css" />
 
-<!-- <link href="{{ asset('assets/js/gijgo-combined-1.9.13/css/gijgo.min.css') }}" rel="stylesheet" type="text/css" /> -->
+
 <link href="{{ asset('assets/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
@@ -245,7 +245,7 @@ Procedimientos
             });
         }
 
-
+        var idprocedimiento;
 
         //Función para abrir detalle del registro
 
@@ -254,6 +254,7 @@ Procedimientos
             var idlist = $(this).attr('id');
             var idlistp = $(this).attr('id');
             var idlistf = $(this).attr('id');
+            idprocedimiento = $(this).attr('id');
 
             if (idlistp != '') {
                 $('#tservicio').DataTable().destroy();
@@ -295,7 +296,7 @@ Procedimientos
 
         });
         //--------------------------------Tabla relacion procedimiento vs servicios----------------------------//
-        //fill_datatable();
+
         function fill_datatable(idlistp = '') {
             var tservicio = $('#tservicio').DataTable({
                 language: idioma_espanol,
@@ -591,15 +592,12 @@ Procedimientos
                     url: "{{ route('relprofeIndex')}}",
                     type: "get",
                 },
-                columns: [
-                    /* {
-                                                data: 'action',
-                                                //orderable: false
-                                            }, */
+                columns: [{
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
 
-                    {
-                        data: 'estado',
-                        name: 'estado'
                     },
                     {
                         data: 'codigo',
@@ -685,18 +683,14 @@ Procedimientos
                     [1, "asc"]
                 ],
                 ajax: {
-                    url: "{{ route('relservicioIndex')}}",
+                    url: "{{ route('proce_servicio')}}",
                     type: "get",
                 },
-                columns: [
-                    /* {
-                                                data: 'action',
-                                                //orderable: false
-                                            }, */
-
-                    {
-                        data: 'estado',
-                        name: 'estado'
+                columns: [{
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'cod_servicio',
@@ -780,15 +774,11 @@ Procedimientos
                     url: "{{ route('relcontratoIndex')}}",
                     type: "get",
                 },
-                columns: [
-                    /* {
-                                                data: 'action',
-                                                //orderable: false
-                                            }, */
-
-                    {
-                        data: 'estado',
-                        name: 'estado'
+                columns: [{
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'contrato',
@@ -844,8 +834,96 @@ Procedimientos
             });
         }
 
-        //-- Eliminar Profesional de la relación 
+        //Función para enviar los profesionales seleccionados al controlador
+        $(document).on('click', '#addp', function() {
 
+            var procedimiento = idprocedimiento;
+
+            var idp = [];
+            if (procedimiento == '') {
+
+                Swal.fire({
+                    target: document.getElementById('modal-profesional'),
+                    title: 'No hay asociado ningun profesional',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+
+            } else {
+
+                Swal.fire({
+                    target: document.getElementById('modal-profesional'),
+                    title: "¿Estás seguro?",
+                    text: "Estás por asignar profesional",
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $('input[type=checkbox]:checked.case').each(function() {
+                            idp.push($(this).val());
+                        });
+
+                        if (idp.length > 0) {
+
+                            $.ajax({
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('add_profesional') }}",
+                                method: 'post',
+                                data: {
+                                    profesional_id: idp,
+                                    procedimiento_id: procedimiento,
+
+                                    "_token": $("meta[name='csrf-token']").attr(
+                                        "content")
+
+                                },
+                                success: function(respuesta) {
+                                    if (respuesta.mensaje = 'ok') {
+                                        $('#modal-profesional').modal('hide');
+                                        $('#tprofesional').DataTable().ajax
+                                            .reload();
+                                        Manteliviano.notificaciones(
+                                            'Profesionales relacionados correctamente',
+                                            'Sistema Ips', 'success');
+                                    } else if (respuesta.mensaje = 'ok1') {
+                                        $('#modal-profesional').modal('hide');
+                                        $('#tprofesional').DataTable().ajax
+                                            .reload();
+                                        Manteliviano.notificaciones(
+                                            'Ya existe la realación',
+                                            'Sistema Ips');
+                                    }
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hide");
+                                }
+                            });
+
+                        } else {
+
+                            Swal.fire({
+                                target: document.getElementById('modal-profesional'),
+                                title: 'Por favor seleccione un profesional del checkbox',
+                                icon: 'warning',
+                                buttons: {
+                                    cancel: "Cerrar"
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+        });
+
+        //-- Eliminar Profesional de la relación
         $(document).on('click', '.eliminarpp', function() {
             var id = $(this).attr('id');
 
@@ -890,7 +968,95 @@ Procedimientos
 
         });
 
-        //-- Eliminar Servicio de la relación 
+        //Función para enviar los servicios seleccionados al controlador
+        $(document).on('click', '#adds', function() {
+
+            var procedimiento = idprocedimiento;
+
+            var ids = [];
+            if (procedimiento == '') {
+
+                Swal.fire({
+                    target: document.getElementById('modal-servicio'),
+                    title: 'No hay asociado ningun servicios',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+
+            } else {
+
+                Swal.fire({
+                    target: document.getElementById('modal-servicio'),
+                    title: "¿Estás seguro?",
+                    text: "Estás por asociar un/unos servicio/s",
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $('input[type=checkbox]:checked.cases').each(function() {
+                            ids.push($(this).val());
+                        });
+
+                        if (ids.length > 0) {
+
+                            $.ajax({
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('add_servicio_proce') }}",
+                                method: 'post',
+                                data: {
+                                    servicio_id: ids,
+                                    procedimiento_id: procedimiento,
+
+                                    "_token": $("meta[name='csrf-token']").attr(
+                                        "content")
+
+                                },
+                                success: function(respuesta) {
+                                    if (respuesta.mensaje = 'ok') {
+                                        $('#modal-servicio').modal('hide');
+                                        $('#tservicio').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Servicios relacionados correctamente',
+                                            'Sistema Ips', 'success');
+
+                                    } else if (respuesta.mensaje = 'ok1') {
+                                        $('#modal-servicio').modal('hide');
+                                        $('#tservicio').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Ya existe la relación',
+                                            'Sistema Ips');
+                                    }
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hide");
+                                }
+                            });
+
+                        } else {
+
+                            Swal.fire({
+                                target: document.getElementById('modal-servicio'),
+                                title: 'Por favor seleccione un servicio del checkbox',
+                                icon: 'warning',
+                                buttons: {
+                                    cancel: "Cerrar"
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+        });
+
+        //-- Eliminar Servicio de la relación
 
         $(document).on('click', '.eliminarss', function() {
             var id = $(this).attr('id');
@@ -936,7 +1102,95 @@ Procedimientos
 
         });
 
-        //-- Eliminar Contrato de la relación 
+        //Función para enviar los contratos seleccionados al controlador
+
+        $(document).on('click', '#addcont', function() {
+
+            var procedimiento = idprocedimiento;
+
+            var idm = [];
+            if (procedimiento == '') {
+
+                Swal.fire({
+                    target: document.getElementById('modal-contrato'),
+                    title: 'No hay asociado ningun contrato',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+
+            } else {
+
+                Swal.fire({
+                    target: document.getElementById('modal-contrato'),
+                    title: "¿Estás seguro?",
+                    text: "Estás por asociar un/unos contrato/s",
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $('input[type=checkbox]:checked.casec').each(function() {
+                            idm.push($(this).val());
+                        });
+
+                        if (idm.length > 0) {
+
+                            $.ajax({
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('add_contrato') }}",
+                                method: 'post',
+                                data: {
+                                    contrato_id: idm,
+                                    procedimiento_id: procedimiento,
+
+                                    "_token": $("meta[name='csrf-token']").attr(
+                                        "content")
+
+                                },
+                                success: function(respuesta) {
+                                    if (respuesta.mensaje = 'ok') {
+                                        $('#modal-contrato').modal('hide');
+                                        $('#tcontrato').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Servicios relacionados correctamente',
+                                            'Sistema Ips', 'success');
+                                    } else if (respuesta.mensaje = 'ok1') {
+                                        $('#modal-contrato').modal('hide');
+                                        $('#tcontrato').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Ya existe la relación',
+                                            'Sistema Ips');
+                                    }
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hide");
+                                }
+                            });
+
+                        } else {
+
+                            Swal.fire({
+                                target: document.getElementById('modal-contrato'),
+                                title: 'Por favor seleccione un medicamento del checkbox',
+                                icon: 'warning',
+                                buttons: {
+                                    cancel: "Cerrar"
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+        });
+
+        //-- Eliminar Contrato de la relación
 
         $(document).on('click', '.eliminarco', function() {
             var id = $(this).attr('id');
@@ -962,7 +1216,7 @@ Procedimientos
                         },
                         dataType: "json",
                         success: function(data) {
-                            if (data.success == 'ok4') {
+                            if (data.success == 'ok9') {
 
                                 $('#tcontrato').DataTable().ajax.reload();
                                 Swal.fire({
@@ -982,80 +1236,101 @@ Procedimientos
 
         });
 
-    });
+        //Función asignar y desasignar profesional a relacionar
 
-    // Función para multimodal
+        $("#selectallp").on('click', function() {
+            $(".case").prop("checked", this.checked);
+        });
 
-    (function($, window) {
-        'use strict';
+        //Función asignar y desasignar servicio a relacionar
 
-        var MultiModal = function(element) {
-            this.$element = $(element);
-            this.modalCount = 0;
-        };
+        $("#selectalls").on('click', function() {
+            $(".cases").prop("checked", this.checked);
+        });
 
-        MultiModal.BASE_ZINDEX = 1040;
+        //Función asignar y desasignar contrato a relacionar
 
-        MultiModal.prototype.show = function(target) {
-            var that = this;
-            var $target = $(target);
-            var modalIndex = that.modalCount++;
+        $("#selectallc").on('click', function() {
+            $(".casec").prop("checked", this.checked);
+        });
 
-            $target.css('z-index', MultiModal.BASE_ZINDEX + (modalIndex * 20) + 10);
 
-            // Bootstrap triggers the show event at the beginning of the show function and before
-            // the modal backdrop element has been created. The timeout here allows the modal
-            // show function to complete, after which the modal backdrop will have been created
-            // and appended to the DOM.
-            window.setTimeout(function() {
-                // we only want one backdrop; hide any extras
-                if (modalIndex > 0)
-                    $('.modal-backdrop').not(':first').addClass('hidden');
 
-                that.adjustBackdrop();
-            });
-        };
 
-        MultiModal.prototype.hidden = function(target) {
-            this.modalCount--;
 
-            if (this.modalCount) {
-                this.adjustBackdrop();
-                // bootstrap removes the modal-open class when a modal is closed; add it back
-                $('body').addClass('modal-open');
+        // Función para multimodal
+
+        (function($, window) {
+            'use strict';
+
+            var MultiModal = function(element) {
+                this.$element = $(element);
+                this.modalCount = 0;
+            };
+
+            MultiModal.BASE_ZINDEX = 1040;
+
+            MultiModal.prototype.show = function(target) {
+                var that = this;
+                var $target = $(target);
+                var modalIndex = that.modalCount++;
+
+                $target.css('z-index', MultiModal.BASE_ZINDEX + (modalIndex * 20) + 10);
+
+                // Bootstrap triggers the show event at the beginning of the show function and before
+                // the modal backdrop element has been created. The timeout here allows the modal
+                // show function to complete, after which the modal backdrop will have been created
+                // and appended to the DOM.
+                window.setTimeout(function() {
+                    // we only want one backdrop; hide any extras
+                    if (modalIndex > 0)
+                        $('.modal-backdrop').not(':first').addClass('hidden');
+
+                    that.adjustBackdrop();
+                });
+            };
+
+            MultiModal.prototype.hidden = function(target) {
+                this.modalCount--;
+
+                if (this.modalCount) {
+                    this.adjustBackdrop();
+                    // bootstrap removes the modal-open class when a modal is closed; add it back
+                    $('body').addClass('modal-open');
+                }
+            };
+
+            MultiModal.prototype.adjustBackdrop = function() {
+                var modalIndex = this.modalCount - 1;
+                $('.modal-backdrop:first').css('z-index', MultiModal.BASE_ZINDEX + (modalIndex * 20));
+            };
+
+            function Plugin(method, target) {
+                return this.each(function() {
+                    var $this = $(this);
+                    var data = $this.data('multi-modal-plugin');
+
+                    if (!data)
+                        $this.data('multi-modal-plugin', (data = new MultiModal(this)));
+
+                    if (method)
+                        data[method](target);
+                });
             }
-        };
 
-        MultiModal.prototype.adjustBackdrop = function() {
-            var modalIndex = this.modalCount - 1;
-            $('.modal-backdrop:first').css('z-index', MultiModal.BASE_ZINDEX + (modalIndex * 20));
-        };
+            $.fn.multiModal = Plugin;
+            $.fn.multiModal.Constructor = MultiModal;
 
-        function Plugin(method, target) {
-            return this.each(function() {
-                var $this = $(this);
-                var data = $this.data('multi-modal-plugin');
-
-                if (!data)
-                    $this.data('multi-modal-plugin', (data = new MultiModal(this)));
-
-                if (method)
-                    data[method](target);
+            $(document).on('show.bs.modal', function(e) {
+                $(document).multiModal('show', e.target);
             });
-        }
 
-        $.fn.multiModal = Plugin;
-        $.fn.multiModal.Constructor = MultiModal;
+            $(document).on('hidden.bs.modal', function(e) {
+                $(document).multiModal('hidden', e.target);
+            });
+        }(jQuery, window));
 
-        $(document).on('show.bs.modal', function(e) {
-            $(document).multiModal('show', e.target);
-        });
-
-        $(document).on('hidden.bs.modal', function(e) {
-            $(document).multiModal('hidden', e.target);
-        });
-    }(jQuery, window));
-
+    });
 
 
     var idioma_espanol = {

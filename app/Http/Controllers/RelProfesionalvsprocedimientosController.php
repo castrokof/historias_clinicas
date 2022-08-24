@@ -130,25 +130,68 @@ class RelProfesionalvsprocedimientosController extends Controller
 
                 if ($count > 0) {
                     DB::table('rel__profesionalvsprocedimientos')
-                   ->where([
-                        ['procedimiento_id', $idp],
-                        ['profesional_id', $request->profesional_id]
-                    ])->update(
-                        [
-                            'procedimiento_id' => $idp,
-                            'profesional_id' => $request->profesional_id
+                        ->where([
+                            ['procedimiento_id', $idp],
+                            ['profesional_id', $request->profesional_id]
+                        ])->update(
+                            [
+                                'procedimiento_id' => $idp,
+                                'profesional_id' => $request->profesional_id
+    
+                            ]
+                        );
+                } else {
+                    DB::table('rel__profesionalvsprocedimientos')
+                        ->insert(
+                            [
+                                'procedimiento_id' => $idp,
+                                'profesional_id' => $request->profesional_id
 
-                        ]
-                    );
-                }else{
-                DB::table('rel__profesionalvsprocedimientos')
-                    ->insert(
-                        [
-                            'procedimiento_id' => $idp,
-                            'profesional_id' => $request->profesional_id
+                            ]
+                        );
+                }
+            }
 
-                        ]
-                    );
+            return response()->json(['success' => 'ok']);
+        }
+    }
+
+    public function crear(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $idps = $request->profesional_id;
+
+            foreach ($idps as $idp) {
+
+                $count = DB::table('rel__profesionalvsprocedimientos')->where([
+                    ['profesional_id', $idp],
+                    ['procedimiento_id', $request->procedimiento_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__profesionalvsprocedimientos')
+                        ->where([
+                            ['profesional_id', $idp],
+                            ['procedimiento_id', $request->procedimiento_id]
+                        ])->update(
+                            [
+                                'profesional_id' => $idp,
+                                'procedimiento_id' => $request->procedimiento_id
+    
+                            ]
+                        );
+                } else {
+                    DB::table('rel__profesionalvsprocedimientos')
+                        ->insert(
+                            [
+
+                                'profesional_id' => $idp,
+                                'procedimiento_id' => $request->procedimiento_id
+
+
+                            ]
+                        );
                 }
             }
 

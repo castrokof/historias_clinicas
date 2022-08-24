@@ -1399,7 +1399,7 @@ Contratos
                         },
                         dataType: "json",
                         success: function(data) {
-                            if (data.success == 'ok1') {
+                            if (data.success == 'ok9') {
 
                                 $('#tprocedimiento').DataTable().ajax.reload();
                                 Swal.fire({

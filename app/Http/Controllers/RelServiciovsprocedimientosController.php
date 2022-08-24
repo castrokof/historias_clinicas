@@ -57,65 +57,47 @@ class RelServiciovsprocedimientosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
+        if ($request->ajax()) {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            $idps = $request->servicio_id;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin\rel__serviciovsprocedimientos  $rel__serviciovsprocedimientos
-     * @return \Illuminate\Http\Response
-     */
-    public function show(rel__serviciovsprocedimientos $rel__serviciovsprocedimientos)
-    {
-        //
-    }
+            foreach ($idps as $idp) {
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin\rel__serviciovsprocedimientos  $rel__serviciovsprocedimientos
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(rel__serviciovsprocedimientos $rel__serviciovsprocedimientos)
-    {
-        //
-    }
+                $count = DB::table('rel__serviciovsprocedimientos')->where([
+                    ['servicio_id', $idp],
+                    ['procedimiento_id', $request->procedimiento_id]
+                ])->count();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\rel__serviciovsprocedimientos  $rel__serviciovsprocedimientos
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, rel__serviciovsprocedimientos $rel__serviciovsprocedimientos)
-    {
-        //
-    }
+                if ($count > 0) {
+                    DB::table('rel__serviciovsprocedimientos')
+                        ->where([
+                            ['servicio_id', $idp],
+                            ['procedimiento_id', $request->procedimiento_id]
+                        ])->update(
+                            [
+                                'servicio_id' => $idp,
+                                'procedimiento_id' => $request->procedimiento_id
+    
+                            ]
+                        );
+                } else {
+                    DB::table('rel__serviciovsprocedimientos')
+                        ->insert(
+                            [
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin\rel__serviciovsprocedimientos  $rel__serviciovsprocedimientos
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(rel__serviciovsprocedimientos $rel__serviciovsprocedimientos)
-    {
-        //
+                                'servicio_id' => $idp,
+                                'procedimiento_id' => $request->procedimiento_id
+
+
+                            ]
+                        );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
+        }
     }
 
     /**

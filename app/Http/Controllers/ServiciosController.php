@@ -58,6 +58,27 @@ class ServiciosController extends Controller
         return view('admin.financiero.contratos.index');
     }
 
+    public function rel_proce_index(Request $request)
+    {
+
+        if ($request->ajax()) {
+
+            $datas = Servicios::orderBy('id_servicio', 'asc')->get();
+
+            return  DataTables()->of($datas)
+            ->addColumn('checkbox', function ($datas){
+
+                $checkbox =  '<input type="checkbox" name="case[]" value="'.$datas->id_servicio.'" class="cases" title="Seleccionar Servicio"/>';
+
+                return $checkbox;
+              })
+              ->rawColumns(['checkbox'])
+              ->make(true);
+        }
+
+        return view('admin.financiero.procedimientos.index');
+    }
+
     public function rel_med_index(Request $request)
     {
 
