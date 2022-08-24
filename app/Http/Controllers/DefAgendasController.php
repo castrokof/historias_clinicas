@@ -49,9 +49,16 @@ class DefAgendasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(Request $request)
     {
-        //
+
+        if($request->ajax()){
+            # code...
+            return response()->json(['success' => 'ok']);
+
+        }
+
+
     }
 
     /**

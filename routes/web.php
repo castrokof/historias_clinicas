@@ -448,7 +448,7 @@ Route::put('marca/{id}', 'MarcasController@actualizar')->name('actualizar_marca'
 
 /* RUTAS DE LA AGENDA */
 Route::get('abrir_agenda', 'DefAgendasController@index')->name('agenda')->middleware('superEditor');
-Route::post('agenda', 'DefAgendasController@guardar')->name('guardar_agenda')->middleware('superEditor');
+Route::post('agenda', 'DefAgendasController@guardar')->name('programar_agenda')->middleware('superEditor');
 Route::get('agenda/{id}/editar', 'DefAgendasController@editar')->name('editar_agenda')->middleware('superEditor');
 Route::put('agenda/{id}', 'DefAgendasController@actualizar')->name('actualizar_agenda')->middleware('superEditor');
 

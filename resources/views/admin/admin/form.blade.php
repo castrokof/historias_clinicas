@@ -16,7 +16,7 @@
     <div class="col-md-2" id="festivos_id">
         <label for="festivos" class="col-xs-2 control-label">Festivos</label>
         <input type="checkbox" name="festivos" id="festivos" class="form-control select2bs4" style="width: 10%;">
-
+        
 
     </div>
 

@@ -25,6 +25,55 @@
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 @endsection
 
+
+<style>
+    /*btn flotante*/
+    .btn-flotante {
+        font-size: 14px;
+        /* Cambiar el tamaño de la tipografia */
+        text-transform: uppercase;
+        /* Texto en mayusculas */
+        font-weight: bold;
+        /* Fuente en negrita o bold */
+        color: #ffffff;
+        /* Color del texto */
+        border-radius: 120px;
+        /* Borde del boton */
+        letter-spacing: 2px;
+        /* Espacio entre letras */
+        background: linear-gradient(to right, #1216ef, #88e6e6) !important;
+        /* Color de fondo */
+        /*background-color: #e9321e; /* Color de fondo */
+        padding: 18px 30px;
+        /* Relleno del boton */
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        transition: all 300ms ease 0ms;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.5);
+        z-index: 99;
+        border: none;
+        outline: none;
+    }
+
+    .btn-flotante:hover {
+        background-color: #2c2fa5;
+        /* Color de fondo al pasar el cursor */
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+        transform: translateY(-7px);
+    }
+
+    @media only screen and (max-width: 600px) {
+        .btn-flotante {
+            font-size: 14px;
+            padding: 12px 20px;
+            bottom: 20px;
+            right: 20px;
+        }
+    }
+</style>
+
+
 @section('contenido')
     <div class="content-wrapper" style="min-height: 543px;">
         <!-- Content Header (Page header) -->
@@ -54,7 +103,7 @@
             <div class="container-fluid"> {{-- 4 Widgets --}}
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-lg-12 col-6">
+                    <div class="col-lg-12 col-md-12">
                         @include('admin.agenda.tablas.table-procedimientos')
                     </div>
                     <!-- /.row -->
@@ -98,7 +147,8 @@
                 </div>
             </div>
         </div>
-
+        <button type="button" class="btn-flotante tooltipsC" id="create_agenda" title="Crear agenda"><i
+                class="fas fa-save fa-2x"></i></button>
     </div>
 @endsection
 
@@ -107,6 +157,13 @@
 
     <script>
         $(document).ready(function() {
+
+            // Btn flotante
+            $('.botonF1').hover(function() {
+
+            })
+
+
 
 
             // Agregar filas a tabla para horarios
@@ -120,26 +177,26 @@
 
                 console.log(intervalo);
 
-                const now = new Date('2019-09-13 '+timeini);
+                const now = new Date('2019-09-13 ' + timeini);
 
                 const minutos_timeini = timeini.split(':')
-                 .reduce((p, c) => parseInt(p) * 60 + parseInt(c));
+                    .reduce((p, c) => parseInt(p) * 60 + parseInt(c));
 
-                 const minutos_timefin = timefin.split(':')
-                 .reduce((p, c) => parseInt(p) * 60 + parseInt(c));
+                const minutos_timefin = timefin.split(':')
+                    .reduce((p, c) => parseInt(p) * 60 + parseInt(c));
 
-                const  turnos = minutos_timefin - minutos_timeini;
-                const  turnos1 = (turnos/intervalo)-1;
+                const turnos = minutos_timefin - minutos_timeini;
+                const turnos1 = (turnos / intervalo) - 1;
                 const horarios = [];
 
                 now.setMinutes(now.getMinutes(timeini));
                 horarios.push(now.getHours() + ":" + ("00" + now.getMinutes()).slice(-2))
 
-                for(var i = 0; i < turnos1; i++){
+                for (var i = 0; i < turnos1; i++) {
 
-                now.setMinutes(now.getMinutes(timeini) + parseInt(intervalo));
+                    now.setMinutes(now.getMinutes(timeini) + parseInt(intervalo));
 
-                horarios.push(now.getHours() + ":" + ("00" + now.getMinutes()).slice(-2));
+                    horarios.push(now.getHours() + ":" + ("00" + now.getMinutes()).slice(-2));
 
                 }
 
@@ -195,117 +252,138 @@
 
                     case "diasemanal":
 
-                    $('#tlunes> tbody').empty();
+                        $('#tlunes> tbody').empty();
 
-                    horarios.forEach(espacios =>{
+                        horarios.forEach(espacios => {
 
 
-                        $('#tlunes> tbody:last-child')
-                            .append(
-                                '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
-                                '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + espacios + '</td>' +
-                                '</tr>'
 
-                            );
+                            $('#tlunes> tbody:last-child')
+                                .append(
+                                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
+                                    '<i class="fas fa-trash"></i></button></td>' +
+                                    '<td>' + espacios + '</td>' +
+                                    '</tr>'
+
+                                );
                         });
                         break;
                     case "diasemanam":
 
-                    $('#tmartes> tbody').empty();
-                    horarios.forEach(espacios =>{
-                        $('#tmartes> tbody:last-child')
-                            .append(
-                                '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
-                                '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + espacios + '</td>' +
-                                '</tr>'
+                        $('#tmartes> tbody').empty();
+                        horarios.forEach(espacios => {
 
-                            );
-                    });
+
+
+                            $('#tmartes> tbody:last-child')
+                                .append(
+                                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
+                                    '<i class="fas fa-trash"></i></button></td>' +
+                                    '<td>' + espacios + '</td>' +
+                                    '</tr>'
+
+                                );
+                        });
                         break;
 
                     case "diasemanami":
 
 
-                    $('#tmiercoles> tbody').empty();
-                    horarios.forEach(espacios =>{
-                        $('#tmiercoles> tbody:last-child')
-                            .append(
-                                '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
-                                '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + espacios + '</td>' +
-                                '</tr>'
+                        $('#tmiercoles> tbody').empty();
+                        horarios.forEach(espacios => {
 
-                            );
+
+
+                            $('#tmiercoles> tbody:last-child')
+                                .append(
+                                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
+                                    '<i class="fas fa-trash"></i></button></td>' +
+                                    '<td>' + espacios + '</td>' +
+                                    '</tr>'
+
+                                );
                         });
 
                         break;
 
                     case "diasemanaj":
 
-                    $('#tjueves> tbody').empty();
-                    horarios.forEach(espacios =>{
-                        $('#tjueves> tbody:last-child')
-                            .append(
-                                '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
-                                '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + espacios + '</td>' +
-                                '</tr>'
+                        $('#tjueves> tbody').empty();
+                        horarios.forEach(espacios => {
 
-                            );
+
+
+                            $('#tjueves> tbody:last-child')
+                                .append(
+                                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
+                                    '<i class="fas fa-trash"></i></button></td>' +
+                                    '<td>' + espacios + '</td>' +
+                                    '</tr>'
+
+                                );
                         });
 
                         break;
 
                     case "diasemanav":
 
-                    $('#tviernes> tbody').empty();
-                    horarios.forEach(espacios =>{
-                        $('#tviernes> tbody:last-child')
-                            .append(
-                                '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
-                                '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + espacios + '</td>' +
-                                '</tr>'
+                        $('#tviernes> tbody').empty();
+                        horarios.forEach(espacios => {
 
-                            );
+
+
+
+                            $('#tviernes> tbody:last-child')
+                                .append(
+                                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
+                                    '<i class="fas fa-trash"></i></button></td>' +
+                                    '<td>' + espacios + '</td>' +
+                                    '</tr>'
+
+                                );
                         });
 
                         break;
 
                     case "diasemanas":
 
-                    $('#tsabado> tbody').empty();
-                    horarios.forEach(espacios =>{
-                        $('#tsabado> tbody:last-child')
-                            .append(
-                                '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
-                                '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + espacios + '</td>' +
-                                '</tr>'
+                        $('#tsabado> tbody').empty();
+                        horarios.forEach(espacios => {
 
-                            );
+
+
+
+                            $('#tsabado> tbody:last-child')
+                                .append(
+                                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
+                                    '<i class="fas fa-trash"></i></button></td>' +
+                                    '<td>' + espacios + '</td>' +
+                                    '</tr>'
+
+                                );
                         });
                         break;
 
                     case "diasemanad":
 
-                    $('#tdomingo> tbody').empty();
-                    horarios.forEach(espacios =>{
-                        $('#tdomingo> tbody:last-child')
-                            .append(
-                                '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
-                                '<i class="fas fa-trash"></i></button></td>' +
-                                '<td>' + espacios + '</td>' +
-                                '</tr>'
-
-                            );
+                        $('#tdomingo> tbody').empty();
+                        horarios.forEach(espacios => {
 
 
-                    });
 
-                    break;
+                            $('#tdomingo> tbody:last-child')
+                                .append(
+                                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
+                                    '<i class="fas fa-trash"></i></button></td>' +
+                                    '<td>' + espacios + '</td>' +
+                                    '</tr>'
+
+                                );
+
+
+                        });
+
+                        break;
 
                     default:
                         0;
@@ -345,361 +423,288 @@
                 $(this).closest("tr").remove();
             });
 
-            fill_datatable();
-
-            function fill_datatable(periodo1 = '', zona1 = '') {
-                var datatable = $('#tablero').DataTable({
-                    language: idioma_espanol,
-                    lengthMenu: [-1],
-                    processing: true,
-                    serverSide: true,
-
-
-                    ajax: {
-                        url: "{{ route('tablero') }}",
-                        data: {
-                            periodo1: periodo1,
-                            zona1: zona1
-                        }
-                    },
-                    columns: [{
-                            data: 'Ciclo',
-                            name: 'Ciclo'
-                        },
-                        {
-                            data: 'Periodo',
-                            name: 'Periodo'
-                        },
-                        {
-                            data: 'nombreu'
-
-                        },
-                        {
-                            data: 'Usuario'
-
-                        },
-                        {
-                            data: 'idDivision',
-                            name: 'idDivision'
-                        },
-                        {
-                            data: 'Asignados',
-                            name: 'Asignados'
-                        },
-                        {
-                            data: 'Pendientes',
-                            name: 'Pendientes'
-                        },
-                        {
-                            data: 'Ejecutadas',
-                            name: 'Ejecutadas'
-                        },
-                        {
-                            data: 'Altos',
-                            name: 'Altos'
-                        },
-                        {
-                            data: 'Bajos',
-                            name: 'Bajos'
-                        },
-                        {
-                            data: 'Negativo',
-                            name: 'Negativo'
-                        },
-                        {
-                            data: 'Consumo_cero',
-                            name: 'Consumo_cero'
-                        },
-                        {
-                            data: 'Normales',
-                            name: 'Normales'
-                        },
-                        {
-                            data: 'Causados',
-                            name: 'Causados'
-                        },
-
-                        {
-                            data: 'inicio',
-                            name: 'inicio'
-                        },
-                        {
-                            data: 'Final',
-                            name: 'Final'
-                        }
-
-                    ],
-                    "footerCallback": function(row, data, start, end, display) {
-                        var api = this.api(),
-                            data;
-
-
-                        var intVal = function(i) {
-                            return typeof i === 'string' ?
-                                i.replace(/[\$,]/g, '') * 1 :
-                                typeof i === 'number' ?
-                                i : 0;
-                        };
-
-
-                        asignadas = api
-                            .column(5, {
-                                page: 'current'
-                            })
-                            .data()
-                            .reduce(function(a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0);
-
-                        pendientes = api
-                            .column(6, {
-                                page: 'current'
-                            })
-                            .data()
-                            .reduce(function(a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0);
-
-                        ejecutadas = api
-                            .column(7, {
-                                page: 'current'
-                            })
-                            .data()
-                            .reduce(function(a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0);
-                        altos = api
-                            .column(8, {
-                                page: 'current'
-                            })
-                            .data()
-                            .reduce(function(a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0);
-
-                        bajos = api
-                            .column(9, {
-                                page: 'current'
-                            })
-                            .data()
-                            .reduce(function(a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0);
-
-                        negativo = api
-                            .column(10, {
-                                page: 'current'
-                            })
-                            .data()
-                            .reduce(function(a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0);
-
-                        consumo_cero = api
-                            .column(11, {
-                                page: 'current'
-                            })
-                            .data()
-                            .reduce(function(a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0);
-
-                        normales = api
-                            .column(12, {
-                                page: 'current'
-                            })
-                            .data()
-                            .reduce(function(a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0);
-
-                        causados = api
-                            .column(13, {
-                                page: 'current'
-                            })
-                            .data()
-                            .reduce(function(a, b) {
-                                return intVal(a) + intVal(b);
-                            }, 0);
 
 
 
 
+            $('#create_agenda').click(function() {
 
-                        $(api.column(5).footer()).html(
-                            asignadas
-                        );
-                        $(api.column(6).footer()).html(
-                            pendientes
-                        );
-                        $(api.column(7).footer()).html(
-                            ejecutadas
-                        );
-                        $(api.column(8).footer()).html(
-                            altos
-                        );
-                        $(api.column(9).footer()).html(
-                            bajos
-                        );
-                        $(api.column(10).footer()).html(
-                            negativo
-                        );
-                        $(api.column(11).footer()).html(
-                            consumo_cero
-                        );
-                        $(api.column(12).footer()).html(
-                            normales
-                        );
-                        $(api.column(13).footer()).html(
-                            causados
-                        );
+                //Array de horarios, fechas, profesional y festivos
+
+                let fechaini;
+                let fechafin;
+                let festivos;
+                let profesional;
+                const arraylunes = [];
+                const arraymartes = [];
+                const arraymiercoles = [];
+                const arrayjueves = [];
+                const arrayviernes = [];
+                const arraysabado = [];
+                const arraydomingo = [];
 
 
+                fechaini = $('#fechaini').val();
+                fechafin = $('#fechafin').val();
+                festivos = $('#festivos').val();
+                profesional = $('#profesional_select').val();
+
+                if (fechaini > fechafin) {
+
+                    Swal.fire({
+                        title: 'La fecha inicial debe ser menor que la fecha final',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        timer: 1000
+                    })
+
+                } else if (fechaini == null || fechafin == null || profesional == null) {
 
 
-                    },
-                    //Botones----------------------------------------------------------------------
-                    "dom": 'Bfrtip',
-                    buttons: [{
-
-                            extend: 'copyHtml5',
-                            titleAttr: 'Copy',
-                            className: "btn btn-info"
-
-
-                        },
-                        {
-
-                            extend: 'excelHtml5',
-                            titleAttr: 'Excel',
-                            className: "btn btn-success"
-
-
-                        },
-                        {
-
-                            extend: 'csvHtml5',
-                            titleAttr: 'csv',
-                            className: "btn btn-warning"
-
-
-                        },
-                        {
-
-                            extend: 'pdfHtml5',
-                            titleAttr: 'pdf',
-                            className: "btn btn-primary"
-
-
-                        }
-                    ]
-                });
-            }
-
-
-
-            $('#buscar').click(function() {
-
-                var periodo1 = $('#periodo1').val();
-                var zona1 = $('#zona1').val();
-
-                if (periodo1 != '' && zona1 != '') {
-
-                    $('#tablero').DataTable().destroy();
-                    fill_datatable(periodo1, zona1);
+                    Swal.fire({
+                        title: 'Fecha inicial, final y profesional son obligatorios',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        timer: 1000
+                    })
 
                 } else {
 
-                    swal({
-                        title: 'Debes digitar periodo y zona',
+
+
+                    $("#tlunes> tbody tr").each(function(el) {
+
+                        var alunes = {};
+
+                        var tds = $(this).find("td");
+                        alunes.horario = tds.filter(":eq(1)").text();
+
+                        // Ingreso cada array en la variable arraylunes
+                        arraylunes.push(alunes);
+
+
+
+
+                    });
+
+                    $("#tmartes> tbody tr").each(function(el) {
+
+                        var amartes = {};
+
+
+                        var tds = $(this).find("td");
+                        amartes.horario = tds.filter(":eq(1)").text();
+
+                        // Ingreso cada array en la variable arraymartes
+                        arraymartes.push(amartes);
+
+
+
+                    });
+
+                    $("#tmiercoles> tbody tr").each(function(el) {
+
+                        var amiercoles = {};
+
+                        var tds = $(this).find("td");
+                        amiercoles.horario = tds.filter(":eq(1)").text();
+
+
+
+                        // Ingreso cada array en la variable arraymiercoles
+                        arraymiercoles.push(amiercoles);
+
+
+
+
+                    });
+
+                    $("#tjueves> tbody tr").each(function(el) {
+
+                        var ajueves = {};
+
+                        var tds = $(this).find("td");
+                        ajueves.horario = tds.filter(":eq(1)").text();
+
+                        // Ingreso cada array en la variable arrayjueves
+                        arrayjueves.push(ajueves);
+
+
+
+
+                    });
+
+                    $("#tviernes> tbody tr").each(function(el) {
+
+                        var aviernes = {};
+
+
+                        var tds = $(this).find("td");
+                        aviernes.horario = tds.filter(":eq(1)").text();
+
+                        // Ingreso cada array en la variable arrayviernes
+                        arrayviernes.push(aviernes);
+
+
+
+                    });
+
+                    $("#tsabado> tbody tr").each(function(el) {
+
+                        var asabado = {};
+
+                        var tds = $(this).find("td");
+                        asabado.horario = tds.filter(":eq(1)").text();
+
+
+
+                        // Ingreso cada array en la variable arraysabado
+                        arraysabado.push(asabado);
+
+
+
+
+                    });
+
+
+                    $("#tdomingo> tbody tr").each(function(el) {
+
+                        var adomingo = {};
+
+                        var tds = $(this).find("td");
+                        adomingo.horario = tds.filter(":eq(1)").text();
+
+
+
+                        // Ingreso cada array en la variable arraysabado
+                        arraydomingo.push(adomingo);
+
+
+
+
+                    });
+
+
+
+                    if (fechaini != null && fechafin != null && profesional != null && (arraylunes.length >
+                            0 ||
+                            arraymartes.length > 0 || arraymiercoles.length > 0 ||
+                            arrayjueves.length > 0 || arrayviernes.length > 0 || arraysabado.length > 0 ||
+                            arraydomingo.length > 0)) {
+
+
+                        $.ajax({
+                            beforeSend: function() {
+                                $('.loader').css("visibility", "visible");
+                            },
+                            url: "{{ route('programar_agenda') }}",
+                            method: 'post',
+                            data: {
+                                lunes: arraylunes,
+                                martes: arraymartes,
+                                miercoles: arraymiercoles,
+                                jueves: arrayjueves,
+                                viernes: arrayviernes,
+                                sabado: arraysabado,
+                                domingo: arraydomingo,
+                                fechaini: fechaini,
+                                fechafin: fechafin,
+                                profesional: profesional,
+                                festivos: festivos,
+                                "_token": $("meta[name='csrf-token']").attr("content")
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data.success == 'ya') {
+
+                                    for (var i = 0; i < data.result.length; i++) {
+                                        $.each(JSON.parse(data.result[i]), function(a, items) {
+
+                                            toastr.warning('¡ ' + items + ' !');
+                                            // Swal.fire(
+                                            //     {
+                                            //       icon: 'warning',
+                                            //       title: items,
+                                            //       showConfirmButton: true,
+                                            //       //timer: 1500
+                                            //     }
+                                            //   )
+
+                                        });
+                                    }
+                                    //$('#mipres').DataTable().destroy();
+                                } else if (data.success == 'ok') {
+
+
+                                    Swal.fire({
+                                        icon: 'info',
+                                        title: 'Información',
+                                        text: 'Fue programado correctamente la agenda del profesional',
+                                        showConfirmButton: true,
+                                        timer: 1000
+                                    })
+                                }
+
+
+                            },
+                            complete: function() {
+                                $('.loader').css("visibility", "hidden");
+                            }
+
+
+                        });
+
+
+                    }
+
+                else {
+                    Swal.fire({
+                        title: 'Debes seleccionar un horario',
                         icon: 'warning',
                         buttons: {
                             cancel: "Cerrar"
 
                         }
                     })
+
+
                 }
-
-            });
-
-            $('#reset').click(function() {
-                $('#zona1').val('');
-                $('#periodo1').val('');
-                $('#tablero').DataTable().destroy();
-                fill_datatable();
-            });
-        });
-
-
-
-        //Select para consultar los Profesionales
-        $("#profesional_select").select2({
-            theme: "bootstrap",
-            ajax: {
-                url: "{{ route('selectprofesional') }}",
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data) {
-                    return {
-                        results: $.map(data, function(data) {
-
-                            return {
-
-                                text: data.nombre,
-                                id: data.id_profesional
-
-                            }
-                        })
-                    };
-                },
-                cache: true
             }
-        });
-
-
-
-        //Detalle pagos
-
-        $(document).on('click', '.pagos', function() {
-
-            //var id = $(this).attr('id');
-            $("#detallePago").empty();
-
-            $.ajax({
-                url: "{{ route('detalle_pagos') }}",
-                dataType: "json",
-                success: function(dataPagos) {
-                    $("#detallePagos").append(
-                        '<thead><tr><th align="center" style="dislay: none;">Numero de Prestamo</th>' +
-                        '<th align="center" style="dislay: none;">Numero de cuota</th>' +
-                        '<th align="center" style="dislay: none;">Valor Abono</th>' +
-                        '<th align="center" style="dislay: none;">Fecha de Pago</th>' +
-                        '</tr></thead>'
-                    );
-                    $.each(dataPagos.result1, function(i, items) {
-                        $("#detallePagos").append(
-
-                            //Para colocar en tabla
-
-                            '<tr>' +
-                            '<td>' + items.prestamo_id + '</td>' +
-                            '<td>' + items.numero_cuota + '</td>' +
-                            '<td>' + items.valor_abono + '</td>' +
-                            '<td>' + items.fecha_pago + '</td>' +
-                            '</tr>'
-
-                        );
-                    });
-                    $('.modal-title-p').text('Detalle de pagos');
-                    $('#modal-p').modal('show');
-
-
-                }
-
-
-
             });
+
+
+
+
+
+
+
+
+            //Select para consultar los Profesionales
+            $("#profesional_select").select2({
+                theme: "bootstrap",
+                ajax: {
+                    url: "{{ route('selectprofesional') }}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
+
+                                return {
+
+                                    text: data.nombre,
+                                    id: data.id_profesional
+
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
         });
+
 
         var idioma_espanol = {
             "sProcessing": "Procesando...",
