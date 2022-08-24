@@ -49,6 +49,49 @@ class RelServiciovsmedicamentosController extends Controller
         return view('admin.financiero.medicamentos.index');
     }
 
+    public function create(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $idps = $request->servicio_id;
+
+            foreach ($idps as $idp) {
+
+                $count = DB::table('rel__serviciovsmedicamentos')->where([
+                    ['servicio_id', $idp],
+                    ['medicamento_id', $request->medicamento_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__serviciovsmedicamentos')
+                        ->where([
+                            ['servicio_id', $idp],
+                            ['medicamento_id', $request->medicamento_id]
+                        ])->update(
+                            [
+                                'servicio_id' => $idp,
+                                'medicamento_id' => $request->medicamento_id
+    
+                            ]
+                        );
+                } else {
+                    DB::table('rel__serviciovsmedicamentos')
+                        ->insert(
+                            [
+
+                                'servicio_id' => $idp,
+                                'medicamento_id' => $request->medicamento_id
+
+
+                            ]
+                        );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -65,69 +108,5 @@ class RelServiciovsmedicamentosController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\rel__serviciovsmedicamentos  $rel__serviciovsmedicamentos
-     * @return \Illuminate\Http\Response
-     */
-    public function show(rel__serviciovsmedicamentos $rel__serviciovsmedicamentos)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\rel__serviciovsmedicamentos  $rel__serviciovsmedicamentos
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(rel__serviciovsmedicamentos $rel__serviciovsmedicamentos)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\rel__serviciovsmedicamentos  $rel__serviciovsmedicamentos
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, rel__serviciovsmedicamentos $rel__serviciovsmedicamentos)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\rel__serviciovsmedicamentos  $rel__serviciovsmedicamentos
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(rel__serviciovsmedicamentos $rel__serviciovsmedicamentos)
-    {
-        //
-    }
+    
 }

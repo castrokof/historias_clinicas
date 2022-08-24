@@ -139,6 +139,13 @@ Route::get('grupo_subgrupo_med', 'DefMedicamentosSuministrosController@selectsub
 Route::get('servicio_medicamento', 'RelServiciovsmedicamentosController@index')->name('servicio_medicamento')->middleware('superEditor');
 Route::delete('serviciovsmedicamento/{id}', 'RelServiciovsmedicamentosController@eliminar')->name('serviciovsmedicamento')->middleware('superEditor');
 Route::get('rel_serv_med', 'ServiciosController@rel_med_index')->name('rel_serv_med')->middleware('superEditor');
+Route::post('add_med_servicio', 'RelServiciovsmedicamentosController@create')->name('add_med_servicio')->middleware('superEditor');
+
+//Ruta para consultar y relacionar los Medicamentos vs Profesionales
+Route::post('add_med_profesional', 'RelProfesionalvsmedicamentosController@crear')->name('add_med_profesional')->middleware('superEditor');
+
+//Ruta para consultar y relacionar los Medicamentos vs Contratos
+Route::post('add_med_contrato', 'RelContratovsmedicamentosController@crear')->name('add_med_contrato')->middleware('superEditor');
 
 
 //RUTA PARA CREAR PROFESIONALES

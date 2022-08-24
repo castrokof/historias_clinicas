@@ -87,32 +87,13 @@ class DefContratosController extends Controller
             $datas = Def_Contratos::orderBy('id_contrato', 'asc')->get();
 
             return  DataTables()->of($datas)
-                ->addColumn('action', function ($datas) {
-                    $button = '<button type="button" name="Detalle" id="' . $datas->id_contrato . '" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Relacionar Item"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
+                ->addColumn('checkbox', function ($datas){
 
-                    return $button;
-                })->addColumn('estado', function ($datas) {
+                  $checkbox =  '<input type="checkbox" name="case[]" value="'.$datas->id_contrato.'" class="casec" title="Selecciona Orden"/>';
 
-
-                    if ($datas->estado == "1") {
-
-                        $button = '
-                 <div class="custom-control custom-switch ">
-                 <input type="checkbox"  class="check_98 custom-control-input"  id="customSwitch99' . $datas->id_contrato . '" value="' . $datas->id_contrato . '"  checked>
-                 <label class="custom-control-label" for="customSwitch99' . $datas->id_contrato . '"  valueid="' . $datas->id_contrato . '"></label>
-                 </div>';
-                    } else {
-
-                        $button = '
-                 <div class="custom-control custom-switch ">
-                 <input type="checkbox" class="check_98 custom-control-input" id="customSwitch99' . $datas->id_contrato . '" value="' . $datas->id_contrato . '" >
-                 <label class="custom-control-label" for="customSwitch99' . $datas->id_contrato . '"  valueid="' . $datas->id_contrato . '"></label>
-                 </div>';
-                    }
-
-                    return $button;
+                  return $checkbox;
                 })
-                ->rawColumns(['action', 'estado'])
+                ->rawColumns(['checkbox'])
                 ->make(true);
         }
 
