@@ -9,12 +9,11 @@
 
                     <thead>
                         <tr>
-                            <!-- <th>Acciones</th> -->
-                            <th>Asociar</th>
+                            <th class="width40"><input id="selectallp" type="checkbox" class="select-all" /> Des/Seleccione Todos</th>
                             <th>Código</th>
                             <th>Nombre</th>
                             <th>Especialidad</th>
-                            <th>Sede</th>
+                            <!-- <th>Sede</th> -->
                         </tr>
                     </thead>
                     <tbody>

@@ -126,13 +126,56 @@ class RelContratovsmedicamentosController extends Controller
         }
     }
 
+    public function crear(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $idps = $request->contrato_id;
+
+            foreach ($idps as $idp) {
+
+                $count = DB::table('rel__contratovsmedicamentos')->where([
+                    ['contrato_id', $idp],
+                    ['medicamento_id', $request->medicamento_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__contratovsmedicamentos')
+                        ->where([
+                            ['contrato_id', $idp],
+                            ['medicamento_id', $request->medicamento_id]
+                        ])->update(
+                            [
+                                'contrato_id' => $idp,
+                                'medicamento_id' => $request->medicamento_id
+    
+                            ]
+                        );
+                } else {
+                    DB::table('rel__contratovsmedicamentos')
+                        ->insert(
+                            [
+
+                                'contrato_id' => $idp,
+                                'medicamento_id' => $request->medicamento_id
+
+
+                            ]
+                        );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
+        }
+    }
+
     public function editar($id)
     {
         if (request()->ajax()) {
 
             // $data = DB::table('rel__contratovsprocedimientos')
             //  ->Join('def__contratos', 'rel__contratovsprocedimientos.contrato_id', '=', 'def__contratos.id_contrato')
-            //  ->Join('def__procedimientos', 'rel__contratovsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
+            //  ->Join('def__procedimientos', 'rel__contratovsprocedimientos.medicamento_id', '=', 'def__procedimientos.id_cups')
             //  ->select('rel__contratovsprocedimientos.id_contratovsprocedimiento as idd','def__contratos.contrato as contrato', 'def__contratos.nombre as nombre_c','rel__contratovsprocedimientos.valor as precio',
             //          'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
             //  ->where('rel__contratovsprocedimientos.id_contratovsprocedimiento', '=', $id )

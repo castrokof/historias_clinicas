@@ -243,7 +243,7 @@ Medicamentos
             }
         });
 
-        
+
 
         //Select para consultar Grupo y SubGrups
         $("#subgrupo_med").select2({
@@ -285,7 +285,7 @@ Medicamentos
             });
         }
 
-
+        var idmedicamento;
 
 
         //Función para abrir detalle del registro
@@ -294,7 +294,7 @@ Medicamentos
 
             var idlist = $(this).attr('id');
             var idlistp = $(this).attr('id');
-            // var idlistf = $(this).attr('id');
+            idmedicamento = $(this).attr('id');
 
             if (idlistp != '') {
                 $('#tservicio').DataTable().destroy();
@@ -625,15 +625,12 @@ Medicamentos
                     url: "{{ route('rel_med_profe')}}",
                     type: "get",
                 },
-                columns: [
-                    /* {
-                                            data: 'actionpp',
-                                            orderable: false
-                                        }, */
+                columns: [{
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
 
-                    {
-                        data: 'estado',
-                        name: 'estado'
                     },
                     {
                         data: 'codigo',
@@ -644,13 +641,14 @@ Medicamentos
                         name: 'nombre'
                     },
                     {
-                        data: 'especialidad',
-                        name: 'especialidad'
-                    },
-                    {
-                        data: 'sede',
-                        name: 'sede'
+                        data: 'nombre_especialidad',
+                        name: 'nombre_especialidad'
                     }
+                    /* ,
+                                        {
+                                            data: 'sede',
+                                            name: 'sede'
+                                        } */
 
                 ],
 
@@ -725,15 +723,12 @@ Medicamentos
                     url: "{{ route('rel_serv_med')}}",
                     type: "get",
                 },
-                columns: [
-                    /* {
-                                                data: 'action',
-                                                //orderable: false
-                                            }, */
+                columns: [{
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
 
-                    {
-                        data: 'estado',
-                        name: 'estado'
                     },
                     {
                         data: 'cod_servicio',
@@ -817,15 +812,12 @@ Medicamentos
                     url: "{{ route('rel_med_cont')}}",
                     type: "get",
                 },
-                columns: [
-                    /* {
-                                                data: 'action',
-                                                //orderable: false
-                                            }, */
+                columns: [{
+                        data: 'checkbox',
+                        name: 'checkbox',
+                        orderable: false,
+                        searchable: false
 
-                    {
-                        data: 'estado',
-                        name: 'estado'
                     },
                     {
                         data: 'contrato',
@@ -881,6 +873,95 @@ Medicamentos
             });
         }
 
+        //Función para enviar los profesionales seleccionados al controlador
+        $(document).on('click', '#addp', function() {
+
+            var medicamento = idmedicamento;
+
+            var idp = [];
+            if (medicamento == '') {
+
+                Swal.fire({
+                    target: document.getElementById('modal-profesional'),
+                    title: 'No hay asociado ningun profesional',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+
+            } else {
+
+                Swal.fire({
+                    target: document.getElementById('modal-profesional'),
+                    title: "¿Estás seguro?",
+                    text: "Estás por asignar medicamento",
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $('input[type=checkbox]:checked.case').each(function() {
+                            idp.push($(this).val());
+                        });
+
+                        if (idp.length > 0) {
+
+                            $.ajax({
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('add_med_profesional') }}",
+                                method: 'post',
+                                data: {
+                                    profesional_id: idp,
+                                    medicamento_id: medicamento,
+
+                                    "_token": $("meta[name='csrf-token']").attr(
+                                        "content")
+
+                                },
+                                success: function(respuesta) {
+                                    if (respuesta.mensaje = 'ok') {
+                                        $('#modal-profesional').modal('hide');
+                                        $('#tprofesional').DataTable().ajax
+                                            .reload();
+                                        Manteliviano.notificaciones(
+                                            'Profesionales relacionados correctamente',
+                                            'Sistema Ips', 'success');
+                                    } else if (respuesta.mensaje = 'ok1') {
+                                        $('#modal-profesional').modal('hide');
+                                        $('#tprofesional').DataTable().ajax
+                                            .reload();
+                                        Manteliviano.notificaciones(
+                                            'Ya existe la realación',
+                                            'Sistema Ips');
+                                    }
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hide");
+                                }
+                            });
+
+                        } else {
+
+                            Swal.fire({
+                                target: document.getElementById('modal-profesional'),
+                                title: 'Por favor seleccione un profesional del checkbox',
+                                icon: 'warning',
+                                buttons: {
+                                    cancel: "Cerrar"
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+        });
+
         //-- Eliminar Profesinal de la relación 
 
         $(document).on('click', '.eliminarpp', function() {
@@ -925,6 +1006,94 @@ Medicamentos
                 }
             })
 
+        });
+
+        //Función para enviar los servicios seleccionados al controlador
+        $(document).on('click', '#adds', function() {
+
+            var medicamento = idmedicamento;
+
+            var ids = [];
+            if (medicamento == '') {
+
+                Swal.fire({
+                    target: document.getElementById('modal-servicio'),
+                    title: 'No hay asociado ningun servicios',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+
+            } else {
+
+                Swal.fire({
+                    target: document.getElementById('modal-servicio'),
+                    title: "¿Estás seguro?",
+                    text: "Estás por asociar un/unos servicio/s",
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $('input[type=checkbox]:checked.cases').each(function() {
+                            ids.push($(this).val());
+                        });
+
+                        if (ids.length > 0) {
+
+                            $.ajax({
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('add_med_servicio') }}",
+                                method: 'post',
+                                data: {
+                                    servicio_id: ids,
+                                    medicamento_id: medicamento,
+
+                                    "_token": $("meta[name='csrf-token']").attr(
+                                        "content")
+
+                                },
+                                success: function(respuesta) {
+                                    if (respuesta.mensaje = 'ok') {
+                                        $('#modal-servicio').modal('hide');
+                                        $('#tservicio').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Servicios relacionados correctamente',
+                                            'Sistema Ips', 'success');
+
+                                    } else if (respuesta.mensaje = 'ok1') {
+                                        $('#modal-servicio').modal('hide');
+                                        $('#tservicio').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Ya existe la relación',
+                                            'Sistema Ips');
+                                    }
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hide");
+                                }
+                            });
+
+                        } else {
+
+                            Swal.fire({
+                                target: document.getElementById('modal-servicio'),
+                                title: 'Por favor seleccione un servicio del checkbox',
+                                icon: 'warning',
+                                buttons: {
+                                    cancel: "Cerrar"
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
         });
 
         //-- Eliminar Servicio de la relación 
@@ -973,6 +1142,94 @@ Medicamentos
 
         });
 
+        //Función para enviar los contratos seleccionados al controlador
+
+        $(document).on('click', '#addcont', function() {
+
+            var medicamento = idmedicamento;
+
+            var idm = [];
+            if (medicamento == '') {
+
+                Swal.fire({
+                    target: document.getElementById('modal-contrato'),
+                    title: 'No hay asociado ningun contrato',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+
+            } else {
+
+                Swal.fire({
+                    target: document.getElementById('modal-contrato'),
+                    title: "¿Estás seguro?",
+                    text: "Estás por asociar un/unos contrato/s",
+                    icon: "success",
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $('input[type=checkbox]:checked.casec').each(function() {
+                            idm.push($(this).val());
+                        });
+
+                        if (idm.length > 0) {
+
+                            $.ajax({
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('add_med_contrato') }}",
+                                method: 'post',
+                                data: {
+                                    contrato_id: idm,
+                                    medicamento_id: medicamento,
+
+                                    "_token": $("meta[name='csrf-token']").attr(
+                                        "content")
+
+                                },
+                                success: function(respuesta) {
+                                    if (respuesta.mensaje = 'ok') {
+                                        $('#modal-contrato').modal('hide');
+                                        $('#tcontrato').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Servicios relacionados correctamente',
+                                            'Sistema Ips', 'success');
+                                    } else if (respuesta.mensaje = 'ok1') {
+                                        $('#modal-contrato').modal('hide');
+                                        $('#tcontrato').DataTable().ajax.reload();
+                                        Manteliviano.notificaciones(
+                                            'Ya existe la relación',
+                                            'Sistema Ips');
+                                    }
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hide");
+                                }
+                            });
+
+                        } else {
+
+                            Swal.fire({
+                                target: document.getElementById('modal-contrato'),
+                                title: 'Por favor seleccione un medicamento del checkbox',
+                                icon: 'warning',
+                                buttons: {
+                                    cancel: "Cerrar"
+
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+        });
+
         //-- Eliminar Contrato de la relación 
 
         $(document).on('click', '.eliminarmd', function() {
@@ -1017,6 +1274,24 @@ Medicamentos
                 }
             })
 
+        });
+
+        //Función asignar y desasignar profesional a relacionar
+
+        $("#selectallp").on('click', function() {
+            $(".case").prop("checked", this.checked);
+        });
+
+        //Función asignar y desasignar servicio a relacionar
+
+        $("#selectalls").on('click', function() {
+            $(".cases").prop("checked", this.checked);
+        });
+
+        //Función asignar y desasignar contrato a relacionar
+
+        $("#selectallc").on('click', function() {
+            $(".casec").prop("checked", this.checked);
         });
 
     });

@@ -133,6 +133,49 @@ class RelProfesionalvsmedicamentosController extends Controller
         }
     }
 
+    public function crear(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $idps = $request->profesional_id;
+
+            foreach ($idps as $idp) {
+
+                $count = DB::table('rel__profesionalvsmedicamentos')->where([
+                    ['profesional_id', $idp],
+                    ['medicamento_id', $request->medicamento_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__profesionalvsmedicamentos')
+                        ->where([
+                            ['profesional_id', $idp],
+                            ['medicamento_id', $request->medicamento_id]
+                        ])->update(
+                            [
+                                'profesional_id' => $idp,
+                                'medicamento_id' => $request->medicamento_id
+    
+                            ]
+                        );
+                } else {
+                    DB::table('rel__profesionalvsmedicamentos')
+                        ->insert(
+                            [
+
+                                'profesional_id' => $idp,
+                                'medicamento_id' => $request->medicamento_id
+
+
+                            ]
+                        );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
+        }
+    }
+
     /**
      * Display the specified resource.
      *

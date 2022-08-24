@@ -9,14 +9,12 @@
 
             <div class="card-body table-responsive p-2">
                 <table id="tcups" class="table table-hover  text-nowrap">
-                    {{-- class="table table-hover table-bordered text-nowrap" --}}
                     <thead>
                         <tr>
                             <th>Acciones</th>
                             <th>Profesional</th>
                             <th>Servicio</th>
                             <th>Procedimiento</th>
-                            <th>Descripción</th>
                             <th>Contrato</th>
                             <th>Cantidad</th>
                             <th>Unitario</th>

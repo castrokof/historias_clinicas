@@ -27,7 +27,7 @@ class DefProfesionalesController extends Controller
 
             $datas = Def_Profesionales::orderBy('id_profesional', 'asc')
                 ->Join('def__especialidades', 'def__profesionales.especialidad_id', '=', 'def__especialidades.id_especialidad')
-                ->select('*', 'def__profesionales.nombre as nombre_profesional', 'def__especialidades.nombre as nombre_especialidad')
+                ->select('def__profesionales.*', 'def__profesionales.nombre as nombre_profesional', 'def__especialidades.nombre as nombre_especialidad')
                 ->get();
 
             return  DataTables()->of($datas)
@@ -70,36 +70,17 @@ class DefProfesionalesController extends Controller
 
             $datas = Def_Profesionales::orderBy('id_profesional', 'asc')
                 ->Join('def__especialidades', 'def__profesionales.especialidad_id', '=', 'def__especialidades.id_especialidad')
-                ->select('*', 'def__profesionales.nombre as nombre_profesional', 'def__especialidades.nombre as nombre_especialidad')
+                ->select('def__profesionales.*', 'def__profesionales.nombre as nombre_profesional', 'def__especialidades.nombre as nombre_especialidad')
                 ->get();
 
             return  DataTables()->of($datas)
-                ->addColumn('action', function ($datas) {
-                    $button = '<button type="button" name="Detalle" id="' . $datas->id_profesional . '" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Relacionar Item"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
+                ->addColumn('checkbox', function ($datas) {
 
-                    return $button;
-                })->addColumn('estado', function ($datas) {
+                    $checkbox =  '<input type="checkbox" name="case[]" value="' . $datas->id_profesional . '" class="case" title="Selecciona Orden"/>';
 
-
-                    if ($datas->estado == "1") {
-
-                        $button = '
-                 <div class="custom-control custom-switch ">
-                 <input type="checkbox"  class="check_98 custom-control-input"  id="customSwitch99' . $datas->id_profesional . '" value="' . $datas->id_profesional . '"  checked>
-                 <label class="custom-control-label" for="customSwitch99' . $datas->id_profesional . '"  valueid="' . $datas->id_profesional . '"></label>
-                 </div>';
-                    } else {
-
-                        $button = '
-                 <div class="custom-control custom-switch ">
-                 <input type="checkbox" class="check_98 custom-control-input" id="customSwitch99' . $datas->id_profesional . '" value="' . $datas->id_profesional . '" >
-                 <label class="custom-control-label" for="customSwitch99' . $datas->id_profesional . '"  valueid="' . $datas->id_profesional . '"></label>
-                 </div>';
-                    }
-
-                    return $button;
+                    return $checkbox;
                 })
-                ->rawColumns(['action', 'estado'])
+                ->rawColumns(['checkbox'])
                 ->make(true);
         }
 
@@ -111,35 +92,19 @@ class DefProfesionalesController extends Controller
 
         if ($request->ajax()) {
 
-            $datas = Def_Profesionales::orderBy('id_profesional', 'asc')->get();
+            $datas = Def_Profesionales::orderBy('id_profesional', 'asc')
+                ->Join('def__especialidades', 'def__profesionales.especialidad_id', '=', 'def__especialidades.id_especialidad')
+                ->select('def__profesionales.*', 'def__profesionales.nombre as nombre_profesional', 'def__especialidades.nombre as nombre_especialidad')
+                ->get();
 
             return  DataTables()->of($datas)
-                ->addColumn('action', function ($datas) {
-                    $button = '<button type="button" name="Detalle" id="' . $datas->id_profesional . '" class="listasDetalleAll btn btn-app bg-success tooltipsC" title="Relacionar Item"  ><span class="badge bg-teal">Detalle</span><i class="fas fa-list-ul"></i>Relaciones</button>';
+                ->addColumn('checkbox', function ($datas) {
 
-                    return $button;
-                })->addColumn('estado', function ($datas) {
+                    $checkbox =  '<input type="checkbox" name="case[]" value="' . $datas->id_profesional . '" class="case" title="Selecciona Orden"/>';
 
-
-                    if ($datas->estado == "1") {
-
-                        $button = '
-                 <div class="custom-control custom-switch ">
-                 <input type="checkbox"  class="check_98 custom-control-input"  id="customSwitch99' . $datas->id_profesional . '" value="' . $datas->id_profesional . '"  checked>
-                 <label class="custom-control-label" for="customSwitch99' . $datas->id_profesional . '"  valueid="' . $datas->id_profesional . '"></label>
-                 </div>';
-                    } else {
-
-                        $button = '
-                 <div class="custom-control custom-switch ">
-                 <input type="checkbox" class="check_98 custom-control-input" id="customSwitch99' . $datas->id_profesional . '" value="' . $datas->id_profesional . '" >
-                 <label class="custom-control-label" for="customSwitch99' . $datas->id_profesional . '"  valueid="' . $datas->id_profesional . '"></label>
-                 </div>';
-                    }
-
-                    return $button;
+                    return $checkbox;
                 })
-                ->rawColumns(['action', 'estado'])
+                ->rawColumns(['checkbox'])
                 ->make(true);
         }
 

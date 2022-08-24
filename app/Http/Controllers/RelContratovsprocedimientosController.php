@@ -129,6 +129,49 @@ class RelContratovsprocedimientosController extends Controller
         }
     }
 
+    public function crear(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $idps = $request->contrato_id;
+
+            foreach ($idps as $idp) {
+
+                $count = DB::table('rel__contratovsprocedimientos')->where([
+                    ['contrato_id', $idp],
+                    ['procedimiento_id', $request->procedimiento_id]
+                ])->count();
+
+                if ($count > 0) {
+                    DB::table('rel__contratovsprocedimientos')
+                        ->where([
+                            ['contrato_id', $idp],
+                            ['procedimiento_id', $request->procedimiento_id]
+                        ])->update(
+                            [
+                                'contrato_id' => $idp,
+                                'procedimiento_id' => $request->procedimiento_id
+    
+                            ]
+                        );
+                } else {
+                    DB::table('rel__contratovsprocedimientos')
+                        ->insert(
+                            [
+
+                                'contrato_id' => $idp,
+                                'procedimiento_id' => $request->procedimiento_id
+
+
+                            ]
+                        );
+                }
+            }
+
+            return response()->json(['success' => 'ok']);
+        }
+    }
+
     public function editar($id)
     {
         if (request()->ajax()) {
@@ -185,7 +228,7 @@ class RelContratovsprocedimientosController extends Controller
             ->where('id_contratovsprocedimiento', '=', $id )
             ->delete();
 
-        return response()->json(['success' => 'ok1']);
+        return response()->json(['success' => 'ok9']);
         }
     }
 }

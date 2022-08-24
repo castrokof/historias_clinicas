@@ -1,7 +1,7 @@
 <div class="card card-info p-2">
     <div>
         <!-- Modal -->
-        <button type="button" class="btn btn-primary" name="agregar_cups" id="agregar_cups"
+        <button type="button" class="btn btn-primary" name="agregar_cums" id="agregar_cums"
         data-toggle="modal" data-target="#bs-example-modal-lg-add"><i class="fa fa-plus-circle"></i> Agregar</button>
     </div>
 
@@ -16,8 +16,8 @@
                             <th>Profesional</th>
                             <th>Servicio</th>
                             <th>Medicamento</th>
-                            <th>Descripción</th>
                             <th>Contrato</th>
+                            <th>Cantidad Formulada</th>
                             <th>Cantidad</th>
                             <th>Unitario</th>
                             <th>Subtotal</th>

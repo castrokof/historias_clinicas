@@ -291,7 +291,7 @@ Profesionales
 
         });
         //--------------------------------Tabla relacion profesional vs servicios----------------------------//
-        //fill_datatable();
+
         function fill_datatable(idlistp = '') {
             var datatable1 = $('#tservicio').DataTable({
                 language: idioma_espanol,
@@ -832,8 +832,6 @@ Profesionales
 
 
         //Función para enviar los procedimientos seleccionados al controlador
-
-
         $(document).on('click', '#addp', function() {
 
             var profesional = idprofesional;
@@ -843,7 +841,7 @@ Profesionales
 
                 Swal.fire({
                     target: document.getElementById('modal-procedimiento'),
-                    title: 'No hay asociado ningun profesional',
+                    title: 'No hay asociado ningun procedimiento',
                     icon: 'warning',
                     buttons: {
                         cancel: "Cerrar"
@@ -856,7 +854,7 @@ Profesionales
                 Swal.fire({
                     target: document.getElementById('modal-procedimiento'),
                     title: "¿Estás seguro?",
-                    text: "Estás por asignar ordenes",
+                    text: "Estás por asignar procedimiento",
                     icon: "success",
                     showCancelButton: true,
                     showCloseButton: true,
@@ -925,7 +923,6 @@ Profesionales
 
 
         //-- Eliminar Procedimiento de la relación
-
         $(document).on('click', '.eliminarpp', function() {
             var id = $(this).attr('id');
 
@@ -973,7 +970,6 @@ Profesionales
 
 
         //Función para enviar los servicios seleccionados al controlador
-
         $(document).on('click', '#adds', function() {
 
             var profesional = idprofesional;
@@ -1254,14 +1250,14 @@ Profesionales
         });
 
 
-        //Función asignar y desasignar procedimientos a relacionar
+        //Función asignar y desasignar medicamento a relacionar
 
         $("#selectallm").on('click', function() {
             $(".casem").prop("checked", this.checked);
         });
 
 
-        //Función asignar y desasignar procedimientos a relacionar
+        //Función asignar y desasignar servicio a relacionar
 
         $("#selectalls").on('click', function() {
             $(".cases").prop("checked", this.checked);

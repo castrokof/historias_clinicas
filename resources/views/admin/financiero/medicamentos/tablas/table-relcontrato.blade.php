@@ -9,8 +9,7 @@
 
                     <thead>
                         <tr>
-                            <!-- <th>Acciones</th> -->
-                            <th>Asociar</th>
+                            <th class="width40"><input id="selectallc" type="checkbox" class="select-all" /> Des/Seleccione Todos</th>
                             <th>Código</th>
                             <th>Contrato</th>
                         </tr>

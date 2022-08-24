@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Admin\Fc_Factura_Procedimientos;
 use App\Models\Admin\Factura;
 use App\Models\Admin\Servicios;
+use App\Models\Admin\Def_Profesionales;
+use App\Models\Admin\Def_Procedimientos;
+use App\Models\Admin\Def_Contratos;
+use App\Models\Admin\Def_MedicamentosSuministros;
 use App\Models\Admin\def__documentos_consecutivo;
 use App\Models\Admin\Eps_empresa;
 use App\Models\Admin\Eps_copago;
@@ -51,13 +55,93 @@ class FcFacturaProcedimientosController extends Controller
             $term = $request->get('q');
             $servf = Servicios::orderBy('id_servicio')
                 ->where('cod_servicio', 'LIKE', '%' . $term . '%')
-                  ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->orwhere('nombre', 'LIKE', '%' . $term . '%')
                 ->get();
             return response()->json($servf);
         } else {
             $term = $request->get('q');
             $servf = Servicios::orderBy('id_servicio')->get();
             return response()->json($servf);
+        }
+    }
+
+    //Funcion para seleccionar el Profesional y agregarlo en la factura
+    public function selectprof(Request $request)
+    {
+        $servf = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $servf = Def_Profesionales::orderBy('id_profesional')
+                ->where('codigo', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($servf);
+        } else {
+            $term = $request->get('q');
+            $servf = Def_Profesionales::orderBy('id_profesional')->get();
+            return response()->json($servf);
+        }
+    }
+
+    //Funcion para seleccionar el Procedimiento y agregarlo en la factura
+    public function selectcups(Request $request)
+    {
+        $servf = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $servf = Def_Procedimientos::orderBy('id_cups')
+                ->where('cod_cups', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($servf);
+        } else {
+            $term = $request->get('q');
+            $servf = Def_Procedimientos::orderBy('id_cups')->get();
+            return response()->json($servf);
+        }
+    }
+
+    //Funcion para seleccionar el Contrato y agregarlo en la factura
+    public function selectcont(Request $request)
+    {
+        $servf = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $servf = Def_Contratos::orderBy('id_contrato')
+                ->where('contrato', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($servf);
+        } else {
+            $term = $request->get('q');
+            $servf = Def_Contratos::orderBy('id_contrato')->get();
+            return response()->json($servf);
+        }
+    }
+
+    //Función para seleccionar el Medicamento y agregarlo en la factura
+    public function selectmed(Request $request)
+    {
+        $medfac = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $medfac = Def_MedicamentosSuministros::orderBy('id_medicamento')
+                ->where('codigo', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($medfac);
+        } else {
+            $term = $request->get('q');
+            $medfac = Def_MedicamentosSuministros::orderBy('id_medicamento')->get();
+            return response()->json($medfac);
         }
     }
 

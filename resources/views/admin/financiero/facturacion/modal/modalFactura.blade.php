@@ -6,7 +6,7 @@
             <div class="card-header with-border">
                 <h3 class="card-title">Facturación Ambulatoria</h3>
                 <div class="card-tools pull-right">
-                    <button type="button" class="btn create_listas btn-default" name="create_listas" id="create_listas"><i class="fa fa-user "></i> Paciente</button>
+                    <button type="button" class="btn create_paciente btn-default" name="create_paciente" id="create_paciente"><i class="fa fa-user "></i> Paciente</button>
                     <button type="button" class="btn create_listas btn-default" name="create_listas" id="create_listas"><i class="fa fa-calendar "></i> Citas</button>
                 </div>
             </div>
