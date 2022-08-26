@@ -13,6 +13,7 @@ Facturación
 
 @section('scripts')
 <script src="{{ asset('assets/pages/scripts/admin/usuario/crearuser.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/pages/scripts/admin/facturacion/index.js') }}"></script>
 @endsection
 
 @section('contenido')
@@ -20,7 +21,7 @@ Facturación
 @include('admin.financiero.facturacion.modal.modalFacturaMedicamento')
 @include('admin.financiero.facturacion.modal.modalFacturaProcedimiento')
 
-@include('admin.paciente.modal.modalPacientes')
+<!-- @include('admin.paciente.modal.modalPacientes') -->
 
 @endsection
 
@@ -382,29 +383,6 @@ Facturación
 
         });
 
-        $('#addfila').click(function() {
-
-            const total = parseFloat($('#cantidad').val() * $('#valor').val());
-
-            $('#tmedicamentos> tbody:last-child')
-                .append(
-                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
-                    '<i class="fas fa-trash"></i></button></td>' +
-                    '</td>' +
-                    '<td>' + $('#profesional').val() + '</td>' +
-                    '<td>' + $('#servicio').val() + '</td>' +
-                    '<td>' + $('#cod_cups').val() + '</td>' +
-                    '<td>' + $('#cod_cups').val() + '</td>' +
-                    '<td>' + $('#contrato').val() + '</td>' +
-                    '<td>' + $('#cantidad').val() + '</td>' +
-                    '<td>' + $('#valor').val() + '</td>' +
-                    '<td>' + total + '</td></tr>'
-
-                );
-
-
-        });
-
         // eliminar filas de la tabla procedimientos para guardar
 
         $("#tcups").on("click", "#eliminar", function() {
@@ -445,6 +423,30 @@ Facturación
 
         //Select para consultar los servicios
         $("#fact_servicio").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('servicios_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.cod_servicio + ' - ' + data.nombre,
+                                id: data.id_servicio
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar los servicios
+        $("#fact_servicio2").select2({
             theme: "bootstrap",
             ajax: {
                 url: "{{ route('servicios_factura')}}",
@@ -605,12 +607,12 @@ Facturación
 
 
             //Funcion para ingresar al modulo Pacientes y poder crearlos desde el modulo de Facturación
-            $('#create_paciente').click(function() {
+            $('#create_paciente_2').click(function() {
                 $('#form-general')[0].reset();
                 $('.card-title').text('Agregar Nuevo paciente');
                 $('#action_button').val('Add');
                 $('#action').val('Add');
-                $('#form_result_1').html('');
+                $('#form_result').html('');
                 $('#modal-u').modal('show');
             });
 
@@ -688,7 +690,7 @@ Facturación
 
 
                                 }
-                                $('#form_result_1').html(html)
+                                $('#form_result').html(html)
                             }
 
 

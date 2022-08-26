@@ -29,9 +29,9 @@ class CreateUsuarioTable extends Migration
             $table->string('celular',50);
             $table->string('telefono',50)->nullable();
             $table->string('profesion',50);
-            $table->string('especialidad',50);
+            $table->string('area',50);//antes era el campo especialidad se quito y se dejo en def__profesionales
             $table->string('observacion',200)->nullable();
-            $table->string('ips',50);
+            $table->string('ips',50)->nullable();
             $table->char('activo',1);
             $table->dateTime('delete_at')->nullable();
             $table->timestamps();

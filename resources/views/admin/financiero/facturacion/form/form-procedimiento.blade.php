@@ -1,8 +1,8 @@
 <!-- Estos datos deben ser insertados en la tabla fc__factura__procedimientos, junto con el sede_id y factura_id -->
 <div class="form-group row">
   <div class="col-lg-6">
-    <label for="fact_servicio" class="col-xs-4 control-label requerido">Servicio</label>
-    <select name="servicio_id" id="fact_servicio" class="form-control " required>
+    <label for="fact_servicio2" class="col-xs-4 control-label requerido">Servicio</label>
+    <select name="servicio_id" id="fact_servicio2" class="form-control " required>
     </select>
   </div>
 

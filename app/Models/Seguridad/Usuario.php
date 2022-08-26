@@ -31,9 +31,9 @@ class Usuario extends Authenticatable
         'celular',
         'telefono',
         'profesion',
-        'especialidad',
+        'area',
         'observacion',
-        'ips',
+        // 'ips',
         'activo',
         'delete_at'
     ];
@@ -72,7 +72,7 @@ class Usuario extends Authenticatable
                     'usuario' => $this->usuario,
                     'usuario_id' => $this->id,
                     'profesion' => $this->profesion,
-                    'especialidad' => $this->especialidad,
+                    'area' => $this->area,
                     'email' => $this->email,
                     'activo'=>$this->activo
                 ]

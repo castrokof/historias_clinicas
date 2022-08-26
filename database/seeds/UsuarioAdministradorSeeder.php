@@ -27,11 +27,53 @@ class UsuarioAdministradorSeeder extends Seeder
             'celular'=>'3175018125',
             'telefono'=>'3062047',
             'profesion'=>strtoupper('ingeniero'),
-            'especialidad'=>strtoupper('sistemas'),
+            'area'=>strtoupper('sistemas'),
             'observacion'=>strtoupper('Prueba'),
-            'ips'=>strtoupper('atencion fidem s.a.s'),
+            // 'ips'=>strtoupper('atencion fidem s.a.s'),
             'activo'=>'1'
             ]);
+
+            DB::table('usuario')->insert([
+                'papellido'=>strtoupper('Bejarano'),
+                'sapellido'=>strtoupper('Barbosa'),
+                'pnombre'=>strtoupper('Carlos'),
+                'snombre'=>null,
+                'tipo_documento'=>strtoupper('CC'),
+                'documento'=>'1130639211',
+                'usuario'=>'cbejarano',
+                'password'=>bcrypt('123456'),
+                'remenber_token'=>bcrypt('123456'),
+                'email'=>'pruebas@gmail.com',
+                'cod_retus'=>'0123',
+                'celular'=>'12352623528',
+                'telefono'=>'30253689',
+                'profesion'=>strtoupper('Full Stack Developer'),
+                'area'=>strtoupper('Full Stack Developer'),
+                'observacion'=>strtoupper('Prueba'),
+                // 'ips'=>strtoupper('salud vitalia s.a.s'),
+                'activo'=>'1'
+                ]);
+
+                DB::table('usuario')->insert([
+                    'papellido'=>strtoupper('Pinillos'),
+                    'sapellido'=>strtoupper('Pedroza'),
+                    'pnombre'=>strtoupper('Nathalia'),
+                    'snombre'=>null,
+                    'tipo_documento'=>strtoupper('CC'),
+                    'documento'=>'1143857667',
+                    'usuario'=>'npinillos',
+                    'password'=>bcrypt('123456'),
+                    'remenber_token'=>bcrypt('123456'),
+                    'email'=>'pruebas@gmail.com',
+                    'cod_retus'=>'0123',
+                    'celular'=>'12352623528',
+                    'telefono'=>'30253689',
+                    'profesion'=>strtoupper('medico'),
+                    'area'=>strtoupper('dolor y cuidados paliativos'),
+                    'observacion'=>strtoupper('Prueba'),
+                    // 'ips'=>strtoupper('salud vitalia s.a.s'),
+                    'activo'=>'1'
+                    ]);
 
 
 
@@ -39,6 +81,20 @@ class UsuarioAdministradorSeeder extends Seeder
 
             'rol_id'=>1,
             'usuario_id'=>1,
+
+        ]);
+
+        DB::table('usuario_rol')->insert([
+
+            'rol_id'=>1,
+            'usuario_id'=>2,
+
+        ]);
+
+        DB::table('usuario_rol')->insert([
+
+            'rol_id'=>7,
+            'usuario_id'=>3,
 
         ]);
 
