@@ -31,7 +31,7 @@ class CreateCita extends Migration
             $table->string('snombre',100)->nullable();
             $table->string('cod_documentos',10)->nullable(); //Este es el codigo de la factura
             $table->string('numero_factura',255)->nullable();//Este es el consecutivo de la factura
-            $table->string('servicio_id',150)->nullable();
+            $table->string('servicio',150)->nullable();
             $table->string('cod_profesional',20)->nullable();//Este dato se captura de la tabla def__profesionales
             $table->string('nombre_profesional',20)->nullable();//Este dato se captura de la tabla def__profesionales
             $table->string('cod_cups',45)->nullable(); //Este dato se captura de la tabla def__procedimientos
@@ -58,7 +58,7 @@ class CreateCita extends Migration
             $table->unsignedBigInteger('cups_id')->nullable();
             $table->foreign('cups_id', 'fk_cita_cups')->references('id_cups')->on('def__procedimientos')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('contrato_id')->nullable();
-            $table->foreign('contrato_id', 'fk_cita_contrato')->references('id_contrato')->on('def__contrato')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('contrato_id', 'fk_cita_contrato')->references('id_contrato')->on('def__contratos')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('observacion_id')->nullable();
             $table->foreign('observacion_id', 'fk_cita_observacion')->references('id_observacion')->on('observacion_citas')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('factura_id')->nullable();

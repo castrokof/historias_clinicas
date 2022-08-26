@@ -429,279 +429,269 @@
 
             $('#create_agenda').click(function() {
 
-                //Array de horarios, fechas, profesional y festivos
+                    //Array de horarios, fechas, profesional y festivos
 
-                let fechaini;
-                let fechafin;
-                let festivos;
-                let profesional;
-                const arraylunes = [];
-                const arraymartes = [];
-                const arraymiercoles = [];
-                const arrayjueves = [];
-                const arrayviernes = [];
-                const arraysabado = [];
-                const arraydomingo = [];
+                    let fechaini;
+                    let fechafin;
+                    let festivos;
+                    let profesional;
+                    const arraylunes = [];
+                    const arraymartes = [];
+                    const arraymiercoles = [];
+                    const arrayjueves = [];
+                    const arrayviernes = [];
+                    const arraysabado = [];
+                    const arraydomingo = [];
 
 
-                fechaini = $('#fechaini').val();
-                fechafin = $('#fechafin').val();
-                festivos = $('#festivos').val();
-                profesional = $('#profesional_select').val();
+                    fechaini = $('#fechaini').val();
+                    fechafin = $('#fechafin').val();
+                    festivos = $('#festivos').val();
+                    profesional = $('#profesional_select').val();
 
-                if (fechaini > fechafin) {
+                    if (fechaini > fechafin) {
 
-                    Swal.fire({
-                        title: 'La fecha inicial debe ser menor que la fecha final',
-                        icon: 'warning',
-                        showConfirmButton: true,
-                        timer: 1000
-                    })
+                        Swal.fire({
+                            title: 'La fecha inicial debe ser menor que la fecha final',
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            timer: 1000
+                        })
 
-                } else if (fechaini == null || fechafin == null || profesional == null) {
+                    } else if (fechaini == null || fechafin == null || profesional == null) {
 
 
-                    Swal.fire({
-                        title: 'Fecha inicial, final y profesional son obligatorios',
-                        icon: 'warning',
-                        showConfirmButton: true,
-                        timer: 1000
-                    })
+                        Swal.fire({
+                            title: 'Fecha inicial, final y profesional son obligatorios',
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            timer: 1000
+                        })
 
-                } else {
+                    } else {
 
 
 
-                    $("#tlunes> tbody tr").each(function(el) {
+                        $("#tlunes> tbody tr").each(function(el) {
 
-                        var alunes = {};
+                            var alunes = {};
 
-                        var tds = $(this).find("td");
-                        alunes.horario = tds.filter(":eq(1)").text();
+                            var tds = $(this).find("td");
+                            alunes.horario = tds.filter(":eq(1)").text();
 
-                        // Ingreso cada array en la variable arraylunes
-                        arraylunes.push(alunes);
+                            // Ingreso cada array en la variable arraylunes
+                            arraylunes.push(alunes);
 
 
 
 
-                    });
+                        });
 
-                    $("#tmartes> tbody tr").each(function(el) {
+                        $("#tmartes> tbody tr").each(function(el) {
 
-                        var amartes = {};
+                            var amartes = {};
 
 
-                        var tds = $(this).find("td");
-                        amartes.horario = tds.filter(":eq(1)").text();
+                            var tds = $(this).find("td");
+                            amartes.horario = tds.filter(":eq(1)").text();
 
-                        // Ingreso cada array en la variable arraymartes
-                        arraymartes.push(amartes);
+                            // Ingreso cada array en la variable arraymartes
+                            arraymartes.push(amartes);
 
 
 
-                    });
+                        });
 
-                    $("#tmiercoles> tbody tr").each(function(el) {
+                        $("#tmiercoles> tbody tr").each(function(el) {
 
-                        var amiercoles = {};
+                            var amiercoles = {};
 
-                        var tds = $(this).find("td");
-                        amiercoles.horario = tds.filter(":eq(1)").text();
+                            var tds = $(this).find("td");
+                            amiercoles.horario = tds.filter(":eq(1)").text();
 
 
 
-                        // Ingreso cada array en la variable arraymiercoles
-                        arraymiercoles.push(amiercoles);
+                            // Ingreso cada array en la variable arraymiercoles
+                            arraymiercoles.push(amiercoles);
 
 
 
 
-                    });
+                        });
 
-                    $("#tjueves> tbody tr").each(function(el) {
+                        $("#tjueves> tbody tr").each(function(el) {
 
-                        var ajueves = {};
+                            var ajueves = {};
 
-                        var tds = $(this).find("td");
-                        ajueves.horario = tds.filter(":eq(1)").text();
+                            var tds = $(this).find("td");
+                            ajueves.horario = tds.filter(":eq(1)").text();
 
-                        // Ingreso cada array en la variable arrayjueves
-                        arrayjueves.push(ajueves);
+                            // Ingreso cada array en la variable arrayjueves
+                            arrayjueves.push(ajueves);
 
 
 
 
-                    });
+                        });
 
-                    $("#tviernes> tbody tr").each(function(el) {
+                        $("#tviernes> tbody tr").each(function(el) {
 
-                        var aviernes = {};
+                            var aviernes = {};
 
 
-                        var tds = $(this).find("td");
-                        aviernes.horario = tds.filter(":eq(1)").text();
+                            var tds = $(this).find("td");
+                            aviernes.horario = tds.filter(":eq(1)").text();
 
-                        // Ingreso cada array en la variable arrayviernes
-                        arrayviernes.push(aviernes);
+                            // Ingreso cada array en la variable arrayviernes
+                            arrayviernes.push(aviernes);
 
 
 
-                    });
+                        });
 
-                    $("#tsabado> tbody tr").each(function(el) {
+                        $("#tsabado> tbody tr").each(function(el) {
 
-                        var asabado = {};
+                            var asabado = {};
 
-                        var tds = $(this).find("td");
-                        asabado.horario = tds.filter(":eq(1)").text();
+                            var tds = $(this).find("td");
+                            asabado.horario = tds.filter(":eq(1)").text();
 
 
 
-                        // Ingreso cada array en la variable arraysabado
-                        arraysabado.push(asabado);
+                            // Ingreso cada array en la variable arraysabado
+                            arraysabado.push(asabado);
 
 
-
-
-                    });
-
-
-                    $("#tdomingo> tbody tr").each(function(el) {
-
-                        var adomingo = {};
-
-                        var tds = $(this).find("td");
-                        adomingo.horario = tds.filter(":eq(1)").text();
-
-
-
-                        // Ingreso cada array en la variable arraysabado
-                        arraydomingo.push(adomingo);
-
-
-
-
-                    });
-
-
-
-                    if (fechaini != null && fechafin != null && profesional != null && (arraylunes.length >
-                            0 ||
-                            arraymartes.length > 0 || arraymiercoles.length > 0 ||
-                            arrayjueves.length > 0 || arrayviernes.length > 0 || arraysabado.length > 0 ||
-                            arraydomingo.length > 0)) {
-
-
-                        $.ajax({
-                            beforeSend: function() {
-                                $('.loader').css("visibility", "visible");
-                            },
-                            url: "{{ route('programar_agenda') }}",
-                            method: 'post',
-                            data: {
-                                lunes: arraylunes,
-                                martes: arraymartes,
-                                miercoles: arraymiercoles,
-                                jueves: arrayjueves,
-                                viernes: arrayviernes,
-                                sabado: arraysabado,
-                                domingo: arraydomingo,
-                                fechaini: fechaini,
-                                fechafin: fechafin,
-                                profesional: profesional,
-                                festivos: festivos,
-                                "_token": $("meta[name='csrf-token']").attr("content")
-                            },
-                            dataType: "json",
-                            success: function(data) {
-                                if (data.success == 'ya') {
-
-                                    for (var i = 0; i < data.result.length; i++) {
-                                        $.each(JSON.parse(data.result[i]), function(a, items) {
-
-                                            toastr.warning('¡ ' + items + ' !');
-                                            // Swal.fire(
-                                            //     {
-                                            //       icon: 'warning',
-                                            //       title: items,
-                                            //       showConfirmButton: true,
-                                            //       //timer: 1500
-                                            //     }
-                                            //   )
-
-                                        });
-                                    }
-                                    //$('#mipres').DataTable().destroy();
-                                } else if (data.success == 'ok') {
-
-
-                                    Swal.fire({
-                                        icon: 'info',
-                                        title: 'Información',
-                                        text: 'Fue programado correctamente la agenda del profesional',
-                                        showConfirmButton: true,
-                                        timer: 1000
-                                    })
-                                }
-
-
-                            },
-                            complete: function() {
-                                $('.loader').css("visibility", "hidden");
-                            }
 
 
                         });
 
 
-                    }
+                        $("#tdomingo> tbody tr").each(function(el) {
 
-                else {
-                    Swal.fire({
-                        title: 'Debes seleccionar un horario',
-                        icon: 'warning',
-                        buttons: {
-                            cancel: "Cerrar"
+                            var adomingo = {};
 
-                        }
-                    })
+                            var tds = $(this).find("td");
+                            adomingo.horario = tds.filter(":eq(1)").text();
 
 
-                }
-            }
-            });
+
+                            // Ingreso cada array en la variable arraysabado
+                            arraydomingo.push(adomingo);
 
 
 
 
+                        });
 
 
 
+                        if (fechaini != null && fechafin != null && profesional != null && (arraylunes.length >
+                                0 ||
+                                arraymartes.length > 0 || arraymiercoles.length > 0 ||
+                                arrayjueves.length > 0 || arrayviernes.length > 0 || arraysabado.length > 0 ||
+                                arraydomingo.length > 0)) {
 
-            //Select para consultar los Profesionales
-            $("#profesional_select").select2({
-                theme: "bootstrap",
-                ajax: {
-                    url: "{{ route('selectprofesional') }}",
-                    dataType: 'json',
-                    delay: 250,
-                    processResults: function(data) {
-                        return {
-                            results: $.map(data, function(data) {
 
-                                return {
+                            $.ajax({
+                                    beforeSend: function() {
+                                        $('.loader').css("visibility", "visible");
+                                    },
+                                    url: "{{ route('programar_agenda') }}",
+                                    method: 'post',
+                                    data: {
+                                        lunes: arraylunes,
+                                        martes: arraymartes,
+                                        miercoles: arraymiercoles,
+                                        jueves: arrayjueves,
+                                        viernes: arrayviernes,
+                                        sabado: arraysabado,
+                                        domingo: arraydomingo,
+                                        fechaini: fechaini,
+                                        fechafin: fechafin,
+                                        profesional: profesional,
+                                        festivos: festivos,
+                                        "_token": $("meta[name='csrf-token']").attr("content")
+                                    },
+                                    dataType: "json",
+                                    success: function(data) {
+                                        if (data.success == 'ya') {
 
-                                    text: data.nombre,
-                                    id: data.id_profesional
+                                            Swal.fire({
+                                                icon: 'danger',
+                                                title: 'Información',
+                                                text: 'Ya Fue programado por favor revisar',
+                                                showConfirmButton: true,
+                                                timer: 1000
+                                            })
+                                        }
+                                        //$('#mipres').DataTable().destroy();
+                                    else if (data.success == 'ok') {
 
+                                        Swal.fire({
+                                            icon: 'info',
+                                            title: 'Información',
+                                            text: 'Fue programado correctamente la agenda del profesional',
+                                            showConfirmButton: true,
+                                            timer: 1000
+                                        })
+                                    }
+
+
+                                },
+                                complete: function() {
+                                    $('.loader').css("visibility", "hidden");
                                 }
-                            })
-                        };
-                    },
-                    cache: true
+
+
+                            });
+
+
+                    } else {
+                        Swal.fire({
+                            title: 'Debes seleccionar un horario',
+                            icon: 'warning',
+                            buttons: {
+                                cancel: "Cerrar"
+
+                            }
+                        })
+
+
+                    }
                 }
             });
+
+
+
+
+
+
+
+
+        //Select para consultar los Profesionales
+        $("#profesional_select").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('selectprofesional') }}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.nombre,
+                                id: data.id_profesional
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
 
         });
 
