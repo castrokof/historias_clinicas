@@ -272,6 +272,27 @@ Route::get('sedes/{id}/editar', 'DefSedesController@editar')->name('editar_sedes
 Route::put('sedes/{id}', 'DefSedesController@actualizar')->name('actualizar_sedes')->middleware('superEditor');
 Route::get('sede_ciudad', 'DefSedesController@selectci')->name('sede_ciudad')->middleware('superEditor');
 
+/* RUTAS DE OCUPACIONES */
+Route::get('ocupaciones', 'OcupacionesController@index')->name('ocupaciones')->middleware('superEditor');
+Route::get('ocupaciones/crear', 'OcupacionesController@crear')->name('crear_ocupaciones')->middleware('superEditor');
+Route::post('ocupaciones', 'OcupacionesController@guardar')->name('guardar_ocupaciones')->middleware('superEditor');
+Route::get('ocupaciones/{id}/editar', 'OcupacionesController@editar')->name('editar_ocupaciones')->middleware('superEditor');
+Route::put('ocupaciones/{id}', 'OcupacionesController@actualizar')->name('actualizar_ocupaciones')->middleware('superEditor');
+
+/* RUTAS DE CODIGOS ATC Y FORMAS */
+Route::get('codigos_atc', 'DefATCMedicamentosController@index')->name('codigos_atc')->middleware('superEditor');
+Route::get('codigos_atc/crear', 'DefATCMedicamentosController@crear')->name('crear_codigos_atc')->middleware('superEditor');
+Route::post('codigos_atc', 'DefATCMedicamentosController@guardar')->name('guardar_codigos_atc')->middleware('superEditor');
+Route::get('codigos_atc/{id}/editar', 'DefATCMedicamentosController@editar')->name('editar_codigos_atc')->middleware('superEditor');
+Route::put('codigos_atc/{id}', 'DefATCMedicamentosController@actualizar')->name('actualizar_codigos_atc')->middleware('superEditor');
+
+/* RUTAS DE ESPECIALIDADES */
+Route::get('especialidades', 'DefEspecialidadesController@index')->name('especialidades')->middleware('superEditor');
+Route::get('especialidades/crear', 'DefEspecialidadesController@crear')->name('crear_especialidades')->middleware('superEditor');
+Route::post('especialidades', 'DefEspecialidadesController@guardar')->name('guardar_especialidades')->middleware('superEditor');
+Route::get('especialidades/{id}/editar', 'DefEspecialidadesController@editar')->name('editar_especialidades')->middleware('superEditor');
+Route::put('especialidades/{id}', 'DefEspecialidadesController@actualizar')->name('actualizar_especialidades')->middleware('superEditor');
+
 /* RUTAS DE SERVICIOS */
 Route::get('servicios', 'ServiciosController@index')->name('servicios')->middleware('superEditor');
 Route::get('servicios/crear', 'ServiciosController@crear')->name('crear_servicio')->middleware('superEditor');

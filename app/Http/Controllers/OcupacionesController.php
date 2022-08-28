@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ocupaciones;
+use App\Models\Admin\Ocupaciones;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class OcupacionesController extends Controller
 {
@@ -12,9 +14,45 @@ class OcupacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $usuario_id = $request->session()->get('usuario_id');
+        if ($request->ajax()) {
+            $datas = Ocupaciones::orderBy('id_ocupacion')
+                ->get();
+
+            return  DataTables()->of($datas)
+                ->addColumn('action', function ($datas) {
+                    $button = '<button type="button" name="edit" id="' . $datas->id_ocupacion . '"
+        class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar"><i class="far fa-edit"></i></button>';
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('admin.parametros.ocupaciones.index');
+    }
+
+    public function guardar(Request $request)
+    {
+        $rules = array(
+            'codigo'  => 'required|max:10',
+            'nombre'  => 'required|max:250',
+            'estado'  => 'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        Ocupaciones::create($request->all());
+        return response()->json(['success' => 'ok']);
     }
 
     /**
@@ -22,10 +60,18 @@ class OcupacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function editar($id)
     {
-        //
+        if (request()->ajax()) {
+
+            $data = Ocupaciones::where('id_ocupacion', $id)->first();
+
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.parametros.ocupaciones.index');
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -33,53 +79,30 @@ class OcupacionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function actualizar(Request $request, $id)
     {
-        //
+        $rules = array(
+            'codigo'  => 'required|max:10',
+            'nombre'  => 'required|max:250',
+            'estado'  => 'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $data = DB::table('ocupaciones')->where('id_ocupacion', '=', $id)
+            ->update([
+                'codigo' => $request->codigo,
+                'nombre' => $request->nombre,
+                'estado' => $request->estado,
+                'updated_at' => now()
+            ]);
+        //$data->update($request->all());
+        return response()->json(['success' => 'ok1']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ocupaciones  $ocupaciones
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ocupaciones $ocupaciones)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ocupaciones  $ocupaciones
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ocupaciones $ocupaciones)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ocupaciones  $ocupaciones
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ocupaciones $ocupaciones)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ocupaciones  $ocupaciones
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ocupaciones $ocupaciones)
-    {
-        //
-    }
+    
 }
