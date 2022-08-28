@@ -697,8 +697,10 @@ Facturación
             });
         }
 
+
         // Agregar filas a tabla para guardar
         $('#addfila').click(function() {
+            
 
             const total = parseFloat($('#cantidad').val() * $('#valor').val());
 
@@ -707,11 +709,10 @@ Facturación
                     '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                     '<i class="fas fa-trash"></i></button></td>' +
                     '</td>' +
-                    '<td>' + $('#profesional').val() + '</td>' +
-                    '<td>' + $('#servicio').val() + '</td>' +
-                    '<td>' + $('#cod_cups').val() + '</td>' +
-                    '<td>' + $('#cod_cups').val() + '</td>' +
-                    '<td>' + $('#contrato').val() + '</td>' +
+                    '<td>' + $('#fact_profesional').val() + '</td>' +
+                    '<td>' + $('#fact_servicio2').val() + '</td>' +
+                    '<td>' + $('#fact_procedimiento').val() + '</td>' +
+                    '<td>' + $('#fact_contrato').val() + '</td>' +
                     '<td>' + $('#cantidad').val() + '</td>' +
                     '<td>' + $('#valor').val() + '</td>' +
                     '<td>' + total + '</td></tr>'
@@ -807,8 +808,32 @@ Facturación
             }
         });
 
-        //Select para consultar los profesionales
+        //Select para consultar los profesionales desde Medicamentos
         $("#fact_profesional").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('profesionales_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.codigo + ' - ' + data.nombre,
+                                id: data.id_profesional
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar los profesionales desde Procedimientos
+        $("#fact_profesional2").select2({
             theme: "bootstrap",
             ajax: {
                 url: "{{ route('profesionales_factura')}}",
@@ -855,8 +880,32 @@ Facturación
             }
         });
 
-        //Select para consultar los contratos
+        //Select para consultar los contratos desde Medicamentos
         $("#fact_contrato").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('contratos_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.contrato + ' - ' + data.nombre,
+                                id: data.id_contrato
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar los contratos desde Procedimientos
+        $("#fact_contrato2").select2({
             theme: "bootstrap",
             ajax: {
                 url: "{{ route('contratos_factura')}}",
