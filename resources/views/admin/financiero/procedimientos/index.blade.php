@@ -1254,10 +1254,6 @@ Procedimientos
             $(".casec").prop("checked", this.checked);
         });
 
-
-
-
-
         // Función para multimodal
 
         (function($, window) {

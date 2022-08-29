@@ -18,7 +18,7 @@ class CreateDefMedicamentosSuministrosTable extends Migration
             $table->string('codigo',20)->unique();
             $table->string('nombre',255);
             $table->string('detalle',255)->nullable();
-            $table->string('marca',255)->nullable();
+            $table->unsignedBigInteger('marca_id');
             $table->string('CUMS',100)->nullable();
             $table->unsignedBigInteger('ATC_id')->nullable();
             //$table->string('cod_atc',5)->nullable();
@@ -35,6 +35,7 @@ class CreateDefMedicamentosSuministrosTable extends Migration
             $table->char('estado',1);
             $table->foreign('ATC_id', 'fk_ATC_medicamento')->references('id_ATC')->on('def__a_t_c__medicamentos')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('subgrupo_id', 'fk_grupo_subgrupo')->references('id_subgrupo')->on('def__subgrupomeds')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('marca_id', 'fk_marca_medicamento')->references('id_marca')->on('def__marcas')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

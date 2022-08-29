@@ -49,7 +49,7 @@ class ValidacionUsuario extends FormRequest
             'activo'  => 'required',
             'celular' => 'required',
             'profesion' => 'required',
-            'especialidad' => 'required',
+            'area' => 'required',
             'activo' => 'required',
             'rol_id' => 'required|integer'
         ];
@@ -70,7 +70,7 @@ class ValidacionUsuario extends FormRequest
             'activo'  => 'required',
             'celular' => 'required',
             'profesion' => 'required',
-            'especialidad' => 'required',
+            'area' => 'required',
             'activo' => 'required',
             'rol_id' => 'required|integer'
 

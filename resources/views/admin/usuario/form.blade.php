@@ -58,7 +58,7 @@
     </div>
 
     <div class="col-lg-3">
-        <label for="cod_retus" class="col-xs-4 control-label requerido">Retus</label>
+        <label for="cod_retus" class="col-xs-4 control-label ">Retus</label>
         <input type="text" name="cod_retus" id="cod_retus" class="form-control" value="{{old('cod_retus')}}">
     </div>
     <div class="col-lg-3">
@@ -76,11 +76,11 @@
         <input type="text" name="profesion" id="profesion" class="form-control" value="{{old('profesion')}}" required>
     </div>
     <div class="col-lg-3">
-        <label for="especialidad" class="col-xs-4 control-label requerido">Especialidad</label>
-        <input type="text" name="especialidad" id="especialidad" class="form-control" value="{{old('especialidad')}}" required>
+        <label for="area" class="col-xs-4 control-label requerido">Area</label>
+        <input type="text" name="area" id="area" class="form-control" value="{{old('area')}}" required>
     </div>
-    <div class="col-lg-3">
-        <label for="ips" class="col-xs-4 control-label requerido">Ips</label>
+    <!-- <div class="col-lg-3">
+        <label for="ips" class="col-xs-4 control-label ">Ips</label>
         <select name="ips" id="ips" class="form-control select2bs4" style="width: 100%;">
             <option value="">---seleccione la ips---</option>
             <option value="ATENCION FIDEM S.A.S">ATENCION FIDEM S.A.S</option>
@@ -89,7 +89,7 @@
             <option value="TEMPUS ATENCION INTEGRAL EN SALUD EU">TEMPUS ATENCION INTEGRAL EN SALUD EU</option>
             <option value="SALUD VITALIA S.A.S">SALUD VITALIA S.A.S</option>
         </select>
-    </div>
+    </div> -->
 </div>
 
 <div class="form-group row">

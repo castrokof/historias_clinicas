@@ -1,14 +1,14 @@
 <!-- Estos datos deben ser insertados en la tabla fc__factura__procedimientos, junto con el sede_id y factura_id -->
 <div class="form-group row">
   <div class="col-lg-6">
-    <label for="fact_servicio" class="col-xs-4 control-label requerido">Servicio</label>
-    <select name="servicio_id" id="fact_servicio" class="form-control " required>
+    <label for="fact_servicio2" class="col-xs-4 control-label requerido">Servicio</label>
+    <select name="servicio_id" id="fact_servicio2" class="form-control " required>
     </select>
   </div>
 
   <div class="col-lg-6">
-    <label for="fact_profesional" class="col-xs-4 control-label requerido">Profesional</label>
-    <select name="profesional_id" id="fact_profesional" class="form-control " required>
+    <label for="fact_profesional2" class="col-xs-4 control-label requerido">Profesional</label>
+    <select name="profesional_id" id="fact_profesional2" class="form-control " required>
     </select>
   </div>
 </div>
@@ -20,8 +20,8 @@
     </select>
   </div>
   <div class="col-lg-6">
-    <label for="fact_contrato" class="col-xs-4 control-label requerido">Contrato</label>
-    <select name="contrato_id" id="fact_contrato" class="form-control " style="width: 100%;" required>
+    <label for="fact_contrato2" class="col-xs-4 control-label requerido">Contrato</label>
+    <select name="contrato_id" id="fact_contrato2" class="form-control " style="width: 100%;" required>
     </select>
   </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin\Def_MedicamentosSuministros;
+use App\Models\Admin\def__marcas;
 use App\Models\Admin\Def_ATC_Medicamentos;
 use App\Models\Admin\def__grupoysubgrupomed;
 use Illuminate\Http\Request;
@@ -110,7 +111,7 @@ class DefMedicamentosSuministrosController extends Controller
                 'codigo' => 'required',
                 'nombre' => 'required',
                 'detalle',
-                'marca' => 'required',
+                'marca_id' => 'required',
                 'CUMS',
                 'ATC_id',
                 'subgrupo_id' => 'required',
@@ -138,7 +139,27 @@ class DefMedicamentosSuministrosController extends Controller
         }
     }
 
-    //Funcion para seleccionar la EPS desde la tabla eps_empresas
+    //Funcion para seleccionar las marcas desde la tabla def__marcas
+    public function selectmarc(Request $request)
+    {
+        $marcam = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $marcam = def__marcas::orderBy('id_marca')
+                ->where('cod_marca', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre_marca', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($marcam);
+        }else {
+            $term = $request->get('q');
+            $marcam = def__marcas::orderBy('id_marca')->get();
+            return response()->json($marcam);
+        }
+    }
+
+    //Funcion para seleccionar el código ATC desde la tabla eps_empresas
     public function selectatc(Request $request)
     {
         $atcmed = [];
@@ -226,59 +247,5 @@ class DefMedicamentosSuministrosController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin\Def_MedicamentosSuministros  $def_MedicamentosSuministros
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Def_MedicamentosSuministros $def_MedicamentosSuministros)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin\Def_MedicamentosSuministros  $def_MedicamentosSuministros
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Def_MedicamentosSuministros $def_MedicamentosSuministros)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\Def_MedicamentosSuministros  $def_MedicamentosSuministros
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Def_MedicamentosSuministros $def_MedicamentosSuministros)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin\Def_MedicamentosSuministros  $def_MedicamentosSuministros
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Def_MedicamentosSuministros $def_MedicamentosSuministros)
-    {
-        //
-    }
+    
 }

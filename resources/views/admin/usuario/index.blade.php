@@ -44,9 +44,9 @@
               <th>Celular</th>
               <th>Retus</th>
               <th>Profesión</th>
-              <th>Especialidad</th>
+              <th>Area</th>
               <th>Email</th>
-              <th>Ips</th>
+              <!-- <th>Ips</th> -->
               <th>Activo</th>
               <th>Rol</th>
               <th>Fecha de creacion</th>
@@ -176,15 +176,15 @@
           {data:'profesion',
            name:'profesion'
           },
-          {data:'especialidad',
-           name:'especialidad'
+          {data:'area',
+           name:'area'
           },
           {data:'email',
            name:'email'
           },
-          {data:'ips',
+          /* {data:'ips',
            name:'ips'
-          },
+          }, */
           {data:'activo',
            name:'activo'
           },
@@ -342,7 +342,7 @@
                     errores.push(items.activo+'<br>');
                     errores.push(items.documento+'<br>');
                     errores.push(items.email+'<br>');
-                    errores.push(items.especialidad+'<br>');
+                    errores.push(items.area+'<br>');
                     errores.push(items.papellido+'<br>');
                     errores.push(items.pnombre+'<br>');
                     errores.push(items.password+'<br>');
@@ -401,8 +401,8 @@ $(document).on('click', '.edit', function(){
       $('#celular').val(data.result.celular);
       $('#telefono').val(data.result.telefono);
       $('#profesion').val(data.result.profesion);
-      $('#especialidad').val(data.result.especialidad);
-      $('#ips').val(data.result.ips);
+      $('#area').val(data.result.area);
+      // $('#ips').val(data.result.ips);
       $('#rol_id').val(data.result.rol_id);
       $('#activo').val(data.result.activo);
       $('#observacion').val(data.result.observacion);
