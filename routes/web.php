@@ -132,6 +132,7 @@ Route::get('editar_medicamentos/{id}', 'DefMedicamentosSuministrosController@edi
 Route::put('medicamentos/{id}', 'DefMedicamentosSuministrosController@actualizar')->name('actualizar_medicamentos')->middleware('superEditor');
 Route::post('medicamento-estado', 'DefMedicamentosSuministrosController@updateestado')->name('med_estado')->middleware('superEditor');
 Route::get('atc_medicamento', 'DefMedicamentosSuministrosController@selectatc')->name('atc_medicamento')->middleware('superEditor');
+Route::get('marca_medicamento', 'DefMedicamentosSuministrosController@selectmarc')->name('marca_medicamento')->middleware('superEditor');
 // Route::get('grupo_medicamento', 'DefMedicamentosSuministrosController@selectgrupo')->name('grupo_medicamento')->middleware('superEditor');
 Route::get('grupo_subgrupo_med', 'DefMedicamentosSuministrosController@selectsubgrupo')->name('grupo_subgrupo_med')->middleware('superEditor');
 
@@ -292,6 +293,13 @@ Route::get('especialidades/crear', 'DefEspecialidadesController@crear')->name('c
 Route::post('especialidades', 'DefEspecialidadesController@guardar')->name('guardar_especialidades')->middleware('superEditor');
 Route::get('especialidades/{id}/editar', 'DefEspecialidadesController@editar')->name('editar_especialidades')->middleware('superEditor');
 Route::put('especialidades/{id}', 'DefEspecialidadesController@actualizar')->name('actualizar_especialidades')->middleware('superEditor');
+
+/* RUTAS DE MARCAS */
+Route::get('marcas', 'DefMarcasController@index')->name('marcas')->middleware('superEditor');
+Route::get('marcas/crear', 'DefMarcasController@crear')->name('crear_marcas')->middleware('superEditor');
+Route::post('marcas', 'DefMarcasController@guardar')->name('guardar_marcas')->middleware('superEditor');
+Route::get('marcas/{id}/editar', 'DefMarcasController@editar')->name('editar_marcas')->middleware('superEditor');
+Route::put('marcas/{id}', 'DefMarcasController@actualizar')->name('actualizar_marcas')->middleware('superEditor');
 
 /* RUTAS DE SERVICIOS */
 Route::get('servicios', 'ServiciosController@index')->name('servicios')->middleware('superEditor');

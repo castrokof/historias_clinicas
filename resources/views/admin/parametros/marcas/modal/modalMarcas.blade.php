@@ -16,7 +16,7 @@
                         <form id="form-general" class="form-horizontal" method="POST">
                             @csrf
                             <div class="card-body">
-                                @include('admin.parametros.ocupaciones.form.form')
+                                @include('admin.parametros.marcas.form.form')
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">

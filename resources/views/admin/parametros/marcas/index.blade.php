@@ -44,7 +44,7 @@ Marcas
     //initiate dataTables plugin
 
     var myTable =
-      $('#tocupaciones').DataTable({
+      $('#tmarcas').DataTable({
         language: idioma_espanol,
         processing: true,
         lengthMenu: [
@@ -66,12 +66,12 @@ Marcas
             orderable: false
           },
           {
-            data: 'codigo',
-            name: 'codigo'
+            data: 'cod_marca',
+            name: 'cod_marca'
           },          
           {
-            data: 'nombre',
-            name: 'nombre'
+            data: 'nombre_marca',
+            name: 'nombre_marca'
           },
           {
             data: 'estado',
@@ -141,9 +141,9 @@ Marcas
 
       });
 
-    $('#create_paciente').click(function() {
+    $('#create_marca').click(function() {
       $('#form-general')[0].reset();
-      $('.card-title').text('Agregar Nueva Ocupación');
+      $('.card-title').text('Agregar Nueva Marca');
       $('#action_button').val('Add');
       $('#action').val('Add');
       $('#form_result').html('');
@@ -157,13 +157,13 @@ Marcas
       var text = '';
 
       if ($('#action').val() == 'Add') {
-        text = "Estás por crear un Ocupación"
-        url = "{{route('guardar_ocupaciones')}}";
+        text = "Estás por crear un Marca"
+        url = "{{route('guardar_marcas')}}";
         method = 'post';
       }
 
       if ($('#action').val() == 'Edit') {
-        text = "Estás por actualizar un Ocupación"
+        text = "Estás por actualizar un Marca"
         var updateid = $('#hidden_id').val();
         url = "/marcas/" + updateid;
         method = 'put';
@@ -200,10 +200,10 @@ Marcas
               if (data.success == 'ok') {
                 $('#form-general')[0].reset();
                 $('#modal-u').modal('hide');
-                $('#tocupaciones').DataTable().ajax.reload();
+                $('#tmarcas').DataTable().ajax.reload();
                 Swal.fire({
                   icon: 'success',
-                  title: 'Ocupación creada correctamente',
+                  title: 'Marca creada correctamente',
                   showConfirmButton: false,
                   timer: 1500
 
@@ -213,10 +213,10 @@ Marcas
               } else if (data.success == 'ok1') {
                 $('#form-general')[0].reset();
                 $('#modal-u').modal('hide');
-                $('#tocupaciones').DataTable().ajax.reload();
+                $('#tmarcas').DataTable().ajax.reload();
                 Swal.fire({
                   icon: 'warning',
-                  title: 'Ocupación actualizada correctamente',
+                  title: 'Marca actualizada correctamente',
                   showConfirmButton: false,
                   timer: 1500
 
@@ -245,11 +245,11 @@ Marcas
         url: "/marcas/" + id + "/editar",
         dataType: "json",
         success: function(data) {
-          $('#codigo').val(data.result.codigo);
-          $('#nombre').val(data.result.nombre);
+          $('#cod_marca').val(data.result.cod_marca);
+          $('#nombre_marca').val(data.result.nombre_marca);
           $('#estado').val(data.result.estado);
           $('#hidden_id').val(id);
-          $('.card-title').text('Editar Ocupación');
+          $('.card-title').text('Editar Marca');
           $('#action_button').val('Edit');
           $('#action').val('Edit');
           $('#modal-u').modal('show');

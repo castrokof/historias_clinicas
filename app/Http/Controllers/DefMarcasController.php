@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\def__marcas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class DefMarcasController extends Controller
 {
@@ -12,9 +14,26 @@ class DefMarcasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $usuario_id = $request->session()->get('usuario_id');
+        if ($request->ajax()) {
+            $datas = def__marcas::orderBy('id_marca')
+                ->get();
+
+            return  DataTables()->of($datas)
+                ->addColumn('action', function ($datas) {
+                    $button = '<button type="button" name="edit" id="' . $datas->id_marca . '"
+        class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar"><i class="far fa-edit"></i></button>';
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('admin.parametros.marcas.index');
     }
 
     /**
@@ -22,9 +41,23 @@ class DefMarcasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function guardar(Request $request)
     {
-        //
+        $rules = array(
+            'cod_marca'  => 'required|max:10',
+            'nombre_marca'  => 'required|max:250',
+            'estado'  => 'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        def__marcas::create($request->all());
+        return response()->json(['success' => 'ok']);
     }
 
     /**
@@ -33,9 +66,15 @@ class DefMarcasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function editar($id)
     {
-        //
+        if (request()->ajax()) {
+
+            $data = def__marcas::where('id_marca', $id)->first();
+
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.parametros.marcas.index');
     }
 
     /**
@@ -44,42 +83,28 @@ class DefMarcasController extends Controller
      * @param  \App\Models\Admin\def__marcas  $def__marcas
      * @return \Illuminate\Http\Response
      */
-    public function show(def__marcas $def__marcas)
+    public function actualizar(Request $request, $id)
     {
-        //
-    }
+        $rules = array(
+            'cod_marca'  => 'required|max:10',
+            'nombre_marca'  => 'required|max:250',
+            'estado'  => 'required'
+        );
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin\def__marcas  $def__marcas
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(def__marcas $def__marcas)
-    {
-        //
-    }
+        $error = Validator::make($request->all(), $rules);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin\def__marcas  $def__marcas
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, def__marcas $def__marcas)
-    {
-        //
-    }
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin\def__marcas  $def__marcas
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(def__marcas $def__marcas)
-    {
-        //
+        $data = DB::table('def__marcas')->where('id_marca', '=', $id)
+            ->update([
+                'cod_marca' => $request->cod_marca,
+                'nombre_marca' => $request->nombre_marca,
+                'estado' => $request->estado,
+                'updated_at' => now()
+            ]);
+        //$data->update($request->all());
+        return response()->json(['success' => 'ok1']);
     }
 }

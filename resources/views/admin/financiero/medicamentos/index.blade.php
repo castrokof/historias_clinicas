@@ -219,6 +219,31 @@ Medicamentos
             ajaxRequest('medicamento-estado', data);
         });
 
+
+        //Select para consultar la marca para asociar el medicamento
+        $("#marca_med").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('marca_medicamento')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.cod_marca + " - " + data.nombre_marca,
+                                id: data.id_marca
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
         //Select para consultar los ATC del medicamento
         $("#atc_med").select2({
             theme: "bootstrap",

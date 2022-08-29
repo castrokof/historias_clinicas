@@ -26,8 +26,9 @@
 </div>
 <div class="form-group row">
     <div class="col-lg-2">
-        <label for="marca" class="col-xs-4 control-label requerido">Marca</label>
-        <input name="marca" id="marca" class="form-control" value="{{old('marca')}}"></input>
+        <label for="marca_med" class="col-xs-4 control-label requerido">Marca</label>
+        <select name="marca_id" id="marca_med" class="form-control select2bs4" style="width: 100%;" required>
+        </select>
     </div>
     <div class="col-lg-2">
         <label for="CUMS" class="col-xs-4 control-label">CUMS</label>

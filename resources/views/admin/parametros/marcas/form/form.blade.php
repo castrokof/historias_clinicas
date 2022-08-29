@@ -1,11 +1,11 @@
     <div class="form-group row">
         <div class="col-lg-2">
-            <label for="codigo" class="col-xs-4 control-label ">Codigo</label>
-            <input type="text" name="codigo" id="codigo" class="form-control" value="{{old('codigo')}}" required>
+            <label for="cod_marca" class="col-xs-4 control-label ">Codigo</label>
+            <input type="text" name="cod_marca" id="cod_marca" class="form-control" value="{{old('cod_marca')}}" required>
         </div>
         <div class="col-lg-10">
-            <label for="nombre" class="col-xs-4 control-label requerido">Nombre</label>
-            <input type="text" name="nombre" id="nombre" class="form-control" value="{{old('nombre')}}">
+            <label for="nombre_marca" class="col-xs-4 control-label requerido">Nombre</label>
+            <input type="text" name="nombre_marca" id="nombre_marca" class="form-control" value="{{old('nombre_marca')}}">
         </div>
 
     </div>    

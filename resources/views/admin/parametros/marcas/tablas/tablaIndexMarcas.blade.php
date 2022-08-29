@@ -4,20 +4,20 @@
     @include('includes.form-mensaje')
     <div class="card card-info">
       <div class="card-header with-border">
-        <h3 class="card-title-1">Ocupaciones</h3>
+        <h3 class="card-title-1">Marcas</h3>
         <div class="card-tools pull-right">
-          <button type="button" class="btn btn-default" name="create_paciente" id="create_paciente" data-toggle="modal" data-target="#modal-u"><i class="fa fa-fw fa-plus-circle"></i> Nueva Ocupación</button>
+          <button type="button" class="btn btn-default" name="create_marca" id="create_marca" data-toggle="modal" data-target="#modal-u"><i class="fa fa-fw fa-plus-circle"></i> Nueva Marca</button>
           </button>
         </div>
       </div>
       <div class="card-body table-responsive p-2">
 
-        <table id="tocupaciones" class="table table-hover  text-nowrap">
+        <table id="tmarcas" class="table table-hover  text-nowrap">
           <thead>
             <tr>
               <th>Acciones</th>
               <th>Código</th>
-              <th>Ocupaciones</th>
+              <th>Marcas</th>
               <th>Estado</th>
             </tr>
           </thead>
