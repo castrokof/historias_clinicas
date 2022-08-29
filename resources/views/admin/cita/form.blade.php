@@ -2,10 +2,7 @@
     <div class="col-lg-3">
         <label for="paciente" class="col-xs-4 control-label requerido">Paciente</label>
         <select name="paciente" id="paciente" class="form-control " style="width: 100%;" required>
-            <option value="">---seleccione el paciente---</option>
-            @foreach ($pacientes as $id => $pa)
-            <option value="{{$pa->id_paciente}}" {{old('paciente')}}>{{$pa->documento.'=>'.$pa->paciente}}</option>
-            @endforeach
+
         </select>
     </div>
     <div class="col-lg-3">
@@ -25,10 +22,7 @@
     <div class="col-lg-3">
         <label for="profesional" class="col-xs-4 control-label requerido">Profesional</label>
         <select name="profesional" id="profesional" class="form-control" style="width: 100%;">
-            <option value="">---seleccione el profesional---</option>
-            @foreach ($profesionales as $id => $pro)
-            <option value="{{$pro->id}}" {{old('profesional')}}>{{$pro->documento.'=>'.$pro->profesional.'=>'.$pro->especialidad}}</option>
-            @endforeach
+
         </select>
     </div>
 

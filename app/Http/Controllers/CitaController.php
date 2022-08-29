@@ -20,31 +20,27 @@ class CitaController extends Controller
     public function index(Request $request)
     {
         $usuario_id = $request->session()->get('usuario_id');
-        $fechaActual= Carbon::now()->toDateString()." 00:00:01";
-
-        $pacientes = Paciente::orderBy('documento')->select('id_paciente', 'documento', DB::raw("CONCAT(pnombre,' ',papellido) as paciente") )->get();
-        $profesionales = Usuario::orderBy('id')->select('id', 'documento', 'especialidad',DB::raw("CONCAT(pnombre,' ',papellido) as profesional") )->get();
-
+        $fechaActual= $request->fechaini." 00:00:01";
+        $fechaFinal= $request->fechafin." 23:59:59";
+        $estado = null;
+        $profesional = $request->profesional;
 
         if($request->ajax()){
-            $datas = DB::table('cita')
-            ->Join('usuario', 'cita.usuario_id', '=', 'usuario.id')
-            ->Join('paciente', 'cita.paciente_id', '=', 'paciente.id_paciente')
-            ->select(DB::raw('CONCAT(paciente.pnombre," ",paciente.papellido) as paciente'),
-            DB::raw('CONCAT(usuario.pnombre," ", usuario.papellido) as profesional'),
-            'cita.id_cita as id_cita','cita.asistio as asistio','cita.fechahora as fechahora', 'cita.sede as sede', 'cita.created_at as created_at','cita.tipo_cita as tipo_cita', 'cita.fechasp as fechasp')
-            ->where('cita.asistio', '=', 'PROGRAMADA' )
-            ->orderBy('cita.created_at')
-            //->where('cita.created_at', '>=', $fechaActual)
+            $datas = DB::table('cita')->select(
+            'cita.id_cita as id_cita', 'cita.historia', 'cita.tipo_documento', 'cita.fechahora_cita as fecha_cita', 'cita.fechahora_solicitada as fecha_solicitud', 'cita.cod_profesional', 'cita.papellido',
+            'cita.sapellido', 'cita.pnombre', 'cita.snombre',  'cita.estado as estado')
+            ->whereBetween('fechahora_cita', [$fechaActual,$fechaFinal])
+            ->where('cita.profesional_id', $profesional)
+            ->orderBy('cita.fechahora_cita')
             ->get();
 
 
         return  DataTables()->of($datas)
         ->addColumn('action', function($datas){
-        $button = '<button type="button" name="edit" id="'.$datas->id_cita.'"
-        class = "edit btn-float  bg-gradient-primary btn-sm tooltipsC"  title="Editar cita"><i class="far fa-edit"></i></button>';
+            $checkbox =  '<input type="checkbox" name="case[]" id="'.$datas->id_cita.'" value="' . $datas->id_cita . '" class="case" title="Selecciona Orden"/>';
 
-      return $button;
+            return $checkbox;
+
 
         })
         ->rawColumns(['action'])
@@ -53,7 +49,7 @@ class CitaController extends Controller
      }
 
 
-     return view('admin.cita.index', compact('pacientes', 'profesionales'));
+     return view('admin.cita.index');
     }
 
     /**

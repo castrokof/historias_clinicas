@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Cita;
 use App\Models\Admin\Def_Profesionales;
+use App\Models\Admin\DiasFestivos;
 use App\Models\Def_Agendas;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -56,7 +57,8 @@ class DefAgendasController extends Controller
      */
     public function guardar(Request $request)
     {
-
+        $fechaAi=now()->toDateString()." 00:00:01";
+        $fechaAf=now()->toDateString()." 23:59:59";
         $fechaini = $request->fechaini;
         $fechafin = $request->fechafin;
         $festivos = $request->festivos;
@@ -69,7 +71,11 @@ class DefAgendasController extends Controller
         $sabado =  $request->sabado;
         $domingo =  $request->domingo;
 
+
+
         $profesionales_det = Def_Profesionales::where('id_profesional', $profesional)->first();
+        $lista_festivos = DiasFestivos::pluck('fecha')->toArray();
+        //return $lista_festivos->toArray();
 
 
         if ($request->ajax()) {
@@ -97,20 +103,40 @@ class DefAgendasController extends Controller
                 }
             }
 
+
+
+           // Logica para eliminar los festivos del array fechas
+            $pcf1f = count($lista_festivos);
+
+
+            if ($festivos == 0) {
+
+                 for ($i1 = 0; $i1 < $pcf1f; $i1++){
+
+
+                if(($key = array_search($lista_festivos[$i1], $fechai)) !== false)
+                {
+                    unset($fechai[$key]);
+                }
+
+                 }
+
+                 // Se crea el nuevo array usando array_values para reordenar el array y no obtener el error sin definir el index
+                 $fechai = array_values($fechai);
+            }
+
+
+
             //Variable count de las fechas
-            $pcf = count($fecha);
-            dd($pcfi = count($fechai));
+
+            $pcfi = count($fechai);
 
 
-
-
-
-
-            # code...
 
             if (!empty($fechaini) && !empty($fechafin)) {
 
                 for ($i = 0; $i < $pcfi; $i++) {
+
 
 
                     switch (date('w', strtotime($fechai[$i]))) {
@@ -118,6 +144,7 @@ class DefAgendasController extends Controller
                         case 1:
 
                             if (!empty($lunes)) {
+
                                 $lunesc = count($lunes);
 
                                 for ($ii = 0; $ii < $lunesc; $ii++) {
@@ -320,7 +347,9 @@ class DefAgendasController extends Controller
                     };
                 }
 
-                return response()->json(['success' => 'ok']);
+                $cupost = Cita::where([['profesional_id',$profesional],['updated_at', null]])->whereBetween('created_at', [$fechaAi,$fechaAf])->count();
+
+                return response()->json(['success' => 'ok', 'cupos' => $cupost]);
             }
         }
     }

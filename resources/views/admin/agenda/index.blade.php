@@ -88,10 +88,8 @@
                         @csrf
                         <div class="card-body">
 
-                            @include('admin.admin.form')
+                            @include('admin.agenda.form.form')
 
-                            </tr>
-                            </td>
                         </div>
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -158,12 +156,34 @@
     <script>
         $(document).ready(function() {
 
+
+
             // Btn flotante
             $('.botonF1').hover(function() {
 
             })
 
 
+            // Funcion para obtener el cambio del check primero se inicializa
+
+            festivosc();
+
+            function festivosc() {
+
+                if ($(this).is(':checked')) {
+
+                    $('#festivos').val('1');
+                }
+                //Si se ha desmarcado se ejecuta el siguiente mensaje.
+                else {
+                    $('#festivos').val('0');
+                }
+
+
+            }
+
+
+            $("#festivos").change(festivosc);
 
 
             // Agregar filas a tabla para horarios
@@ -175,7 +195,7 @@
                 const intervalo = $('#intervalo').val();
                 const horariosa = [];
 
-                console.log(intervalo);
+                //console.log(intervalo);
 
                 const now = new Date('2019-09-13 ' + timeini);
 
@@ -202,14 +222,7 @@
 
 
 
-
-
                 const dias = [];
-
-
-
-
-
 
 
                 $('input[type=checkbox]:checked.case_semana').each(function() {
@@ -232,12 +245,6 @@
 
 
                 }
-
-
-
-
-
-
 
 
 
@@ -393,7 +400,23 @@
             }
 
 
+
             // eliminar filas de tabla para guardar
+
+            function limpiartablas() {
+
+                $('tbody').empty();
+                $('.case_semana').prop('checked', false);
+                $('#timeini').val('');
+                $('#timefin').val('');
+                $('#intervalo').val('');
+                $('#fechaini').val('');
+                $('#fechafin').val('');
+                $('#festivos').val('');
+                $('#profesional_select').empty();
+                $('#profesional_select').change();
+
+            }
 
             $("#tlunes").on("click", "#eliminar", function() {
                 $(this).closest("tr").remove();
@@ -429,211 +452,220 @@
 
             $('#create_agenda').click(function() {
 
-                    //Array de horarios, fechas, profesional y festivos
+                //Array de horarios, fechas, profesional y festivos
 
-                    let fechaini;
-                    let fechafin;
-                    let festivos;
-                    let profesional;
-                    const arraylunes = [];
-                    const arraymartes = [];
-                    const arraymiercoles = [];
-                    const arrayjueves = [];
-                    const arrayviernes = [];
-                    const arraysabado = [];
-                    const arraydomingo = [];
+                let fechaini;
+                let fechafin;
+                let festivos;
+                let profesional;
+                const arraylunes = [];
+                const arraymartes = [];
+                const arraymiercoles = [];
+                const arrayjueves = [];
+                const arrayviernes = [];
+                const arraysabado = [];
+                const arraydomingo = [];
 
 
-                    fechaini = $('#fechaini').val();
-                    fechafin = $('#fechafin').val();
-                    festivos = $('#festivos').val();
-                    profesional = $('#profesional_select').val();
+                fechaini = $('#fechaini').val();
+                fechafin = $('#fechafin').val();
+                festivos = $('#festivos').val();
+                profesional = $('#profesional_select').val();
 
-                    if (fechaini > fechafin) {
+                if (fechaini > fechafin) {
 
+                    Swal.fire({
+                        title: 'La fecha inicial debe ser menor que la fecha final',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        timer: 1000
+                    })
+
+                } else if (fechaini == null || fechafin == null || profesional == null) {
+
+
+                    Swal.fire({
+                        title: 'Fecha inicial, final y profesional son obligatorios',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        timer: 1000
+                    })
+
+                } else {
+
+
+
+                    $("#tlunes> tbody tr").each(function(el) {
+
+                        var alunes = {};
+
+                        var tds = $(this).find("td");
+                        alunes.horario = tds.filter(":eq(1)").text();
+
+                        // Ingreso cada array en la variable arraylunes
+                        arraylunes.push(alunes);
+
+
+
+
+                    });
+
+                    $("#tmartes> tbody tr").each(function(el) {
+
+                        var amartes = {};
+
+
+                        var tds = $(this).find("td");
+                        amartes.horario = tds.filter(":eq(1)").text();
+
+                        // Ingreso cada array en la variable arraymartes
+                        arraymartes.push(amartes);
+
+
+
+                    });
+
+                    $("#tmiercoles> tbody tr").each(function(el) {
+
+                        var amiercoles = {};
+
+                        var tds = $(this).find("td");
+                        amiercoles.horario = tds.filter(":eq(1)").text();
+
+
+
+                        // Ingreso cada array en la variable arraymiercoles
+                        arraymiercoles.push(amiercoles);
+
+
+
+
+                    });
+
+                    $("#tjueves> tbody tr").each(function(el) {
+
+                        var ajueves = {};
+
+                        var tds = $(this).find("td");
+                        ajueves.horario = tds.filter(":eq(1)").text();
+
+                        // Ingreso cada array en la variable arrayjueves
+                        arrayjueves.push(ajueves);
+
+
+
+
+                    });
+
+                    $("#tviernes> tbody tr").each(function(el) {
+
+                        var aviernes = {};
+
+
+                        var tds = $(this).find("td");
+                        aviernes.horario = tds.filter(":eq(1)").text();
+
+                        // Ingreso cada array en la variable arrayviernes
+                        arrayviernes.push(aviernes);
+
+
+
+                    });
+
+                    $("#tsabado> tbody tr").each(function(el) {
+
+                        var asabado = {};
+
+                        var tds = $(this).find("td");
+                        asabado.horario = tds.filter(":eq(1)").text();
+
+
+
+                        // Ingreso cada array en la variable arraysabado
+                        arraysabado.push(asabado);
+
+
+
+
+                    });
+
+
+                    $("#tdomingo> tbody tr").each(function(el) {
+
+                        var adomingo = {};
+
+                        var tds = $(this).find("td");
+                        adomingo.horario = tds.filter(":eq(1)").text();
+
+
+
+                        // Ingreso cada array en la variable arraysabado
+                        arraydomingo.push(adomingo);
+
+
+
+
+                    });
+
+
+
+                    if (fechaini != null && fechafin != null && profesional != null && (arraylunes.length >
+                            0 ||
+                            arraymartes.length > 0 || arraymiercoles.length > 0 ||
+                            arrayjueves.length > 0 || arrayviernes.length > 0 || arraysabado.length > 0 ||
+                            arraydomingo.length > 0)) {
                         Swal.fire({
-                            title: 'La fecha inicial debe ser menor que la fecha final',
-                            icon: 'warning',
-                            showConfirmButton: true,
-                            timer: 1000
-                        })
-
-                    } else if (fechaini == null || fechafin == null || profesional == null) {
-
-
-                        Swal.fire({
-                            title: 'Fecha inicial, final y profesional son obligatorios',
-                            icon: 'warning',
-                            showConfirmButton: true,
-                            timer: 1000
-                        })
-
-                    } else {
-
-
-
-                        $("#tlunes> tbody tr").each(function(el) {
-
-                            var alunes = {};
-
-                            var tds = $(this).find("td");
-                            alunes.horario = tds.filter(":eq(1)").text();
-
-                            // Ingreso cada array en la variable arraylunes
-                            arraylunes.push(alunes);
-
-
-
-
-                        });
-
-                        $("#tmartes> tbody tr").each(function(el) {
-
-                            var amartes = {};
-
-
-                            var tds = $(this).find("td");
-                            amartes.horario = tds.filter(":eq(1)").text();
-
-                            // Ingreso cada array en la variable arraymartes
-                            arraymartes.push(amartes);
-
-
-
-                        });
-
-                        $("#tmiercoles> tbody tr").each(function(el) {
-
-                            var amiercoles = {};
-
-                            var tds = $(this).find("td");
-                            amiercoles.horario = tds.filter(":eq(1)").text();
-
-
-
-                            // Ingreso cada array en la variable arraymiercoles
-                            arraymiercoles.push(amiercoles);
-
-
-
-
-                        });
-
-                        $("#tjueves> tbody tr").each(function(el) {
-
-                            var ajueves = {};
-
-                            var tds = $(this).find("td");
-                            ajueves.horario = tds.filter(":eq(1)").text();
-
-                            // Ingreso cada array en la variable arrayjueves
-                            arrayjueves.push(ajueves);
-
-
-
-
-                        });
-
-                        $("#tviernes> tbody tr").each(function(el) {
-
-                            var aviernes = {};
-
-
-                            var tds = $(this).find("td");
-                            aviernes.horario = tds.filter(":eq(1)").text();
-
-                            // Ingreso cada array en la variable arrayviernes
-                            arrayviernes.push(aviernes);
-
-
-
-                        });
-
-                        $("#tsabado> tbody tr").each(function(el) {
-
-                            var asabado = {};
-
-                            var tds = $(this).find("td");
-                            asabado.horario = tds.filter(":eq(1)").text();
-
-
-
-                            // Ingreso cada array en la variable arraysabado
-                            arraysabado.push(asabado);
-
-
-
-
-                        });
-
-
-                        $("#tdomingo> tbody tr").each(function(el) {
-
-                            var adomingo = {};
-
-                            var tds = $(this).find("td");
-                            adomingo.horario = tds.filter(":eq(1)").text();
-
-
-
-                            // Ingreso cada array en la variable arraysabado
-                            arraydomingo.push(adomingo);
-
-
-
-
-                        });
-
-
-
-                        if (fechaini != null && fechafin != null && profesional != null && (arraylunes.length >
-                                0 ||
-                                arraymartes.length > 0 || arraymiercoles.length > 0 ||
-                                arrayjueves.length > 0 || arrayviernes.length > 0 || arraysabado.length > 0 ||
-                                arraydomingo.length > 0)) {
-
+                                title: 'Espere por favor !',
+                                html: 'Creando los cupos', // add html attribute if you want or remove
+                                showConfirmButton: false,
+                                allowOutsideClick: false,
+                                willOpen: () => {
+                                    Swal.showLoading()
+                                },
+                            }),
 
                             $.ajax({
-                                    beforeSend: function() {
-                                        $('.loader').css("visibility", "visible");
-                                    },
-                                    url: "{{ route('programar_agenda') }}",
-                                    method: 'post',
-                                    data: {
-                                        lunes: arraylunes,
-                                        martes: arraymartes,
-                                        miercoles: arraymiercoles,
-                                        jueves: arrayjueves,
-                                        viernes: arrayviernes,
-                                        sabado: arraysabado,
-                                        domingo: arraydomingo,
-                                        fechaini: fechaini,
-                                        fechafin: fechafin,
-                                        profesional: profesional,
-                                        festivos: festivos,
-                                        "_token": $("meta[name='csrf-token']").attr("content")
-                                    },
-                                    dataType: "json",
-                                    success: function(data) {
-                                        if (data.success == 'ya') {
-
-                                            Swal.fire({
-                                                icon: 'danger',
-                                                title: 'Información',
-                                                text: 'Ya Fue programado por favor revisar',
-                                                showConfirmButton: true,
-                                                timer: 1000
-                                            })
-                                        }
-                                        //$('#mipres').DataTable().destroy();
+                                beforeSend: function() {
+                                    $('.loader').css("visibility", "visible");
+                                },
+                                url: "{{ route('programar_agenda') }}",
+                                method: 'post',
+                                data: {
+                                    lunes: arraylunes,
+                                    martes: arraymartes,
+                                    miercoles: arraymiercoles,
+                                    jueves: arrayjueves,
+                                    viernes: arrayviernes,
+                                    sabado: arraysabado,
+                                    domingo: arraydomingo,
+                                    fechaini: fechaini,
+                                    fechafin: fechafin,
+                                    profesional: profesional,
+                                    festivos: festivos,
+                                    "_token": $("meta[name='csrf-token']").attr("content")
+                                },
+                                dataType: "json",
+                                success: function(data) {
+                                    if (data.success == 'ya') {
+                                        limpiartablas();
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Información',
+                                            text: 'Ya Fue programado por favor revisar',
+                                            showConfirmButton: true,
+                                            timer: 3000
+                                        })
+                                    }
+                                    //$('#mipres').DataTable().destroy();
                                     else if (data.success == 'ok') {
-
+                                        limpiartablas();
                                         Swal.fire({
                                             icon: 'info',
                                             title: 'Información',
-                                            text: 'Fue programado correctamente la agenda del profesional',
+                                            text: 'Fue programado correctamente la agenda del profesional con ' +
+                                                data.cupos + ' cupos',
                                             showConfirmButton: true,
-                                            timer: 1000
+                                            timer: 3000
                                         })
                                     }
 
@@ -669,29 +701,29 @@
 
 
 
-        //Select para consultar los Profesionales
-        $("#profesional_select").select2({
-            theme: "bootstrap",
-            ajax: {
-                url: "{{ route('selectprofesional') }}",
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data) {
-                    return {
-                        results: $.map(data, function(data) {
+            //Select para consultar los Profesionales
+            $("#profesional_select").select2({
+                theme: "bootstrap",
+                ajax: {
+                    url: "{{ route('selectprofesional') }}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
 
-                            return {
+                                return {
 
-                                text: data.nombre,
-                                id: data.id_profesional
+                                    text: data.nombre,
+                                    id: data.id_profesional
 
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
 
         });
 
