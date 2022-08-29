@@ -13,7 +13,7 @@ class Def_MedicamentosSuministros extends Model
         'codigo',
         'nombre',
         'detalle',
-        'marca',
+        'marca_id',
         'ATC_id',
         'subgrupo_id',
         'IUM',
