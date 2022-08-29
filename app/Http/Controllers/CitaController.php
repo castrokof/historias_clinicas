@@ -28,7 +28,8 @@ class CitaController extends Controller
         if($request->ajax()){
             $datas = DB::table('cita')->select(
             'cita.id_cita as id_cita', 'cita.historia', 'cita.tipo_documento', 'cita.fechahora_cita as fecha_cita', 'cita.fechahora_solicitada as fecha_solicitud', 'cita.cod_profesional', 'cita.papellido',
-            'cita.sapellido', 'cita.pnombre', 'cita.snombre',  'cita.estado as estado')
+            'cita.sapellido', 'cita.pnombre', 'cita.snombre',  'cita.estado as estado',  'cita.cod_documentos as doc_factura'
+            ,  'cita.numero_factura as factura',  'cita.servicio as servicio', 'cita.contrato as contrato', 'cita.futuro1 as celular', 'cita.cod_cups as cod_cups')
             ->whereBetween('fechahora_cita', [$fechaActual,$fechaFinal])
             ->where('cita.profesional_id', $profesional)
             ->orderBy('cita.fechahora_cita')

@@ -204,11 +204,12 @@
                         ],
                         serverSide: true,
                         sScrollY: "320px",
+                        sScrollX: "320px",
                         aaSorting: [
-                            [4, "desc"]
+                            [9, "asc"]
                         ],
                         responsive: true,
-                        autoWidth: false,
+                        autoWidth: true,
                         ajax: {
                             url: "{{ route('cita') }}",
                             data: {
@@ -245,6 +246,15 @@
                             {
                                 data: 'snombre'
                             },
+
+                            {
+                                data: 'factura',
+
+                            },
+                            {
+                                data: 'doc_factura',
+
+                            },
                             {
                                 data: 'fecha_cita',
                                 name: 'fecha_cita',
@@ -256,8 +266,29 @@
                                 "width": "5%"
                             },
                             {
+                                data: 'cod_cups',
+                                name: 'cod_cups',
+                                "width": "5%"
+                            },
+                            {
+                                data: 'servicio',
+                                name: 'servicio',
+                                "width": "5%"
+                            },
+                            {
                                 data: 'estado',
                                 name: 'estado',
+                                "width": "5%"
+                            },
+
+                            {
+                                data: 'celular',
+                                name: 'celular',
+                                "width": "5%"
+                            },
+                            {
+                                data: 'contrato',
+                                name: 'contrato',
                                 "width": "5%"
                             }
 
@@ -286,6 +317,31 @@
                             {
                                 "visible": false,
                                 "targets": [2]
+                            },
+                            {
+                                "render": function(data, type, row) {
+                                    var type_d;
+                                    var facturad;
+
+                                    if (data == null) {
+                                        facturad = '';
+                                    } else {
+                                        facturad = data;
+                                    }
+
+                                    if (row["doc_factura"] == null) {
+                                        type_d = '';
+                                    } else {
+                                        type_d = row["doc_factura"];
+                                    }
+
+                                    return type_d + ' ' + facturad;
+                                },
+                                "targets": [7]
+                            },
+                            {
+                                "visible": false,
+                                "targets": [8]
                             },
                             {
                                 "render": function(data, type, row) {
@@ -334,10 +390,6 @@
                                 "visible": false,
                                 "targets": [6]
                             },
-                            {
-                                "width": "10%",
-                                "targets": [3]
-                            }
 
 
                         ],
