@@ -1,3 +1,8 @@
+@php
+$iduser = Session()->get('usuario');
+$id= Session()->get('usuario_id');
+@endphp
+
 <div class="row">
     <div class="col-lg-12">
         @include('includes.form-error')
@@ -49,6 +54,15 @@
                                 <div class="input-group-append">
                                     <span type="button" class="btn btn-mb btn-default">
                                         <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group col-lg-2">
+                                <input type="text" name="created_at" id="created_at" class="form-control form-control-mb" placeholder="Fecha y hora del sistema" value="{{$iduser ?? ''}}" readonly>
+                                <div class="input-group-append">
+                                    <span type="button" class="btn btn-mb btn-default">
+                                        <i class="fa fa-user"></i>
                                     </span>
                                 </div>
                             </div>

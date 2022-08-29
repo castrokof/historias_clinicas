@@ -27,31 +27,7 @@ class cupsSeeder extends Seeder
 
         ));
         }
-
-
-        DB::table('paises')->delete();
-        $json = File::get('database/data/paises.json');
-        $data = json_decode($json);
-        foreach ($data as $obj) {
-            Paises::create(array(
-            'cod_pais' => $obj->cod_pais,
-            'nombre' => $obj->nombre,
-            'estado' => 1
-
-        ));
-        }
-
-        DB::table('ciudades')->delete();
-        $json = File::get('database/data/ciudades.json');
-        $data = json_decode($json);
-        foreach ($data as $obj) {
-            Ciudades::create(array(
-            'cod_ciudad' => $obj->cod_ciudad,
-            'nombre' => $obj->nombre,
-            'estado' => 1
-            
-        ));
-        }
+        
 
     }
 }

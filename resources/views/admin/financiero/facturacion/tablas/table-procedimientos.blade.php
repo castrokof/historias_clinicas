@@ -1,3 +1,8 @@
+@php
+$iduser = Session()->get('usuario');
+$id= Session()->get('usuario_id');
+@endphp
+
 <div class="card card-info p-2">
     <div>
         <!-- Modal -->
@@ -23,13 +28,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <td>{{$iduser ?? ''}}</td>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
-
-
