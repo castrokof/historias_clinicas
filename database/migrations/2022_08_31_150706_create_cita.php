@@ -32,8 +32,8 @@ class CreateCita extends Migration
             $table->string('cod_documentos',10)->nullable(); //Este es el codigo de la factura
             $table->string('numero_factura',255)->nullable();//Este es el consecutivo de la factura
             $table->string('servicio',150)->nullable();
-            $table->string('cod_profesional',20)->nullable();//Este dato se captura de la tabla def__profesionales
-            $table->string('nombre_profesional',20)->nullable();//Este dato se captura de la tabla def__profesionales
+            $table->string('cod_profesional',10)->nullable();//Este dato se captura de la tabla def__profesionales
+            $table->string('nombre_profesional',200)->nullable();//Este dato se captura de la tabla def__profesionales
             $table->string('cod_cups',45)->nullable(); //Este dato se captura de la tabla def__procedimientos
             $table->string('contrato',45)->nullable();//Este dato se captura de la tabla def__contratos
             $table->string('regimen', 100)->nullable();
