@@ -207,6 +207,7 @@
                         aaSorting: [
                             [4, "desc"]
                         ],
+                        responsive: true,
                         autoWidth: false,
                         ajax: {
                             url: "{{ route('cita') }}",
@@ -220,11 +221,11 @@
                                 data: 'action',
                                 name: 'action',
                                 orderable: false,
-                                width: "5%"
+                                "width": "5%"
                             },
                             {
                                 data: 'historia',
-                                width: "5%"
+                                "width": "5%"
                             },
                             {
                                 data: 'tipo_documento',
@@ -233,7 +234,7 @@
 
                             {
                                 data: 'papellido',
-                                width: "5%",
+                                "width": "5%",
                             },
                             {
                                 data: 'sapellido'
@@ -247,17 +248,17 @@
                             {
                                 data: 'fecha_cita',
                                 name: 'fecha_cita',
-                                width: "5%"
+                                "width": "5%"
                             },
                             {
                                 data: 'cod_profesional',
                                 name: 'cod_profesional',
-                                width: "5%"
+                                "width": "5%"
                             },
                             {
                                 data: 'estado',
                                 name: 'estado',
-                                width: "5%"
+                                "width": "5%"
                             }
 
                         ],
@@ -444,7 +445,7 @@
                     '<div class="input-group">'+
                     '<input type="text" name="message" placeholder="Type Obse ..." class="form-control">'+
                     '<span class="input-group-append">'+
-                    '<button type="submit" class="btn btn-info">Add Obs.</button>'+
+                    '<button type="button" id="add_obs" class="btn btn-info">Add Obs.</button>'+
                     '</span>'+
                     '</div>'+
                     '</form>'+
