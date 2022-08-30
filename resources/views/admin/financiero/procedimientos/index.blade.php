@@ -229,6 +229,54 @@ Procedimientos
             ajaxRequest('procedimiento-estado', data);
         });
 
+        //Select para consultar los grupos para asociar al procedimiento
+        $("#grupo_procedure").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('agrupaciones_proce')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.codigo + " - " + data.nombre_grupo,
+                                id: data.id_grupo
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar las finalidades para asociar al procedimiento
+        $("#finalidad_procedure").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('finalidad_proce')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.finalidad + " - " + data.nombre,
+                                id: data.id_finalidad
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
 
         // Función envío de datos para activar o desactivar
 

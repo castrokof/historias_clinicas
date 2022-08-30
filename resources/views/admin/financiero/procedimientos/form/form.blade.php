@@ -24,12 +24,14 @@
 </div>
 <div class="form-group row">
     <div class="col-lg-2">
-        <label for="grupo" class="col-xs-4 control-label ">Grupo</label>
-        <input name="grupo" id="grupo" class="form-control" value="{{old('grupo')}}" ></input>
+        <label for="grupo_procedure" class="col-xs-4 control-label ">Grupo</label>
+        <select name="grupo_id" id="grupo_procedure" class="form-control select2bs4" style="width: 100%;" required>
+        </select>
     </div>
     <div class="col-lg-2">
-        <label for="finalidad" class="col-xs-4 control-label ">Finalidad</label>
-        <input name="finalidad" id="finalidad" class="form-control" value="{{old('finalidad')}}" ></input>
+        <label for="finalidad_procedure" class="col-xs-4 control-label ">Finalidad</label>
+        <select name="finalidad_id" id="finalidad_procedure" class="form-control select2bs4" style="width: 100%;" required>
+        </select>
     </div>
     <div class="col-lg-2">
         <label for="genero" class="col-xs-4 control-label ">Género</label>

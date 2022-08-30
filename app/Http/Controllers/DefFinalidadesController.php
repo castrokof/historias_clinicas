@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\def__finalidades;
+use App\Models\Admin\def__finalidades;
 use Illuminate\Http\Request;
 
 class DefFinalidadesController extends Controller
@@ -41,7 +41,7 @@ class DefFinalidadesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\def__finalidades  $def__finalidades
+     * @param  \App\Models\Admin\def__finalidades  $def__finalidades
      * @return \Illuminate\Http\Response
      */
     public function show(def__finalidades $def__finalidades)
@@ -52,7 +52,7 @@ class DefFinalidadesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\def__finalidades  $def__finalidades
+     * @param  \App\Models\Admin\def__finalidades  $def__finalidades
      * @return \Illuminate\Http\Response
      */
     public function edit(def__finalidades $def__finalidades)
@@ -64,7 +64,7 @@ class DefFinalidadesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\def__finalidades  $def__finalidades
+     * @param  \App\Models\Admin\def__finalidades  $def__finalidades
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, def__finalidades $def__finalidades)
@@ -75,7 +75,7 @@ class DefFinalidadesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\def__finalidades  $def__finalidades
+     * @param  \App\Models\Admin\def__finalidades  $def__finalidades
      * @return \Illuminate\Http\Response
      */
     public function destroy(def__finalidades $def__finalidades)

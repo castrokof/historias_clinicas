@@ -19,7 +19,7 @@ class CreateDefProcedimientosTable extends Migration
             $table->string('cod_alterno',45)->nullable();
             $table->string('nombre',255);
             // $table->string('grupo',45)->nullable();
-            $table->unsignedBigInteger('subgrupo_id')->nullable();
+            $table->unsignedBigInteger('grupo_id')->nullable();
             $table->unsignedBigInteger('finalidad_id')->nullable();
             $table->string('descripcion',255)->nullable();
             $table->string('observacion',255)->nullable();
@@ -29,7 +29,7 @@ class CreateDefProcedimientosTable extends Migration
             $table->string('cantidad_maxima',45)->nullable();
             $table->string('valor_particular',45)->nullable();
             $table->char('estado',1);
-            $table->foreign('subgrupo_id', 'fk_subgrupo_procedimiento')->references('id_subgrupo')->on('def__subgrupo_procedimientos')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('grupo_id', 'fk_grupo_procedimiento')->references('id_grupo')->on('def__grupo_procedimientos')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('finalidad_id', 'fk_finalidad_procedimiento')->references('id_finalidad')->on('def__finalidades')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });

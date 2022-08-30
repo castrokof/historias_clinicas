@@ -105,6 +105,8 @@ Route::post('procedimientos', 'DefProcedimientosController@guardar')->name('guar
 Route::get('editar_procedimientos/{id}', 'DefProcedimientosController@editar')->name('editar_procedimientos')->middleware('superEditor');
 Route::put('procedimientos/{id}', 'DefProcedimientosController@actualizar')->name('actualizar_procedimientos')->middleware('superEditor');
 Route::post('procedimiento-estado', 'DefProcedimientosController@updateestado')->name('procestado')->middleware('superEditor');
+Route::get('agrupaciones_proce', 'DefProcedimientosController@selectgrup')->name('agrupaciones_proce')->middleware('superEditor');
+Route::get('finalidad_proce', 'DefProcedimientosController@selectfin')->name('finalidad_proce')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Procedimientos vs Servicio
 Route::get('relserviciovsprocedimiento', 'RelServiciovsprocedimientosController@index')->name('relserviciovsprocedimiento')->middleware('superEditor');
