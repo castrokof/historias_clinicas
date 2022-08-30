@@ -301,6 +301,13 @@ Route::post('marcas', 'DefMarcasController@guardar')->name('guardar_marcas')->mi
 Route::get('marcas/{id}/editar', 'DefMarcasController@editar')->name('editar_marcas')->middleware('superEditor');
 Route::put('marcas/{id}', 'DefMarcasController@actualizar')->name('actualizar_marcas')->middleware('superEditor');
 
+/* RUTAS DE AGRUPACIONES DE PROCEDIMIENTOS */
+Route::get('agrupaciones', 'DefGrupoProcedimientosController@index')->name('agrupaciones')->middleware('superEditor');
+Route::get('agrupaciones/crear', 'DefGrupoProcedimientosController@crear')->name('crear_agrupaciones')->middleware('superEditor');
+Route::post('agrupaciones', 'DefGrupoProcedimientosController@guardar')->name('guardar_agrupaciones')->middleware('superEditor');
+Route::get('agrupaciones/{id}/editar', 'DefGrupoProcedimientosController@editar')->name('editar_agrupaciones')->middleware('superEditor');
+Route::put('agrupaciones/{id}', 'DefGrupoProcedimientosController@actualizar')->name('actualizar_agrupaciones')->middleware('superEditor');
+
 /* RUTAS DE SERVICIOS */
 Route::get('servicios', 'ServiciosController@index')->name('servicios')->middleware('superEditor');
 Route::get('servicios/crear', 'ServiciosController@crear')->name('crear_servicio')->middleware('superEditor');

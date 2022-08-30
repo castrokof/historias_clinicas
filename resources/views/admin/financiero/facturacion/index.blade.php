@@ -709,10 +709,10 @@ Facturación
                     '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                     '<i class="fas fa-trash"></i></button></td>' +
                     '</td>' +
-                    '<td>' + $('#fact_profesional').val() + '</td>' +
+                    '<td>' + $('#fact_profesional2').val() + '</td>' +
                     '<td>' + $('#fact_servicio2').val() + '</td>' +
                     '<td>' + $('#fact_procedimiento').val() + '</td>' +
-                    '<td>' + $('#fact_contrato').val() + '</td>' +
+                    '<td>' + $('#fact_contrato2').val() + '</td>' +
                     '<td>' + $('#cantidad').val() + '</td>' +
                     '<td>' + $('#valor').val() + '</td>' +
                     '<td>' + total + '</td></tr>'

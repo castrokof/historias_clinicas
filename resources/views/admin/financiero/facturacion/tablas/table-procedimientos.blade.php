@@ -28,7 +28,7 @@ $id= Session()->get('usuario_id');
                         </tr>
                     </thead>
                     <tbody>
-                        <td>{{$iduser ?? ''}}</td>
+                        <!-- <td>{{$iduser ?? ''}}</td> -->
                     </tbody>
                 </table>
             </div>
