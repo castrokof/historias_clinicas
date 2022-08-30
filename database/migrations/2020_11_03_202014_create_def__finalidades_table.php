@@ -23,7 +23,7 @@ class CreateDefFinalidadesTable extends Migration
             $table->unsignedInteger('edad_min')->nullable();
             $table->unsignedInteger('edad_max')->nullable();
             $table->string('genero', 100)->nullable();
-            $table->char('embarazo',1);
+            $table->char('embarazo',1)->nullable();
             $table->foreign('eps_empresas_id', 'fk_finalidad_empresas')->references('id_eps_empresas')->on('eps_empresas')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('servicio_id', 'fk_servicio_finalidad')->references('id_servicio')->on('servicios')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
