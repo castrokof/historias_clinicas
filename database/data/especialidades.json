@@ -1,0 +1,706 @@
+[
+    {
+        "codigo": "001",
+        "nombre": "ACTIVIDAD FISICO TERAPEUTICA"
+    },
+    {
+        "codigo": "021",
+        "nombre": "ANESTESIOLOGIA"
+    },
+    {
+        "codigo": "022",
+        "nombre": "ANESTESIOLOGIA Y REANIMACION"
+    },
+    {
+        "codigo": "023",
+        "nombre": "ANESTESIOLOGIA, CUIDADOS INTENSIVOS Y REANIMACION"
+    },
+    {
+        "codigo": "040",
+        "nombre": "ATENCION DE ENFERMERIA EN QUIROFANOS Y CENTROS DE ESTERILIZA"
+    },
+    {
+        "codigo": "041",
+        "nombre": "ATENCION DE ENFERMERIA EN URGENCIAS"
+    },
+    {
+        "codigo": "042",
+        "nombre": "ENFERMERIA CARDIORESPIRATORIA"
+    },
+    {
+        "codigo": "043",
+        "nombre": "ENFERMERIA EN CUIDADO AL NIÑO"
+    },
+    {
+        "codigo": "044",
+        "nombre": "ENFERMERIA EN CUIDADO CRITICO"
+    },
+    {
+        "codigo": "045",
+        "nombre": "ENFERMERIA EN CUIDADO DEL ADULTO EN ESTADO CRITICO DE SALUD"
+    },
+    {
+        "codigo": "046",
+        "nombre": "ENFERMERIA EN CUIDADO INTENSIVO"
+    },
+    {
+        "codigo": "047",
+        "nombre": "ENFERMERIA EN GERONTOLOGIA"
+    },
+    {
+        "codigo": "048",
+        "nombre": "ENFERMERIA EN SALUD FAMILIAR"
+    },
+    {
+        "codigo": "049",
+        "nombre": "ENFERMERIA EN SALUD MENTAL"
+    },
+    {
+        "codigo": "050",
+        "nombre": "ENFERMERIA EN SALUD OCUPACIONAL"
+    },
+    {
+        "codigo": "051",
+        "nombre": "ENFERMERIA MATERNO-PERINATAL"
+    },
+    {
+        "codigo": "052",
+        "nombre": "ENFERMERIA MEDICO-QUIRURGICA"
+    },
+    {
+        "codigo": "053",
+        "nombre": "ENFERMERIA NEFROLOGICA"
+    },
+    {
+        "codigo": "054",
+        "nombre": "ENFERMERIA NEFROLOGICA Y UROLOGICA"
+    },
+    {
+        "codigo": "055",
+        "nombre": "ENFERMERIA NEONATAL"
+    },
+    {
+        "codigo": "056",
+        "nombre": "ENFERMERIA NEUROLOGICA"
+    },
+    {
+        "codigo": "057",
+        "nombre": "ENFERMERIA NEUROLOGICA Y NEUROCIRUGIA"
+    },
+    {
+        "codigo": "058",
+        "nombre": "ENFERMERIA ONCOLOGICA"
+    },
+    {
+        "codigo": "059",
+        "nombre": "ENFERMERIA PERINATAL"
+    },
+    {
+        "codigo": "080",
+        "nombre": "ATENCION EN DESASTRES Y EMERGENCIAS"
+    },
+    {
+        "codigo": "090",
+        "nombre": "ATENCION FARMACEUTICA"
+    },
+    {
+        "codigo": "100",
+        "nombre": "AUDIOLOGIA"
+    },
+    {
+        "codigo": "101",
+        "nombre": "AUDIOPROTESIS"
+    },
+    {
+        "codigo": "110",
+        "nombre": "BIOMATERIALES, OPERATORIA DENTAL Y ESTETICA"
+    },
+    {
+        "codigo": "120",
+        "nombre": "CARDIOLOGIA"
+    },
+    {
+        "codigo": "121",
+        "nombre": "CARDIOLOGIA INTERVENCIONISTA Y HEMODINAMICA"
+    },
+    {
+        "codigo": "122",
+        "nombre": "CARDIOLOGIA PEDIATRICA"
+    },
+    {
+        "codigo": "130",
+        "nombre": "CIRUGIA CARDIOVASCULAR"
+    },
+    {
+        "codigo": "131",
+        "nombre": "CIRUGIA DE CABEZA Y CUELLO"
+    },
+    {
+        "codigo": "132",
+        "nombre": "CIRUGIA DE LA MAMA Y TUMORES DE TEJIDOS BLANDOS"
+    },
+    {
+        "codigo": "133",
+        "nombre": "CIRUGIA DE LA MANO"
+    },
+    {
+        "codigo": "134",
+        "nombre": "CIRUGIA DEL TORAX"
+    },
+    {
+        "codigo": "135",
+        "nombre": "CIRUGIA DERMATOLOGICA"
+    },
+    {
+        "codigo": "136",
+        "nombre": "CIRUGIA GASTROINTESTINAL Y ENDOSCOPIA DIGESTIVA"
+    },
+    {
+        "codigo": "137",
+        "nombre": "CIRUGIA GENERAL"
+    },
+    {
+        "codigo": "138",
+        "nombre": "CIRUGIA MAXILOFACIAL"
+    },
+    {
+        "codigo": "139",
+        "nombre": "CIRUGIA ONCOLOGICA"
+    },
+    {
+        "codigo": "140",
+        "nombre": "CIRUGIA ORAL Y MAXILOFACIAL"
+    },
+    {
+        "codigo": "141",
+        "nombre": "CIRUGIA ORTOPEDICA Y TRAUMATOLOGIA"
+    },
+    {
+        "codigo": "142",
+        "nombre": "CIRUGIA PEDIATRICA"
+    },
+    {
+        "codigo": "143",
+        "nombre": "CIRUGIA PLASTICA"
+    },
+    {
+        "codigo": "144",
+        "nombre": "CIRUGIA PLASTICA ESTETICA, MAXILOFACIAL Y DE LA MANO"
+    },
+    {
+        "codigo": "145",
+        "nombre": "CIRUGIA PLASTICA FACIAL"
+    },
+    {
+        "codigo": "146",
+        "nombre": "CIRUGIA PLASTICA MAXILOFACIAL Y DE LA MANO"
+    },
+    {
+        "codigo": "147",
+        "nombre": "CIRUGIA PLASTICA ONCOLOGICA"
+    },
+    {
+        "codigo": "148",
+        "nombre": "CIRUGIA VASCULAR Y ANGIOLOGIA"
+    },
+    {
+        "codigo": "149",
+        "nombre": "CIRUGIA, IMPLANTOLOGIA Y PATOLOGIA ORAL"
+    },
+    {
+        "codigo": "160",
+        "nombre": "COLOPROCTOLOGIA"
+    },
+    {
+        "codigo": "170",
+        "nombre": "COMUNICACIàN EDUCATIVA PARA LA SALUD Y EL BIENESTAR"
+    },
+    {
+        "codigo": "180",
+        "nombre": "CORNEA Y ENFERMEDADES EXTERNAS"
+    },
+    {
+        "codigo": "190",
+        "nombre": "CUIDADO DEL PACIENTE EN ESTADO CRITICO"
+    },
+    {
+        "codigo": "195",
+        "nombre": "CUIDADO RESPIRATORIO"
+    },
+    {
+        "codigo": "200",
+        "nombre": "DERMATOLOGIA"
+    },
+    {
+        "codigo": "201",
+        "nombre": "DERMATOLOGIA ONCOLOGICA"
+    },
+    {
+        "codigo": "210",
+        "nombre": "DESARROLLO DEL LENGUAJE Y SU PATOLOGIA"
+    },
+    {
+        "codigo": "220",
+        "nombre": "DIAGNOSTICO Y MEDICINA ORAL"
+    },
+    {
+        "codigo": "230",
+        "nombre": "DOLOR Y CUIDADOS PALEATIVOS"
+    },
+    {
+        "codigo": "240",
+        "nombre": "ENDOCRINOLOGIA"
+    },
+    {
+        "codigo": "250",
+        "nombre": "ENDODONCIA"
+    },
+    {
+        "codigo": "260",
+        "nombre": "EPIDEMIOLOGIA"
+    },
+    {
+        "codigo": "270",
+        "nombre": "ERGONOMIA"
+    },
+    {
+        "codigo": "280",
+        "nombre": "ESTOMATOLOGIA PEDIATRICA"
+    },
+    {
+        "codigo": "281",
+        "nombre": "ESTOMATOLOGIA Y CIRUGIA ORAL"
+    },
+    {
+        "codigo": "282",
+        "nombre": "ESTOMATOLOGIA Y SALUD ORAL"
+    },
+    {
+        "codigo": "290",
+        "nombre": "FISIOTERAPIA EN CUIDADO CRITICO"
+    },
+    {
+        "codigo": "300",
+        "nombre": "FONIATRIA"
+    },
+    {
+        "codigo": "310",
+        "nombre": "GASTROENTEROLOGIA"
+    },
+    {
+        "codigo": "311",
+        "nombre": "GASTROENTEROLOGIA Y ENDOSCOPIA DIGESTIVA"
+    },
+    {
+        "codigo": "320",
+        "nombre": "GERIATRIA CLINICA"
+    },
+    {
+        "codigo": "330",
+        "nombre": "GERONTOLOGIA"
+    },
+    {
+        "codigo": "331",
+        "nombre": "GERONTOLOGIA SOCIAL"
+    },
+    {
+        "codigo": "340",
+        "nombre": "GINECOLOGIA ONCOLOGICA"
+    },
+    {
+        "codigo": "341",
+        "nombre": "GINECOLOGIA Y OBSTETRICIA"
+    },
+    {
+        "codigo": "350",
+        "nombre": "HEMATO ONCOLOGIA"
+    },
+    {
+        "codigo": "351",
+        "nombre": "HEMATOLOGIA"
+    },
+    {
+        "codigo": "352",
+        "nombre": "HEMATOLOGIA EN EL LABORATORIO CLINICO Y MANEJO DEL BANCO DE"
+    },
+    {
+        "codigo": "353",
+        "nombre": "LABORATORIO CLINICO DE HEMATOLOGIA Y BANCO DE SANGRE"
+    },
+    {
+        "codigo": "360",
+        "nombre": "IMAGENES DIAGNOSTICAS"
+    },
+    {
+        "codigo": "361",
+        "nombre": "IMAGENOLOGIA ONCOLOGICA"
+    },
+    {
+        "codigo": "370",
+        "nombre": "IMPLANTOLOGIA ORAL"
+    },
+    {
+        "codigo": "371",
+        "nombre": "IMPLANTOLOGIA ORALY RECONSTRUCTIVA"
+    },
+    {
+        "codigo": "380",
+        "nombre": "MEDICINA APLICADA A LA ACTIVIDAD FISICA Y AL DEPORTE"
+    },
+    {
+        "codigo": "381",
+        "nombre": "MEDICINA DE LABORATORIO"
+    },
+    {
+        "codigo": "382",
+        "nombre": "MEDICINA DE URGENCIAS Y DOMICILIARIA"
+    },
+    {
+        "codigo": "383",
+        "nombre": "MEDICINA DEL DEPORTE"
+    },
+    {
+        "codigo": "384",
+        "nombre": "MEDICINA DEL TRABAJO"
+    },
+    {
+        "codigo": "385",
+        "nombre": "MEDICINA FAMILIAR"
+    },
+    {
+        "codigo": "386",
+        "nombre": "MEDICINA FISICA Y REHABILITACION"
+    },
+    {
+        "codigo": "387",
+        "nombre": "MEDICINA INTERNA"
+    },
+    {
+        "codigo": "388",
+        "nombre": "MEDICINA NUCLEAR"
+    },
+    {
+        "codigo": "400",
+        "nombre": "MICROBIOLOGIA MEDICA"
+    },
+    {
+        "codigo": "401",
+        "nombre": "MICROBIOLOGIA Y PARASITOLOGIA"
+    },
+    {
+        "codigo": "410",
+        "nombre": "NEFROLOGIA"
+    },
+    {
+        "codigo": "420",
+        "nombre": "NEONATOLOGIA"
+    },
+    {
+        "codigo": "430",
+        "nombre": "NEUMOLOGIA"
+    },
+    {
+        "codigo": "431",
+        "nombre": "NEUMOLOGIA PEDIATRICA"
+    },
+    {
+        "codigo": "440",
+        "nombre": "NEUROCIRUGIA"
+    },
+    {
+        "codigo": "441",
+        "nombre": "NEUROLOGIA"
+    },
+    {
+        "codigo": "442",
+        "nombre": "NEUROLOGIA PEDIATRICA"
+    },
+    {
+        "codigo": "443",
+        "nombre": "NEUROPSICOPEDAGOGIA"
+    },
+    {
+        "codigo": "450",
+        "nombre": "NUTRICION CLINICA"
+    },
+    {
+        "codigo": "451",
+        "nombre": "NUTRICION HUMANA"
+    },
+    {
+        "codigo": "460",
+        "nombre": "ODONTOLOGIA INTEGRAL DEL ADOLESCENTE Y ORTODONCIA"
+    },
+    {
+        "codigo": "461",
+        "nombre": "ODONTOLOGIA INTEGRAL DEL ADULTO"
+    },
+    {
+        "codigo": "462",
+        "nombre": "ODONTOLOGIA PEDIATRICA"
+    },
+    {
+        "codigo": "463",
+        "nombre": "ODONTOLOGIA PEDIATRICA Y ORTOPEDIA MAXILAR"
+    },
+    {
+        "codigo": "464",
+        "nombre": "ODONTOPEDIATRIA CLINICA Y ORTODONCIA PREVENTIVA"
+    },
+    {
+        "codigo": "480",
+        "nombre": "OFTALMOLOGIA"
+    },
+    {
+        "codigo": "481",
+        "nombre": "OFTALMOLOGIA ONCOLOGICA"
+    },
+    {
+        "codigo": "490",
+        "nombre": "ONCO-HEMATOLOGIA PEDIATRICA"
+    },
+    {
+        "codigo": "491",
+        "nombre": "ONCOLOGIA CLINICA"
+    },
+    {
+        "codigo": "492",
+        "nombre": "ONCOLOGIA PEDIATRICA"
+    },
+    {
+        "codigo": "500",
+        "nombre": "OPTOMETRIA"
+    },
+    {
+        "codigo": "510",
+        "nombre": "ORTODONCIA"
+    },
+    {
+        "codigo": "511",
+        "nombre": "ORTOPEDIA FUNCIONAL Y ORTODONCIA"
+    },
+    {
+        "codigo": "512",
+        "nombre": "ORTOPEDIA MAXILAR"
+    },
+    {
+        "codigo": "513",
+        "nombre": "ORTOPEDIA ONCOLOGICA"
+    },
+    {
+        "codigo": "514",
+        "nombre": "ORTOPEDIA Y TRAUMATOLOGIA"
+    },
+    {
+        "codigo": "520",
+        "nombre": "OTOLOGIA"
+    },
+    {
+        "codigo": "521",
+        "nombre": "OTORRINOLARINGOLOGIA"
+    },
+    {
+        "codigo": "522",
+        "nombre": "OTORRINOLARINGOLOGIA Y CIRUGIA DE CABEZA Y CUELLO"
+    },
+    {
+        "codigo": "530",
+        "nombre": "PATOLOGIA"
+    },
+    {
+        "codigo": "531",
+        "nombre": "PATOLOGIA ANATOMICA Y CLINICA"
+    },
+    {
+        "codigo": "532",
+        "nombre": "PATOLOGIA INFECCIOSA"
+    },
+    {
+        "codigo": "533",
+        "nombre": "PATOLOGIA ONCOLOGICA"
+    },
+    {
+        "codigo": "534",
+        "nombre": "PATOLOGIA ORAL Y MEDIOS DIAGNOSTICOS"
+    },
+    {
+        "codigo": "535",
+        "nombre": "PATOLOGIA Y CIRUGIA BUCAL"
+    },
+    {
+        "codigo": "536",
+        "nombre": "PATOLOGIA Y MEDICINA DE LABORATORIO"
+    },
+    {
+        "codigo": "550",
+        "nombre": "PEDIATRIA"
+    },
+    {
+        "codigo": "551",
+        "nombre": "PEDIATRIA PERINATAL Y NEONATOLOGIA"
+    },
+    {
+        "codigo": "560",
+        "nombre": "PERIODONCIA"
+    },
+    {
+        "codigo": "561",
+        "nombre": "PERIODONCIA Y BIOLOGIA ORAL"
+    },
+    {
+        "codigo": "562",
+        "nombre": "PERIODONCIA Y MEDICINA ORAL"
+    },
+    {
+        "codigo": "563",
+        "nombre": "PERIODONCIA Y OSEOINTEGRACION"
+    },
+    {
+        "codigo": "570",
+        "nombre": "PROSTODONCIA"
+    },
+    {
+        "codigo": "571",
+        "nombre": "PROSTODONCIA, OCLUSION Y ARTICULACION TEMPOROMANDIBULAR"
+    },
+    {
+        "codigo": "580",
+        "nombre": "PROTESIS PERIODONTAL"
+    },
+    {
+        "codigo": "590",
+        "nombre": "PSIQUIATRIA"
+    },
+    {
+        "codigo": "600",
+        "nombre": "RADIODIAGNOSTICO"
+    },
+    {
+        "codigo": "601",
+        "nombre": "RADIOLOGIA"
+    },
+    {
+        "codigo": "602",
+        "nombre": "RADIOLOGIA E IMAGENES DIAGNOSTICAS"
+    },
+    {
+        "codigo": "603",
+        "nombre": "RADIOTERAPIA"
+    },
+    {
+        "codigo": "610",
+        "nombre": "REHABILITACION CARDIOPULMONAR"
+    },
+    {
+        "codigo": "611",
+        "nombre": "REHABILITACION DEL MIEMBRO SUPERIOR"
+    },
+    {
+        "codigo": "612",
+        "nombre": "REHABILITACION EN ENFERMERIA"
+    },
+    {
+        "codigo": "613",
+        "nombre": "REHABILITACION ONCOLOGICA"
+    },
+    {
+        "codigo": "614",
+        "nombre": "REHABILITACION ORAL"
+    },
+    {
+        "codigo": "615",
+        "nombre": "REHABILITACION Y EDUCACION VOCAL"
+    },
+    {
+        "codigo": "620",
+        "nombre": "REUMATOLOGIA"
+    },
+    {
+        "codigo": "630",
+        "nombre": "SALUD AMBIENTAL"
+    },
+    {
+        "codigo": "631",
+        "nombre": "SALUD Y MEDIO AMBIENTE"
+    },
+    {
+        "codigo": "640",
+        "nombre": "SALUD PUBLICA"
+    },
+    {
+        "codigo": "650",
+        "nombre": "SALUD COMUNITARIA"
+    },
+    {
+        "codigo": "660",
+        "nombre": "SALUD FAMILIAR"
+    },
+    {
+        "codigo": "661",
+        "nombre": "SALUD FAMILIAR Y COMUNITARIA"
+    },
+    {
+        "codigo": "670",
+        "nombre": "SALUD MATERNO INFANTIL"
+    },
+    {
+        "codigo": "680",
+        "nombre": "SALUD MENTAL Y FARMACODEPENDENCIA"
+    },
+    {
+        "codigo": "690",
+        "nombre": "SALUD OCUPACIONAL"
+    },
+    {
+        "codigo": "691",
+        "nombre": "SALUD OCUPACIONAL Y PROTECCION DE RIESGOS LABORALES"
+    },
+    {
+        "codigo": "700",
+        "nombre": "SEMIOLOGIA Y CIRUGIA ORAL"
+    },
+    {
+        "codigo": "710",
+        "nombre": "TERAPIA FAMILIAR"
+    },
+    {
+        "codigo": "720",
+        "nombre": "TERAPIA MANUAL"
+    },
+    {
+        "codigo": "730",
+        "nombre": "TERAPIA RESPIRATORIA PEDIATRICA"
+    },
+    {
+        "codigo": "740",
+        "nombre": "TOXICOLOGIA CLINICA"
+    },
+    {
+        "codigo": "750",
+        "nombre": "UROLOGIA"
+    },
+    {
+        "codigo": "751",
+        "nombre": "UROLOGIA ONCOLOGICA"
+    },
+    {
+        "codigo": "760",
+        "nombre": "GENETICA HUMANA"
+    },
+    {
+        "codigo": "770",
+        "nombre": "INMUNOLOGIA"
+    },
+    {
+        "codigo": "780",
+        "nombre": "VIROLOGIA"
+    },
+    {
+        "codigo": "999",
+        "nombre": "OTRA ESPECIALIDAD NO CLASIFICADA"
+    },
+    {
+        "codigo": "781",
+        "nombre": "TERAPEUTICAS ALTERNATIVAS Y FARMACOLOGIA VEGETAL"
+    }
+]

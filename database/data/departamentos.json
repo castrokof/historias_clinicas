@@ -1,0 +1,138 @@
+[
+    {
+        "cod_departamento": "05",
+        "nombre": "ANTIOQUIA"
+    },
+    {
+        "cod_departamento": "08",
+        "nombre": "ATLANTICO"
+    },
+    {
+        "cod_departamento": "11",
+        "nombre": "SANTAFE DE BOGOTA"
+    },
+    {
+        "cod_departamento": "13",
+        "nombre": "BOLIVAR"
+    },
+    {
+        "cod_departamento": "15",
+        "nombre": "BOYACA"
+    },
+    {
+        "cod_departamento": "17",
+        "nombre": "CALDAS"
+    },
+    {
+        "cod_departamento": "18",
+        "nombre": "CAQUETA"
+    },
+    {
+        "cod_departamento": "19",
+        "nombre": "CAUCA"
+    },
+    {
+        "cod_departamento": "20",
+        "nombre": "CESAR"
+    },
+    {
+        "cod_departamento": "23",
+        "nombre": "CORDOBA"
+    },
+    {
+        "cod_departamento": "25",
+        "nombre": "CUNDINAMARCA"
+    },
+    {
+        "cod_departamento": "27",
+        "nombre": "CHOCO"
+    },
+    {
+        "cod_departamento": "41",
+        "nombre": "HUILA"
+    },
+    {
+        "cod_departamento": "44",
+        "nombre": "LA GUAJIRA"
+    },
+    {
+        "cod_departamento": "47",
+        "nombre": "MAGDALENA"
+    },
+    {
+        "cod_departamento": "50",
+        "nombre": "META"
+    },
+    {
+        "cod_departamento": "52",
+        "nombre": "NARIÑO"
+    },
+    {
+        "cod_departamento": "54",
+        "nombre": "NORTE DE SANTANDER"
+    },
+    {
+        "cod_departamento": "63",
+        "nombre": "QUINDIO"
+    },
+    {
+        "cod_departamento": "66",
+        "nombre": "RISARALDA"
+    },
+    {
+        "cod_departamento": "68",
+        "nombre": "SANTANDER"
+    },
+    {
+        "cod_departamento": "70",
+        "nombre": "SUCRE"
+    },
+    {
+        "cod_departamento": "73",
+        "nombre": "TOLIMA"
+    },
+    {
+        "cod_departamento": "76",
+        "nombre": "VALLE DEL CAUCA"
+    },
+    {
+        "cod_departamento": "81",
+        "nombre": "ARAUCA"
+    },
+    {
+        "cod_departamento": "85",
+        "nombre": "CASANARE"
+    },
+    {
+        "cod_departamento": "86",
+        "nombre": "PUTUMAYO"
+    },
+    {
+        "cod_departamento": "88",
+        "nombre": "SAN ANDRES ISLA"
+    },
+    {
+        "cod_departamento": "91",
+        "nombre": "AMAZONAS"
+    },
+    {
+        "cod_departamento": "94",
+        "nombre": "GUAINIA"
+    },
+    {
+        "cod_departamento": "95",
+        "nombre": "GUAVIARE"
+    },
+    {
+        "cod_departamento": "97",
+        "nombre": "VAUPES"
+    },
+    {
+        "cod_departamento": "99",
+        "nombre": "VICHADA"
+    },
+    {
+        "cod_departamento": "90",
+        "nombre": "DEPARTAMENTO DESCONOCIDO"
+    }
+]
