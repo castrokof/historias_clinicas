@@ -69,6 +69,7 @@ class cie10Seeder extends Seeder
             ));
         }
 
+        //Seeder para cargar las ocupaciones
         DB::table('ocupaciones')->delete();
         $json = File::get('database/data/ocupaciones.json');
         $data = json_decode($json);
@@ -81,7 +82,7 @@ class cie10Seeder extends Seeder
             ));
         }
 
-        //Seder para cargar las epecialidades
+        //Seeder para cargar las epecialidades
         DB::table('def__especialidades')->delete();
         $json = File::get('database/data/especialidades.json');
         $data = json_decode($json);
