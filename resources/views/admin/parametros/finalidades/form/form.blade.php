@@ -54,7 +54,7 @@
         <div class="col-lg-3">
             <label for="embarazo" class="col-xs-4 control-label ">Embaraza</label>
             <select name="embarazo" id="embarazo" class="form-control" style="width: 100%;" value="{{old('embarazo')}}" required>
-                <option value="" selected>-- Selecciona embarazo --</option>
+                <option value="" selected>-- Selecciona --</option>
                 <option value="1">SÍ</option>
                 <option value="0">NO</option>
             </select>

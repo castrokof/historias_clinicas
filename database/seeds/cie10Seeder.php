@@ -81,6 +81,7 @@ class cie10Seeder extends Seeder
             ));
         }
 
+        //Seder para cargar las epecialidades
         DB::table('def__especialidades')->delete();
         $json = File::get('database/data/especialidades.json');
         $data = json_decode($json);
