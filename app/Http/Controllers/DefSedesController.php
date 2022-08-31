@@ -127,8 +127,8 @@ class DefSedesController extends Controller
 
             $term = $request->get('q');
             $ciudadp = Ciudades::orderBy('id_ciudad')
-                //   ->orwhere('sede', 'LIKE', '%'.$term .'%')
-                ->where('sede', 'LIKE', '%' . $term . '%')
+                ->where('cod_ciudad', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%'.$term .'%')
                 ->get();
             return response()->json($ciudadp);
         } else {

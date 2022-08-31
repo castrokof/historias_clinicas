@@ -298,7 +298,7 @@ Sedes
 
               return {
 
-                text: data.nombre,
+                text: data.cod_ciudad + ' - ' + data.nombre,
                 id: data.id_ciudad
 
               }
