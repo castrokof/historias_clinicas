@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin\def__finalidades;
+use App\Models\Admin\Servicios;
+use App\Models\Admin\Eps_empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +21,16 @@ class DefFinalidadesController extends Controller
         //
         $usuario_id = $request->session()->get('usuario_id');
         if ($request->ajax()) {
-            $datas = def__finalidades::orderBy('id_finalidad')
+            // $datas = def__finalidades::orderBy('id_finalidad')
+            $datas = DB::table('def__finalidades')
+                ->Join('eps_empresas', 'def__finalidades.eps_empresas_id', '=', 'eps_empresas.id_eps_empresas')
+                ->Join('servicios', 'def__finalidades.servicio_id', '=', 'servicios.id_servicio')
+                ->select('*',
+                    'eps_empresas.codigo as codigo_eps',
+                    'eps_empresas.nombre as eps_nombre',
+                    'servicios.cod_servicio as cod_servicio',
+                    'servicios.nombre as servicio'
+                )
                 ->get();
 
             return  DataTables()->of($datas)
@@ -113,5 +124,45 @@ class DefFinalidadesController extends Controller
             ]);
         //$data->update($request->all());
         return response()->json(['success' => 'ok1']);
+    }
+
+    //Funcion para seleccionar el Servicio desde la tabla servicios
+    public function selectfi(Request $request)
+    {
+        $serviciofi = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $serviciofi = Servicios::orderBy('id_servicio')
+                ->where('cod_servicio', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->get();
+            return response()->json($serviciofi);
+        } else {
+            $term = $request->get('q');
+            $serviciofi = Servicios::orderBy('id_servicio')->get();
+            return response()->json($serviciofi);
+        }
+    }
+
+    //Funcion para seleccionar la eps desde la tabla eps_empresas
+    public function selecteps(Request $request)
+    {
+        $epsfi = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $epsfi = Eps_empresa::orderBy('id_eps_empresas')
+                ->where('codigo', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%'.$term .'%')
+                ->get();
+            return response()->json($epsfi);
+        } else {
+            $term = $request->get('q');
+            $epsfi = Eps_empresa::orderBy('id_eps_empresas')->get();
+            return response()->json($epsfi);
+        }
     }
 }

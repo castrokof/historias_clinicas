@@ -303,12 +303,14 @@ Route::post('marcas', 'DefMarcasController@guardar')->name('guardar_marcas')->mi
 Route::get('marcas/{id}/editar', 'DefMarcasController@editar')->name('editar_marcas')->middleware('superEditor');
 Route::put('marcas/{id}', 'DefMarcasController@actualizar')->name('actualizar_marcas')->middleware('superEditor');
 
-/* RUTAS DE OCUPACIONES */
+/* RUTAS DE FINALIDADES */
 Route::get('finalidades', 'DefFinalidadesController@index')->name('finalidades')->middleware('superEditor');
 Route::get('finalidades/crear', 'DefFinalidadesController@crear')->name('crear_finalidades')->middleware('superEditor');
 Route::post('finalidades', 'DefFinalidadesController@guardar')->name('guardar_finalidades')->middleware('superEditor');
 Route::get('finalidades/{id}/editar', 'DefFinalidadesController@editar')->name('editar_finalidades')->middleware('superEditor');
 Route::put('finalidades/{id}', 'DefFinalidadesController@actualizar')->name('actualizar_finalidades')->middleware('superEditor');
+Route::get('serv_fin', 'DefFinalidadesController@selectfi')->name('serv_fin')->middleware('superEditor');
+Route::get('eps_finalidad', 'DefFinalidadesController@selecteps')->name('eps_finalidad')->middleware('superEditor');
 
 
 /* RUTAS DE AGRUPACIONES DE PROCEDIMIENTOS */

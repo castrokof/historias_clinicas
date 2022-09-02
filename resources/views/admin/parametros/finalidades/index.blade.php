@@ -78,12 +78,12 @@ Finalidades
             name: 'regimen'
           },
           {
-            data: 'eps_empresas_id',
-            name: 'eps_empresas_id'
+            data: 'eps_nombre',
+            name: 'eps_nombre'
           },
           {
-            data: 'servicio_id',
-            name: 'servicio_id'
+            data: 'servicio',
+            name: 'servicio'
           },
           {
             data: 'edad_min',
@@ -238,8 +238,49 @@ Finalidades
         }
       });
 
-
     });
+
+    //Función para seleccionar el servicio
+    $("#servicio_finalidad").select2({
+      theme: "bootstrap",
+      ajax: {
+        url: "{{route('serv_fin')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data, function(data) {
+              return {
+                text: data.cod_servicio + ' - ' + data.nombre,
+                id: data.id_servicio
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    })
+
+    //Función para seleccionar la eps
+    $("#eps").select2({
+      theme: "bootstrap",
+      ajax: {
+        url: "{{route('eps_finalidad')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data, function(data) {
+              return {
+                text: data.codigo + ' - ' + data.nombre,
+                id: data.id_eps_empresas
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    })
 
 
     //Funcion para Editar finalidades
