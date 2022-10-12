@@ -820,10 +820,6 @@ class UsuarioAdministradorSeeder extends Seeder
 
 
 
-
-
-
-
         //Relación menu-rol
 
         DB::table('menu_rol')->insert([

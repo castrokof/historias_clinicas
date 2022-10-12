@@ -13,10 +13,10 @@ class CreatePaisesTable extends Migration
      */
     public function up()
     {
-        Schema::create('paises', function (Blueprint $table) {            
+        Schema::create('paises', function (Blueprint $table) {
             $table->bigIncrements('id_pais');
             $table->string('cod_pais',10)->unique();
-            $table->string('nombre',150);            
+            $table->string('nombre',150);
             $table->char('estado',1);
             $table->timestamps();
         });
