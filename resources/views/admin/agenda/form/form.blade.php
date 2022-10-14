@@ -51,7 +51,7 @@
     </div>
     <div class="col-md-2" id="festivos_id">
         <label for="festivos" class="col-xs-2 control-label">Festivos</label>
-        <input type="checkbox" name="festivos" id="festivos" class="form-control select2bs4" style="width: 20%;">
+        <input type="checkbox" name="festivos" id="festivos" class="form-control select2bs4" style="width: 10%;">
     </div>
 </div>
 
@@ -101,9 +101,8 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            <!-- <button type="submit" class="btn btn-info">Sign in</button> -->
             <button type="button" class="btn btn-info" name="agregar_horario" id="agregar_horario">Agregar</button>
-            <button type="reset" class="btn btn-Warning">Cancel</button>
+            <!-- <button type="reset" class="btn btn-Warning" >Cancel</button> -->
             <!-- <button type="checkbox" name="marcarTodas" id="marcarTodas" class="btn btn-info">All</button> -->
         </div>
         <!-- /.card-footer -->

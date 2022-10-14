@@ -74,13 +74,13 @@ Crear Agendas
 
 
 @section('contenido')
-<div class="content-wrapper" style="min-height: 543px;">
+<div class="content-wrapper" style="min-height: 1604px;">
     <!-- Content Header (Page header) -->
-    <div class="row">
+    
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
                         <h1 class="m-0 text-dark">Creación de agenda</h1>
                     </div><!-- /.col -->
 
@@ -94,7 +94,7 @@ Crear Agendas
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-    </div>
+   
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid"> {{-- 4 Widgets --}}
@@ -201,7 +201,11 @@ Crear Agendas
         $("#marcarTodas").click(function() {
             
             $('.case_semana').attr("checked", $("#marcarTodas").is(":checked"));
-        });
+        }); 
+
+        
+
+
 
 
         // Agregar filas a tabla para horarios
@@ -251,20 +255,13 @@ Crear Agendas
 
                 dias.forEach(element => {
 
-
-
                         agregarhorario(element, horarios);
 
                     }
 
-
                 );
 
-
-
             }
-
-
 
         });
 
