@@ -63,9 +63,9 @@
     <!-- form start -->
     <form class="form-horizontal" id="frmDias">
         <div class="card-body">
-            <div class="form-group row p-2">
+            <div class="form-group row">
                 <div class="col-md-1" id="festivos_id">
-                    <label for="diasemanal" class="control-label">L</label>
+                    <label for="diasemanal" class="col-xs-2 control-label">L</label>
                     <input type="checkbox" name="diasemanal" id="diasemanal" class="case_semana form-control select2bs4" style="width: 100%;">
                 </div>
                 <div class="col-md-1" id="festivos_id">

@@ -203,8 +203,6 @@ Crear Agendas
             $('.case_semana').attr("checked", $("#marcarTodas").is(":checked"));
         }); 
 
-        
-
 
 
 
