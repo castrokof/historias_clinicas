@@ -49,7 +49,6 @@ class CitaController extends Controller
 
      }
 
-
      return view('admin.cita.index');
     }
 

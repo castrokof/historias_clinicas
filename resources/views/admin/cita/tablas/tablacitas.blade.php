@@ -35,7 +35,7 @@
         <div class="card card-outline card-warning pt-2 col-12 col-xs-12">
             <div class="col-md-12" id="detalle">
             </div>
-           {{-- <div class="col-12 col-xs-12" id="detalle1">
+            {{-- <div class="col-12 col-xs-12" id="detalle1">
 
             </div> --}}
         </div>
