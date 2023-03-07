@@ -526,9 +526,175 @@ Citas | Fidem
 
         });
 
+        // Callback para filtrar el paciente
+        $('#buscarp').click(function() {
+
+            const document = $('#key').val();
+
+            if (document != '') {
+
+                fill_resumen(document);
 
 
+            } else {
 
+                Swal.fire({
+                    title: 'Debes digitar un numero de documento valido',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: "Cerrar"
+
+                    }
+                })
+            }
+
+        });
+
+        function fill_resumen(document = '') {
+
+            /* $('#formulario_cita')[0].reset(); */
+
+            $.ajax({
+                url: "{{ route('pacientefill') }}",
+                data: {
+                    document: document
+                },
+                dataType: "json",
+                success: function(data) {
+                    if (data.pacientes == null) {
+                        Manteliviano.notificaciones('Paciente no encontrado',
+                            'Sistema Historias Clínicas', 'warning');
+                    } else {
+                        //Pintar formulario
+                        console.log(data);
+                        $.each(data, function(i, paciente) {
+                            $("#pnombre").val(paciente.pnombre);
+                            $("#snombre").val(paciente.snombre);
+                            $("#papellido").val(paciente.papellido);
+                            $("#sapellido").val(paciente.sapellido);
+                            $("#tipo_documento").val(paciente.tipo_documento);
+                            $("#documento").val(paciente.documento);
+                            $("#futuro2").val(paciente.futuro2);
+                            $("#edad").val(paciente.edad);
+                            $("#pais_id").val(paciente.pais_id).trigger('change.select2');
+                            $("#nombre_pais").val(paciente.nombre_pais);
+                            $("#departamento_id").val(paciente.departamento_id).trigger('change.select2');
+                            $("#ciudad_id").val(paciente.ciudad_id).trigger('change.select2');
+                            $("#nombre_ciudad").val(paciente.nombre_ciudad);
+                            $("#direccion").val(paciente.direccion);
+                            $("#celular").val(paciente.celular);
+                            $("#telefono").val(paciente.telefono);
+                            $("#correo").val(paciente.correo);
+                            $("#regimen").val(paciente.regimen);
+                            $("#codigo_eps").val(paciente.codigo_eps);
+                            $("#eps_nombre").val(paciente.eps_nombre);
+                            $("#nivel").val(paciente.nivel);
+                            $("#numero_afiliacion").val(paciente.numero_afiliacion);
+                            $("#codigo_n").val(paciente.codigo_n);
+                        });
+                    }
+
+                }
+            });
+        }
+
+        /* Se pone este contador para permitir maximo agegar dos procedimientos a la cita,
+         **Ojo tener en cuenta que para agregar dos procedimientos a la cita hay que modificar el controller para hacer dos insert o crear otra columna Ej: cups2*/
+        /* $(document).ready(function() {
+            var contadorFilas = 0;
+
+            $('#agregarFila').click(function() {
+
+                if (contadorFilas < 2) {
+                    var centro_produccion = 'valor centro_produccion';
+                    var contrato = 'valor contrato';
+                    var procedimiento = 'valor contrato';
+                    var eliminarFila = '<button type="button" class="btn btn-danger btn-xs eliminarFila"><i class="fas fa-trash"></i></button>';
+                    var fila = '<tr><td>' + centro_produccion + '</td><td>' + contrato + '</td><td>' + procedimiento + '</td><td>' + eliminarFila + '</td></tr>';
+                    $('#tabla tbody').append(fila);
+                    contadorFilas++;
+                } else {
+                    alert('No se pueden agregar más de 2 Items.');
+                }
+            });
+
+            $('#tabla').on('click', '.eliminarFila', function() {
+                $(this).closest('tr').remove();
+                contadorFilas--;
+            });
+        }); */
+
+        //Select para consultar los servicios
+        $("#fact_servicio2").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('servicios_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.cod_servicio + ' - ' + data.nombre,
+                                id: data.id_servicio
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar los procedimientos
+        $("#fact_procedimiento").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('procedimientos_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.cod_cups + ' - ' + data.nombre,
+                                id: data.id_cups
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Select para consultar los contratos
+        $("#fact_contrato2").select2({
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('contratos_factura')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                text: data.contrato + ' - ' + data.nombre,
+                                id: data.id_contrato
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
 
 
 

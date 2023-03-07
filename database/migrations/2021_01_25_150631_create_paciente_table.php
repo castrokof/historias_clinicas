@@ -36,7 +36,7 @@ class CreatePacienteTable extends Migration
             $table->unsignedBigInteger('barrio_id');
             $table->string('sexo', 100)->nullable();
             $table->string('orientacion_sexual', 100)->nullable();
-            $table->string('regimen', 100); 
+            $table->string('regimen', 100);
             $table->unsignedBigInteger('eps_id');
             $table->string('eps_nombre', 255)->nullable();
             $table->string('afiliacion',100)->nullable();
@@ -45,7 +45,7 @@ class CreatePacienteTable extends Migration
             $table->string('operador', 200)->nullable();
             $table->string('correo', 100)->nullable();
             $table->string('futuro', 100)->nullable();
-            $table->string('futuro2', 100)->nullable();
+            $table->string('futuro2', 100)->nullable(); //Este dato es la fecha de nacimiento del paciente
             $table->string('futuro4', 100)->nullable();
             $table->string('observaciones', 200)->nullable();
             $table->string('estado_solicitud_farma', 45)->nullable();

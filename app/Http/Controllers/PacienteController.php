@@ -35,7 +35,7 @@ class PacienteController extends Controller
                 ->Join('paises', 'paciente.pais_id', '=', 'paises.id_pais')
                 ->Join('ciudades', 'paciente.ciudad_id', '=', 'ciudades.id_ciudad')
                 ->select('*',
-                    'paciente.id_paciente as idd', 
+                    'paciente.id_paciente as idd',
                     'ocupaciones.codigo as cod_ocu',
                     'ocupaciones.nombre as nombre_ocu',
                     'eps_empresas.codigo as codigo_eps',
@@ -117,7 +117,7 @@ class PacienteController extends Controller
     public function editar($id)
     {
         if (request()->ajax()) {
-            
+
 
             $data = Paciente::where('id_paciente', $id)->first();
 
@@ -184,7 +184,7 @@ class PacienteController extends Controller
                 'telefono' => $request->telefono,
                 'regimen' => $request->regimen,
                 'nivel' => $request->nivel,
-                'futuro2' => $request->futuro2,
+                'futuro2' => $request->futuro2, // Este campo corresponde a la fecha de nacimiento del paciente
                 'Poblacion_especial' => $request->Poblacion_especial,
                 'ciudad_id' => $request->ciudad_id,
                 'barrio_id' => $request->barrio_id,

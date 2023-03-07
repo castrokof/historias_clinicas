@@ -700,7 +700,7 @@ Facturación
 
         // Agregar filas a tabla para guardar
         $('#addfila').click(function() {
-            
+
 
             const total = parseFloat($('#cantidad').val() * $('#valor').val());
 
@@ -718,8 +718,6 @@ Facturación
                     '<td>' + total + '</td></tr>'
 
                 );
-
-
         });
 
         // eliminar filas de la tabla procedimientos para guardar
