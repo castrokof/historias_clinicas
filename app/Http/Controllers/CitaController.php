@@ -67,7 +67,6 @@ class CitaController extends Controller
             'paciente_id' => 'required',
             'tipo_cita' => 'required'
 
-
         );
 
         $error = Validator::make($request->all(), $rules);
@@ -149,10 +148,7 @@ class CitaController extends Controller
 
         // $pacientes = Paciente::orderBy('documento')->select('id_paciente', 'documento', DB::raw("CONCAT(pnombre,' ',papellido) as paciente") )->get();
         // $profesionales = Usuario::orderBy('id')->select('id', 'documento', 'especialidad',DB::raw("CONCAT(pnombre,' ',papellido) as profesional") )->get();
-
-
         if(request()->ajax()){
-
 
             $data = DB::table('cita')
             ->Join('usuario', 'cita.usuario_id', '=', 'usuario.id')
@@ -163,8 +159,6 @@ class CitaController extends Controller
             ->orderBy('cita.id_cita')
             ->where('cita.id_cita', '=', $id)
             ->first();
-
-
 
                 return response()->json(['result'=>$data]);
 
@@ -182,11 +176,10 @@ class CitaController extends Controller
     public function actualizar(Request $request, $id)
     {
         $rules = array(
-            'fechahora'  => 'required|max:40',
-            'sede'  => 'required|max:100',
+            'historia' => 'required',
+            'ips'  => 'required|max:100',
             'usuario_id' => 'required',
-            'paciente_id' => 'required',
-            'tipo_cita' => 'required'
+            'tipo_solicitud' => 'required'
 
         );
 
@@ -196,10 +189,10 @@ class CitaController extends Controller
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        $fechahoracita = $request->fechahora.":00";
+        $fechahoracita = $request->fechahora_cita.":00";
 
        $citaasignada = DB::table('cita')->where([
-        ['fechahora', '=', $fechahoracita], ['usuario_id', '=', $request->usuario_id]]
+        ['fechahora_cita', '=', $fechahoracita], ['usuario_id', '=', $request->usuario_id]]
        )->count();
 
 
@@ -213,13 +206,10 @@ class CitaController extends Controller
         DB::table('cita')
         ->where('id_cita', $id)
         ->update([
-        'fechahora' => $fechahoracita,
-        'sede' => $request->sede,
+        'historia' => $request->historia,
         'usuario_id' => $request->usuario_id,
-        'paciente_id' => $request->paciente_id,
-        'asistio' => 'PROGRAMADA',
-        'tipo_cita' => $request->tipo_cita,
-        'fechasp' => $request->fechasp,
+        'estado' => 'ASIGNADA',
+        'tipo_solicitud' => $request->tipo_cita,
         'updated_at'=>now()
         ]);
             return response()->json(['success' => 'ok1']);

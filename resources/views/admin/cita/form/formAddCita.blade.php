@@ -1,17 +1,42 @@
 <div class="form-group row">
-    <div class="col-lg-4">
-        <label for="fecha_cita">Fecha Solicitud Cita:</label>
-        <input type="text" class="form-control" id="fecha_cita" name="fecha_cita" readonly>
+    <div class="col-lg-3">
+        <label for="fechahora_cita">Fecha Hora Cita:</label>
+        <input type="text" class="form-control" id="fechahora_cita" name="fechahora_cita" readonly>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <label for="fechahora_solicitada">Fecha Solicitada:</label>
-        <input type="date" class="form-control" id="fechahora_solicitada" name="fechahora_solicitada">
+        <input type="datetime-local" class="form-control" id="fechahora_solicitada" name="fechahora_solicitada">
     </div>
+    <div class="col-lg-3">
+        <label for="fechahora_solicitud">Fecha Asignación:</label>
+        <input name="fechahora_solicitud" id="fechahora_solicitud" class="form-control" value="{{now()}}" readonly>
+    </div>
+
+    <div class="col-lg-3">
+        <label for="tipo_solicitud" class="col-xs-4 control-label requerido">Tipo Solicitud:</label>
+        <select name="tipo_solicitud" id="tipo_solicitud" class="form-control" style="width: 100%;" value="{{old('tipo_solicitud')}}" required>
+            <option value="" selected>-- Seleccionar --</option>
+            <option value="Presencial">Presencial</option>
+            <option value="Teleconsulta">Teleconsulta</option>
+        </select>
+    </div>
+
+</div>
+<div class="form-group row">
     <div class="col-lg-4">
         <label for="prof_cita">Profesional:</label>
         <input type="text" class="form-control" id="prof_cita" name="prof_cita" readonly>
     </div>
+    <div class="col-lg-3">
+        <label for="ips" class="col-xs-4 control-label requerido">Sede:</label>
+        <select name="ips" id="ips" class="form-control" style="width: 100%;" value="{{old('ips')}}" required>
+            <option value="" selected>-- Seleccionar --</option>
+            <option value="Copago">Copago</option>
+            <option value="Cuota Moderadora">Cuota Moderadora</option>
+        </select>
+    </div>
 </div>
+
 
 <div class="form-group row">
     <div class="col-lg-1">
@@ -19,12 +44,12 @@
         <input name="tipo_documento" id="tipo_documento" class="form-control select2bs4" type="text" readonly>
     </div>
     <div class="col-lg-3">
-        <label for="tipo_documento" class="col-xs-4 control-label ">Historia</label>
+        <label for="historia" class="col-xs-4 control-label ">Historia</label>
         <div class="input-group">
             <button type="button" class="btn btn-mb btn-default" id="buscarp">
                 <i class="fa fa-search"></i>
             </button>
-            <input type="search" name="key" id="key" class="form-control form-control-mb" placeholder="Buscar paciente digite documento....">
+            <input type="search" name="historia" id="historia" class="form-control form-control-mb" placeholder="Buscar paciente digite documento....">
         </div>
     </div>
     <div class="col-lg-2">
@@ -54,22 +79,18 @@
         <label for="edad" class="col-xs-4 control-label ">Edad</label>
         <input type="number" name="edad" id="edad" class="form-control" value="{{old('edad')}}" placeholder="Edad" readonly>
     </div>
-    <div class="col-lg-2">
-        <label for="sexo" class="col-xs-4 control-label requerido">Género</label>
-        <select name="sexo" id="sexo" class="form-control select2bs4" style="width: 100%;" required>
-            <option value="">---seleccione---</option>
-            <option value="M">Masculino</option>
-            <option value="F">Femenino</option>
-        </select>
-    </div>
 
     <div class="col-lg-2">
         <label for="nombre_pais" class="col-xs-4 control-label ">País de Residencia</label>
         <input name="nombre_pais" id="nombre_pais" class="form-control" readonly>
     </div>
     <div class="col-lg-3">
-        <label for="fechahora_solicitud">Fecha Asignación:</label>
-        <input name="fechahora_solicitud" id="fechahora_solicitud" class="form-control" value="{{now()}}" readonly>
+        <label for="direccion" class="col-xs-4 control-label ">Direccion</label>
+        <input type="text" name="direccion" id="direccion" class="form-control" minlength="6" readonly>
+    </div>
+    <div class="col-lg-3">
+        <label for="cita_id" class="col-xs-4 control-label ">Id de cita</label>
+        <input type="text" name="cita_id" id="cita_id" class="form-control" minlength="6" readonly>
     </div>
 
 </div>
@@ -91,9 +112,10 @@
         <select name="procedimiento_id" id="fact_procedimiento" class="form-control select2bs4" style="width: 100%;" required>
         </select>
     </div>
-
 </div>
 
+<input type="hidden" name="cita_id" id="cita_id" class="form-control">
+<input type="hidden" name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario_id')}}">
 <!-- <button type="button" id="agregarFila" name="agregarFila" class="btn btn-primary btn-xs col-md-2 float-right"><i class="fa fa-plus-circle"></i> Agregar fila</button>
 <table id="tabla" class="table">
     <thead>

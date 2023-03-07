@@ -61,7 +61,7 @@ Citas | Fidem
 
 
 
-<div class="modal fade" tabindex="-1" id="modal-u" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade" tabindex="-1" id="modal_cita" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="row">
@@ -76,7 +76,7 @@ Citas | Fidem
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
-                        <form id="form-general" class="form-horizontal" method="POST">
+                        <form id="formulario_cita" class="form-horizontal" method="POST">
                             @csrf
                             <div class="card-body">
                                 @include('admin.cita.form')
@@ -422,7 +422,7 @@ Citas | Fidem
                             $(row).addClass("button btn-xs");
 
                         }
-                        if (data["fecha_cita"] != null) {
+                        if (data["fechahora_cita"] != null) {
                             $(row).addClass("button btn-xs");
                         } else {
                             $(row).addClass("button btn-xs");
@@ -432,21 +432,48 @@ Citas | Fidem
                 });
         }
 
-        // Funcion para capturar los datos de $fechaActual, $fechaFinal y $profesional al hacer clic en el checkbox y abrir el modal para agregar una cita
+        $(document).on('change', '.case', function() {
+            if ($(this).prop("checked")) {
+                var cita_id = $(this).attr('id');
+                selected_cita_id = cita_id; // Almacena el valor de cita_id en la variable global
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ url('cita') }}",
+                    data: {
+                        'cita_id': cita_id
+                    },
+                    success: function(data) {
+                        // muestra los datos en una ventana emergente o en un div oculto
+                        console.log(data); // muestra los datos en la consola del navegador para fines de prueba
+                    },
+                    error: function(xhr) {
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+        });
 
+        // Funcion para capturar los datos de fechahora_cita Y prof_cita al hacer clic en el agregar_horario y abrir el modal para agregar una cita
         function getCita(fecha, prof) {
-
             // Agregar listener de evento al botón agregar_horario
             $('#agregar_horario').on('click', function() {
                 console.log(fecha, prof);
 
                 // Mostrar los parámetros en el modal
-                $('#fecha_cita').val(fecha);
+                $('#fechahora_cita').val(fecha);
                 $('#prof_cita').val(prof);
+                $('#cita_id').val(selected_cita_id); // Asignar el valor de selected_cita_id al input oculto
+
+                $('#action_button').val('Add');
+                $('#action').val('Edit');
+                $('#form_result').html('');
 
                 // Abrir el modal
+                $('#modal_cita').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
                 $('#modal_cita').modal('show');
-
             });
         }
 
@@ -529,7 +556,7 @@ Citas | Fidem
         // Callback para filtrar el paciente
         $('#buscarp').click(function() {
 
-            const document = $('#key').val();
+            const document = $('#historia').val();
 
             if (document != '') {
 
@@ -697,52 +724,25 @@ Citas | Fidem
         });
 
 
-
-        $('#create_cita').click(function() {
-            $('#form-general')[0].reset();
-            $('#paciente').val('').trigger('change.select2');
-            $('#profesional').val('').trigger('change.select2');
-            $('.card-title-1').text('Agregar nueva cita');
-            $('#action_button').val('Add');
-            $('#action').val('Add');
-            $('#form_result').html('');
-            $('#modal-u').modal('show');
-        });
-
-        $('#form-general').on('submit', function(event) {
+        $('#formulario_cita').on('submit', function(event) {
             event.preventDefault();
             var url = '';
             var method = '';
             var text = '';
-            var fechahora = '';
-
-            var sede = '';
-            var usuario_id = '';
-            var paciente_id = '';
 
             if ($('#action').val() == 'Add') {
                 text = "Estás por crear un cita"
                 url = "{{ route('guardar_cita') }}";
                 method = 'post';
-                fechahora = $('#fechahora').val();
-                sede = $('#sede').val();
-                usuario_id = $('#profesional').val();
-                paciente_id = $('#paciente').val();
-                tipo_cita = $('#tipo_cita').val();
-                fechasp = $('#fechasp').val();
-
             }
 
             if ($('#action').val() == 'Edit') {
-                text = "Estás por actualizar un cita"
-                var updateid = $('#hidden_id').val();
+                text = "Estás por actualizar una cita"
+                var updateid = $('#cita_id').val();
                 url = "/cita/" + updateid;
                 method = 'put';
-                fechahora = $('#fechahora').val();
-                sede = $('#sede').val();
-                usuario_id = $('#profesional').val();
-                paciente_id = $('#paciente').val();
             }
+
             Swal.fire({
                 title: "¿Estás seguro?",
                 text: text,
@@ -755,15 +755,7 @@ Citas | Fidem
                     $.ajax({
                         url: url,
                         method: method,
-                        data: {
-                            fechahora: fechahora,
-                            sede: sede,
-                            paciente_id: paciente_id,
-                            usuario_id: usuario_id,
-                            tipo_cita: tipo_cita,
-                            fechasp: fechasp,
-                            "_token": $("meta[name='csrf-token']").attr("content")
-                        },
+                        data: $(this).serialize(),
                         dataType: "json",
                         success: function(data) {
                             var html = '';
@@ -782,8 +774,8 @@ Citas | Fidem
                             }
 
                             if (data.success == 'ok') {
-                                $('#form-general')[0].reset();
-                                $('#modal-u').modal('hide');
+                                $('#formulario_cita')[0].reset();
+                                $('#modal_cita').modal('hide');
                                 $('#Citas').DataTable().ajax.reload();
                                 Swal.fire({
                                     icon: 'success',
@@ -795,12 +787,12 @@ Citas | Fidem
                                 // Manteliviano.notificaciones('cliente creado correctamente', 'Sistema Ventas', 'success');
 
                             } else if (data.success == 'ok1') {
-                                $('#form-general')[0].reset();
-                                $('#modal-u').modal('hide');
+                                $('#formulario_cita')[0].reset();
+                                $('#modal_cita').modal('hide');
                                 $('#Citas').DataTable().ajax.reload();
                                 Swal.fire({
                                     icon: 'warning',
-                                    title: 'cita actualizado correctamente',
+                                    title: 'Cita asignada correctamente',
                                     showConfirmButton: false,
                                     timer: 1500
 
@@ -808,9 +800,9 @@ Citas | Fidem
 
 
                             } else if (data.success == 'tomada') {
-                                //$('#form-general')[0].reset();
+                                //$('#formulario_cita')[0].reset();
                                 $('#Citas').DataTable().ajax.reload();
-                                //$('#modal-u').modal('hide');
+                                //$('#modal_cita').modal('hide');
                                 Swal.fire({
                                     icon: 'warning',
                                     title: 'La hora del Profesional ya fue tomada por favor selecciona otro horario',
@@ -852,7 +844,7 @@ Citas | Fidem
                     $('.card-title-1').text('Editar cita');
                     $('#action_button').val('Edit');
                     $('#action').val('Edit');
-                    $('#modal-u').modal('show');
+                    $('#modal_cita').modal('show');
 
                 }
 

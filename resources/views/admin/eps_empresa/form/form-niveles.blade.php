@@ -74,13 +74,13 @@
           </select>
         </div>
 
-        <input type="hidden" name="user_id" id="user_id1" class="form-control" value="{{Session()->get('usuario_id')}}">
+        <input type="hidden" name="user_id" id="user_id" class="form-control" value="{{Session()->get('usuario_id')}}">
         <input type="hidden" name="eps_empresas_id" id="eps_empresas_id" class="form-control" readonly>
         <!-- <input type="hidden" name="id_eps_niveles" id="id_eps_niveles" class="form-control" readonly> -->
 
       </div>
 
-      
+
       @include('includes.boton-form-crear-empresa-empleado-usuario')
     </div>
   </div>
