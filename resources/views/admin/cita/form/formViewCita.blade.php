@@ -29,14 +29,10 @@
     </div>
     <div class="col-lg-3">
         <label for="ips" class="col-xs-4 control-label requerido">Sede:</label>
-        <select name="ips" id="ips" class="form-control" style="width: 100%;">
-            <option value="">---seleccione la sede---</option>
-            <option value="ATENCION FIDEM 1">ATENCION FIDEM 1</option>
-            <option value="ATENCION FIDEM 2">ATENCION FIDEM 2</option>
-            <option value="SALUD MEDCOL 2">SALUD MEDCOL 2</option>
-            <option value="SALUD MEDCOL 3">SALUD MEDCOL 3</option>
-            <option value="SALUD VITALIA">SALUD VITALIA</option>
-            <!-- <option value="TEMPUS ATENCION INTEGRAL">TEMPUS ATENCION INTEGRAL</option> -->
+        <select name="ips" id="ips" class="form-control" style="width: 100%;" value="{{old('ips')}}" required>
+            <option value="" selected>-- Seleccionar --</option>
+            <option value="Copago">Copago</option>
+            <option value="Cuota Moderadora">Cuota Moderadora</option>
         </select>
     </div>
 </div>

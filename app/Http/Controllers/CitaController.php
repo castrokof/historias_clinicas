@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Cita;
 use App\Models\Admin\Paciente;
+use App\Models\Admin\Servicios;
 use App\Models\Seguridad\Usuario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,36 +21,48 @@ class CitaController extends Controller
     public function index(Request $request)
     {
         $usuario_id = $request->session()->get('usuario_id');
-        $fechaActual= $request->fechaini." 00:00:01";
-        $fechaFinal= $request->fechafin." 23:59:59";
+        $fechaActual = $request->fechaini . " 00:00:01";
+        $fechaFinal = $request->fechafin . " 23:59:59";
         $estado = null;
         $profesional = $request->profesional;
 
-        if($request->ajax()){
+        if ($request->ajax()) {
             $datas = DB::table('cita')->select(
-            'cita.id_cita as id_cita', 'cita.historia', 'cita.tipo_documento', 'cita.fechahora_cita as fecha_cita', 'cita.fechahora_solicitada as fecha_solicitud', 'cita.cod_profesional', 'cita.papellido',
-            'cita.sapellido', 'cita.pnombre', 'cita.snombre',  'cita.estado as estado',  'cita.cod_documentos as doc_factura'
-            ,  'cita.numero_factura as factura',  'cita.servicio as servicio', 'cita.contrato as contrato', 'cita.futuro1 as celular', 'cita.cod_cups as cod_cups')
-            ->whereBetween('fechahora_cita', [$fechaActual,$fechaFinal])
-            ->where('cita.profesional_id', $profesional)
-            ->orderBy('cita.fechahora_cita')
-            ->get();
+                'cita.id_cita as id_cita',
+                'cita.historia',
+                'cita.tipo_documento',
+                'cita.fechahora_cita as fecha_cita',
+                'cita.fechahora_solicitada as fecha_solicitud',
+                'cita.cod_profesional',
+                'cita.papellido',
+                'cita.sapellido',
+                'cita.pnombre',
+                'cita.snombre',
+                'cita.estado as estado',
+                'cita.cod_documentos as doc_factura',
+                'cita.numero_factura as factura',
+                'cita.servicio as servicio',
+                'cita.contrato as contrato',
+                'cita.futuro1 as celular',
+                'cita.cod_cups as cod_cups'
+            )
+                ->whereBetween('fechahora_cita', [$fechaActual, $fechaFinal])
+                ->where('cita.profesional_id', $profesional)
+                ->orderBy('cita.fechahora_cita')
+                ->get();
 
 
-        return  DataTables()->of($datas)
-        ->addColumn('action', function($datas){
-            $checkbox =  '<input type="checkbox" name="case[]" id="'.$datas->id_cita.'" value="' . $datas->id_cita . '" class="case" title="Selecciona Orden"/>';
+            return  DataTables()->of($datas)
+                ->addColumn('action', function ($datas) {
+                    $checkbox =  '<input type="checkbox" name="case[]" id="' . $datas->id_cita . '" value="' . $datas->id_cita . '" class="case" title="Selecciona Orden"/>';
 
-            return $checkbox;
+                    return $checkbox;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
 
-
-        })
-        ->rawColumns(['action'])
-        ->make(true);
-
-     }
-
-     return view('admin.cita.index');
+        return view('admin.cita.index');
     }
 
     /**
@@ -71,35 +84,36 @@ class CitaController extends Controller
 
         $error = Validator::make($request->all(), $rules);
 
-        if($error->fails()) {
+        if ($error->fails()) {
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        $fechahoracita = $request->fechahora.":00";
+        $fechahoracita = $request->fechahora . ":00";
 
-       $citaasignada = DB::table('cita')->where([
-        ['fechahora', '=', $fechahoracita], ['usuario_id', '=', $request->usuario_id]]
-       )->count();
+        $citaasignada = DB::table('cita')->where(
+            [
+                ['fechahora', '=', $fechahoracita], ['usuario_id', '=', $request->usuario_id]
+            ]
+        )->count();
 
 
-        if($citaasignada>0){
+        if ($citaasignada > 0) {
 
             return response()->json(['success' => 'tomada']);
+        } else {
 
-        }else{
 
-
-        DB::table('cita')
-        ->insert([
-        'fechahora' => $fechahoracita,
-        'sede' => $request->sede,
-        'usuario_id' => $request->usuario_id,
-        'paciente_id' => $request->paciente_id,
-        'asistio' => 'PROGRAMADA',
-        'tipo_cita' => $request->tipo_cita,
-        'fechasp' => $request->fechasp,
-        'created_at'=>now()
-        ]);
+            DB::table('cita')
+                ->insert([
+                    'fechahora' => $fechahoracita,
+                    'sede' => $request->sede,
+                    'usuario_id' => $request->usuario_id,
+                    'paciente_id' => $request->paciente_id,
+                    'asistio' => 'PROGRAMADA',
+                    'tipo_cita' => $request->tipo_cita,
+                    'fechasp' => $request->fechasp,
+                    'created_at' => now()
+                ]);
 
             return response()->json(['success' => 'ok']);
         }
@@ -108,34 +122,11 @@ class CitaController extends Controller
     public function selectp(Request $request)
     {
 
-        $pacientes1 = Paciente::orderBy('documento')->select('id_paciente', 'documento', DB::raw("CONCAT(pnombre,' ',papellido) as paciente") )->$request->toArray();
+        $pacientes1 = Paciente::orderBy('documento')->select('id_paciente', 'documento', DB::raw("CONCAT(pnombre,' ',papellido) as paciente"))->$request->toArray();
 
         return response()->json($pacientes1);
-
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -148,22 +139,31 @@ class CitaController extends Controller
 
         // $pacientes = Paciente::orderBy('documento')->select('id_paciente', 'documento', DB::raw("CONCAT(pnombre,' ',papellido) as paciente") )->get();
         // $profesionales = Usuario::orderBy('id')->select('id', 'documento', 'especialidad',DB::raw("CONCAT(pnombre,' ',papellido) as profesional") )->get();
-        if(request()->ajax()){
+        if (request()->ajax()) {
 
             $data = DB::table('cita')
-            ->Join('usuario', 'cita.usuario_id', '=', 'usuario.id')
-            ->Join('paciente', 'cita.paciente_id', '=', 'paciente.id_paciente')
-            ->select(DB::raw('CONCAT(paciente.pnombre," ",paciente.papellido) as paciente'),
-             DB::raw('CONCAT(usuario.pnombre," ", usuario.papellido) as profesional'),
-            'cita.id_cita as id_cita','cita.asistio as asistio','cita.fechahora as fechahora', 'cita.sede as sede', 'cita.created_at as created_at', 'cita.usuario_id as usuario_id', 'cita.paciente_id as paciente_id', 'cita.tipo_cita as tipo_cita', 'cita.fechasp as fechasp' )
-            ->orderBy('cita.id_cita')
-            ->where('cita.id_cita', '=', $id)
-            ->first();
+                ->Join('usuario', 'cita.usuario_id', '=', 'usuario.id')
+                ->Join('paciente', 'cita.paciente_id', '=', 'paciente.id_paciente')
+                ->select(
+                    DB::raw('CONCAT(paciente.pnombre," ",paciente.papellido) as paciente'),
+                    DB::raw('CONCAT(usuario.pnombre," ", usuario.papellido) as profesional'),
+                    'cita.id_cita as id_cita',
+                    'cita.asistio as asistio',
+                    'cita.fechahora as fechahora',
+                    'cita.sede as sede',
+                    'cita.created_at as created_at',
+                    'cita.usuario_id as usuario_id',
+                    'cita.paciente_id as paciente_id',
+                    'cita.tipo_cita as tipo_cita',
+                    'cita.fechasp as fechasp'
+                )
+                ->orderBy('cita.id_cita')
+                ->where('cita.id_cita', '=', $id)
+                ->first();
 
-                return response()->json(['result'=>$data]);
-
-            }
-            return view('admin.cita.index', compact('datas'));
+            return response()->json(['result' => $data]);
+        }
+        return view('admin.cita.index', compact('datas'));
     }
 
     /**
@@ -176,42 +176,77 @@ class CitaController extends Controller
     public function actualizar(Request $request, $id)
     {
         $rules = array(
-            'historia' => 'required',
+            'fechahora_solicitada',
+            'fechahora_solicitud',
             'ips'  => 'required|max:100',
+            'tipo_documento' => 'required|max:50',
+            'historia' => 'required',
+            'pnombre',
+            'snombre',
+            'papellido',
+            'sapellido',
+            'futuro2', // Este campo es la fecha de nacimiento del paciente
             'usuario_id' => 'required',
-            'tipo_solicitud' => 'required'
+            'tipo_solicitud' => 'required',
+            'cups_id',
+            'contrato_id',
+            'servicio_id'
 
         );
 
         $error = Validator::make($request->all(), $rules);
 
-        if($error->fails()) {
+        if ($error->fails()) {
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        $fechahoracita = $request->fechahora_cita.":00";
+        $fechahoracita = $request->fechahora_cita . ":00";
 
-       $citaasignada = DB::table('cita')->where([
-        ['fechahora_cita', '=', $fechahoracita], ['usuario_id', '=', $request->usuario_id]]
-       )->count();
+        $citaasignada = DB::table('cita')->where(
+            [
+                ['fechahora_cita', '=', $fechahoracita], ['usuario_id', '=', $request->usuario_id]
+            ]
+        )->count();
 
-
-        if($citaasignada>0){
-
+        if ($citaasignada > 0) {
             return response()->json(['success' => 'tomada']);
+        } else {
 
-        }else{
+            // Obtener el nombre del servicio, el codigo cups y nombre del contrato
+
+            /* $servicio = Servicios::find($request->servicio_id)->nombre; */
+            $servicio = DB::table('servicios')->where('id_servicio', $request->servicio_id)->value('nombre');
+            $fact_procedimiento = DB::table('def__procedimientos')->where('id_cups', $request->cups_id)->value('cod_cups');
+            $contrato = DB::table('def__contratos')->where('id_contrato', $request->contrato_id)->value('nombre');
+            $username = DB::table('usuario')->where('id', $request->usuario_id)->value('usuario');
+            $paciente = DB::table('paciente')->where('documento',$request->historia)->value('id_paciente');
 
 
-        DB::table('cita')
-        ->where('id_cita', $id)
-        ->update([
-        'historia' => $request->historia,
-        'usuario_id' => $request->usuario_id,
-        'estado' => 'ASIGNADA',
-        'tipo_solicitud' => $request->tipo_cita,
-        'updated_at'=>now()
-        ]);
+            DB::table('cita')
+                ->where('id_cita', $id)
+                ->update([
+                    'fechahora_solicitada' => $request->fechahora_solicitada,
+                    'fechahora_solicitud'=> $request->fechahora_solicitud,
+                    'ips' =>$request->ips,
+                    'historia' => $request->historia,
+                    'pnombre' => $request->pnombre,
+                    'snombre' => $request->snombre,
+                    'papellido' => $request->papellido,
+                    'sapellido' => $request->sapellido,
+                    'futuro2'=> $request->futuro2,
+                    'usuario_id' => $request->usuario_id,
+                    'usuario' => $username,
+                    'estado' => 'ASIGNADA',
+                    'tipo_solicitud' => $request->tipo_cita,
+                    'servicio_id' => $request->servicio_id,
+                    'servicio' => $servicio, // Actualizar el campo servicio con el nombre del servicio correspondiente
+                    'cups_id' => $request->cups_id,
+                    'cod_cups' => $fact_procedimiento,
+                    'contrato_id' =>$request->contrato_id,
+                    'contrato' => $contrato,
+                    'paciente_id'=> $paciente,
+                    'updated_at' => now()
+                ]);
             return response()->json(['success' => 'ok1']);
         }
     }

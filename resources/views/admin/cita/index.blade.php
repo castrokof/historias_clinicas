@@ -33,7 +33,9 @@ Citas | Fidem
 @endsection
 
 @section('contenido')
+
 @include('admin.cita.modal.modalAddCita')
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -41,65 +43,19 @@ Citas | Fidem
                 <h1 class="m-0 p-0 text-dark">Gestion de citas</h1>
             </div><!-- /.col -->
 
-
             <div class="card-body col-12 col-lg-12  mt-0 mb-0 pb-0 pt-1 pl-2 pr-2 card-blue">
 
                 @include('admin.cita.form.form')
-
                 @csrf
 
-
-
             </div>
-
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-
     <!-- /.content-header -->
 </div>
 
 
 
-
-<div class="modal fade" tabindex="-1" id="modal_cita" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="row">
-                <div class="col-lg-12">
-                    @include('includes.form-error')
-                    @include('includes.form-mensaje')
-                    <span id="form_result"></span>
-                    <div class="card card-info">
-                        <div class="card-header">
-                            <h3 class="card-title-1"></h3>
-                            <div class="card-tools pull-right">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                        <form id="formulario_cita" class="form-horizontal" method="POST">
-                            @csrf
-                            <div class="card-body">
-                                @include('admin.cita.form')
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-
-                                <div class="col-lg-3"></div>
-                                <div class="col-lg-6">
-                                    @include('includes.boton-form-crear-empresa-empleado-usuario')
-                                </div>
-                            </div>
-                            <!-- /.card-footer -->
-                        </form>
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 
 
@@ -371,7 +327,7 @@ Citas | Fidem
                                     name2 = row["snombre"];
                                 }
 
-                                return apellido1 + apellido2 + ' ' + name + ' ' + name2;
+                                return apellido1 + ' ' + apellido2 + ' ' + name + ' ' + name2;
                             },
                             "targets": [3]
                         },
@@ -475,6 +431,8 @@ Citas | Fidem
                 });
                 $('#modal_cita').modal('show');
             });
+
+
         }
 
 
@@ -559,10 +517,7 @@ Citas | Fidem
             const document = $('#historia').val();
 
             if (document != '') {
-
                 fill_resumen(document);
-
-
             } else {
 
                 Swal.fire({
@@ -570,16 +525,12 @@ Citas | Fidem
                     icon: 'warning',
                     buttons: {
                         cancel: "Cerrar"
-
                     }
                 })
             }
-
         });
 
         function fill_resumen(document = '') {
-
-            /* $('#formulario_cita')[0].reset(); */
 
             $.ajax({
                 url: "{{ route('pacientefill') }}",
@@ -805,7 +756,7 @@ Citas | Fidem
                                 //$('#modal_cita').modal('hide');
                                 Swal.fire({
                                     icon: 'warning',
-                                    title: 'La hora del Profesional ya fue tomada por favor selecciona otro horario',
+                                    title: 'Este cupo con el Profesional ya fue tomado por favor selecciona otro horario',
                                     showConfirmButton: true,
                                     //timer: 1500
 
@@ -815,7 +766,6 @@ Citas | Fidem
                             }
                             $('#form_result').html(html)
                         }
-
 
                     });
                 }
@@ -854,7 +804,7 @@ Citas | Fidem
                 if (jqXHR.status === 403) {
 
                     Manteliviano.notificaciones('No tienes permisos para realizar esta accion',
-                        'Sistema Ventas', 'warning');
+                        'Modulo Citas', 'warning');
 
                 }
             });

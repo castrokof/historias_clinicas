@@ -23,7 +23,7 @@
             <button type="button" class="btn btn-primary btn-xs col-md-2" name="agregar_horario" id="agregar_horario"><i class="fa fa-plus-circle"></i> Asignar cita</button>
             <button type="button" class="btn btn-success btn-xs col-md-2" name="consultar_cita" id="consultar_cita"><i class="fa fa-search"></i> Consultar cita</button>
             <button type="button" class="btn btn-warning btn-xs col-md-2" name="agregar_horario" id="agregar_horario"><i class="fa fa-edit"></i> Editar cita</button>
-            <button type="button" class="btn btn-danger btn-xs col-md-2" name="consultar_cita" id="consultar_cita"><i class="fa fa-trash"></i> Eliminar cita</button>
+            <button type="button" class="btn btn-danger btn-xs col-md-2" name="eliminar_cita" id="eliminar_cita"><i class="fa fa-trash"></i> Eliminar cita</button>
         </div>
 
     </div>
