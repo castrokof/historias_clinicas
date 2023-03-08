@@ -5,7 +5,7 @@
                 <div class="col-lg-12">
                     @include('includes.form-error')
                     @include('includes.form-mensaje')
-                    <span id="form_result"></span>
+                    <span id="form_result_view"></span>
                     <div class="card card-primary">
                         <div class="card-header with-border">
                             <h3 class="card-title">Consultar Cita</h3>

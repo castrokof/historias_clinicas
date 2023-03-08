@@ -140,30 +140,28 @@ class CitaController extends Controller
         // $pacientes = Paciente::orderBy('documento')->select('id_paciente', 'documento', DB::raw("CONCAT(pnombre,' ',papellido) as paciente") )->get();
         // $profesionales = Usuario::orderBy('id')->select('id', 'documento', 'especialidad',DB::raw("CONCAT(pnombre,' ',papellido) as profesional") )->get();
         if (request()->ajax()) {
-
-            $data = DB::table('cita')
-                ->Join('usuario', 'cita.usuario_id', '=', 'usuario.id')
-                ->Join('paciente', 'cita.paciente_id', '=', 'paciente.id_paciente')
+            $datas2 = Cita::join('paciente', 'paciente.id_paciente', '=', 'cita.paciente_id')
+                ->join('usuario', 'usuario.id', '=', 'cita.usuario_id')
+                ->leftJoin('paises', 'paciente.pais_id', '=', 'paises.id_pais')
+                ->join('servicios', 'servicios.id_servicio', '=', 'cita.servicio_id')
+                ->join('def__contratos', 'def__contratos.id_contrato', '=', 'cita.contrato_id')
+                ->join('def__procedimientos', 'def__procedimientos.id_cups', '=', 'cita.cups_id')
+                ->where('cita.id_cita', $id)
                 ->select(
-                    DB::raw('CONCAT(paciente.pnombre," ",paciente.papellido) as paciente'),
-                    DB::raw('CONCAT(usuario.pnombre," ", usuario.papellido) as profesional'),
-                    'cita.id_cita as id_cita',
-                    'cita.asistio as asistio',
-                    'cita.fechahora as fechahora',
-                    'cita.sede as sede',
-                    'cita.created_at as created_at',
-                    'cita.usuario_id as usuario_id',
-                    'cita.paciente_id as paciente_id',
-                    'cita.tipo_cita as tipo_cita',
-                    'cita.fechasp as fechasp'
+                    'cita.*',
+                    'paciente.edad as paciente_edad',
+                    'paciente.direccion as paciente_direccion',
+                    'paises.nombre as nombre_pais',
+                    /* DB::raw("IFNULL(paises.nombre, '') as nombre_pais"), */
+                    DB::raw("CONCAT(servicios.cod_servicio, ' - ', servicios.nombre) as servicio_nombre"),
+                    DB::raw("CONCAT(def__contratos.contrato, ' - ', def__contratos.nombre) as contrato_nombre"),
+                    DB::raw("CONCAT(def__procedimientos.cod_cups, ' - ', def__procedimientos.nombre) as cups")
                 )
-                ->orderBy('cita.id_cita')
-                ->where('cita.id_cita', '=', $id)
                 ->first();
 
-            return response()->json(['result' => $data]);
+            return response()->json(['result' => $datas2]);
         }
-        return view('admin.cita.index', compact('datas'));
+        return view('admin.cita.index');
     }
 
     /**
@@ -219,32 +217,33 @@ class CitaController extends Controller
             $fact_procedimiento = DB::table('def__procedimientos')->where('id_cups', $request->cups_id)->value('cod_cups');
             $contrato = DB::table('def__contratos')->where('id_contrato', $request->contrato_id)->value('nombre');
             $username = DB::table('usuario')->where('id', $request->usuario_id)->value('usuario');
-            $paciente = DB::table('paciente')->where('documento',$request->historia)->value('id_paciente');
+            $paciente = DB::table('paciente')->where('documento', $request->historia)->value('id_paciente');
 
 
             DB::table('cita')
                 ->where('id_cita', $id)
                 ->update([
                     'fechahora_solicitada' => $request->fechahora_solicitada,
-                    'fechahora_solicitud'=> $request->fechahora_solicitud,
-                    'ips' =>$request->ips,
+                    'fechahora_solicitud' => $request->fechahora_solicitud,
+                    'ips' => $request->ips,
+                    'tipo_documento' => $request->tipo_documento,
                     'historia' => $request->historia,
                     'pnombre' => $request->pnombre,
                     'snombre' => $request->snombre,
                     'papellido' => $request->papellido,
                     'sapellido' => $request->sapellido,
-                    'futuro2'=> $request->futuro2,
+                    'futuro2' => $request->futuro2,
                     'usuario_id' => $request->usuario_id,
                     'usuario' => $username,
                     'estado' => 'ASIGNADA',
-                    'tipo_solicitud' => $request->tipo_cita,
+                    'tipo_solicitud' => $request->tipo_solicitud,
                     'servicio_id' => $request->servicio_id,
                     'servicio' => $servicio, // Actualizar el campo servicio con el nombre del servicio correspondiente
                     'cups_id' => $request->cups_id,
                     'cod_cups' => $fact_procedimiento,
-                    'contrato_id' =>$request->contrato_id,
+                    'contrato_id' => $request->contrato_id,
                     'contrato' => $contrato,
-                    'paciente_id'=> $paciente,
+                    'paciente_id' => $paciente,
                     'updated_at' => now()
                 ]);
             return response()->json(['success' => 'ok1']);

@@ -23,7 +23,7 @@
 
 </div>
 <div class="form-group row">
-    <div class="col-lg-4">
+    <div class="col-lg-6">
         <label for="prof_cita">Profesional:</label>
         <input type="text" class="form-control" id="prof_cita" name="prof_cita" readonly>
     </div>
@@ -39,6 +39,10 @@
             <!-- <option value="TEMPUS ATENCION INTEGRAL">TEMPUS ATENCION INTEGRAL</option> -->
         </select>
     </div>
+    <!-- <div class="col-lg-3">
+        <label for="estado" class="col-xs-4 control-label ">Estado Cita:</label>
+        <input class="form-control" id="estado" name="status" readonly>
+    </div> -->
 </div>
 
 
@@ -92,10 +96,14 @@
         <label for="direccion" class="col-xs-4 control-label ">Direccion</label>
         <input type="text" name="direccion" id="direccion" class="form-control" minlength="6" readonly>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-2">
+        <label for="celular" class="col-xs-4 control-label ">Celular</label>
+        <input type="text" name="celular" id="celular" class="form-control" readonly>
+    </div>
+    <!-- <div class="col-lg-3">
         <label for="cita_id" class="col-xs-4 control-label ">Id de cita</label>
         <input type="text" name="cita_id" id="cita_id" class="form-control" minlength="6" readonly>
-    </div>
+    </div> -->
 
 </div>
 <div class="form-group row">

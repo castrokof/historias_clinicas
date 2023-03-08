@@ -35,6 +35,7 @@ Citas | Fidem
 @section('contenido')
 
 @include('admin.cita.modal.modalAddCita')
+@include('admin.cita.modal.modalViewCita')
 
 <div class="content-header">
     <div class="container-fluid">
@@ -432,6 +433,51 @@ Citas | Fidem
                 $('#modal_cita').modal('show');
             });
 
+            $('#consultar_cita').on('click',function() {
+                var id = selected_cita_id;
+
+                $.ajax({
+                    url: "/cita/" + id + "/editar",
+                    dataType: "json",
+                    success: function(data) {
+                        $('#fecha_cita').val(data.result.fechahora_cita);
+                        $('#fecha_solicitud').val(data.result.fechahora_solicitud);
+                        $('#fecha_solicitada').val(data.result.fechahora_solicitada);
+                        $('#tipoSolicitud').val(data.result.tipo_solicitud);
+                        $('#ips_sede').val(data.result.ips);
+                        $('#tipo_id').val(data.result.tipo_documento);
+                        $('#identificacion').val(data.result.historia);
+                        $('#firts_pname').val(data.result.pnombre);
+                        $('#firts_sname').val(data.result.snombre);
+                        $('#last_pname').val(data.result.papellido);
+                        $('#last_sname').val(data.result.sapellido);
+                        $('#fecha_nacimiento').val(data.result.futuro2);
+                        $('#paciente_edad').val(data.result.paciente_edad);
+                        $('#paciente_direccion').val(data.result.paciente_direccion);
+                        $('#nombre_pais').val(data.result.nombre_pais);
+                        $('#servicio').val(data.result.servicio_nombre);
+                        $('#contrato').val(data.result.contrato_nombre);
+                        $('#procedimiento').val(data.result.cups);
+                        $('#estado').val(data.result.estado);
+
+                        $('#cod_med').val(data.result.cod_profesional);
+                        $('#cita_id').val(id);
+
+                        $('#form_result_view').html('');
+                        $('#modal_view_cita').modal({
+                            backdrop: 'static',
+                            keyboard: false
+                        });
+                        $('#modal_view_cita').modal('show');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        if (jqXHR.status === 403) {
+                            Manteliviano.notificaciones('No tienes permisos para realizar esta accion',
+                                'Modulo Citas', 'warning');
+                        }
+                    }
+                });
+            });
 
         }
 
@@ -784,17 +830,16 @@ Citas | Fidem
                 url: "/cita/" + id + "/editar",
                 dataType: "json",
                 success: function(data) {
-                    $('#paciente').val(data.result.paciente_id).trigger('change.select2');
-                    $('#fechahora').val(data.result.fechahora);
-                    $('#sede').val(data.result.sede);
-                    $('#fechasp').val(data.result.fechasp);
-                    $('#tipo_cita').val(data.result.tipo_cita);
-                    $('#profesional').val(data.result.usuario_id).trigger('change.select2')
-                    $('#hidden_id').val(id);
+                    $('#firts_name').val(data.result.pnombre);
+                    $('#snombre').val(data.result.snombre);
+                    $('#papellido').val(data.result.papellido);
+                    $('#sapellido').val(data.result.sapellido);
+                    $('#direccion').val(data.result.direccion).trigger('change.select2')
+                    $('#cita_id').val(id);
                     $('.card-title-1').text('Editar cita');
                     $('#action_button').val('Edit');
                     $('#action').val('Edit');
-                    $('#modal_cita').modal('show');
+                    $('#modal_view_cita').modal('show');
 
                 }
 
