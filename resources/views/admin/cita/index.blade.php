@@ -454,7 +454,7 @@ Citas | Fidem
                         $('#fecha_nacimiento').val(data.result.futuro2);
                         $('#paciente_edad').val(data.result.paciente_edad);
                         $('#paciente_direccion').val(data.result.paciente_direccion);
-                        $('#nombre_pais').val(data.result.nombre_pais);
+                        $('#paciente_pais').val(data.result.nombre_pais);
                         $('#servicio').val(data.result.servicio_nombre);
                         $('#contrato').val(data.result.contrato_nombre);
                         $('#procedimiento').val(data.result.cups);

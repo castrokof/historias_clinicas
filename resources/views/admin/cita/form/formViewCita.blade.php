@@ -72,8 +72,8 @@
     </div>
 
     <div class="col-lg-3">
-        <label for="nombre_pais" class="col-xs-4 control-label ">País de Residencia</label>
-        <input name="pais" id="nombre_pais" class="form-control" readonly>
+        <label for="paciente_pais" class="col-xs-4 control-label ">País de Residencia</label>
+        <input name="pais" id="paciente_pais" class="form-control" readonly>
     </div>
     <div class="col-lg-3">
         <label for="paciente_direccion" class="col-xs-4 control-label ">Direccion</label>
