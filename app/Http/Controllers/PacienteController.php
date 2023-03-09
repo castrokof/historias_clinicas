@@ -34,7 +34,8 @@ class PacienteController extends Controller
                 ->Join('eps_empresas', 'paciente.eps_id', '=', 'eps_empresas.id_eps_empresas')
                 ->Join('paises', 'paciente.pais_id', '=', 'paises.id_pais')
                 ->Join('ciudades', 'paciente.ciudad_id', '=', 'ciudades.id_ciudad')
-                ->select('*',
+                ->select(
+                    '*',
                     'paciente.id_paciente as idd',
                     'ocupaciones.codigo as cod_ocu',
                     'ocupaciones.nombre as nombre_ocu',
@@ -71,7 +72,7 @@ class PacienteController extends Controller
      */
 
 
-    public function guardar(Request $request)
+    public function guardar_1(Request $request)
     {
         $rules = array(
             'pnombre'  => 'required|max:100',
@@ -81,6 +82,7 @@ class PacienteController extends Controller
             'celular' => 'numeric|required|min:50|max:9999999999',
             'ocupacion_id' => 'required',
             'eps_id' => 'required',
+            'eps_nombre',
             'regimen',
             'afiliacion',
             'nivel',
@@ -104,9 +106,96 @@ class PacienteController extends Controller
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        Paciente::create($request->all());
+        $peps = DB::table('eps_empresas')->where('id_eps_empresas', $request->eps_id)->value('nombre');
+        // Se agrega el campo $peps al arreglo $data para asignar el valor al campo eps_nombre de la tabla donde se va hacer la insercion
+        $data = $request->all();
+        $data['eps_nombre'] = $peps;
+        /* $data = array_merge($request->all(), ['eps_nombre' => $peps]); */
+
+        // Se toma el arreglo $data en lugar de $request->all() para insertar todos los campos incluyendo el eps_nombre seteado
+        Paciente::create($data);
+
         return response()->json(['success' => 'ok']);
     }
+
+    public function guardar(Request $request)
+    {
+        $rules = array(
+            'pnombre'  => 'required|max:100',
+            'papellido'  => 'required|max:100',
+            'tipo_documento' => 'required',
+            'documento' => 'numeric|required|min:19|max:9999999999',
+            'celular' => 'numeric|required|min:50|max:9999999999',
+            'ocupacion_id' => 'required',
+            'eps_id' => 'required',
+            'regimen',
+            'afiliacion',
+            'nivel',
+            'numero_afiliacion',
+            'edad',
+            'futuro2', //Este dato es la fecha de nacimiento del paciente
+            'Poblacion_especial' => 'required',
+            'pais_id' => 'required',
+            'departamento_id' => 'required',
+            'ciudad_id' => 'required',
+            'barrio_id' => 'required',
+            'direccion' => 'required',
+            'telefono',
+            'correo',
+            'sexo' => 'required',
+            'orientacion_sexual' => 'required',
+            'observaciones',
+            'usuario_id'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $peps = DB::table('eps_empresas')->where('id_eps_empresas', $request->eps_id)->value('nombre');
+
+        // Agregamos los campos faltantes a nuestro arreglo de datos
+        $data = [
+            'pnombre' => $request->pnombre,
+            'snombre' => $request->snombre,
+            'papellido' => $request->papellido,
+            'sapellido' => $request->sapellido,
+            'tipo_documento' => $request->tipo_documento,
+            'documento' => $request->documento,
+            'edad' => $request->edad,
+            'celular' => $request->celular,
+            'ocupacion_id' => $request->ocupacion_id,
+            'eps_id' => $request->eps_id,
+            'eps_nombre' => $peps,
+            'regimen' => $request->regimen,
+            'afiliacion' => $request->afiliacion,
+            'nivel' => $request->nivel,
+            'numero_afiliacion' => $request->numero_afiliacion,
+            'futuro2' => $request->futuro2,
+            'Poblacion_especial' => $request->Poblacion_especial,
+            'pais_id' => $request->pais_id,
+            'departamento_id' => $request->departamento_id,
+            'ciudad_id' => $request->ciudad_id,
+            'barrio_id' => $request->barrio_id,
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'correo' => $request->correo,
+            'sexo' => $request->sexo,
+            'orientacion_sexual' => $request->orientacion_sexual,
+            'observaciones' => $request->observaciones,
+            'usuario_id' => $request->usuario_id,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        // Usamos el método insert de la clase DB para insertar los datos en la tabla paciente
+        DB::table('paciente')->insert($data);
+
+        return response()->json(['success' => 'ok']);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -138,14 +227,16 @@ class PacienteController extends Controller
         $rules = array(
             'pnombre'  => 'required|max:100',
             'papellido'  => 'required|max:100',
-            'celular' => 'numeric|required|min:50|max:9999999999',
             'tipo_documento' => 'required',
             'documento' => 'numeric|required|min:19|max:9999999999',
+            'celular' => 'numeric|required|min:50|max:9999999999',
             'ocupacion_id' => 'required',
             'eps_id' => 'required',
             'regimen',
             'afiliacion',
             'nivel',
+            'numero_afiliacion',
+            'edad',
             'futuro2', //Este dato es la fecha de nacimiento del paciente
             'Poblacion_especial' => 'required',
             'pais_id' => 'required',
@@ -153,8 +244,11 @@ class PacienteController extends Controller
             'ciudad_id' => 'required',
             'barrio_id' => 'required',
             'direccion' => 'required',
+            'telefono',
+            'correo',
             'sexo' => 'required',
             'orientacion_sexual' => 'required',
+            'observaciones',
             'usuario_id'
         );
 
@@ -164,34 +258,39 @@ class PacienteController extends Controller
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
+        $peps = DB::table('eps_empresas')->where('id_eps_empresas', $request->eps_id)->value('nombre');
+
         $data = DB::table('paciente')->where('id_paciente', '=', $id)
             ->update([
-                'papellido' => $request->papellido,
-                'sapellido' => $request->sapellido,
                 'pnombre' => $request->pnombre,
                 'snombre' => $request->snombre,
+                'papellido' => $request->papellido,
+                'sapellido' => $request->sapellido,
                 'tipo_documento' => $request->tipo_documento,
                 'documento' => $request->documento,
+                'edad' => $request->edad,
+                'celular' => $request->celular,
                 'ocupacion_id' => $request->ocupacion_id,
                 'eps_id' => $request->eps_id,
-                'edad' => $request->edad,
-                'sexo' => $request->sexo,
-                'orientacion_sexual' => $request->orientacion_sexual,
+                'eps_nombre' => $peps,
+                'regimen' => $request->regimen,
+                'afiliacion' => $request->afiliacion,
+                'nivel' => $request->nivel,
+                'numero_afiliacion' => $request->numero_afiliacion,
+                'futuro2' => $request->futuro2,
+                'Poblacion_especial' => $request->Poblacion_especial,
                 'pais_id' => $request->pais_id,
                 'departamento_id' => $request->departamento_id,
-                'direccion' => $request->direccion,
-                'celular' => $request->celular,
-                'telefono' => $request->telefono,
-                'regimen' => $request->regimen,
-                'nivel' => $request->nivel,
-                'futuro2' => $request->futuro2, // Este campo corresponde a la fecha de nacimiento del paciente
-                'Poblacion_especial' => $request->Poblacion_especial,
                 'ciudad_id' => $request->ciudad_id,
                 'barrio_id' => $request->barrio_id,
-                'operador' => $request->operador,
+                'direccion' => $request->direccion,
+                'telefono' => $request->telefono,
                 'correo' => $request->correo,
+                'sexo' => $request->sexo,
+                'orientacion_sexual' => $request->orientacion_sexual,
                 'observaciones' => $request->observaciones,
-                'updated_at' => now()
+                'usuario_id' => $request->usuario_id,
+                'updated_at' => now(),
 
             ]);
         // $data->update($request->all());

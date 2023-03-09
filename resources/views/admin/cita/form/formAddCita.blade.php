@@ -104,8 +104,63 @@
         <label for="cita_id" class="col-xs-4 control-label ">Id de cita</label>
         <input type="text" name="cita_id" id="cita_id" class="form-control" minlength="6" readonly>
     </div> -->
-
 </div>
+<p><a style="color:#0071c5;"> Régimen de seguridad social:</a> </p>
+<hr>
+<div class="form-group row">
+
+    <div class="col-lg-2">
+        <label for="regimen" class="col-xs-4 control-label requerido">Régimen</label>
+        <select name="regimen" id="regimen" class="form-control select2bs4" style="width: 100%;" required>
+            {{-- <option value="">---seleccione---</option>
+                <option value="Particular">Particular</option>
+                <option value="Contributivo">Contributivo</option>
+                <option value="Subsidiado">Subsidiado</option>
+                <option value="Vinculado">Vinculado</option>
+                <option value="Otro régimen">Otro régimen</option>
+                <option value="Accidentes de tránsito">Accidentes de tránsito</option>
+                <option value="Riesgos profesionales">Riesgos profesionales</option>
+                <option value="Desplazado">Desplazado</option> --}}
+        </select>
+    </div>
+    <div class="col-lg-4">
+        <label for="eps" class="col-xs-4 control-label requerido">Empresa</label>
+        <select name="eps_id" id="eps" class="form-control select2bs4" style="width: 100%;" required>
+        </select>
+    </div>
+
+    <div class="col-lg-2">
+        <label for="afiliacion" class="col-xs-4 control-label requerido">Afiliación</label>
+        <select name="afiliacion" id="afiliacion" class="form-control select2bs4" style="width: 100%;" required>
+            <option value="">---seleccione---</option>
+            <option value="Cotizante">Cotizante</option>
+            <option value="Beneficiario">Beneficiario</option>
+            <option value="Otro">Otro</option>
+        </select>
+    </div>
+    <div class="col-lg-2">
+        <label for="nivel" class="col-xs-4 control-label requerido">Nivel</label>
+        <select name="nivel" id="nivel" class="form-control select2bs4" style="width: 100%;" required>
+            <option value="">---seleccione---</option>
+            <option value="A">NIVEL A</option>
+            <option value="B">NIVEL B</option>
+            <option value="C">NIVEL C</option>
+            <option value="1">NIVEL 0</option>
+        </select>
+    </div>
+    <div class="col-lg-2">
+        <label for="numero_afiliacion" class="col-xs-4 control-label ">Número Afiliación</label>
+        <input type="number" name="numero_afiliacion" id="numero_afiliacion" class="form-control" value="{{old('numero_afiliacion')}}">
+    </div>
+
+    <div class="col-lg-3">
+        <input type="hidden" name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario_id') ?? ''}}">
+    </div>
+    <div class="col-lg-3">
+        <input type="hidden" name="paciente_id" id="id_paciente" class="form-control" value="{{old('regimen',$datas->id_paciente ?? '')}}">
+    </div>
+</div>
+
 <div class="form-group row">
     <div class="col-lg-6">
         <label for="fact_servicio2" class="col-xs-4 control-label requerido">Servicio</label>
@@ -123,6 +178,10 @@
         <label for="fact_procedimiento" class="col-xs-4 control-label requerido">Procedimiento</label>
         <select name="cups_id" id="fact_procedimiento" class="form-control select2bs4" style="width: 100%;" required>
         </select>
+    </div>
+    <div class="col-lg-6">
+        <label for="observaciones" class="col-xs-8 control-label ">Observación</label>
+        <textarea name="observaciones" id="observaciones" class="form-control" rows="3" placeholder="Enter ..."></textarea>
     </div>
 </div>
 

@@ -460,7 +460,7 @@ Citas | Fidem
                         $('#procedimiento').val(data.result.cups);
                         $('#estado').val(data.result.estado);
 
-                        $('#cod_med').val(data.result.cod_profesional);
+                        $('#cod_med').val(data.result.prof_nombre);
                         $('#cita_id').val(id);
 
                         $('#form_result_view').html('');

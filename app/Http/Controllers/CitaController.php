@@ -144,6 +144,7 @@ class CitaController extends Controller
                 ->join('usuario', 'usuario.id', '=', 'cita.usuario_id')
                 ->leftJoin('paises', 'paciente.pais_id', '=', 'paises.id_pais')
                 ->join('servicios', 'servicios.id_servicio', '=', 'cita.servicio_id')
+                ->join('def__profesionales', 'def__profesionales.id_profesional', '=', 'cita.profesional_id')
                 ->join('def__contratos', 'def__contratos.id_contrato', '=', 'cita.contrato_id')
                 ->join('def__procedimientos', 'def__procedimientos.id_cups', '=', 'cita.cups_id')
                 ->where('cita.id_cita', $id)
@@ -153,6 +154,7 @@ class CitaController extends Controller
                     'paciente.direccion as paciente_direccion',
                     'paises.nombre as nombre_pais',
                     /* DB::raw("IFNULL(paises.nombre, '') as nombre_pais"), */
+                    DB::raw("CONCAT(def__profesionales.codigo, ' - ', def__profesionales.nombre) as prof_nombre"),
                     DB::raw("CONCAT(servicios.cod_servicio, ' - ', servicios.nombre) as servicio_nombre"),
                     DB::raw("CONCAT(def__contratos.contrato, ' - ', def__contratos.nombre) as contrato_nombre"),
                     DB::raw("CONCAT(def__procedimientos.cod_cups, ' - ', def__procedimientos.nombre) as cups")

@@ -83,7 +83,7 @@
             <label for="direccion" class="col-xs-4 control-label requerido">Direccion</label>
             <input type="text" name="direccion" id="direccion" class="form-control" value="{{old('direccion')}}" minlength="6" required>
         </div>
-        
+
 
     </div>
     <div class="form-group row">
