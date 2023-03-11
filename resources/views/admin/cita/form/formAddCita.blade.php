@@ -85,7 +85,7 @@
     </div>
     <div class="col-lg-1">
         <label for="edad" class="col-xs-4 control-label ">Edad</label>
-        <input type="number" name="edad" id="edad" class="form-control" value="{{old('edad')}}" placeholder="Edad" readonly>
+        <input type="number" name="edad" id="edad" class="form-control" placeholder="Edad" readonly>
     </div>
 
     <div class="col-lg-2">

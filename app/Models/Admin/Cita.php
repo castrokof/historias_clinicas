@@ -49,7 +49,6 @@ class Cita extends Model
         'profesional_id',
         'cups_id',
         'contrato_id',
-        'observacion_id',
         'factura_id',
         'servicio_id',
         'paciente_id',

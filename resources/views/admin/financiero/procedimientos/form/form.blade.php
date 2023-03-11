@@ -1,7 +1,7 @@
 <div class="form-group row">
     <div class="col-lg-2">
         <label for="cod_cups" class="col-xs-4 control-label requerido">Código</label>
-        <input type="number" name="cod_cups" id="cod_cups" class="form-control " placeholder="CUPS" value="{{old('cod_cups')}}" required>
+        <input name="cod_cups" id="cod_cups" class="form-control " placeholder="CUPS" value="{{old('cod_cups')}}" required>
     </div>
     <div class="col-lg-2">
         <label for="cod_alterno" class="col-xs-4 control-label ">Código Alterno</label>

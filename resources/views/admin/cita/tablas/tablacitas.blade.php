@@ -19,7 +19,7 @@
                     <th>Cups</th>
                     <th>Servicio</th>
                     <th>Estado</th>
-                    <th>Contacto</th>
+                    <th>Sede</th>
                     <th>Contrato</th>
 
                 </tr>

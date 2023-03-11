@@ -111,22 +111,22 @@
             <select name="Poblacion_especial" id="Poblacion_especial" class="form-control select2bs4" style="width: 100%;" value="{{old('Poblacion_especial')}}" required>
                 <option value="">---seleccione---</option>
                 <option value="AMP">Adultos mayores en centros de protección</option>
-                <option value="F">Habitante de calle mayor de edadHomosexual</option>
-                <option value="F">Habitante de calle menor de edad</option>
-                <option value="F">Indígena mayor de edad</option>
-                <option value="F">Indígena menor de edad</option>
-                <option value="F">Menor de edad desvinculado del conflicto armado</option>
-                <option value="F">Población infantil vulnerable en instituciones diferentes al ICBF</option>
-                <option value="F">Población infantil vulnerable a caro del ICBF</option>
-                <option value="F">Recién nacido con edad menor o igual a 30 días</option>
-                <option value="F">Mayor de edad desplazado</option>
-                <option value="F">Menor de edad desplazado</option>
-                <option value="F">Personas con discapacidad en centros de protección</option>
-                <option value="F">Población menor de edad privada de la libertad</option>
-                <option value="F">Población mayor de edad privada de la libertad</option>
-                <option value="F">Población desmovilizada</option>
-                <option value="F">Extranjero en transito</option>
-                <option value="F">Ninguno</option>
+                <option value="HCME">Habitante de calle mayor de edad</option>
+                <option value="HCM">Habitante de calle menor de edad</option>
+                <option value="IMA">Indígena mayor de edad</option>
+                <option value="IM">Indígena menor de edad</option>
+                <option value="MDCA">Menor de edad desvinculado del conflicto armado</option>
+                <option value="PIV">Población infantil vulnerable en instituciones diferentes al ICBF</option>
+                <option value="PIV-ICBF">Población infantil vulnerable a cargo del ICBF</option>
+                <option value="RN">Recién nacido con edad menor o igual a 30 días</option>
+                <option value="MD">Mayor de edad desplazado</option>
+                <option value="MID">Menor de edad desplazado</option>
+                <option value="PCDP">Personas con discapacidad en centros de protección</option>
+                <option value="PML">Población menor de edad privada de la libertad</option>
+                <option value="PMA">Población mayor de edad privada de la libertad</option>
+                <option value="PD">Población desmovilizada</option>
+                <option value="ET">Extranjero en tránsito</option>
+                <option value="N">Ninguno</option>
             </select>
         </div>
 

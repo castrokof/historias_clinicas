@@ -96,8 +96,14 @@
         <label for="procedimiento" class="col-xs-4 control-label ">Procedimiento</label>
         <input name="cups" id="procedimiento" class="form-control" readonly>
     </div>
+    <div class="col-lg-4">
+        <label for="username" class="col-xs-4 control-label ">Usuario que creo el registro</label>
+        <input name="usuario" id="username" class="form-control" readonly>
+    </div>
 </div>
+
+@include('admin.cita.tablas.tablaObservaciones')
+
 
 <input type="hidden" name="cita_id" id="cita_id" class="form-control">
 <input type="hidden" name="usuario_id" id="usuario_id" class="form-control" value="{{Session()->get('usuario_id')}}">
-

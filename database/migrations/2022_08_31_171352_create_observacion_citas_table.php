@@ -23,6 +23,8 @@ class CreateObservacionCitasTable extends Migration
             $table->string('future2')->nullable();
             $table->unsignedBigInteger('usuario_id')->nullable();
             $table->foreign('usuario_id', 'fk_obser_usuario')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('cita_id')->nullable();
+            $table->foreign('cita_id', 'fk_obser_cita')->references('id_cita')->on('cita')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

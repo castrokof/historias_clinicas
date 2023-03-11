@@ -43,7 +43,7 @@ class CitaController extends Controller
                 'cita.numero_factura as factura',
                 'cita.servicio as servicio',
                 'cita.contrato as contrato',
-                'cita.futuro1 as celular',
+                'cita.ips as ips',
                 'cita.cod_cups as cod_cups'
             )
                 ->whereBetween('fechahora_cita', [$fechaActual, $fechaFinal])
@@ -153,6 +153,7 @@ class CitaController extends Controller
                     'paciente.edad as paciente_edad',
                     'paciente.direccion as paciente_direccion',
                     'paises.nombre as nombre_pais',
+                    /* 'usuario.usuario as username', */
                     /* DB::raw("IFNULL(paises.nombre, '') as nombre_pais"), */
                     DB::raw("CONCAT(def__profesionales.codigo, ' - ', def__profesionales.nombre) as prof_nombre"),
                     DB::raw("CONCAT(servicios.cod_servicio, ' - ', servicios.nombre) as servicio_nombre"),
@@ -190,6 +191,7 @@ class CitaController extends Controller
             'tipo_solicitud' => 'required',
             'cups_id',
             'contrato_id',
+            'observaciones',
             'servicio_id'
 
         );
@@ -248,6 +250,17 @@ class CitaController extends Controller
                     'paciente_id' => $paciente,
                     'updated_at' => now()
                 ]);
+
+            DB::table('observacion_citas')->insert([
+                'observacion_usu' => $request->observaciones,
+                'estado' => 'ASIGNADA',
+                'usuario' => $username,
+                'usuario_id' => $request->usuario_id,
+                'cita_id'  => $id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
             return response()->json(['success' => 'ok1']);
         }
     }
@@ -258,8 +271,26 @@ class CitaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function getObservaciones(Request $request)
     {
-        //
+
+        $idlist = $request->id;
+
+        if ($request->ajax()) {
+            $observaciones = DB::table('observacion_citas')
+                ->where('cita_id', $idlist)
+                ->get();
+
+            return  DataTables()->of($observaciones)
+                ->addColumn('actionlv', function ($observaciones) {
+                    $button = '<button type="button" name="eliminarlv" id="' . $observaciones->cita_id . '"
+                    class = "eliminarlv btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Nivel"><i class=""><i class="fa fa-trash"></i></i></a>';
+
+                    return $button;
+                })
+                ->rawColumns(['actionlv'])
+                ->make(true);
+        }
+        return view('admin.cita.index');
     }
 }

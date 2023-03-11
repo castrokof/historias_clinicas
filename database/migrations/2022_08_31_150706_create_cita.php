@@ -59,8 +59,6 @@ class CreateCita extends Migration
             $table->foreign('cups_id', 'fk_cita_cups')->references('id_cups')->on('def__procedimientos')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('contrato_id')->nullable();
             $table->foreign('contrato_id', 'fk_cita_contrato')->references('id_contrato')->on('def__contratos')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedBigInteger('observacion_id')->nullable();
-            $table->foreign('observacion_id', 'fk_cita_observacion')->references('id_observacion')->on('observacion_citas')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('factura_id')->nullable();
             $table->foreign('factura_id', 'fk_cita_factura')->references('id_factura')->on('fc__facturas')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('servicio_id')->nullable();//Este dato corresponde al centro de produccion

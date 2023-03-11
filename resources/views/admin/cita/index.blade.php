@@ -236,8 +236,8 @@ Citas | Fidem
                         },
 
                         {
-                            data: 'celular',
-                            name: 'celular',
+                            data: 'ips',
+                            name: 'ips',
                             "width": "5%"
                         },
                         {
@@ -377,7 +377,20 @@ Citas | Fidem
                         if (data["estado"] == "ASIGNADA") {
                             $(row).css("background-color", '#a3bcff');
                             $(row).addClass("button btn-xs");
-
+                        } else if (data["estado"] == "CANCELADA") {
+                            $(row).css("background-color", '#eedbbd');
+                            $(row).addClass("button btn-xs");
+                        } else if (data["estado"] == "INCUMPLIDA") {
+                            $(row).css("background-color", '#ffbbbb');
+                        } else if (data["estado"] == "CONFIRMADA") {
+                            $(row).css("background-color", '#7fd1c9');
+                            $(row).addClass("button btn-xs");
+                        } else if (data["estado"] == "APLAZADA") {
+                            $(row).css("background-color", '#a5d8e9');
+                            $(row).addClass("button btn-xs");
+                        } else if (data["estado"] == "SIN DISPONIBILIDAD") {
+                            $(row).css("background-color", '#fff9c0');
+                            $(row).addClass("button btn-xs");
                         }
                         if (data["fechahora_cita"] != null) {
                             $(row).addClass("button btn-xs");
@@ -433,8 +446,14 @@ Citas | Fidem
                 $('#modal_cita').modal('show');
             });
 
-            $('#consultar_cita').on('click',function() {
+            $('#consultar_cita').on('click', function() {
                 var id = selected_cita_id;
+                var cita_ido = selected_cita_id;
+
+                if (cita_ido != '') {
+                    $('#tobservaciones').DataTable().destroy();
+                    fill_datatable_f(cita_ido);
+                }
 
                 $.ajax({
                     url: "/cita/" + id + "/editar",
@@ -459,6 +478,7 @@ Citas | Fidem
                         $('#contrato').val(data.result.contrato_nombre);
                         $('#procedimiento').val(data.result.cups);
                         $('#estado').val(data.result.estado);
+                        $('#username').val(data.result.usuario);
 
                         $('#cod_med').val(data.result.prof_nombre);
                         $('#cita_id').val(id);
@@ -621,6 +641,58 @@ Citas | Fidem
                 }
             });
         }
+
+        //Select para consultar la EPS, Niveles
+        $("#eps").select2({
+            language: "es",
+            theme: "bootstrap",
+            ajax: {
+                url: "{{ route('eps')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+
+                            return {
+
+                                //text: data.codigo,
+                                text: data.codigo + " - " + data.nombre,
+                                id: data.id_eps_empresas
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        //Consulta de datos de la tabla lista-detalle
+        $("#regimen").select2({
+            language: "es",
+            theme: "bootstrap",
+            placeholder: 'Seleccione regimen',
+            ajax: {
+                url: "{{ route('selectlist')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data.regimen, function(data) {
+
+                            return {
+
+                                text: data.nombre,
+                                id: data.nombre
+
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
 
         /* Se pone este contador para permitir maximo agegar dos procedimientos a la cita,
          **Ojo tener en cuenta que para agregar dos procedimientos a la cita hay que modificar el controller para hacer dos insert o crear otra columna Ej: cups2*/
@@ -855,6 +927,95 @@ Citas | Fidem
             });
 
         });
+
+        //--------------------------------Tabla relacion Citas vs Observaciones----------------------------//
+        function fill_datatable_f(cita_ido = '') {
+            var tobservaciones = $('#tobservaciones').DataTable({
+                language: idioma_espanol,
+                processing: true,
+                lengthMenu: [
+                    [25, 50, 100, 500, -1],
+                    [25, 50, 100, 500, "Mostrar Todo"]
+                ],
+                processing: true,
+                serverSide: true,
+                aaSorting: [
+                    [1, "asc"]
+                ],
+                ajax: {
+                    url: "{{ route('observaciones')}}",
+                    //type: "get",
+                    data: {
+                        id: cita_ido
+                    }
+                },
+                columns: [{
+                        data: 'actionlv',
+                        name: 'actionlv',
+                        orderable: false
+                    },
+                    {
+                        data: 'observacion_usu',
+                        name: 'observacion_usu'
+                    },
+                    {
+                        data: 'estado',
+                        name: 'estado'
+                    },
+                    {
+                        data: 'usuario',
+                        name: 'usuario'
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at'
+                    }
+
+                ],
+
+                //Botones----------------------------------------------------------------------
+
+                "dom": '<"row"<"col-xs-1 form-inline"><"col-md-4 form-inline"l><"col-md-5 form-inline"f><"col-md-3 form-inline"B>>rt<"row"<"col-md-8 form-inline"i> <"col-md-4 form-inline"p>>',
+
+
+                buttons: [{
+
+                        extend: 'copyHtml5',
+                        titleAttr: 'Copiar Registros',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-primary btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'excelHtml5',
+                        titleAttr: 'Exportar Excel',
+                        title: "seguimiento",
+                        className: "btn  btn-outline-success btn-sm"
+
+
+                    },
+                    {
+
+                        extend: 'csvHtml5',
+                        titleAttr: 'Exportar csv',
+                        className: "btn  btn-outline-warning btn-sm"
+                        //text: '<i class="fas fa-file-excel"></i>'
+
+                    },
+                    {
+
+                        extend: 'pdfHtml5',
+                        titleAttr: 'Exportar pdf',
+                        className: "btn  btn-outline-secondary btn-sm"
+
+                    }
+                ]
+
+            });
+
+        }
 
 
 
