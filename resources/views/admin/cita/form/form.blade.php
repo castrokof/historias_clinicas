@@ -15,9 +15,19 @@
         </div>
         <div class="col-md-2" id="estado_citas">
             <label for="estado_cita" class="col-xs-4 control-label">Estado de cita</label>
-            <select name="estado_cita" id="estado_cita" class="form-control select2bs4 btn-xs " style="width: 100%;">
+            <select name="estado_cita" id="estado_cita" class="form-control select2bs4 btn-xs" style="width: 100%;">
+                @php
+                $estados_cita = array("APLAZADA", "ASIGNADA", "CANCELADA", "CONFIRMADA", "INCUMPLIDA", "SIN DISPONIBILIDAD","TODAS");
+                sort($estados_cita);
+
+                @endphp
+                @foreach ($estados_cita as $estado)
+                <option value="{{ $estado }}" @if ($estado == "TODAS") selected @endif>{{ $estado }}</option>
+                @endforeach
             </select>
         </div>
+
+
         <br>
         <div class="form-group col-12 row">
             <button type="button" class="btn btn-primary btn-xs col-md-2" name="agregar_horario" id="agregar_horario"><i class="fa fa-plus-circle"></i> Asignar cita</button>

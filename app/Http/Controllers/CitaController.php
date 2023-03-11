@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Cita;
 use App\Models\Admin\Paciente;
+use App\Models\Admin\ObservacionCitas;
 use App\Models\Admin\Servicios;
 use App\Models\Seguridad\Usuario;
 use Carbon\Carbon;
@@ -20,38 +21,67 @@ class CitaController extends Controller
      */
     public function index(Request $request)
     {
-        $usuario_id = $request->session()->get('usuario_id');
+
         $fechaActual = $request->fechaini . " 00:00:01";
         $fechaFinal = $request->fechafin . " 23:59:59";
-        $estado = null;
+
+        // Obtener los parámetros de la consulta
+        /* $estado = null; */
         $profesional = $request->profesional;
+        $estado = $request->status;
 
         if ($request->ajax()) {
-            $datas = DB::table('cita')->select(
-                'cita.id_cita as id_cita',
-                'cita.historia',
-                'cita.tipo_documento',
-                'cita.fechahora_cita as fecha_cita',
-                'cita.fechahora_solicitada as fecha_solicitud',
-                'cita.cod_profesional',
-                'cita.papellido',
-                'cita.sapellido',
-                'cita.pnombre',
-                'cita.snombre',
-                'cita.estado as estado',
-                'cita.cod_documentos as doc_factura',
-                'cita.numero_factura as factura',
-                'cita.servicio as servicio',
-                'cita.contrato as contrato',
-                'cita.ips as ips',
-                'cita.cod_cups as cod_cups'
-            )
-                ->whereBetween('fechahora_cita', [$fechaActual, $fechaFinal])
-                ->where('cita.profesional_id', $profesional)
-                ->orderBy('cita.fechahora_cita')
-                ->get();
-
-
+            // Agrega una condición adicional si se especifica en estado TODAS u otra opcion para filtrar
+            if ($estado === 'TODAS') {
+                $datas = DB::table('cita')->select(
+                    'cita.id_cita as id_cita',
+                    'cita.historia',
+                    'cita.tipo_documento',
+                    'cita.fechahora_cita as fecha_cita',
+                    'cita.fechahora_solicitada as fecha_solicitud',
+                    'cita.cod_profesional',
+                    'cita.papellido',
+                    'cita.sapellido',
+                    'cita.pnombre',
+                    'cita.snombre',
+                    'cita.estado as estado',
+                    'cita.cod_documentos as doc_factura',
+                    'cita.numero_factura as factura',
+                    'cita.servicio as servicio',
+                    'cita.contrato as contrato',
+                    'cita.ips as ips',
+                    'cita.cod_cups as cod_cups'
+                )
+                    ->whereBetween('fechahora_cita', [$fechaActual, $fechaFinal])
+                    ->where('cita.profesional_id', $profesional)
+                    ->orderBy('cita.fechahora_cita')
+                    ->get();
+            } else {
+                $datas = DB::table('cita')->select(
+                    'cita.id_cita as id_cita',
+                    'cita.historia',
+                    'cita.tipo_documento',
+                    'cita.fechahora_cita as fecha_cita',
+                    'cita.fechahora_solicitada as fecha_solicitud',
+                    'cita.cod_profesional',
+                    'cita.papellido',
+                    'cita.sapellido',
+                    'cita.pnombre',
+                    'cita.snombre',
+                    'cita.estado as estado',
+                    'cita.cod_documentos as doc_factura',
+                    'cita.numero_factura as factura',
+                    'cita.servicio as servicio',
+                    'cita.contrato as contrato',
+                    'cita.ips as ips',
+                    'cita.cod_cups as cod_cups'
+                )
+                    ->whereBetween('fechahora_cita', [$fechaActual, $fechaFinal])
+                    ->where('cita.profesional_id', $profesional)
+                    ->where('cita.estado', $estado)
+                    ->orderBy('cita.fechahora_cita')
+                    ->get();
+            }
             return  DataTables()->of($datas)
                 ->addColumn('action', function ($datas) {
                     $checkbox =  '<input type="checkbox" name="case[]" id="' . $datas->id_cita . '" value="' . $datas->id_cita . '" class="case" title="Selecciona Orden"/>';
@@ -278,13 +308,23 @@ class CitaController extends Controller
 
         if ($request->ajax()) {
             $observaciones = DB::table('observacion_citas')
+                ->select(
+                    'observacion_citas.id_observacion as ido',
+                    'observacion_citas.observacion_usu',
+                    'observacion_citas.estado',
+                    'observacion_citas.bloqueo',
+                    'observacion_citas.usuario',
+                    'observacion_citas.cita_id',
+                    'observacion_citas.created_at',
+                    'observacion_citas.updated_at'
+                )
                 ->where('cita_id', $idlist)
                 ->get();
 
             return  DataTables()->of($observaciones)
                 ->addColumn('actionlv', function ($observaciones) {
-                    $button = '<button type="button" name="eliminarlv" id="' . $observaciones->cita_id . '"
-                    class = "eliminarlv btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Nivel"><i class=""><i class="fa fa-trash"></i></i></a>';
+                    $button = '<button type="button" name="eliminarlv" id="' . $observaciones->ido . '"
+                    class = "eliminarlv btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Nivel"><i class=""><i class="far fa-calendar-plus"></i></i></a>';
 
                     return $button;
                 })
@@ -292,5 +332,18 @@ class CitaController extends Controller
                 ->make(true);
         }
         return view('admin.cita.index');
+    }
+
+    public function showObservaciones(Request $request)
+    {
+        $idlist = $request->id;
+        if (request()->ajax()) {
+
+            $datas2 = ObservacionCitas::where('cita_id', $idlist)->first();
+
+            return response()->json(['result' => $datas2]);
+        }
+        return view('admin.eps_empresa.index');
+
     }
 }

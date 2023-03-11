@@ -84,6 +84,7 @@ Citas | Fidem
         var fechaini = '';
         var fechafin = '';
         var profesional = '';
+        var status = '';
         //Select para consultar los Profesionales
         $("#profesional_select").select2({
             theme: "bootstrap",
@@ -119,19 +120,20 @@ Citas | Fidem
             fechaini = $('#fechaini').val();
             fechafin = $('#fechafin').val();
             profesional = $('#profesional_select').val();
+            status = $('#estado_cita').val();
 
 
-            if (fechaini != '' && fechafin != '' || profesional != '') {
+            if (fechaini != '' && fechafin != '' || profesional != '' || status != '') {
 
                 $('#Citas').DataTable().destroy();
 
-                fill_datatable_tabla(fechaini, fechafin, profesional);
+                fill_datatable_tabla(fechaini, fechafin, profesional, status);
 
 
             } else {
 
                 Swal.fire({
-                    title: 'Debes digitar fecha inicial y fecha final o usuario',
+                    title: 'Debes digitar fecha inicial y fecha final, profesional o el estado de la cita',
                     icon: 'warning',
                     buttons: {
                         cancel: "Cerrar"
@@ -145,9 +147,10 @@ Citas | Fidem
         $('#fechaini').change(consulta_agenda);
         $('#fechafin').change(consulta_agenda);
         $('#profesional_select').change(consulta_agenda);
+        $('#estado_cita').change(consulta_agenda);
 
         // Función para filtrar cargar los datos en la tabla
-        function fill_datatable_tabla(fechaini = '', fechafin = '', profesional = '') {
+        function fill_datatable_tabla(fechaini = '', fechafin = '', profesional = '', status = '') {
             var myTable =
                 $('#Citas').DataTable({
                     language: idioma_espanol,
@@ -169,7 +172,8 @@ Citas | Fidem
                         data: {
                             fechaini: fechaini,
                             fechafin: fechafin,
-                            profesional: profesional
+                            profesional: profesional,
+                            status: status
                         }
                     },
                     columns: [{
@@ -402,10 +406,39 @@ Citas | Fidem
                 });
         }
 
+        var get_observacion_usu = "";
+
+        function getObservaciones(idCita) {
+            $.ajax({
+                url: "{{ route('cita_observaciones')}}",
+                method: "GET",
+                data: {
+                    id: idCita,
+                },
+                success: function(response) {
+
+                    // Aquí se procesa la respuesta y muestra las observaciones en la sección correspondiente del HTML
+                    get_observacion_usu = response.result.observacion_usu;
+                    /* $("#observacion_usu").val(response.result.observacion_usu); */
+                    $("#estado").val(response.result.estado);
+                    $("#bloqueo").val(response.result.bloqueo);
+                    $("#usuario").val(response.result.usuario);
+                    $("#cita_id").val(response.result.cita_id);
+                    $("#fecha_registro").val(response.result.created_at);
+                    $("#fecha_update").val(response.result.updated_at);
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                },
+            });
+        }
+
+
         $(document).on('change', '.case', function() {
             if ($(this).prop("checked")) {
                 var cita_id = $(this).attr('id');
                 selected_cita_id = cita_id; // Almacena el valor de cita_id en la variable global
+
                 $.ajax({
                     type: 'GET',
                     url: "{{ url('cita') }}",
@@ -415,6 +448,7 @@ Citas | Fidem
                     success: function(data) {
                         // muestra los datos en una ventana emergente o en un div oculto
                         console.log(data); // muestra los datos en la consola del navegador para fines de prueba
+                        getObservaciones(cita_id);
                     },
                     error: function(xhr) {
                         alert(xhr.responseText);
@@ -422,6 +456,9 @@ Citas | Fidem
                 });
             }
         });
+
+
+
 
         // Funcion para capturar los datos de fechahora_cita Y prof_cita al hacer clic en el agregar_horario y abrir el modal para agregar una cita
         function getCita(fecha, prof) {
@@ -433,6 +470,8 @@ Citas | Fidem
                 $('#fechahora_cita').val(fecha);
                 $('#prof_cita').val(prof);
                 $('#cita_id').val(selected_cita_id); // Asignar el valor de selected_cita_id al input oculto
+
+
 
                 $('#action_button').val('Add');
                 $('#action').val('Edit');
@@ -511,8 +550,10 @@ Citas | Fidem
 
             getCita(fecha, prof);
 
+
             $('#detalle').empty();
             $('#detalle1').empty();
+
 
             $("#detalle").append(
 
@@ -539,11 +580,11 @@ Citas | Fidem
                 '<div class="direct-chat-messages">' +
                 '<div class="direct-chat-msg">' +
                 '<div class="direct-chat-infos clearfix">' +
-                '<span class="direct-chat-name float-left">Alexander Pierce</span>' +
-                '<span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>' +
+                '<span class="direct-chat-name float-left"> ' + id + '</span>' +
+                '<span class="direct-chat-timestamp float-right">' + fecha + '</span>' +
                 '</div>' +
                 '<img class="direct-chat-img" src="{{asset("assets/lte/dist/img/user_default.jpg")}}" alt="user">' +
-                '<div class="direct-chat-text"> ' + fecha + ' </div>' +
+                '<div class="direct-chat-text"> ' + get_observacion_usu + ' </div>' +
 
                 '</div>' +
                 '</div>' +

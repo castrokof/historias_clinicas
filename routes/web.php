@@ -355,6 +355,7 @@ Route::put('cita/{id}', 'CitaController@actualizar')->name('actualizar_cita')->m
 Route::get('pacienteselect', 'CitaController@selectp')->name('selectp')->middleware('superEditor');
 
 Route::get('observaciones', 'CitaController@getObservaciones')->name('observaciones')->middleware('superEditor');
+Route::get('cita_observaciones', 'CitaController@showObservaciones')->name('cita_observaciones')->middleware('superEditor');
 
 /* RUTAS DE LA FACTURA */
 Route::get('facturacion', 'FacturaController@index')->name('facturacion')->middleware('superEditor');
