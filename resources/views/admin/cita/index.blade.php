@@ -36,6 +36,7 @@ Citas | Fidem
 
 @include('admin.cita.modal.modalAddCita')
 @include('admin.cita.modal.modalViewCita')
+@include('admin.cita.modal.modalEditCita')
 
 <div class="content-header">
     <div class="container-fluid">
@@ -458,20 +459,16 @@ Citas | Fidem
         });
 
 
-
-
         // Funcion para capturar los datos de fechahora_cita Y prof_cita al hacer clic en el agregar_horario y abrir el modal para agregar una cita
         function getCita(fecha, prof) {
             // Agregar listener de evento al botón agregar_horario
             $('#agregar_horario').on('click', function() {
-                console.log(fecha, prof);
+                /* console.log(fecha, prof); */
 
                 // Mostrar los parámetros en el modal
                 $('#fechahora_cita').val(fecha);
                 $('#prof_cita').val(prof);
                 $('#cita_id').val(selected_cita_id); // Asignar el valor de selected_cita_id al input oculto
-
-
 
                 $('#action_button').val('Add');
                 $('#action').val('Edit');
@@ -483,6 +480,59 @@ Citas | Fidem
                     keyboard: false
                 });
                 $('#modal_cita').modal('show');
+            });
+
+            $('#editar_cita').on('click', function() {
+                var id = selected_cita_id;
+                var cita_ido_e = selected_cita_id;
+
+                if (cita_ido != '') {
+                    $('#tobservaciones').DataTable().destroy();
+                    fill_datatable_f(cita_ido);
+                }
+
+                $.ajax({
+                    url: "/cita/" + id + "/editar",
+                    dataType: "json",
+                    success: function(data) {
+                        $('#fecha_cita_e').val(data.result.fechahora_cita);
+                        $('#fecha_solicitud_e').val(data.result.fechahora_solicitud);
+                        $('#fecha_solicitada_e').val(data.result.fechahora_solicitada);
+                        $('#tipoSolicitud_e').val(data.result.tipo_solicitud);
+                        $('#ips_sede_e').val(data.result.ips);
+                        $('#tipo_id_e').val(data.result.tipo_documento);
+                        $('#identificacion_e').val(data.result.historia);
+                        $('#firts_pname_e').val(data.result.pnombre);
+                        $('#firts_sname_e').val(data.result.snombre);
+                        $('#last_pname_e').val(data.result.papellido);
+                        $('#last_sname_e').val(data.result.sapellido);
+                        $('#fecha_nacimiento_e').val(data.result.futuro2);
+                        $('#paciente_edad_e').val(data.result.paciente_edad);
+                        $('#paciente_direccion_e').val(data.result.paciente_direccion);
+                        $('#paciente_pais_e').val(data.result.nombre_pais);
+                        $('#servicio_e').val(data.result.servicio_nombre);
+                        $('#contrato_e').val(data.result.contrato_nombre);
+                        $('#procedimiento_e').val(data.result.cups);
+                        $('#estado_e').val(data.result.estado);
+                        $('#username_e').val(data.result.usuario);
+
+                        $('#cod_med_e').val(data.result.prof_nombre);
+                        $('#cita_id_e').val(id);
+
+                        $('#form_result_edit').html('');
+                        $('#modal_edit_cita').modal({
+                            backdrop: 'static',
+                            keyboard: false
+                        });
+                        $('#modal_edit_cita').modal('show');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        if (jqXHR.status === 403) {
+                            Manteliviano.notificaciones('No tienes permisos para realizar esta accion',
+                                'Modulo Citas', 'warning');
+                        }
+                    }
+                });
             });
 
             $('#consultar_cita').on('click', function() {
@@ -537,6 +587,8 @@ Citas | Fidem
                     }
                 });
             });
+
+
 
         }
 
