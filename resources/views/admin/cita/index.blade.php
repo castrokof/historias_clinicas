@@ -484,7 +484,7 @@ Citas | Fidem
 
             $('#editar_cita').on('click', function() {
                 var id = selected_cita_id;
-                var cita_ido_e = selected_cita_id;
+                var cita_ido = selected_cita_id;
 
                 if (cita_ido != '') {
                     $('#tobservaciones').DataTable().destroy();
@@ -517,6 +517,11 @@ Citas | Fidem
                         $('#username_e').val(data.result.usuario);
 
                         $('#cod_med_e').val(data.result.prof_nombre);
+
+                        /* var newprofesional = new Option(data.result.profesional_id.nombre, data.result.profesional_id.id_profesional, true, true);
+                        $('#cod_med_e').append(newprofesional).trigger('change'); */
+
+
                         $('#cita_id_e').val(id);
 
                         $('#form_result_edit').html('');
@@ -545,7 +550,7 @@ Citas | Fidem
                 }
 
                 $.ajax({
-                    url: "/cita/" + id + "/editar",
+                    url: "/cita/" + id + "/consultar",
                     dataType: "json",
                     success: function(data) {
                         $('#fecha_cita').val(data.result.fechahora_cita);
@@ -1109,6 +1114,8 @@ Citas | Fidem
             });
 
         }
+
+
 
 
 

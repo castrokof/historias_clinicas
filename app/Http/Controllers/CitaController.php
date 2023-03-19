@@ -164,7 +164,7 @@ class CitaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editar($id)
+    public function consultar($id)
     {
 
         // $pacientes = Paciente::orderBy('documento')->select('id_paciente', 'documento', DB::raw("CONCAT(pnombre,' ',papellido) as paciente") )->get();
@@ -196,6 +196,39 @@ class CitaController extends Controller
         }
         return view('admin.cita.index');
     }
+
+    public function editar($id)
+    {
+        if (request()->ajax()) {
+            $datas2 = Cita::join('paciente', 'paciente.id_paciente', '=', 'cita.paciente_id')
+                ->join('usuario', 'usuario.id', '=', 'cita.usuario_id')
+                ->leftJoin('paises', 'paciente.pais_id', '=', 'paises.id_pais')
+                ->join('servicios', 'servicios.id_servicio', '=', 'cita.servicio_id')
+                ->join('def__profesionales', 'def__profesionales.id_profesional', '=', 'cita.profesional_id')
+                ->join('def__contratos', 'def__contratos.id_contrato', '=', 'cita.contrato_id')
+                ->join('def__procedimientos', 'def__procedimientos.id_cups', '=', 'cita.cups_id')
+                ->where('cita.id_cita', $id)
+                ->select(
+                    'cita.*',
+                    'paciente.edad as paciente_edad',
+                    'paciente.direccion as paciente_direccion',
+                    'paises.nombre as nombre_pais',
+                    /* 'usuario.usuario as username', */
+                    /* DB::raw("IFNULL(paises.nombre, '') as nombre_pais"), */
+                    DB::raw("CONCAT(def__profesionales.codigo, ' - ', def__profesionales.nombre) as prof_nombre"),
+                    DB::raw("CONCAT(servicios.cod_servicio, ' - ', servicios.nombre) as servicio_nombre"),
+                    DB::raw("CONCAT(def__contratos.contrato, ' - ', def__contratos.nombre) as contrato_nombre"),
+                    DB::raw("CONCAT(def__procedimientos.cod_cups, ' - ', def__procedimientos.nombre) as cups")
+                )
+                ->first();
+            /* DD($datas2); */
+
+            return response()->json(['result' => $datas2]);
+        }
+
+        return view('admin.cita.index');
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -344,6 +377,5 @@ class CitaController extends Controller
             return response()->json(['result' => $datas2]);
         }
         return view('admin.eps_empresa.index');
-
     }
 }

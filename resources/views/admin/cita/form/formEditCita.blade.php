@@ -79,6 +79,10 @@
         <label for="paciente_direccion_e" class="col-xs-4 control-label ">Direccion</label>
         <input name="direccion" id="paciente_direccion_e" class="form-control" readonly>
     </div>
+    <div class="col-lg-3">
+        <label for="username_e" class="col-xs-4 control-label ">Usuario que creo el registro</label>
+        <input name="usuario" id="username_e" class="form-control" readonly>
+    </div>
 
 </div>
 <div class="form-group row">
@@ -95,10 +99,6 @@
     <div class="col-lg-6">
         <label for="procedimiento_e" class="col-xs-4 control-label ">Procedimiento</label>
         <input name="cups" id="procedimiento_e" class="form-control" readonly>
-    </div>
-    <div class="col-lg-4">
-        <label for="username_e" class="col-xs-4 control-label ">Usuario que creo el registro</label>
-        <input name="usuario" id="username_e" class="form-control" readonly>
     </div>
 </div>
 

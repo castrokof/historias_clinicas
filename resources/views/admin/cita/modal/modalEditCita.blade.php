@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form id="formulario_cita" class="form-horizontal" method="POST">
+                            <form id="edit_formulario_cita" class="form-horizontal" method="POST">
                                 @csrf
                                 @include('admin.cita.form.formEditCita')
                                 @include('includes.boton-form-crear-empresa-empleado-usuario')

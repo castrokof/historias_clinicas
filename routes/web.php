@@ -351,6 +351,7 @@ Route::get('cita', 'CitaController@index')->name('cita')->middleware('superEdito
 Route::get('cita/crear', 'CitaController@crear')->name('crear_cita')->middleware('superEditor');
 Route::post('cita', 'CitaController@guardar')->name('guardar_cita')->middleware('superEditor');
 Route::get('cita/{id}/editar', 'CitaController@editar')->name('editar_cita')->middleware('superEditor');
+Route::get('cita/{id}/consultar', 'CitaController@consultar')->name('consultar_cita')->middleware('superEditor');
 Route::put('cita/{id}', 'CitaController@actualizar')->name('actualizar_cita')->middleware('superEditor');
 Route::get('pacienteselect', 'CitaController@selectp')->name('selectp')->middleware('superEditor');
 

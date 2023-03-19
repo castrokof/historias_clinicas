@@ -57,26 +57,30 @@ class Cita extends Model
 
     public function pacientec()
     {
-        return $this->belongsTo(Paciente::class, 'id_paciente');
+        return $this->belongsTo(Paciente::class, 'paciente_id');
     }
 
     public function usuarioc()
     {
-        return $this->belongsTo(Usuario::class, 'id');
+        return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
     public function servicio()
     {
-        return $this->belongsTo(Servicios::class, 'id_servicio');
+        return $this->belongsTo(Servicios::class, 'servicio_id');
     }
 
     public function cups()
     {
-        return $this->belongsTo(Def_Procedimientos::class, 'id_cups');
+        return $this->belongsTo(Def_Procedimientos::class, 'cups_id');
     }
 
     public function contrato()
     {
-        return $this->belongsTo(Def_Contratos::class, 'id_contrato');
+        return $this->belongsTo(Def_Contratos::class, 'contrato_id');
+    }
+    public function profesionalId()
+    {
+        return $this->belongsTo(Def_Profesionales::class, 'profesional_id');
     }
 }
