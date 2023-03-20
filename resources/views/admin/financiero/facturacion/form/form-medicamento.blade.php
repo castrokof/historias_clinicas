@@ -32,14 +32,14 @@
         <input type="number" name="cantidad_ordenada" id="cantidad_ordenada" class="form-control" value="{{old('cantidad_ordenada')}}">
     </div>
     <div class="col-lg-3">
-        <label for="cantidad" class="col-xs-4 control-label requerido">Cantidad</label>
-        <input type="number" name="cantidad" id="cantidad" class="form-control" value="{{old('cantidad')}}">
+        <label for="cantidad_med" class="col-xs-4 control-label requerido">Cantidad</label>
+        <input type="number" name="cantidad_med" id="cantidad_med" class="form-control" value="{{old('cantidad_med')}}">
     </div>
 
 
     <div class="col-lg-6">
-        <label for="valor" class="col-xs-4 control-label ">Valor Unitario</label>
-        <input type="number" name="valor" id="valor" class="form-control" placeholder="$0.00" value="35000" readonly>
+        <label for="valor_med" class="col-xs-4 control-label ">Valor Unitario</label>
+        <input type="number" name="valor_med" id="valor_med" class="form-control" placeholder="$0.00" readonly>
     </div>
 </div>
 

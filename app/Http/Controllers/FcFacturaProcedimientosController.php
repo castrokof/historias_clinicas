@@ -161,6 +161,16 @@ class FcFacturaProcedimientosController extends Controller
             'valor_particular' => $data->valor_particular
         ]);
     }
+    public function getValorParticularMed(Request $request)
+    {
+        $id_medicamento = $request->input('id_medicamento');
+
+        $data = Def_MedicamentosSuministros::where('id_medicamento', $id_medicamento)->first();
+
+        return response()->json([
+            'valor_particular' => $data->valor_particular
+        ]);
+    }
 
     /**
      * Display the specified resource.

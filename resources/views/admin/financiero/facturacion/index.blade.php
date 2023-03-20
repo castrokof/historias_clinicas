@@ -698,14 +698,15 @@ Facturación | Fidem
         }
 
 
-        // Variables globales para almacenar la suma de cantidad y total cada vez que se ejecute la fucnion #addfila
+        // Variables globales para almacenar la suma de cantidad y total cada vez que se ejecute la fucnion #addfila_cups
         let totalCantidad = 0;
+        let totalCantidadMed = 0;
         let totalTotal = 0;
         // Agregar filas a tabla para guardar
-        $('#addfila').click(function() {
+        $('#addfila_cups').click(function() {
 
 
-            // Obtener el nombre del profesional, procedimiento y contrato seleccionado
+            // Obtener el nombre del profesional, procedimiento y contrato seleccionado desde Procedimientos
             const profesional = $('#fact_profesional2 option:selected').text();
             const servicio = $('#fact_servicio2 option:selected').text();
             const procedimiento = $('#fact_procedimiento option:selected').text();
@@ -735,6 +736,43 @@ Facturación | Fidem
             // Actualizar los valores en los campos del formulario modalFactura
             $('#cant_procedure').val(totalCantidad);
             $('#fact_subtotal').val(totalTotal);
+
+        });
+
+        // Funcion para agregar filas a la tabla Medicamentos
+        $('#addfila_cums').click(function() {
+
+            // Obtener el nombre del profesional, medicamento y contrato seleccionado desde Medicamentos
+            const profesional_med = $('#fact_profesional option:selected').text();
+            const servicio_med = $('#fact_servicio option:selected').text();
+            const medicamento = $('#fact_medicamento option:selected').text();
+            const contrato_med = $('#fact_contrato option:selected').text();
+            const cantidad_med_orde = parseFloat($('#cantidad_ordenada').val());
+            const cantidad_med = parseFloat($('#cantidad_med').val());
+            const valor_med = parseFloat($('#valor_med').val());
+            const total_med = parseFloat(cantidad_med * valor_med);
+
+            totalCantidadMed += cantidad_med;
+            totalTotal += total_med;
+
+            $('#tmedicamentos> tbody:last-child')
+                .append(
+                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
+                    '<i class="fas fa-trash"></i></button></td>' +
+                    '</td>' +
+                    '<td>' + profesional_med + '</td>' +
+                    '<td>' + servicio_med + '</td>' +
+                    '<td>' + medicamento + '</td>' +
+                    '<td>' + contrato_med + '</td>' +
+                    '<td>' + cantidad_med_orde + '</td>' +
+                    '<td>' + cantidad_med + '</td>' +
+                    '<td>' + valor_med + '</td>' +
+                    '<td>' + total_med + '</td></tr>'
+
+                );
+
+                $('#cant_medicamentos').val(totalCantidadMed);
+                $('#fact_subtotal').val(totalTotal);
         });
 
         // eliminar filas de la tabla procedimientos para guardar
@@ -968,6 +1006,28 @@ Facturación | Fidem
             }
         });
 
+        // Función para consultar el valor particular del procedimiento seleccionado
+        function getValorMedicamento(id_medicamento) {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('get_valor_med') }}",
+                data: {
+                    'id_medicamento': id_medicamento
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.valor_particular) {
+                        $('#valor_med').val(response.valor_particular);
+                    } else {
+                        $('#valor_med').val('');
+                    }
+                },
+                error: function() {
+                    $('#valor_med').val('');
+                }
+            });
+        }
+
         //Select para consultar los medicamentos
         $("#fact_medicamento").select2({
             theme: "bootstrap",
@@ -990,7 +1050,17 @@ Facturación | Fidem
                 },
                 cache: true
             }
+        }).on('change', function() {
+
+            const id_medicamento = $(this).val();
+            if (id_medicamento) {
+                getValorMedicamento(id_medicamento);
+            } else {
+                $('#valor_med').val('');
+            }
         });
+
+
 
     });
 

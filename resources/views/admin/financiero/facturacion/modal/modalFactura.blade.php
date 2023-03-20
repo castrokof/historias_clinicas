@@ -239,8 +239,8 @@ $id= Session()->get('usuario_id');
 
                     <div class="form-group row">
                         <div class="col-lg-2">
-                            <label for="procedimiento" class="col-xs-4 control-label ">Medicamento:</label>
-                            <input type="text" name="procedimiento" id="procedimiento" class="form-control" readonly>
+                            <label for="cant_medicamentos" class="col-xs-4 control-label ">Medicamento:</label>
+                            <input type="text" name="cant_medicamentos" id="cant_medicamentos" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
                             <label for="pnombre" class="col-xs-4 control-label ">Descuentos:</label>

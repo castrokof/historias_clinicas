@@ -21,7 +21,6 @@
                             <th>Cantidad</th>
                             <th>Unitario</th>
                             <th>Subtotal</th>
-                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
