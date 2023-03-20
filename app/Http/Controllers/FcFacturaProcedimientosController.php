@@ -151,9 +151,15 @@ class FcFacturaProcedimientosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function getValorParticularCups(Request $request)
     {
-        //
+        $id_cups = $request->input('id_cups');
+
+        $data = Def_Procedimientos::where('id_cups', $id_cups)->first();
+
+        return response()->json([
+            'valor_particular' => $data->valor_particular
+        ]);
     }
 
     /**

@@ -35,7 +35,7 @@
 
   <div class="col-lg-6">
     <label for="valor" class="col-xs-4 control-label ">Valor Unitario</label>
-    <input type="number" name="valor" id="valor" class="form-control" placeholder="$0.00" value="35000" readonly>
+    <input type="number" name="valor" id="valor" class="form-control" placeholder="$0.00" readonly>
   </div>
 </div>
 

@@ -173,11 +173,11 @@ $id= Session()->get('usuario_id');
                                 </select>
                             </div>
                             <div class="col-lg-6">
-                                <label for="eps_fact" class="col-xs-4 control-label ">Cliente</label>                                
+                                <label for="eps_fact" class="col-xs-4 control-label ">Cliente</label>
                                 <select name="eps_id" id="eps_fact" class="form-control" style="width: 100%;" required>
                                 </select>
                             </div>
-                            
+
                             <div class="col-lg-1">
                                 <label for="nivel" class="col-xs-6 control-label">Nivel</label>
                                 <input type="text" name="nivel" id="nivel" class="form-control" value="{{ old('nivel') }}" required>
@@ -220,20 +220,20 @@ $id= Session()->get('usuario_id');
 
                     <div class="form-group row">
                         <div class="col-lg-2">
-                            <label for="procedimiento" class="col-xs-4 control-label ">Procedimiento:</label>
-                            <input type="text" name="procedimiento" id="procedimiento" class="form-control" readonly>
+                            <label for="cant_procedure" class="col-xs-4 control-label ">Procedimiento:</label>
+                            <input type="text" name="cant_procedure" id="cant_procedure" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">Subtotal:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                            <label for="fact_subtotal" class="col-xs-4 control-label ">Subtotal:</label>
+                            <input type="text" name="fact_subtotal" id="fact_subtotal" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">IVA:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                            <label for="fact_iva" class="col-xs-4 control-label ">IVA:</label>
+                            <input type="text" name="fact_iva" id="fact_iva" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">Total Facturado:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                            <label for="fac_total" class="col-xs-4 control-label ">Total Facturado:</label>
+                            <input type="text" name="fac_total" id="fac_total" class="form-control" readonly>
                         </div>
                     </div>
 

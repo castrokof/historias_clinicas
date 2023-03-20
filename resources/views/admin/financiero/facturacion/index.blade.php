@@ -698,36 +698,51 @@ Facturación | Fidem
         }
 
 
+        // Variables globales para almacenar la suma de cantidad y total cada vez que se ejecute la fucnion #addfila
+        let totalCantidad = 0;
+        let totalTotal = 0;
         // Agregar filas a tabla para guardar
         $('#addfila').click(function() {
 
 
-            const total = parseFloat($('#cantidad').val() * $('#valor').val());
+            // Obtener el nombre del profesional, procedimiento y contrato seleccionado
+            const profesional = $('#fact_profesional2 option:selected').text();
+            const servicio = $('#fact_servicio2 option:selected').text();
+            const procedimiento = $('#fact_procedimiento option:selected').text();
+            const contrato = $('#fact_contrato2 option:selected').text();
+            const cantidad = parseFloat($('#cantidad').val());
+            const valor = parseFloat($('#valor').val());
+            const total = parseFloat(cantidad * valor);
+
+            // Actualizar las variables globales de cantidad y total
+            totalCantidad += cantidad;
+            totalTotal += total;
 
             $('#tcups> tbody:last-child')
                 .append(
                     '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                     '<i class="fas fa-trash"></i></button></td>' +
                     '</td>' +
-                    '<td>' + $('#fact_profesional2').val() + '</td>' +
-                    '<td>' + $('#fact_servicio2').val() + '</td>' +
-                    '<td>' + $('#fact_procedimiento').val() + '</td>' +
-                    '<td>' + $('#fact_contrato2').val() + '</td>' +
-                    '<td>' + $('#cantidad').val() + '</td>' +
-                    '<td>' + $('#valor').val() + '</td>' +
+                    '<td>' + profesional + '</td>' +
+                    '<td>' + servicio + '</td>' +
+                    '<td>' + procedimiento + '</td>' +
+                    '<td>' + contrato + '</td>' +
+                    '<td>' + cantidad + '</td>' +
+                    '<td>' + valor + '</td>' +
                     '<td>' + total + '</td></tr>'
 
                 );
+            // Actualizar los valores en los campos del formulario modalFactura
+            $('#cant_procedure').val(totalCantidad);
+            $('#fact_subtotal').val(totalTotal);
         });
 
         // eliminar filas de la tabla procedimientos para guardar
-
         $("#tcups").on("click", "#eliminar", function() {
             $(this).closest("tr").remove();
         });
 
         // eliminar filas de la tabla procedimientos para guardar
-
         $("#tmedicamentos").on("click", "#eliminar", function() {
             $(this).closest("tr").remove();
         });
@@ -854,7 +869,29 @@ Facturación | Fidem
             }
         });
 
-        //Select para consultar los procedimientos
+        // Función para consultar el valor particular del procedimiento seleccionado
+        function getValorParticular(id_cups) {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('get_valor_cups') }}",
+                data: {
+                    'id_cups': id_cups
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.valor_particular) {
+                        $('#valor').val(response.valor_particular);
+                    } else {
+                        $('#valor').val('');
+                    }
+                },
+                error: function() {
+                    $('#valor').val('');
+                }
+            });
+        }
+
+        // Select para consultar los procedimientos
         $("#fact_procedimiento").select2({
             theme: "bootstrap",
             ajax: {
@@ -864,17 +901,22 @@ Facturación | Fidem
                 processResults: function(data) {
                     return {
                         results: $.map(data, function(data) {
-
                             return {
-
                                 text: data.cod_cups + ' - ' + data.nombre,
                                 id: data.id_cups
-
                             }
                         })
                     };
                 },
                 cache: true
+            }
+        }).on('change', function() {
+
+            const id_cups = $(this).val();
+            if (id_cups) {
+                getValorParticular(id_cups);
+            } else {
+                $('#valor').val('');
             }
         });
 

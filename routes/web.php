@@ -374,6 +374,7 @@ Route::get('factura-demo', 'FacturaController@index_demo')->name('factura-demo')
 Route::get('servicios_factura', 'FcFacturaProcedimientosController@selectservicio')->name('servicios_factura')->middleware('superEditor');
 Route::get('profesionales_factura', 'FcFacturaProcedimientosController@selectprof')->name('profesionales_factura')->middleware('superEditor');
 Route::get('procedimientos_factura', 'FcFacturaProcedimientosController@selectcups')->name('procedimientos_factura')->middleware('superEditor');
+Route::get('get_valor_cups', 'FcFacturaProcedimientosController@getValorParticularCups')->name('get_valor_cups')->middleware('superEditor');
 Route::get('contratos_factura', 'FcFacturaProcedimientosController@selectcont')->name('contratos_factura')->middleware('superEditor');
 Route::get('medicamento_factura', 'FcFacturaProcedimientosController@selectmed')->name('medicamento_factura')->middleware('superEditor');
 

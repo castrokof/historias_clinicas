@@ -3,7 +3,7 @@ $iduser = Session()->get('usuario');
 $id= Session()->get('usuario_id');
 @endphp
 
-<div class="card card-info p-2">
+<div class="card card-info p-1">
     <div>
         <!-- Modal -->
         <button type="button" class="btn btn-primary" name="agregar_cups" id="agregar_cups" data-toggle="modal" data-target="#modal-u"><i class="fa fa-plus-circle"></i> Agregar</button>
@@ -24,7 +24,6 @@ $id= Session()->get('usuario_id');
                             <th>Cantidad</th>
                             <th>Unitario</th>
                             <th>Subtotal</th>
-                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
