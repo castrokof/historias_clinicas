@@ -711,8 +711,8 @@ Facturación | Fidem
             const servicio = $('#fact_servicio2 option:selected').text();
             const procedimiento = $('#fact_procedimiento option:selected').text();
             const contrato = $('#fact_contrato2 option:selected').text();
-            const cantidad = parseFloat($('#cantidad').val());
-            const valor = parseFloat($('#valor').val());
+            const cantidad = parseFloat($('#cantidad').val() || 0);
+            const valor = parseFloat($('#valor').val() || 0);
             const total = parseFloat(cantidad * valor);
 
             // Actualizar las variables globales de cantidad y total
@@ -747,9 +747,9 @@ Facturación | Fidem
             const servicio_med = $('#fact_servicio option:selected').text();
             const medicamento = $('#fact_medicamento option:selected').text();
             const contrato_med = $('#fact_contrato option:selected').text();
-            const cantidad_med_orde = parseFloat($('#cantidad_ordenada').val());
-            const cantidad_med = parseFloat($('#cantidad_med').val());
-            const valor_med = parseFloat($('#valor_med').val());
+            const cantidad_med_orde = parseFloat($('#cantidad_ordenada').val() || 0);
+            const cantidad_med = parseFloat($('#cantidad_med').val() || 0);
+            const valor_med = parseFloat($('#valor_med').val() || 0);
             const total_med = parseFloat(cantidad_med * valor_med);
 
             totalCantidadMed += cantidad_med;
@@ -771,8 +771,8 @@ Facturación | Fidem
 
                 );
 
-                $('#cant_medicamentos').val(totalCantidadMed);
-                $('#fact_subtotal').val(totalTotal);
+            $('#cant_medicamentos').val(totalCantidadMed);
+            $('#fact_subtotal').val(totalTotal);
         });
 
         // eliminar filas de la tabla procedimientos para guardar
@@ -784,6 +784,42 @@ Facturación | Fidem
         $("#tmedicamentos").on("click", "#eliminar", function() {
             $(this).closest("tr").remove();
         });
+
+        // Función para consultar el nivel de la eps seleccionada
+        function getNivelEps(id_eps_empresas) {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('get_nivel_eps') }}",
+                data: {
+                    'eps_empresas_id': id_eps_empresas
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.niveles_eps) {
+                        // Borra la lista de opciones anterior
+                        $('#listaNivelesEps').empty();
+                        // Agrega las nuevas opciones a la lista
+                        $.each(response.niveles_eps, function(i, nivel_eps) {
+                            $('#listaNivelesEps').append('<option value="' + nivel_eps + '">' + nivel_eps + '</option>');
+                        });
+                        // Asigna el valor seleccionado al input correspondiente
+                        $('#listaNivelesEps a').on('click', function(e) {
+                            e.preventDefault();
+                            $('#nivel_eps').val($(this).data('nivel-eps'));
+
+                        });
+                    } else {
+                        // Si no hay resultados, borra el valor del input
+                        $('#nivel_eps').val('');
+                    }
+                },
+                error: function() {
+                    // Si hay un error, borra el valor del input
+                    $('#nivel_eps').val('');
+                }
+            });
+        }
+
 
         //Select para consultar la EPS
         $("#eps_fact").select2({
@@ -808,6 +844,14 @@ Facturación | Fidem
                     };
                 },
                 cache: true
+            }
+        }).on('change', function() {
+
+            const id_eps_empresas = $(this).val();
+            if (id_eps_empresas) {
+                getNivelEps(id_eps_empresas);
+            } else {
+                $('#nivel_eps').val('');
             }
         });
 
@@ -1059,8 +1103,6 @@ Facturación | Fidem
                 $('#valor_med').val('');
             }
         });
-
-
 
     });
 

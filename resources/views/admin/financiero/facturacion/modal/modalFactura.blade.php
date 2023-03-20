@@ -179,8 +179,11 @@ $id= Session()->get('usuario_id');
                             </div>
 
                             <div class="col-lg-1">
-                                <label for="nivel" class="col-xs-6 control-label">Nivel</label>
-                                <input type="text" name="nivel" id="nivel" class="form-control" value="{{ old('nivel') }}" required>
+                                <label for="nivel_eps" class="col-xs-4 control-label">Nivel</label>
+                                <select name="nivel_eps" id="listaNivelesEps" class="form-control" style="width: 100%;">
+                                <!-- Aquí se mostrarán las opciones de nivel de la EPS -->
+                                </select>
+                                <!-- <input type="text" name="nivel_eps" id="nivel_eps" class="form-control"  required> -->
                             </div>
                         </div>
                     </form>

@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Barrios;
 use App\Models\Admin\Eps_empresa;
+use App\Models\Admin\Eps_niveles;
 use App\Models\Admin\Paciente;
 use App\Models\Admin\Ocupaciones;
 use App\Models\Admin\Paises;
 use App\Models\Admin\Departamentos;
 use App\Models\Admin\Ciudades;
 use App\Models\Seguridad\Usuario;
-//use App\Models\Admin\Eps_niveles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -355,6 +355,19 @@ class PacienteController extends Controller
             $epsp = Eps_empresa::orderBy('id_eps_empresas')->get();
             return response()->json($epsp);
         }
+    }
+
+    public function getNivelEps(Request $request)
+    {
+        $eps_empresas_id = $request->input('eps_empresas_id');
+
+        $data = Eps_niveles::where('eps_empresas_id', $eps_empresas_id)->get();
+
+        $niveles = $data->pluck('nivel')->toArray();
+
+        return response()->json([
+            'niveles_eps' => $niveles
+        ]);
     }
 
     //Funcion para seleccionar el Departamento desde la tabla departamentos

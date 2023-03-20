@@ -234,6 +234,7 @@ Route::get('paciente/{id}/editar', 'PacienteController@editar')->name('editar_pa
 Route::put('paciente/{id}', 'PacienteController@actualizar')->name('actualizar_paciente')->middleware('superEditor');
 Route::get('pais', 'PacienteController@selectpa')->name('pais')->middleware('superEditor');
 Route::get('eps', 'PacienteController@selecteps')->name('eps')->middleware('superEditor');
+Route::get('get_nivel_eps', 'PacienteController@getNivelEps')->name('get_nivel_eps')->middleware('superEditor');
 Route::get('ciudad', 'PacienteController@selectci')->name('ciudad')->middleware('superEditor');
 Route::get('departamento', 'PacienteController@selectde')->name('departamento')->middleware('superEditor');
 Route::get('ocupacion', 'PacienteController@selectocu')->name('ocupacion')->middleware('superEditor');
