@@ -23,13 +23,12 @@
                         </div>
                         <div class="card-body">
 
-
                             <div class="tab-content" id="custom-tabs-one-tabContent">
                                 <div class="tab-pane fade active show" id="custom-tabs-one-datos-del-relprocedimientos" role="tabpanel" aria-labelledby="custom-tabs-one-datos-del-relprocedimientos-tab">
                                     <div class="card-body">
                                         @csrf
                                         @include('admin.financiero.contratos.tablas.table-relprocedimientos')
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
 

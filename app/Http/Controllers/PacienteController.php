@@ -359,12 +359,16 @@ class PacienteController extends Controller
 
     public function getNivelEps(Request $request)
     {
+        // Obtener el valor del parámetro "eps_empresas_id" de la petición HTTP
         $eps_empresas_id = $request->input('eps_empresas_id');
 
+        // Buscar en la tabla "eps_niveles" todos los registros que tengan el valor de "eps_empresas_id"
         $data = Eps_niveles::where('eps_empresas_id', $eps_empresas_id)->get();
 
+        // Extraer todos los valores de la columna "nivel" de los resultados encontrados y convertirlos a una matriz
         $niveles = $data->pluck('nivel')->toArray();
 
+        // Devolver los resultados en formato JSON
         return response()->json([
             'niveles_eps' => $niveles
         ]);

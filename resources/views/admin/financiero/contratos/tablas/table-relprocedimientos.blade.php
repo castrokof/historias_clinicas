@@ -12,6 +12,7 @@
                             <th class="width40"><input id="selectallpr" type="checkbox" class="select-all" /> Des/Seleccione Todos</th>
                             <th>Cups</th>
                             <th>Procedimiento</th>
+                            <th>Valor</th>
                         </tr>
                     </thead>
                     <tbody>

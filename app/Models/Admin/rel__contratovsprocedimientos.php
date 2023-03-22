@@ -11,6 +11,7 @@ class rel__contratovsprocedimientos extends Model
     protected $primary_key = 'id_contratovsprocedimiento';
     protected $fillable = [
         'contrato_id',
+        'valor',
         'procedimiento_id'
     ];
     public function contratoproc(){
