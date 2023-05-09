@@ -246,16 +246,16 @@ $id= Session()->get('usuario_id');
                             <input type="text" name="cant_medicamentos" id="cant_medicamentos" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">Descuentos:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                            <label for="descuentos" class="col-xs-4 control-label ">Descuentos:</label>
+                            <input type="text" name="descuentos" id="descuentos" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">Recuperado / Copago:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                            <label for="copago" class="col-xs-4 control-label ">Recuperado / Copago:</label>
+                            <input type="text" name="copago" id="copago" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">Valor a cancelar:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control">
+                            <label for="valorFactura" class="col-xs-4 control-label ">Valor a cancelar:</label>
+                            <input type="text" name="valorFactura" id="valorFactura" class="form-control">
                         </div>
                     </div>
                 </div>

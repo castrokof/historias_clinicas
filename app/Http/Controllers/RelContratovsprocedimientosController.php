@@ -104,7 +104,7 @@ class RelContratovsprocedimientosController extends Controller
 
             foreach ($idps as $idp) {
 
-                // Obtiene el valor_particular from def__procedimientos
+                // Obtiene el valor_particular desde def__procedimientos
                 $valor_particular = DB::table('def__procedimientos')
                     ->where('id_cups', $idp)
                     ->value('valor_particular');

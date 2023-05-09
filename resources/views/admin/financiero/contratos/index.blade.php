@@ -1288,7 +1288,7 @@ Contratos
         $(document).on('click', '#addpr', function() {
 
             var contrato = idcontrato;
-            console.log(typeof(valor_particular));
+            /* console.log(typeof(valor_particular)); */
 
             var idp = [];
             if (contrato == '') {

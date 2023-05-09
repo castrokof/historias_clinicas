@@ -820,6 +820,32 @@ Facturación | Fidem
             });
         }
 
+        // Función para consultar el valor del copago asociado a la eps y al nivel
+        $('#nivel_eps').on('change', function() {
+            const id_eps_empresas = $('#eps_empresas_id').val();
+            const nivel_eps = $(this).val();
+            if (id_eps_empresas && nivel_eps) {
+                $.ajax({
+                    url: "{{ route('get_copago_eps') }}",
+                    type: 'GET',
+                    data: {
+                        eps_empresas_id: id_eps_empresas,
+                        nivel_eps: nivel_eps
+                    },
+                    success: function(response) {
+                        /* $('#vlr_copago').val(response.copago); */
+                        $('#copago').val(response.vlr_copago);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            } else {
+                $('#copago').val('');
+            }
+        });
+
+
 
         //Select para consultar la EPS
         $("#eps_fact").select2({

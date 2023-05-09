@@ -368,11 +368,33 @@ class PacienteController extends Controller
         // Extraer todos los valores de la columna "nivel" de los resultados encontrados y convertirlos a una matriz
         $niveles = $data->pluck('nivel')->toArray();
 
+        // Extraer todos los valores de la columna  "vlr_copago" Valor del Copago
+        $copago = $data->pluck('vlr_copago')->toArray();
+
         // Devolver los resultados en formato JSON
         return response()->json([
-            'niveles_eps' => $niveles
+            'niveles_eps' => $niveles,
+            'copago' => $copago
         ]);
     }
+
+    public function getCopagoEps(Request $request)
+    {
+        $eps_empresas_id = $request->input('eps_empresas_id');
+        $nivel_eps = $request->input('nivel_eps');
+
+        // Buscar en la tabla "eps_niveles" el registro que tenga los valores de "eps_empresas_id" y "nivel_eps"
+        $data = Eps_niveles::where('eps_empresas_id', $eps_empresas_id)
+            ->where('id_eps_niveles', $nivel_eps)
+            /* ->where('estado', '1') */
+            ->first();
+
+        // Devolver el valor del copago correspondiente al nivel de la EPS seleccionado
+        return response()->json([
+            'copago' => $data ? $data->vlr_copago : null
+        ]);
+    }
+
 
     //Funcion para seleccionar el Departamento desde la tabla departamentos
     public function selectde(Request $request)
