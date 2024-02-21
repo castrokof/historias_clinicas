@@ -173,14 +173,17 @@ $id= Session()->get('usuario_id');
                                 </select>
                             </div>
                             <div class="col-lg-6">
-                                <label for="eps_fact" class="col-xs-4 control-label ">Cliente</label>                                
+                                <label for="eps_fact" class="col-xs-4 control-label ">Cliente</label>
                                 <select name="eps_id" id="eps_fact" class="form-control" style="width: 100%;" required>
                                 </select>
                             </div>
-                            
+
                             <div class="col-lg-1">
-                                <label for="nivel" class="col-xs-6 control-label">Nivel</label>
-                                <input type="text" name="nivel" id="nivel" class="form-control" value="{{ old('nivel') }}" required>
+                                <label for="nivel_eps" class="col-xs-4 control-label">Nivel</label>
+                                <select name="nivel_eps" id="listaNivelesEps" class="form-control" style="width: 100%;">
+                                <!-- Aquí se mostrarán las opciones de nivel de la EPS -->
+                                </select>
+                                <!-- <input type="text" name="nivel_eps" id="nivel_eps" class="form-control"  required> -->
                             </div>
                         </div>
                     </form>
@@ -220,39 +223,39 @@ $id= Session()->get('usuario_id');
 
                     <div class="form-group row">
                         <div class="col-lg-2">
-                            <label for="procedimiento" class="col-xs-4 control-label ">Procedimiento:</label>
-                            <input type="text" name="procedimiento" id="procedimiento" class="form-control" readonly>
+                            <label for="cant_procedure" class="col-xs-4 control-label ">Procedimiento:</label>
+                            <input type="text" name="cant_procedure" id="cant_procedure" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">Subtotal:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                            <label for="fact_subtotal" class="col-xs-4 control-label ">Subtotal:</label>
+                            <input type="text" name="fact_subtotal" id="fact_subtotal" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">IVA:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                            <label for="fact_iva" class="col-xs-4 control-label ">IVA:</label>
+                            <input type="text" name="fact_iva" id="fact_iva" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">Total Facturado:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                            <label for="fac_total" class="col-xs-4 control-label ">Total Facturado:</label>
+                            <input type="text" name="fac_total" id="fac_total" class="form-control" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-lg-2">
-                            <label for="procedimiento" class="col-xs-4 control-label ">Medicamento:</label>
-                            <input type="text" name="procedimiento" id="procedimiento" class="form-control" readonly>
+                            <label for="cant_medicamentos" class="col-xs-4 control-label ">Medicamento:</label>
+                            <input type="text" name="cant_medicamentos" id="cant_medicamentos" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">Descuentos:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                            <label for="descuentos" class="col-xs-4 control-label ">Descuentos:</label>
+                            <input type="text" name="descuentos" id="descuentos" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">Recuperado / Copago:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control" readonly>
+                            <label for="copago" class="col-xs-4 control-label ">Recuperado / Copago:</label>
+                            <input type="text" name="copago" id="copago" class="form-control" readonly>
                         </div>
                         <div class="col-lg-2">
-                            <label for="pnombre" class="col-xs-4 control-label ">Valor a cancelar:</label>
-                            <input type="text" name="pnombre" id="pnombre" class="form-control">
+                            <label for="valorFactura" class="col-xs-4 control-label ">Valor a cancelar:</label>
+                            <input type="text" name="valorFactura" id="valorFactura" class="form-control">
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,7 @@
 
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6">
-                  @include('includes.boton-form-add')
+                  @include('includes.boton-form-add-cums')
                 </div>
               </div>
               <!-- /.card-footer -->

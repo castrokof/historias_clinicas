@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fc_Factura_Medicamentos;
+use App\Models\Admin\Fc_Factura_Medicamentos;
 use Illuminate\Http\Request;
 
 class FcFacturaMedicamentosController extends Controller

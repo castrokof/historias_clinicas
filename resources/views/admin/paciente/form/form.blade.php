@@ -83,7 +83,7 @@
             <label for="direccion" class="col-xs-4 control-label requerido">Direccion</label>
             <input type="text" name="direccion" id="direccion" class="form-control" value="{{old('direccion')}}" minlength="6" required>
         </div>
-        
+
 
     </div>
     <div class="form-group row">
@@ -108,25 +108,21 @@
         </div>
         <div class="col-lg-3">
             <label for="Poblacion_especial" class="col-xs-4 control-label requerido">Poblacion Especial</label>
-            <select name="Poblacion_especial" id="Poblacion_especial" class="form-control select2bs4" style="width: 100%;" value="{{old('Poblacion_especial')}}" required>
-                <option value="">---seleccione---</option>
-                <option value="AMP">Adultos mayores en centros de protección</option>
-                <option value="F">Habitante de calle mayor de edadHomosexual</option>
-                <option value="F">Habitante de calle menor de edad</option>
-                <option value="F">Indígena mayor de edad</option>
-                <option value="F">Indígena menor de edad</option>
-                <option value="F">Menor de edad desvinculado del conflicto armado</option>
-                <option value="F">Población infantil vulnerable en instituciones diferentes al ICBF</option>
-                <option value="F">Población infantil vulnerable a caro del ICBF</option>
-                <option value="F">Recién nacido con edad menor o igual a 30 días</option>
-                <option value="F">Mayor de edad desplazado</option>
-                <option value="F">Menor de edad desplazado</option>
-                <option value="F">Personas con discapacidad en centros de protección</option>
-                <option value="F">Población menor de edad privada de la libertad</option>
-                <option value="F">Población mayor de edad privada de la libertad</option>
-                <option value="F">Población desmovilizada</option>
-                <option value="F">Extranjero en transito</option>
-                <option value="F">Ninguno</option>
+            <select name="Poblacion_especial" id="Poblacion_especial" class="form-control select2bs4" style="width: 100%;" required>
+                @php
+                $poblacion = array("Adultos mayores en centros de protección", "Habitante de calle mayor de edad", "Habitante de calle menor de edad",
+                "Indígena mayor de edad", "Indígena menor de edad", "Menor de edad desvinculado del conflicto armado",
+                "Población infantil vulnerable en instituciones diferentes al ICBF", "Población infantil vulnerable a cargo del ICBF", "Recién nacido con edad menor o igual a 30 días",
+                "Mayor de edad desplazado", "Mayor de edad desplazado", "Personas con discapacidad en centros de protección",
+                "Población menor de edad privada de la libertad", "Población mayor de edad privada de la libertad", "Población desmovilizada",
+                "Extranjero en tránsito", "Ninguno");
+                sort($poblacion);
+
+                @endphp
+
+                @foreach ($poblacion as $people)
+                <option value="{{ $people }}" @if ($people == "Ninguno") selected @endif>{{ $people }}</option>
+                @endforeach
             </select>
         </div>
 

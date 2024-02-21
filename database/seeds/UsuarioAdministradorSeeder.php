@@ -611,8 +611,212 @@ class UsuarioAdministradorSeeder extends Seeder
             'icono'=>''
         ]);
 
+        DB::table('menu')->insert([
 
+            'menu_id'=> 36,
+            'nombre'=>'Documentos Inventario',
+            'url'=>'#',
+            'orden'=>0,
+            'icono'=>''
+        ]);
 
+        DB::table('menu')->insert([
+
+            'menu_id'=> 36,
+            'nombre'=>'Proveedores',
+            'url'=>'#',
+            'orden'=>1,
+            'icono'=>''
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 36,
+            'nombre'=>'Almacenes',
+            'url'=>'#',
+            'orden'=>2,
+            'icono'=>''
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 36,
+            'nombre'=>'Artículos',
+            'url'=>'#',
+            'orden'=>3,
+            'icono'=>''
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 62,
+            'nombre'=>'Documentos',
+            'url'=>'documentos',
+            'orden'=>0,
+            'icono'=>'fas fa-angle-right'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 62,
+            'nombre'=>'Consecutivos',
+            'url'=>'consecutivos',
+            'orden'=>1,
+            'icono'=>'fas fa-angle-right'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 63,
+            'nombre'=>'Proveedor',
+            'url'=>'proveedores',
+            'orden'=>0,
+            'icono'=>'fas fa-angle-right'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 64,
+            'nombre'=>'Bodega',
+            'url'=>'bodegas',
+            'orden'=>0,
+            'icono'=>'fas fa-angle-right'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 65,
+            'nombre'=>'Unidad de medida',
+            'url'=>'unidades',
+            'orden'=>0,
+            'icono'=>'fas fa-angle-right'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 65,
+            'nombre'=>'Categoria',
+            'url'=>'categorias',
+            'orden'=>1,
+            'icono'=>'fas fa-angle-right'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 65,
+            'nombre'=>'Marca',
+            'url'=>'marcas',
+            'orden'=>2,
+            'icono'=>'fas fa-angle-right'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 65,
+            'nombre'=>'Artículos',
+            'url'=>'articulos',
+            'orden'=>3,
+            'icono'=>'fas fa-angle-right'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 20,
+            'nombre'=>'Cotizaciones',
+            'url'=>'cotizaciones',
+            'orden'=>0,
+            'icono'=>'fas fa-receipt'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 20,
+            'nombre'=>'Orden de Compra',
+            'url'=>'ordenes_compras',
+            'orden'=>1,
+            'icono'=>'fas fa-file-alt'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 20,
+            'nombre'=>'Compras',
+            'url'=>'compras',
+            'orden'=>2,
+            'icono'=>'fas fa-shopping-cart'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 20,
+            'nombre'=>'Devoluciones',
+            'url'=>'devoluciones',
+            'orden'=>3,
+            'icono'=>'fas fa-truck'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 20,
+            'nombre'=>'Baja de Inventario',
+            'url'=>'bajas',
+            'orden'=>4,
+            'icono'=>'fas fa-trash-alt'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 20,
+            'nombre'=>'Ventas',
+            'url'=>'ventas',
+            'orden'=>5,
+            'icono'=>'fas fa-hand-holding-usd'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 20,
+            'nombre'=>'Inventario',
+            'url'=>'#',
+            'orden'=>6,
+            'icono'=>''
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 80,
+            'nombre'=>'Salidas',
+            'url'=>'salidas',
+            'orden'=>0,
+            'icono'=>'fas fa-door-open'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 80,
+            'nombre'=>'Traslados',
+            'url'=>'traslados',
+            'orden'=>1,
+            'icono'=>'fas fa-door-open'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 80,
+            'nombre'=>'Iniciar',
+            'url'=>'iniciar',
+            'orden'=>2,
+            'icono'=>'fas fa-archive'
+        ]);
+
+        DB::table('menu')->insert([
+
+            'menu_id'=> 80,
+            'nombre'=>'Cerrar',
+            'url'=>'cerrar',
+            'orden'=>3,
+            'icono'=>'fas fa-briefcase'
+        ]);
 
 
 
@@ -939,6 +1143,144 @@ class UsuarioAdministradorSeeder extends Seeder
 
             'rol_id'=> 1,
             'menu_id'=> 61
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 62
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 63
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 64
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 65
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 66
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 67
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 68
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 69
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 70
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 71
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 72
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 73
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 74
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 75
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 76
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 77
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 78
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 79
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 80
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 81
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 82
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 83
+        ]);
+
+        DB::table('menu_rol')->insert([
+
+            'rol_id'=> 1,
+            'menu_id'=> 84
         ]);
 
 

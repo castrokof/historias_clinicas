@@ -1,7 +1,7 @@
 @extends("theme.$theme.layout")
 
 @section('titulo')
-Facturación
+Facturación | Fidem
 @endsection
 @section('styles')
 <link href="{{ asset("assets/$theme/plugins/datatables-bs4/css/dataTables.bootstrap4.css") }}" rel="stylesheet" type="text/css" />
@@ -698,41 +698,154 @@ Facturación
         }
 
 
+        // Variables globales para almacenar la suma de cantidad y total cada vez que se ejecute la fucnion #addfila_cups
+        let totalCantidad = 0;
+        let totalCantidadMed = 0;
+        let totalTotal = 0;
         // Agregar filas a tabla para guardar
-        $('#addfila').click(function() {
-            
+        $('#addfila_cups').click(function() {
 
-            const total = parseFloat($('#cantidad').val() * $('#valor').val());
+
+            // Obtener el nombre del profesional, procedimiento y contrato seleccionado desde Procedimientos
+            const profesional = $('#fact_profesional2 option:selected').text();
+            const servicio = $('#fact_servicio2 option:selected').text();
+            const procedimiento = $('#fact_procedimiento option:selected').text();
+            const contrato = $('#fact_contrato2 option:selected').text();
+            const cantidad = parseFloat($('#cantidad').val() || 0);
+            const valor = parseFloat($('#valor').val() || 0);
+            const total = parseFloat(cantidad * valor);
+
+            // Actualizar las variables globales de cantidad y total
+            totalCantidad += cantidad;
+            totalTotal += total;
 
             $('#tcups> tbody:last-child')
                 .append(
                     '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
                     '<i class="fas fa-trash"></i></button></td>' +
                     '</td>' +
-                    '<td>' + $('#fact_profesional').val() + '</td>' +
-                    '<td>' + $('#fact_servicio2').val() + '</td>' +
-                    '<td>' + $('#fact_procedimiento').val() + '</td>' +
-                    '<td>' + $('#fact_contrato').val() + '</td>' +
-                    '<td>' + $('#cantidad').val() + '</td>' +
-                    '<td>' + $('#valor').val() + '</td>' +
+                    '<td>' + profesional + '</td>' +
+                    '<td>' + servicio + '</td>' +
+                    '<td>' + procedimiento + '</td>' +
+                    '<td>' + contrato + '</td>' +
+                    '<td>' + cantidad + '</td>' +
+                    '<td>' + valor + '</td>' +
                     '<td>' + total + '</td></tr>'
 
                 );
-
+            // Actualizar los valores en los campos del formulario modalFactura
+            $('#cant_procedure').val(totalCantidad);
+            $('#fact_subtotal').val(totalTotal);
 
         });
 
-        // eliminar filas de la tabla procedimientos para guardar
+        // Funcion para agregar filas a la tabla Medicamentos
+        $('#addfila_cums').click(function() {
 
+            // Obtener el nombre del profesional, medicamento y contrato seleccionado desde Medicamentos
+            const profesional_med = $('#fact_profesional option:selected').text();
+            const servicio_med = $('#fact_servicio option:selected').text();
+            const medicamento = $('#fact_medicamento option:selected').text();
+            const contrato_med = $('#fact_contrato option:selected').text();
+            const cantidad_med_orde = parseFloat($('#cantidad_ordenada').val() || 0);
+            const cantidad_med = parseFloat($('#cantidad_med').val() || 0);
+            const valor_med = parseFloat($('#valor_med').val() || 0);
+            const total_med = parseFloat(cantidad_med * valor_med);
+
+            totalCantidadMed += cantidad_med;
+            totalTotal += total_med;
+
+            $('#tmedicamentos> tbody:last-child')
+                .append(
+                    '<tr><td><button type="button" name="eliminar" id="eliminar" class = "btn-float  bg-gradient-danger btn-sm tooltipsC" title="eliminar">' +
+                    '<i class="fas fa-trash"></i></button></td>' +
+                    '</td>' +
+                    '<td>' + profesional_med + '</td>' +
+                    '<td>' + servicio_med + '</td>' +
+                    '<td>' + medicamento + '</td>' +
+                    '<td>' + contrato_med + '</td>' +
+                    '<td>' + cantidad_med_orde + '</td>' +
+                    '<td>' + cantidad_med + '</td>' +
+                    '<td>' + valor_med + '</td>' +
+                    '<td>' + total_med + '</td></tr>'
+
+                );
+
+            $('#cant_medicamentos').val(totalCantidadMed);
+            $('#fact_subtotal').val(totalTotal);
+        });
+
+        // eliminar filas de la tabla procedimientos para guardar
         $("#tcups").on("click", "#eliminar", function() {
             $(this).closest("tr").remove();
         });
 
         // eliminar filas de la tabla procedimientos para guardar
-
         $("#tmedicamentos").on("click", "#eliminar", function() {
             $(this).closest("tr").remove();
         });
+
+        // Función para consultar el nivel de la eps seleccionada
+        function getNivelEps(id_eps_empresas) {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('get_nivel_eps') }}",
+                data: {
+                    'eps_empresas_id': id_eps_empresas
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.niveles_eps) {
+                        // Borra la lista de opciones anterior
+                        $('#listaNivelesEps').empty();
+                        // Agrega las nuevas opciones a la lista
+                        $.each(response.niveles_eps, function(i, nivel_eps) {
+                            $('#listaNivelesEps').append('<option value="' + nivel_eps + '">' + nivel_eps + '</option>');
+                        });
+                        // Asigna el valor seleccionado al input correspondiente
+                        $('#listaNivelesEps a').on('click', function(e) {
+                            e.preventDefault();
+                            $('#nivel_eps').val($(this).data('nivel-eps'));
+
+                        });
+                    } else {
+                        // Si no hay resultados, borra el valor del input
+                        $('#nivel_eps').val('');
+                    }
+                },
+                error: function() {
+                    // Si hay un error, borra el valor del input
+                    $('#nivel_eps').val('');
+                }
+            });
+        }
+
+        // Función para consultar el valor del copago asociado a la eps y al nivel
+        $('#nivel_eps').on('change', function() {
+            const id_eps_empresas = $('#eps_empresas_id').val();
+            const nivel_eps = $(this).val();
+            if (id_eps_empresas && nivel_eps) {
+                $.ajax({
+                    url: "{{ route('get_copago_eps') }}",
+                    type: 'GET',
+                    data: {
+                        eps_empresas_id: id_eps_empresas,
+                        nivel_eps: nivel_eps
+                    },
+                    success: function(response) {
+                        /* $('#vlr_copago').val(response.copago); */
+                        $('#copago').val(response.vlr_copago);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            } else {
+                $('#copago').val('');
+            }
+        });
+
+
 
         //Select para consultar la EPS
         $("#eps_fact").select2({
@@ -757,6 +870,14 @@ Facturación
                     };
                 },
                 cache: true
+            }
+        }).on('change', function() {
+
+            const id_eps_empresas = $(this).val();
+            if (id_eps_empresas) {
+                getNivelEps(id_eps_empresas);
+            } else {
+                $('#nivel_eps').val('');
             }
         });
 
@@ -856,7 +977,29 @@ Facturación
             }
         });
 
-        //Select para consultar los procedimientos
+        // Función para consultar el valor particular del procedimiento seleccionado
+        function getValorParticular(id_cups) {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('get_valor_cups') }}",
+                data: {
+                    'id_cups': id_cups
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.valor_particular) {
+                        $('#valor').val(response.valor_particular);
+                    } else {
+                        $('#valor').val('');
+                    }
+                },
+                error: function() {
+                    $('#valor').val('');
+                }
+            });
+        }
+
+        // Select para consultar los procedimientos
         $("#fact_procedimiento").select2({
             theme: "bootstrap",
             ajax: {
@@ -866,17 +1009,22 @@ Facturación
                 processResults: function(data) {
                     return {
                         results: $.map(data, function(data) {
-
                             return {
-
                                 text: data.cod_cups + ' - ' + data.nombre,
                                 id: data.id_cups
-
                             }
                         })
                     };
                 },
                 cache: true
+            }
+        }).on('change', function() {
+
+            const id_cups = $(this).val();
+            if (id_cups) {
+                getValorParticular(id_cups);
+            } else {
+                $('#valor').val('');
             }
         });
 
@@ -928,6 +1076,28 @@ Facturación
             }
         });
 
+        // Función para consultar el valor particular del procedimiento seleccionado
+        function getValorMedicamento(id_medicamento) {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('get_valor_med') }}",
+                data: {
+                    'id_medicamento': id_medicamento
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.valor_particular) {
+                        $('#valor_med').val(response.valor_particular);
+                    } else {
+                        $('#valor_med').val('');
+                    }
+                },
+                error: function() {
+                    $('#valor_med').val('');
+                }
+            });
+        }
+
         //Select para consultar los medicamentos
         $("#fact_medicamento").select2({
             theme: "bootstrap",
@@ -949,6 +1119,14 @@ Facturación
                     };
                 },
                 cache: true
+            }
+        }).on('change', function() {
+
+            const id_medicamento = $(this).val();
+            if (id_medicamento) {
+                getValorMedicamento(id_medicamento);
+            } else {
+                $('#valor_med').val('');
             }
         });
 

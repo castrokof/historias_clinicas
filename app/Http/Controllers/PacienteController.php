@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Barrios;
 use App\Models\Admin\Eps_empresa;
+use App\Models\Admin\Eps_niveles;
 use App\Models\Admin\Paciente;
 use App\Models\Admin\Ocupaciones;
 use App\Models\Admin\Paises;
 use App\Models\Admin\Departamentos;
 use App\Models\Admin\Ciudades;
 use App\Models\Seguridad\Usuario;
-//use App\Models\Admin\Eps_niveles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -34,8 +34,9 @@ class PacienteController extends Controller
                 ->Join('eps_empresas', 'paciente.eps_id', '=', 'eps_empresas.id_eps_empresas')
                 ->Join('paises', 'paciente.pais_id', '=', 'paises.id_pais')
                 ->Join('ciudades', 'paciente.ciudad_id', '=', 'ciudades.id_ciudad')
-                ->select('*',
-                    'paciente.id_paciente as idd', 
+                ->select(
+                    '*',
+                    'paciente.id_paciente as idd',
                     'ocupaciones.codigo as cod_ocu',
                     'ocupaciones.nombre as nombre_ocu',
                     'eps_empresas.codigo as codigo_eps',
@@ -71,7 +72,7 @@ class PacienteController extends Controller
      */
 
 
-    public function guardar(Request $request)
+    public function guardar_1(Request $request)
     {
         $rules = array(
             'pnombre'  => 'required|max:100',
@@ -81,6 +82,7 @@ class PacienteController extends Controller
             'celular' => 'numeric|required|min:50|max:9999999999',
             'ocupacion_id' => 'required',
             'eps_id' => 'required',
+            'eps_nombre',
             'regimen',
             'afiliacion',
             'nivel',
@@ -104,9 +106,96 @@ class PacienteController extends Controller
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        Paciente::create($request->all());
+        $peps = DB::table('eps_empresas')->where('id_eps_empresas', $request->eps_id)->value('nombre');
+        // Se agrega el campo $peps al arreglo $data para asignar el valor al campo eps_nombre de la tabla donde se va hacer la insercion
+        $data = $request->all();
+        $data['eps_nombre'] = $peps;
+        /* $data = array_merge($request->all(), ['eps_nombre' => $peps]); */
+
+        // Se toma el arreglo $data en lugar de $request->all() para insertar todos los campos incluyendo el eps_nombre seteado
+        Paciente::create($data);
+
         return response()->json(['success' => 'ok']);
     }
+
+    public function guardar(Request $request)
+    {
+        $rules = array(
+            'pnombre'  => 'required|max:100',
+            'papellido'  => 'required|max:100',
+            'tipo_documento' => 'required',
+            'documento' => 'numeric|required|min:19|max:9999999999',
+            'celular' => 'numeric|required|min:50|max:9999999999',
+            'ocupacion_id' => 'required',
+            'eps_id' => 'required',
+            'regimen',
+            'afiliacion',
+            'nivel',
+            'numero_afiliacion',
+            'edad',
+            'futuro2', //Este dato es la fecha de nacimiento del paciente
+            'Poblacion_especial' => 'required',
+            'pais_id' => 'required',
+            'departamento_id' => 'required',
+            'ciudad_id' => 'required',
+            'barrio_id' => 'required',
+            'direccion' => 'required',
+            'telefono',
+            'correo',
+            'sexo' => 'required',
+            'orientacion_sexual' => 'required',
+            'observaciones',
+            'usuario_id'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $peps = DB::table('eps_empresas')->where('id_eps_empresas', $request->eps_id)->value('nombre');
+
+        // Agregamos los campos faltantes a nuestro arreglo de datos
+        $data = [
+            'pnombre' => $request->pnombre,
+            'snombre' => $request->snombre,
+            'papellido' => $request->papellido,
+            'sapellido' => $request->sapellido,
+            'tipo_documento' => $request->tipo_documento,
+            'documento' => $request->documento,
+            'edad' => $request->edad,
+            'celular' => $request->celular,
+            'ocupacion_id' => $request->ocupacion_id,
+            'eps_id' => $request->eps_id,
+            'eps_nombre' => $peps,
+            'regimen' => $request->regimen,
+            'afiliacion' => $request->afiliacion,
+            'nivel' => $request->nivel,
+            'numero_afiliacion' => $request->numero_afiliacion,
+            'futuro2' => $request->futuro2,
+            'Poblacion_especial' => $request->Poblacion_especial,
+            'pais_id' => $request->pais_id,
+            'departamento_id' => $request->departamento_id,
+            'ciudad_id' => $request->ciudad_id,
+            'barrio_id' => $request->barrio_id,
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'correo' => $request->correo,
+            'sexo' => $request->sexo,
+            'orientacion_sexual' => $request->orientacion_sexual,
+            'observaciones' => $request->observaciones,
+            'usuario_id' => $request->usuario_id,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        // Usamos el método insert de la clase DB para insertar los datos en la tabla paciente
+        DB::table('paciente')->insert($data);
+
+        return response()->json(['success' => 'ok']);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -117,7 +206,7 @@ class PacienteController extends Controller
     public function editar($id)
     {
         if (request()->ajax()) {
-            
+
 
             $data = Paciente::where('id_paciente', $id)->first();
 
@@ -138,14 +227,16 @@ class PacienteController extends Controller
         $rules = array(
             'pnombre'  => 'required|max:100',
             'papellido'  => 'required|max:100',
-            'celular' => 'numeric|required|min:50|max:9999999999',
             'tipo_documento' => 'required',
             'documento' => 'numeric|required|min:19|max:9999999999',
+            'celular' => 'numeric|required|min:50|max:9999999999',
             'ocupacion_id' => 'required',
             'eps_id' => 'required',
             'regimen',
             'afiliacion',
             'nivel',
+            'numero_afiliacion',
+            'edad',
             'futuro2', //Este dato es la fecha de nacimiento del paciente
             'Poblacion_especial' => 'required',
             'pais_id' => 'required',
@@ -153,8 +244,11 @@ class PacienteController extends Controller
             'ciudad_id' => 'required',
             'barrio_id' => 'required',
             'direccion' => 'required',
+            'telefono',
+            'correo',
             'sexo' => 'required',
             'orientacion_sexual' => 'required',
+            'observaciones',
             'usuario_id'
         );
 
@@ -164,34 +258,39 @@ class PacienteController extends Controller
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
+        $peps = DB::table('eps_empresas')->where('id_eps_empresas', $request->eps_id)->value('nombre');
+
         $data = DB::table('paciente')->where('id_paciente', '=', $id)
             ->update([
-                'papellido' => $request->papellido,
-                'sapellido' => $request->sapellido,
                 'pnombre' => $request->pnombre,
                 'snombre' => $request->snombre,
+                'papellido' => $request->papellido,
+                'sapellido' => $request->sapellido,
                 'tipo_documento' => $request->tipo_documento,
                 'documento' => $request->documento,
+                'edad' => $request->edad,
+                'celular' => $request->celular,
                 'ocupacion_id' => $request->ocupacion_id,
                 'eps_id' => $request->eps_id,
-                'edad' => $request->edad,
-                'sexo' => $request->sexo,
-                'orientacion_sexual' => $request->orientacion_sexual,
-                'pais_id' => $request->pais_id,
-                'departamento_id' => $request->departamento_id,
-                'direccion' => $request->direccion,
-                'celular' => $request->celular,
-                'telefono' => $request->telefono,
+                'eps_nombre' => $peps,
                 'regimen' => $request->regimen,
+                'afiliacion' => $request->afiliacion,
                 'nivel' => $request->nivel,
+                'numero_afiliacion' => $request->numero_afiliacion,
                 'futuro2' => $request->futuro2,
                 'Poblacion_especial' => $request->Poblacion_especial,
+                'pais_id' => $request->pais_id,
+                'departamento_id' => $request->departamento_id,
                 'ciudad_id' => $request->ciudad_id,
                 'barrio_id' => $request->barrio_id,
-                'operador' => $request->operador,
+                'direccion' => $request->direccion,
+                'telefono' => $request->telefono,
                 'correo' => $request->correo,
+                'sexo' => $request->sexo,
+                'orientacion_sexual' => $request->orientacion_sexual,
                 'observaciones' => $request->observaciones,
-                'updated_at' => now()
+                'usuario_id' => $request->usuario_id,
+                'updated_at' => now(),
 
             ]);
         // $data->update($request->all());
@@ -257,6 +356,45 @@ class PacienteController extends Controller
             return response()->json($epsp);
         }
     }
+
+    public function getNivelEps(Request $request)
+    {
+        // Obtener el valor del parámetro "eps_empresas_id" de la petición HTTP
+        $eps_empresas_id = $request->input('eps_empresas_id');
+
+        // Buscar en la tabla "eps_niveles" todos los registros que tengan el valor de "eps_empresas_id"
+        $data = Eps_niveles::where('eps_empresas_id', $eps_empresas_id)->get();
+
+        // Extraer todos los valores de la columna "nivel" de los resultados encontrados y convertirlos a una matriz
+        $niveles = $data->pluck('nivel')->toArray();
+
+        // Extraer todos los valores de la columna  "vlr_copago" Valor del Copago
+        $copago = $data->pluck('vlr_copago')->toArray();
+
+        // Devolver los resultados en formato JSON
+        return response()->json([
+            'niveles_eps' => $niveles,
+            'copago' => $copago
+        ]);
+    }
+
+    public function getCopagoEps(Request $request)
+    {
+        $eps_empresas_id = $request->input('eps_empresas_id');
+        $nivel_eps = $request->input('nivel_eps');
+
+        // Buscar en la tabla "eps_niveles" el registro que tenga los valores de "eps_empresas_id" y "nivel_eps"
+        $data = Eps_niveles::where('eps_empresas_id', $eps_empresas_id)
+            ->where('id_eps_niveles', $nivel_eps)
+            /* ->where('estado', '1') */
+            ->first();
+
+        // Devolver el valor del copago correspondiente al nivel de la EPS seleccionado
+        return response()->json([
+            'copago' => $data ? $data->vlr_copago : null
+        ]);
+    }
+
 
     //Funcion para seleccionar el Departamento desde la tabla departamentos
     public function selectde(Request $request)

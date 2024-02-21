@@ -12,10 +12,15 @@ class Cita extends Model
 
     protected $fillable = [
 
-        'fechahora', //Cupo de la cita
+        'fechahora_cita', //Cupo de la cita
+        'fechahora_solicitud',
+        'fechahora_solicitada',
+        'orden',
         'fechasp',
         'fechaspdh',
-        'tipo_documento', //Ej: CC, TI, CE, 
+        'tipo_solicitud',
+        'ips',
+        'tipo_documento', //Ej: CC, TI, CE,
         'historia', //Este es el numero de documento del paciente
         'papellido',
         'sapellido',
@@ -32,22 +37,50 @@ class Cita extends Model
         'nivel',
         'tipo_cita',
         'futuro1',
-        'futuro2',
+        'futuro2', // Este campo es la fecha de nacimiento del paciente
         'futuro3',
+        'doc_hospitalizacion',
+        'orden_hospitalizacion',
+        'atencion_hospitalizacion',
         'sede',
-        'asistio', //Este es el estado de la cita
-        'observaciones',
+        'estado', //Este es el estado de la cita
+        'bloqueo',
+        'usuario', //Este es el nombre del usuario que agenda la cita
+        'profesional_id',
+        'cups_id',
+        'contrato_id',
+        'factura_id',
+        'servicio_id',
         'paciente_id',
         'usuario_id'
     ];
 
     public function pacientec()
     {
-        return $this->belongsTo(Paciente::class, 'id_paciente');
+        return $this->belongsTo(Paciente::class, 'paciente_id');
     }
 
     public function usuarioc()
     {
-        return $this->belongsTo(Usuario::class, 'id');
+        return $this->belongsTo(Usuario::class, 'usuario_id');
+    }
+
+    public function servicio()
+    {
+        return $this->belongsTo(Servicios::class, 'servicio_id');
+    }
+
+    public function cups()
+    {
+        return $this->belongsTo(Def_Procedimientos::class, 'cups_id');
+    }
+
+    public function contrato()
+    {
+        return $this->belongsTo(Def_Contratos::class, 'contrato_id');
+    }
+    public function profesionalId()
+    {
+        return $this->belongsTo(Def_Profesionales::class, 'profesional_id');
     }
 }

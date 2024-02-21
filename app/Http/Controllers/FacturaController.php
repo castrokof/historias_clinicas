@@ -38,6 +38,20 @@ class FacturaController extends Controller
         return view('admin.financiero.facturacion.index', compact('documento_consecutivo'));
     }
 
+    public function index_demo(Request $request)
+    {
+        //
+        $usuario_id = $request->session()->get('usuario_id');
+        $documento_consecutivo = DB::table('def__documentos_consecutivos')
+            ->join('def__documentos', 'def__documentos.id_documento', '=', 'def__documentos_consecutivos.documento_id')
+            ->where('def__documentos.cod_documentos', 'DS')
+            ->select('def__documentos_consecutivos.consecutivo', 'def__documentos.cod_documentos')
+            ->get();
+
+        //DD($documento_consecutivo);
+        return view('admin.financiero.factura-demo.index', compact('documento_consecutivo'));
+    }
+
 
     public function indexGuardarFactura(Request $request)
     {

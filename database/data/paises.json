@@ -1,32 +1,999 @@
 [
-    {"cod_pais":"004","nombre":"Afganistán"},
-    {"cod_pais":"008","nombre":"Albania"},
-    {"cod_pais":"010","nombre":"Antártida"},
-    {"cod_pais":"012","nombre":"Argelia"},
-    {"cod_pais":"016","nombre":"Samoa Americana"},
-    {"cod_pais":"032","nombre":"Argentina"},
-    {"cod_pais":"036","nombre":"Australia"},
-    {"cod_pais":"068","nombre":"Bolivia"},
-    {"cod_pais":"070","nombre":"Bosnia y Herzegovina"},
-    {"cod_pais":"072","nombre":"Botsuana"},
-    {"cod_pais":"074","nombre":"Isla Bouvet"},
-    {"cod_pais":"076","nombre":"Brasil"},
-    {"cod_pais":"084","nombre":"Belice"},
-    {"cod_pais":"086","nombre":"Territorio Británico del Océano Índico"},
-    {"cod_pais":"090","nombre":"Islas Salomón"},
-    {"cod_pais":"092","nombre":"Islas Vírgenes Británicas"},
-    {"cod_pais":"096","nombre":"Brunéi"},
-    {"cod_pais":"100","nombre":"Bulgaria"},
-    {"cod_pais":"104","nombre":"Myanmar"},
-    {"cod_pais":"108","nombre":"Burundi"},
-    {"cod_pais":"112","nombre":"Bielorrusia"},
-    {"cod_pais":"170","nombre":"Colombia"},
-    {"cod_pais":"188","nombre":"Costa Rica"},
-    {"cod_pais":"191","nombre":"Croacia"},
-    {"cod_pais":"192","nombre":"Cuba"},
-    {"cod_pais":"218","nombre":"Ecuador"},
-    {"cod_pais":"222","nombre":"El Salvador"},
-    {"cod_pais":"276","nombre":"Alemania"},
-    {"cod_pais":"862","nombre":"Venezuela"}
-
-]
+    {
+      "cod_pais": "004",
+      "nombre": "Afganistán"
+    },
+    {
+      "cod_pais": "008",
+      "nombre": "Albania"
+    },
+    {
+      "cod_pais": "010",
+      "nombre": "Antártida"
+    },
+    {
+      "cod_pais": "012",
+      "nombre": "Argelia"
+    },
+    {
+      "cod_pais": "016",
+      "nombre": "Samoa Americana"
+    },
+    {
+      "cod_pais": "020",
+      "nombre": "Andorra"
+    },
+    {
+      "cod_pais": "024",
+      "nombre": "Angola"
+    },
+    {
+      "cod_pais": "028",
+      "nombre": "Antigua y Barbuda"
+    },
+    {
+      "cod_pais": "031",
+      "nombre": "Azerbaiyán"
+    },
+    {
+      "cod_pais": "032",
+      "nombre": "Argentina"
+    },
+    {
+      "cod_pais": "036",
+      "nombre": "Australia"
+    },
+    {
+      "cod_pais": "040",
+      "nombre": "Austria"
+    },
+    {
+      "cod_pais": "044",
+      "nombre": "Bahamas"
+    },
+    {
+      "cod_pais": "048",
+      "nombre": "Baréin"
+    },
+    {
+      "cod_pais": "050",
+      "nombre": "Bangladés"
+    },
+    {
+      "cod_pais": "051",
+      "nombre": "Armenia"
+    },
+    {
+      "cod_pais": "052",
+      "nombre": "Barbados"
+    },
+    {
+      "cod_pais": "056",
+      "nombre": "Bélgica"
+    },
+    {
+      "cod_pais": "060",
+      "nombre": "Bermudas"
+    },
+    {
+      "cod_pais": "064",
+      "nombre": "Bután"
+    },
+    {
+      "cod_pais": "068",
+      "nombre": "Bolivia"
+    },
+    {
+      "cod_pais": "070",
+      "nombre": "Bosnia y Herzegovina"
+    },
+    {
+      "cod_pais": "072",
+      "nombre": "Botsuana"
+    },
+    {
+      "cod_pais": "074",
+      "nombre": "Isla Bouvet"
+    },
+    {
+      "cod_pais": "076",
+      "nombre": "Brasil"
+    },
+    {
+      "cod_pais": "084",
+      "nombre": "Belice"
+    },
+    {
+      "cod_pais": "086",
+      "nombre": "Territorio Británico del Océano Índico"
+    },
+    {
+      "cod_pais": "090",
+      "nombre": "Islas Salomón"
+    },
+    {
+      "cod_pais": "092",
+      "nombre": "Islas Vírgenes Británicas"
+    },
+    {
+      "cod_pais": "096",
+      "nombre": "Brunéi"
+    },
+    {
+      "cod_pais": "100",
+      "nombre": "Bulgaria"
+    },
+    {
+      "cod_pais": "104",
+      "nombre": "Myanmar"
+    },
+    {
+      "cod_pais": "108",
+      "nombre": "Burundi"
+    },
+    {
+      "cod_pais": "112",
+      "nombre": "Bielorrusia"
+    },
+    {
+      "cod_pais": "116",
+      "nombre": "Camboya"
+    },
+    {
+      "cod_pais": "120",
+      "nombre": "Camerún"
+    },
+    {
+      "cod_pais": "124",
+      "nombre": "Canadá"
+    },
+    {
+      "cod_pais": "132",
+      "nombre": "Cabo Verde"
+    },
+    {
+      "cod_pais": "136",
+      "nombre": "Islas Caimán"
+    },
+    {
+      "cod_pais": "140",
+      "nombre": "República Centroafricana"
+    },
+    {
+      "cod_pais": "144",
+      "nombre": "Sri Lanka"
+    },
+    {
+      "cod_pais": "148",
+      "nombre": "Chad"
+    },
+    {
+      "cod_pais": "152",
+      "nombre": "Chile"
+    },
+    {
+      "cod_pais": "156",
+      "nombre": "China"
+    },
+    {
+      "cod_pais": "158",
+      "nombre": "República de China"
+    },
+    {
+      "cod_pais": "162",
+      "nombre": "Isla de Navidad"
+    },
+    {
+      "cod_pais": "166",
+      "nombre": "Islas Cocos"
+    },
+    {
+      "cod_pais": "170",
+      "nombre": "Colombia"
+    },
+    {
+      "cod_pais": "174",
+      "nombre": "Comoras"
+    },
+    {
+      "cod_pais": "175",
+      "nombre": "Mayotte"
+    },
+    {
+      "cod_pais": "178",
+      "nombre": "República del Congo"
+    },
+    {
+      "cod_pais": "180",
+      "nombre": "República Democrática del Congo"
+    },
+    {
+      "cod_pais": "184",
+      "nombre": "Islas Cook"
+    },
+    {
+      "cod_pais": "188",
+      "nombre": "Costa Rica"
+    },
+    {
+      "cod_pais": "191",
+      "nombre": "Croacia"
+    },
+    {
+      "cod_pais": "192",
+      "nombre": "Cuba"
+    },
+    {
+      "cod_pais": "196",
+      "nombre": "Chipre"
+    },
+    {
+      "cod_pais": "203",
+      "nombre": "República Checa"
+    },
+    {
+      "cod_pais": "204",
+      "nombre": "Benín"
+    },
+    {
+      "cod_pais": "208",
+      "nombre": "Dinamarca"
+    },
+    {
+      "cod_pais": "212",
+      "nombre": "Dominica"
+    },
+    {
+      "cod_pais": "214",
+      "nombre": "República Dominicana"
+    },
+    {
+      "cod_pais": "218",
+      "nombre": "Ecuador"
+    },
+    {
+      "cod_pais": "222",
+      "nombre": "El Salvador"
+    },
+    {
+      "cod_pais": "226",
+      "nombre": "Guinea Ecuatorial"
+    },
+    {
+      "cod_pais": "231",
+      "nombre": "Etiopía"
+    },
+    {
+      "cod_pais": "232",
+      "nombre": "Eritrea"
+    },
+    {
+      "cod_pais": "233",
+      "nombre": "Estonia"
+    },
+    {
+      "cod_pais": "234",
+      "nombre": "Islas Feroe"
+    },
+    {
+      "cod_pais": "238",
+      "nombre": "Islas Malvinas"
+    },
+    {
+      "cod_pais": "239",
+      "nombre": "Islas Georgias del Sur y Sandwich del Sur"
+    },
+    {
+      "cod_pais": "242",
+      "nombre": "Fiyi"
+    },
+    {
+      "cod_pais": "246",
+      "nombre": "Finlandia"
+    },
+    {
+      "cod_pais": "248",
+      "nombre": "Åland"
+    },
+    {
+      "cod_pais": "250",
+      "nombre": "Francia"
+    },
+    {
+      "cod_pais": "254",
+      "nombre": "Guayana Francesa"
+    },
+    {
+      "cod_pais": "258",
+      "nombre": "Polinesia Francesa"
+    },
+    {
+      "cod_pais": "260",
+      "nombre": "Tierras Australes y Antárticas Francesas"
+    },
+    {
+      "cod_pais": "262",
+      "nombre": "Yibuti"
+    },
+    {
+      "cod_pais": "266",
+      "nombre": "Gabón"
+    },
+    {
+      "cod_pais": "268",
+      "nombre": "Georgia"
+    },
+    {
+      "cod_pais": "270",
+      "nombre": "Gambia"
+    },
+    {
+      "cod_pais": "275",
+      "nombre": "Palestina"
+    },
+    {
+      "cod_pais": "276",
+      "nombre": "Alemania"
+    },
+    {
+      "cod_pais": "288",
+      "nombre": "Ghana"
+    },
+    {
+      "cod_pais": "292",
+      "nombre": "Gibraltar"
+    },
+    {
+      "cod_pais": "296",
+      "nombre": "Kiribati"
+    },
+    {
+      "cod_pais": "300",
+      "nombre": "Grecia"
+    },
+    {
+      "cod_pais": "304",
+      "nombre": "Groenlandia"
+    },
+    {
+      "cod_pais": "308",
+      "nombre": "Granada"
+    },
+    {
+      "cod_pais": "312",
+      "nombre": "Guadalupe"
+    },
+    {
+      "cod_pais": "316",
+      "nombre": "Guam"
+    },
+    {
+      "cod_pais": "320",
+      "nombre": "Guatemala"
+    },
+    {
+      "cod_pais": "324",
+      "nombre": "Guinea"
+    },
+    {
+      "cod_pais": "328",
+      "nombre": "Guyana"
+    },
+    {
+      "cod_pais": "332",
+      "nombre": "Haití"
+    },
+    {
+      "cod_pais": "334",
+      "nombre": "Islas Heard y McDonald"
+    },
+    {
+      "cod_pais": "336",
+      "nombre": "Ciudad del Vaticano"
+    },
+    {
+      "cod_pais": "340",
+      "nombre": "Honduras"
+    },
+    {
+      "cod_pais": "344",
+      "nombre": "Hong Kong"
+    },
+    {
+      "cod_pais": "348",
+      "nombre": "Hungría"
+    },
+    {
+      "cod_pais": "352",
+      "nombre": "Islandia"
+    },
+    {
+      "cod_pais": "356",
+      "nombre": "India"
+    },
+    {
+      "cod_pais": "360",
+      "nombre": "Indonesia"
+    },
+    {
+      "cod_pais": "364",
+      "nombre": "Irán"
+    },
+    {
+      "cod_pais": "368",
+      "nombre": "Irak"
+    },
+    {
+      "cod_pais": "372",
+      "nombre": "Irlanda"
+    },
+    {
+      "cod_pais": "376",
+      "nombre": "Israel"
+    },
+    {
+      "cod_pais": "380",
+      "nombre": "Italia"
+    },
+    {
+      "cod_pais": "384",
+      "nombre": "Costa de Marfil"
+    },
+    {
+      "cod_pais": "388",
+      "nombre": "Jamaica"
+    },
+    {
+      "cod_pais": "392",
+      "nombre": "Japón"
+    },
+    {
+      "cod_pais": "398",
+      "nombre": "Kazajistán"
+    },
+    {
+      "cod_pais": "400",
+      "nombre": "Jordania"
+    },
+    {
+      "cod_pais": "404",
+      "nombre": "Kenia"
+    },
+    {
+      "cod_pais": "408",
+      "nombre": "Corea del Norte"
+    },
+    {
+      "cod_pais": "410",
+      "nombre": "Corea del Sur"
+    },
+    {
+      "cod_pais": "414",
+      "nombre": "Kuwait"
+    },
+    {
+      "cod_pais": "417",
+      "nombre": "Kirguistán"
+    },
+    {
+      "cod_pais": "418",
+      "nombre": "Laos"
+    },
+    {
+      "cod_pais": "422",
+      "nombre": "Líbano"
+    },
+    {
+      "cod_pais": "426",
+      "nombre": "Lesoto"
+    },
+    {
+      "cod_pais": "428",
+      "nombre": "Letonia"
+    },
+    {
+      "cod_pais": "430",
+      "nombre": "Liberia"
+    },
+    {
+      "cod_pais": "434",
+      "nombre": "Libia"
+    },
+    {
+      "cod_pais": "438",
+      "nombre": "Liechtenstein"
+    },
+    {
+      "cod_pais": "440",
+      "nombre": "Lituania"
+    },
+    {
+      "cod_pais": "442",
+      "nombre": "Luxemburgo"
+    },
+    {
+      "cod_pais": "446",
+      "nombre": "Macao"
+    },
+    {
+      "cod_pais": "450",
+      "nombre": "Madagascar"
+    },
+    {
+      "cod_pais": "454",
+      "nombre": "Malaui"
+    },
+    {
+      "cod_pais": "458",
+      "nombre": "Malasia"
+    },
+    {
+      "cod_pais": "462",
+      "nombre": "Maldivas"
+    },
+    {
+      "cod_pais": "466",
+      "nombre": "Malí"
+    },
+    {
+      "cod_pais": "470",
+      "nombre": "Malta"
+    },
+    {
+      "cod_pais": "474",
+      "nombre": "Martinica"
+    },
+    {
+      "cod_pais": "478",
+      "nombre": "Mauritania"
+    },
+    {
+      "cod_pais": "480",
+      "nombre": "Mauricio"
+    },
+    {
+      "cod_pais": "484",
+      "nombre": "México"
+    },
+    {
+      "cod_pais": "492",
+      "nombre": "Mónaco"
+    },
+    {
+      "cod_pais": "496",
+      "nombre": "Mongolia"
+    },
+    {
+      "cod_pais": "498",
+      "nombre": "Moldavia"
+    },
+    {
+      "cod_pais": "499",
+      "nombre": "Montenegro"
+    },
+    {
+      "cod_pais": "500",
+      "nombre": "Montserrat"
+    },
+    {
+      "cod_pais": "504",
+      "nombre": "Marruecos"
+    },
+    {
+      "cod_pais": "508",
+      "nombre": "Mozambique"
+    },
+    {
+      "cod_pais": "512",
+      "nombre": "Omán"
+    },
+    {
+      "cod_pais": "516",
+      "nombre": "Namibia"
+    },
+    {
+      "cod_pais": "520",
+      "nombre": "Nauru"
+    },
+    {
+      "cod_pais": "524",
+      "nombre": "Nepal"
+    },
+    {
+      "cod_pais": "528",
+      "nombre": "Países Bajos"
+    },
+    {
+      "cod_pais": "531",
+      "nombre": "Curazao"
+    },
+    {
+      "cod_pais": "533",
+      "nombre": "Aruba"
+    },
+    {
+      "cod_pais": "534",
+      "nombre": "Sint Maarten"
+    },
+    {
+      "cod_pais": "535",
+      "nombre": "Caribe Neerlandés"
+    },
+    {
+      "cod_pais": "540",
+      "nombre": "Nueva Caledonia"
+    },
+    {
+      "cod_pais": "548",
+      "nombre": "Vanuatu"
+    },
+    {
+      "cod_pais": "554",
+      "nombre": "Nueva Zelanda"
+    },
+    {
+      "cod_pais": "558",
+      "nombre": "Nicaragua"
+    },
+    {
+      "cod_pais": "562",
+      "nombre": "Níger"
+    },
+    {
+      "cod_pais": "566",
+      "nombre": "Nigeria"
+    },
+    {
+      "cod_pais": "570",
+      "nombre": "Niue"
+    },
+    {
+      "cod_pais": "574",
+      "nombre": "Norfolk"
+    },
+    {
+      "cod_pais": "578",
+      "nombre": "Noruega"
+    },
+    {
+      "cod_pais": "580",
+      "nombre": "Islas Marianas del Norte"
+    },
+    {
+      "cod_pais": "581",
+      "nombre": "Islas ultramarinas de Estados Unidos"
+    },
+    {
+      "cod_pais": "583",
+      "nombre": "Micronesia"
+    },
+    {
+      "cod_pais": "584",
+      "nombre": "Islas Marshall"
+    },
+    {
+      "cod_pais": "585",
+      "nombre": "Palaos"
+    },
+    {
+      "cod_pais": "586",
+      "nombre": "Pakistán"
+    },
+    {
+      "cod_pais": "591",
+      "nombre": "Panamá"
+    },
+    {
+      "cod_pais": "598",
+      "nombre": "Papúa Nueva Guinea"
+    },
+    {
+      "cod_pais": "600",
+      "nombre": "Paraguay"
+    },
+    {
+      "cod_pais": "604",
+      "nombre": "Perú"
+    },
+    {
+      "cod_pais": "608",
+      "nombre": "Filipinas"
+    },
+    {
+      "cod_pais": "612",
+      "nombre": "Islas Pitcairn"
+    },
+    {
+      "cod_pais": "616",
+      "nombre": "Polonia"
+    },
+    {
+      "cod_pais": "620",
+      "nombre": "Portugal"
+    },
+    {
+      "cod_pais": "624",
+      "nombre": "Guinea-Bisáu"
+    },
+    {
+      "cod_pais": "626",
+      "nombre": "Timor Oriental"
+    },
+    {
+      "cod_pais": "630",
+      "nombre": "Puerto Rico"
+    },
+    {
+      "cod_pais": "634",
+      "nombre": "Catar"
+    },
+    {
+      "cod_pais": "638",
+      "nombre": "Reunión"
+    },
+    {
+      "cod_pais": "642",
+      "nombre": "Rumania"
+    },
+    {
+      "cod_pais": "643",
+      "nombre": "Rusia"
+    },
+    {
+      "cod_pais": "646",
+      "nombre": "Ruanda"
+    },
+    {
+      "cod_pais": "652",
+      "nombre": "San Bartolomé"
+    },
+    {
+      "cod_pais": "654",
+      "nombre": "Santa Elena, Ascensión y Tristán de Acuña"
+    },
+    {
+      "cod_pais": "659",
+      "nombre": "San Cristóbal y Nieves"
+    },
+    {
+      "cod_pais": "660",
+      "nombre": "Anguila"
+    },
+    {
+      "cod_pais": "662",
+      "nombre": "Santa Lucía"
+    },
+    {
+      "cod_pais": "663",
+      "nombre": "San Martín"
+    },
+    {
+      "cod_pais": "666",
+      "nombre": "San Pedro y Miquelón"
+    },
+    {
+      "cod_pais": "670",
+      "nombre": "San Vicente y las Granadinas"
+    },
+    {
+      "cod_pais": "674",
+      "nombre": "San Marino"
+    },
+    {
+      "cod_pais": "678",
+      "nombre": "Santo Tomé y Príncipe"
+    },
+    {
+      "cod_pais": "682",
+      "nombre": "Arabia Saudita"
+    },
+    {
+      "cod_pais": "686",
+      "nombre": "Senegal"
+    },
+    {
+      "cod_pais": "688",
+      "nombre": "Serbia"
+    },
+    {
+      "cod_pais": "690",
+      "nombre": "Seychelles"
+    },
+    {
+      "cod_pais": "694",
+      "nombre": "Sierra Leona"
+    },
+    {
+      "cod_pais": "702",
+      "nombre": "Singapur"
+    },
+    {
+      "cod_pais": "703",
+      "nombre": "Eslovaquia"
+    },
+    {
+      "cod_pais": "704",
+      "nombre": "Vietnam"
+    },
+    {
+      "cod_pais": "705",
+      "nombre": "Eslovenia"
+    },
+    {
+      "cod_pais": "706",
+      "nombre": "Somalia"
+    },
+    {
+      "cod_pais": "710",
+      "nombre": "Sudáfrica"
+    },
+    {
+      "cod_pais": "716",
+      "nombre": "Zimbabue"
+    },
+    {
+      "cod_pais": "724",
+      "nombre": "España"
+    },
+    {
+      "cod_pais": "728",
+      "nombre": "Sudán del Sur"
+    },
+    {
+      "cod_pais": "729",
+      "nombre": "Sudán"
+    },
+    {
+      "cod_pais": "732",
+      "nombre": "República Árabe Saharaui Democrática"
+    },
+    {
+      "cod_pais": "740",
+      "nombre": "Surinam"
+    },
+    {
+      "cod_pais": "744",
+      "nombre": "Svalbard y Jan Mayen"
+    },
+    {
+      "cod_pais": "748",
+      "nombre": "Suazilandia"
+    },
+    {
+      "cod_pais": "752",
+      "nombre": "Suecia"
+    },
+    {
+      "cod_pais": "756",
+      "nombre": "Suiza"
+    },
+    {
+      "cod_pais": "760",
+      "nombre": "Siria"
+    },
+    {
+      "cod_pais": "762",
+      "nombre": "Tayikistán"
+    },
+    {
+      "cod_pais": "764",
+      "nombre": "Tailandia"
+    },
+    {
+      "cod_pais": "768",
+      "nombre": "Togo"
+    },
+    {
+      "cod_pais": "772",
+      "nombre": "Tokelau"
+    },
+    {
+      "cod_pais": "776",
+      "nombre": "Tonga"
+    },
+    {
+      "cod_pais": "780",
+      "nombre": "Trinidad y Tobago"
+    },
+    {
+      "cod_pais": "784",
+      "nombre": "Emiratos Árabes Unidos"
+    },
+    {
+      "cod_pais": "788",
+      "nombre": "Túnez"
+    },
+    {
+      "cod_pais": "792",
+      "nombre": "Turquía"
+    },
+    {
+      "cod_pais": "795",
+      "nombre": "Turkmenistán"
+    },
+    {
+      "cod_pais": "796",
+      "nombre": "Islas Turcas y Caicos"
+    },
+    {
+      "cod_pais": "798",
+      "nombre": "Tuvalu"
+    },
+    {
+      "cod_pais": "800",
+      "nombre": "Uganda"
+    },
+    {
+      "cod_pais": "804",
+      "nombre": "Ucrania"
+    },
+    {
+      "cod_pais": "807",
+      "nombre": "Macedonia"
+    },
+    {
+      "cod_pais": "818",
+      "nombre": "Egipto"
+    },
+    {
+      "cod_pais": "826",
+      "nombre": "Reino Unido"
+    },
+    {
+      "cod_pais": "831",
+      "nombre": "Guernsey"
+    },
+    {
+      "cod_pais": "832",
+      "nombre": "Jersey"
+    },
+    {
+      "cod_pais": "833",
+      "nombre": "Isla de Man"
+    },
+    {
+      "cod_pais": "834",
+      "nombre": "Tanzania"
+    },
+    {
+      "cod_pais": "840",
+      "nombre": "Estados Unidos"
+    },
+    {
+      "cod_pais": "850",
+      "nombre": "Islas Vírgenes de los Estados Unidos"
+    },
+    {
+      "cod_pais": "854",
+      "nombre": "Burkina Faso"
+    },
+    {
+      "cod_pais": "858",
+      "nombre": "Uruguay"
+    },
+    {
+      "cod_pais": "860",
+      "nombre": "Uzbekistán"
+    },
+    {
+      "cod_pais": "862",
+      "nombre": "Venezuela"
+    },
+    {
+      "cod_pais": "876",
+      "nombre": "Wallis y Futuna"
+    },
+    {
+      "cod_pais": "882",
+      "nombre": "Samoa"
+    },
+    {
+      "cod_pais": "887",
+      "nombre": "Yemen"
+    },
+    {
+      "cod_pais": "894",
+      "nombre": "Zambia"
+    }
+  ]
+  

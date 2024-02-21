@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin\Def_Procedimientos;
+use App\Models\Admin\def__grupo_procedimientos;
+use App\Models\Admin\def__finalidades;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -122,15 +124,14 @@ class DefProcedimientosController extends Controller
                 'cod_cups'=> 'required',
                 'cod_alterno',
                 'nombre'=> 'required',
-                'grupo',
-                'finalidad',
+                'grupo_id',
+                'finalidad_id',
                 'descripcion',
                 'observacion',
                 'genero',
                 'edad_1',
                 'edad_2',
                 'cantidad_maxima',
-                'valor_SOAT',
                 'valor_particular',
                 'estado'
             );
@@ -144,6 +145,46 @@ class DefProcedimientosController extends Controller
             Def_Procedimientos::create($request->all());
 
             return response()->json(['success' => 'ok']);
+        }
+    }
+
+    //Funcion para seleccionar los grupos 
+    public function selectgrup(Request $request)
+    {
+        $marcam = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $marcam = def__grupo_procedimientos::orderBy('id_grupo')
+                ->where('codigo', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre_grupo', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($marcam);
+        }else {
+            $term = $request->get('q');
+            $marcam = def__grupo_procedimientos::orderBy('id_grupo')->get();
+            return response()->json($marcam);
+        }
+    }
+
+    //Funcion para seleccionar las finalidades
+    public function selectfin(Request $request)
+    {
+        $marcam = [];
+
+        if ($request->has('q')) {
+
+            $term = $request->get('q');
+            $marcam = def__finalidades::orderBy('id_finalidad')
+                ->where('finalidad_id', 'LIKE', '%' . $term . '%')
+                ->orwhere('nombre', 'LIKE', '%' . $term . '%')
+                ->get();
+            return response()->json($marcam);
+        }else {
+            $term = $request->get('q');
+            $marcam = def__finalidades::orderBy('id_finalidad')->get();
+            return response()->json($marcam);
         }
     }
 

@@ -20,7 +20,7 @@ class CreateEpsEmpresasTable extends Migration
             $table->string('nombre',255);
             $table->string('NIT',50); 
             $table->string('color',100)->nullable();
-            $table->char('estado',1);                     
+            $table->char('estado',1);
             $table->timestamps();
         });
     }

@@ -875,6 +875,10 @@ Contratos
                     {
                         data: 'nombre',
                         name: 'nombre'
+                    },
+                    {
+                        data: 'valor_particular',
+                        name: 'valor_particular'
                     }
 
                 ],
@@ -950,8 +954,7 @@ Contratos
                     url: "{{ route('rel_med_contrato')}}",
                     type: "get",
                 },
-                columns: [
-                    {
+                columns: [{
                         data: 'checkbox',
                         name: 'checkbox',
                         orderable: false,
@@ -1100,7 +1103,7 @@ Contratos
             }
         });
 
-        //-- Eliminar EPS de la relación 
+        //-- Eliminar EPS de la relación
 
         $(document).on('click', '.eliminarce', function() {
             var id = $(this).attr('id');
@@ -1235,7 +1238,7 @@ Contratos
             }
         });
 
-        //-- Eliminar Servicio de la relación 
+        //-- Eliminar Servicio de la relación
 
         $(document).on('click', '.eliminarss', function() {
             var id = $(this).attr('id');
@@ -1282,11 +1285,10 @@ Contratos
         });
 
         //Función para enviar los procedimientos seleccionados al controlador
-
-
         $(document).on('click', '#addpr', function() {
 
             var contrato = idcontrato;
+            /* console.log(typeof(valor_particular)); */
 
             var idp = [];
             if (contrato == '') {
@@ -1328,6 +1330,7 @@ Contratos
                                 data: {
                                     procedimiento_id: idp,
                                     contrato_id: contrato,
+
 
                                     "_token": $("meta[name='csrf-token']").attr(
                                         "content")
@@ -1373,7 +1376,7 @@ Contratos
         });
 
 
-        //-- Eliminar Procedimiento de la relación 
+        //-- Eliminar Procedimiento de la relación
 
         $(document).on('click', '.eliminarcp', function() {
             var id = $(this).attr('id');
@@ -1507,7 +1510,7 @@ Contratos
             }
         });
 
-        //-- Eliminar Medicamento de la relación 
+        //-- Eliminar Medicamento de la relación
 
         $(document).on('click', '.eliminarmd', function() {
             var id = $(this).attr('id');

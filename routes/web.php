@@ -106,6 +106,8 @@ Route::post('procedimientos', 'DefProcedimientosController@guardar')->name('guar
 Route::get('editar_procedimientos/{id}', 'DefProcedimientosController@editar')->name('editar_procedimientos')->middleware('superEditor');
 Route::put('procedimientos/{id}', 'DefProcedimientosController@actualizar')->name('actualizar_procedimientos')->middleware('superEditor');
 Route::post('procedimiento-estado', 'DefProcedimientosController@updateestado')->name('procestado')->middleware('superEditor');
+Route::get('agrupaciones_proce', 'DefProcedimientosController@selectgrup')->name('agrupaciones_proce')->middleware('superEditor');
+Route::get('finalidad_proce', 'DefProcedimientosController@selectfin')->name('finalidad_proce')->middleware('superEditor');
 
 //Ruta para consultar las relaciones de Procedimientos vs Servicio
 Route::get('relserviciovsprocedimiento', 'RelServiciovsprocedimientosController@index')->name('relserviciovsprocedimiento')->middleware('superEditor');
@@ -233,6 +235,8 @@ Route::get('paciente/{id}/editar', 'PacienteController@editar')->name('editar_pa
 Route::put('paciente/{id}', 'PacienteController@actualizar')->name('actualizar_paciente')->middleware('superEditor');
 Route::get('pais', 'PacienteController@selectpa')->name('pais')->middleware('superEditor');
 Route::get('eps', 'PacienteController@selecteps')->name('eps')->middleware('superEditor');
+Route::get('get_nivel_eps', 'PacienteController@getNivelEps')->name('get_nivel_eps')->middleware('superEditor');
+Route::get('get_copago_eps', 'PacienteController@getCopagoEps')->name('get_copago_eps')->middleware('superEditor');
 Route::get('ciudad', 'PacienteController@selectci')->name('ciudad')->middleware('superEditor');
 Route::get('departamento', 'PacienteController@selectde')->name('departamento')->middleware('superEditor');
 Route::get('ocupacion', 'PacienteController@selectocu')->name('ocupacion')->middleware('superEditor');
@@ -302,6 +306,23 @@ Route::post('marcas', 'DefMarcasController@guardar')->name('guardar_marcas')->mi
 Route::get('marcas/{id}/editar', 'DefMarcasController@editar')->name('editar_marcas')->middleware('superEditor');
 Route::put('marcas/{id}', 'DefMarcasController@actualizar')->name('actualizar_marcas')->middleware('superEditor');
 
+/* RUTAS DE FINALIDADES */
+Route::get('finalidades', 'DefFinalidadesController@index')->name('finalidades')->middleware('superEditor');
+Route::get('finalidades/crear', 'DefFinalidadesController@crear')->name('crear_finalidades')->middleware('superEditor');
+Route::post('finalidades', 'DefFinalidadesController@guardar')->name('guardar_finalidades')->middleware('superEditor');
+Route::get('finalidades/{id}/editar', 'DefFinalidadesController@editar')->name('editar_finalidades')->middleware('superEditor');
+Route::put('finalidades/{id}', 'DefFinalidadesController@actualizar')->name('actualizar_finalidades')->middleware('superEditor');
+Route::get('serv_fin', 'DefFinalidadesController@selectfi')->name('serv_fin')->middleware('superEditor');
+Route::get('eps_finalidad', 'DefFinalidadesController@selecteps')->name('eps_finalidad')->middleware('superEditor');
+
+
+/* RUTAS DE AGRUPACIONES DE PROCEDIMIENTOS */
+Route::get('agrupaciones', 'DefGrupoProcedimientosController@index')->name('agrupaciones')->middleware('superEditor');
+Route::get('agrupaciones/crear', 'DefGrupoProcedimientosController@crear')->name('crear_agrupaciones')->middleware('superEditor');
+Route::post('agrupaciones', 'DefGrupoProcedimientosController@guardar')->name('guardar_agrupaciones')->middleware('superEditor');
+Route::get('agrupaciones/{id}/editar', 'DefGrupoProcedimientosController@editar')->name('editar_agrupaciones')->middleware('superEditor');
+Route::put('agrupaciones/{id}', 'DefGrupoProcedimientosController@actualizar')->name('actualizar_agrupaciones')->middleware('superEditor');
+
 /* RUTAS DE SERVICIOS */
 Route::get('servicios', 'ServiciosController@index')->name('servicios')->middleware('superEditor');
 Route::get('servicios/crear', 'ServiciosController@crear')->name('crear_servicio')->middleware('superEditor');
@@ -333,8 +354,12 @@ Route::get('cita', 'CitaController@index')->name('cita')->middleware('superEdito
 Route::get('cita/crear', 'CitaController@crear')->name('crear_cita')->middleware('superEditor');
 Route::post('cita', 'CitaController@guardar')->name('guardar_cita')->middleware('superEditor');
 Route::get('cita/{id}/editar', 'CitaController@editar')->name('editar_cita')->middleware('superEditor');
+Route::get('cita/{id}/consultar', 'CitaController@consultar')->name('consultar_cita')->middleware('superEditor');
 Route::put('cita/{id}', 'CitaController@actualizar')->name('actualizar_cita')->middleware('superEditor');
 Route::get('pacienteselect', 'CitaController@selectp')->name('selectp')->middleware('superEditor');
+
+Route::get('observaciones', 'CitaController@getObservaciones')->name('observaciones')->middleware('superEditor');
+Route::get('cita_observaciones', 'CitaController@showObservaciones')->name('cita_observaciones')->middleware('superEditor');
 
 /* RUTAS DE LA FACTURA */
 Route::get('facturacion', 'FacturaController@index')->name('facturacion')->middleware('superEditor');
@@ -345,10 +370,15 @@ Route::put('facturacion/{id}', 'FacturaController@actualizar')->name('actualizar
 Route::get('pacientefact', 'FacturaController@selectpa')->name('pacientefact')->middleware('superEditor');
 Route::get('pacientefill', 'FacturaController@buscarp')->name('pacientefill')->middleware('superEditor');
 
+/* RUTAS DE LA FACTURA DEMO*/
+Route::get('factura-demo', 'FacturaController@index_demo')->name('factura-demo')->middleware('superEditor');
+
 //Rutas para seleccionar los items que se iran cargando a la Factura (Servicio, Profesional, Procedimiento, Medicamento, Contrato)
 Route::get('servicios_factura', 'FcFacturaProcedimientosController@selectservicio')->name('servicios_factura')->middleware('superEditor');
 Route::get('profesionales_factura', 'FcFacturaProcedimientosController@selectprof')->name('profesionales_factura')->middleware('superEditor');
 Route::get('procedimientos_factura', 'FcFacturaProcedimientosController@selectcups')->name('procedimientos_factura')->middleware('superEditor');
+Route::get('get_valor_cups', 'FcFacturaProcedimientosController@getValorParticularCups')->name('get_valor_cups')->middleware('superEditor');
+Route::get('get_valor_med', 'FcFacturaProcedimientosController@getValorParticularMed')->name('get_valor_med')->middleware('superEditor');
 Route::get('contratos_factura', 'FcFacturaProcedimientosController@selectcont')->name('contratos_factura')->middleware('superEditor');
 Route::get('medicamento_factura', 'FcFacturaProcedimientosController@selectmed')->name('medicamento_factura')->middleware('superEditor');
 

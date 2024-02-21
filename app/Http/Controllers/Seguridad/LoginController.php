@@ -11,35 +11,40 @@ class LoginController extends Controller
 {
     //use Notifiable;
     use AuthenticatesUsers;
+<<<<<<< HEAD
     
     protected $redirectTo = '/profesionales';
+=======
+
+    protected $redirectTo = '/facturacion';
+>>>>>>> 4d967155170938f7bdf79f36c6d3cbb48b7bfa0d
 
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-     
+
     public function index()
     {
-            
+
            return view('seguridad.index');
     }
 
-    
-    
+
+
     protected function authenticated(Request $request, $user)
-    {   
+    {
 
         $useractivo = $user->where([
             ['usuario', '=', $request->usuario],
             ['activo', '=', 1]
-        
+
         ])->count();
-      
+
 
         $roles1 = $user->roles1()->get();
-       
+
         if ($roles1->isNotEmpty() && $useractivo >= 1) {
             $user->setSession();
         }else{
@@ -54,12 +59,12 @@ class LoginController extends Controller
         return 'usuario';
     }
     public function loginMovil(Request $request)
-    {   
-       
+    {
+
          if(Auth::attempt($request->only('usuario','password'))){
 
             $user = Auth::user();
-            
+
             return Response()->json([
             'user' => $user
         ], 200);
@@ -74,7 +79,7 @@ class LoginController extends Controller
 
          }
 
-        
+
 
     }
 

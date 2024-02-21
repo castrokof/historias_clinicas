@@ -1,11 +1,4210 @@
 [
-    {"cod_ciudad":"001","nombre":"MEDELLIN"},
-    {"cod_ciudad":"002","nombre":"ABEJORRAL"},
-    {"cod_ciudad":"004","nombre":"ABRIAQUI"},
-    {"cod_ciudad":"076","nombre":"CALI"},
-    {"cod_ciudad":"111","nombre":"BUGA"},
-    {"cod_ciudad":"892","nombre":"YUMBO"},
-    {"cod_ciudad":"520","nombre":"PALMIRA"},
-    {"cod_ciudad":"890","nombre":"YOTOCO"}
-
+    {
+        "cod_ciudad": "001",
+        "nombre": "MEDELLIN"
+    },
+    {
+        "cod_ciudad": "002",
+        "nombre": "ABEJORRAL"
+    },
+    {
+        "cod_ciudad": "003",
+        "nombre": "ABRIAQUI"
+    },
+    {
+        "cod_ciudad": "004",
+        "nombre": "ALEJANDRIA"
+    },
+    {
+        "cod_ciudad": "005",
+        "nombre": "AMAGA"
+    },
+    {
+        "cod_ciudad": "006",
+        "nombre": "AMALFI"
+    },
+    {
+        "cod_ciudad": "007",
+        "nombre": "ANDES"
+    },
+    {
+        "cod_ciudad": "008",
+        "nombre": "ANGELOPOLIS"
+    },
+    {
+        "cod_ciudad": "009",
+        "nombre": "ANGOSTURA"
+    },
+    {
+        "cod_ciudad": "010",
+        "nombre": "ANORI"
+    },
+    {
+        "cod_ciudad": "011",
+        "nombre": "ANTIOQUIA"
+    },
+    {
+        "cod_ciudad": "012",
+        "nombre": "ANZA"
+    },
+    {
+        "cod_ciudad": "013",
+        "nombre": "APARTADO"
+    },
+    {
+        "cod_ciudad": "014",
+        "nombre": "ARBOLETES"
+    },
+    {
+        "cod_ciudad": "015",
+        "nombre": "ARGELIA"
+    },
+    {
+        "cod_ciudad": "016",
+        "nombre": "ARMENIA"
+    },
+    {
+        "cod_ciudad": "017",
+        "nombre": "BARBOSA"
+    },
+    {
+        "cod_ciudad": "018",
+        "nombre": "BELMIRA"
+    },
+    {
+        "cod_ciudad": "019",
+        "nombre": "BELLO"
+    },
+    {
+        "cod_ciudad": "020",
+        "nombre": "BETANIA"
+    },
+    {
+        "cod_ciudad": "021",
+        "nombre": "BETULIA"
+    },
+    {
+        "cod_ciudad": "022",
+        "nombre": "BOLIVAR"
+    },
+    {
+        "cod_ciudad": "023",
+        "nombre": "BRICEÑO"
+    },
+    {
+        "cod_ciudad": "024",
+        "nombre": "BURITICA"
+    },
+    {
+        "cod_ciudad": "025",
+        "nombre": "CACERES"
+    },
+    {
+        "cod_ciudad": "026",
+        "nombre": "CAICEDO"
+    },
+    {
+        "cod_ciudad": "027",
+        "nombre": "CALDAS"
+    },
+    {
+        "cod_ciudad": "028",
+        "nombre": "CAMPAMENTO"
+    },
+    {
+        "cod_ciudad": "029",
+        "nombre": "CAÑASGORDAS"
+    },
+    {
+        "cod_ciudad": "030",
+        "nombre": "CARACOLI"
+    },
+    {
+        "cod_ciudad": "031",
+        "nombre": "CARAMANTA"
+    },
+    {
+        "cod_ciudad": "032",
+        "nombre": "CAREPA"
+    },
+    {
+        "cod_ciudad": "033",
+        "nombre": "CARMEN DE VIBORAL"
+    },
+    {
+        "cod_ciudad": "034",
+        "nombre": "CAROLINA"
+    },
+    {
+        "cod_ciudad": "035",
+        "nombre": "CAUCASIA"
+    },
+    {
+        "cod_ciudad": "036",
+        "nombre": "CHIGORODO"
+    },
+    {
+        "cod_ciudad": "037",
+        "nombre": "CISNEROS"
+    },
+    {
+        "cod_ciudad": "038",
+        "nombre": "COCORNA"
+    },
+    {
+        "cod_ciudad": "039",
+        "nombre": "CONCEPCION"
+    },
+    {
+        "cod_ciudad": "040",
+        "nombre": "CONCORDIA"
+    },
+    {
+        "cod_ciudad": "041",
+        "nombre": "COPACABANA"
+    },
+    {
+        "cod_ciudad": "042",
+        "nombre": "DABEIBA"
+    },
+    {
+        "cod_ciudad": "043",
+        "nombre": "DON MATIAS"
+    },
+    {
+        "cod_ciudad": "044",
+        "nombre": "EBEJICO"
+    },
+    {
+        "cod_ciudad": "045",
+        "nombre": "EL BAGRE"
+    },
+    {
+        "cod_ciudad": "046",
+        "nombre": "ENTRERRIOS"
+    },
+    {
+        "cod_ciudad": "047",
+        "nombre": "ENVIGADO"
+    },
+    {
+        "cod_ciudad": "048",
+        "nombre": "FREDONIA"
+    },
+    {
+        "cod_ciudad": "049",
+        "nombre": "FRONTINO"
+    },
+    {
+        "cod_ciudad": "050",
+        "nombre": "GIRALDO"
+    },
+    {
+        "cod_ciudad": "051",
+        "nombre": "GIRARDOTA"
+    },
+    {
+        "cod_ciudad": "052",
+        "nombre": "GOMEZ PLATA"
+    },
+    {
+        "cod_ciudad": "053",
+        "nombre": "GRANADA"
+    },
+    {
+        "cod_ciudad": "054",
+        "nombre": "GUADALUPE"
+    },
+    {
+        "cod_ciudad": "055",
+        "nombre": "GUARNE"
+    },
+    {
+        "cod_ciudad": "056",
+        "nombre": "GUATAPE"
+    },
+    {
+        "cod_ciudad": "057",
+        "nombre": "HELICONIA"
+    },
+    {
+        "cod_ciudad": "058",
+        "nombre": "HISPANIA"
+    },
+    {
+        "cod_ciudad": "059",
+        "nombre": "ITAGUI"
+    },
+    {
+        "cod_ciudad": "060",
+        "nombre": "ITUANGO"
+    },
+    {
+        "cod_ciudad": "061",
+        "nombre": "JARDIN"
+    },
+    {
+        "cod_ciudad": "062",
+        "nombre": "JERICO"
+    },
+    {
+        "cod_ciudad": "063",
+        "nombre": "LA CEJA"
+    },
+    {
+        "cod_ciudad": "064",
+        "nombre": "LA ESTRELLA"
+    },
+    {
+        "cod_ciudad": "065",
+        "nombre": "LA UNION"
+    },
+    {
+        "cod_ciudad": "066",
+        "nombre": "LIBORINA"
+    },
+    {
+        "cod_ciudad": "067",
+        "nombre": "MACEO"
+    },
+    {
+        "cod_ciudad": "068",
+        "nombre": "MARINILLA"
+    },
+    {
+        "cod_ciudad": "069",
+        "nombre": "MONTEBELLO"
+    },
+    {
+        "cod_ciudad": "070",
+        "nombre": "MURINDO"
+    },
+    {
+        "cod_ciudad": "071",
+        "nombre": "MUTATA"
+    },
+    {
+        "cod_ciudad": "072",
+        "nombre": "NARIÑO"
+    },
+    {
+        "cod_ciudad": "073",
+        "nombre": "NECOCLI"
+    },
+    {
+        "cod_ciudad": "074",
+        "nombre": "NECHI"
+    },
+    {
+        "cod_ciudad": "075",
+        "nombre": "OLAYA"
+    },
+    {
+        "cod_ciudad": "076",
+        "nombre": "PEÑOL"
+    },
+    {
+        "cod_ciudad": "077",
+        "nombre": "PEQUE"
+    },
+    {
+        "cod_ciudad": "078",
+        "nombre": "PUEBLORRICO"
+    },
+    {
+        "cod_ciudad": "079",
+        "nombre": "PUERTO BERRIO"
+    },
+    {
+        "cod_ciudad": "080",
+        "nombre": "PUERTO"
+    },
+    {
+        "cod_ciudad": "081",
+        "nombre": "PUERTO TRIUNFO"
+    },
+    {
+        "cod_ciudad": "082",
+        "nombre": "REMEDIOS"
+    },
+    {
+        "cod_ciudad": "083",
+        "nombre": "RETIRO"
+    },
+    {
+        "cod_ciudad": "084",
+        "nombre": "RIONEGRO"
+    },
+    {
+        "cod_ciudad": "085",
+        "nombre": "SABANETA"
+    },
+    {
+        "cod_ciudad": "086",
+        "nombre": "SALGAR"
+    },
+    {
+        "cod_ciudad": "087",
+        "nombre": "SAN ANDRES"
+    },
+    {
+        "cod_ciudad": "088",
+        "nombre": "SAN CARLOS"
+    },
+    {
+        "cod_ciudad": "089",
+        "nombre": "SAN FRANCISCO"
+    },
+    {
+        "cod_ciudad": "090",
+        "nombre": "SAN JERONIMO"
+    },
+    {
+        "cod_ciudad": "091",
+        "nombre": "SAN JOSE DE LA"
+    },
+    {
+        "cod_ciudad": "092",
+        "nombre": "SAN JUAN DE URABA"
+    },
+    {
+        "cod_ciudad": "093",
+        "nombre": "SAN LUIS"
+    },
+    {
+        "cod_ciudad": "094",
+        "nombre": "SAN PEDRO"
+    },
+    {
+        "cod_ciudad": "095",
+        "nombre": "SAN PEDRO DE"
+    },
+    {
+        "cod_ciudad": "096",
+        "nombre": "SAN RAFAEL"
+    },
+    {
+        "cod_ciudad": "097",
+        "nombre": "SAN ROQUE"
+    },
+    {
+        "cod_ciudad": "098",
+        "nombre": "SAN VICENTE"
+    },
+    {
+        "cod_ciudad": "099",
+        "nombre": "SANTA BARBARA"
+    },
+    {
+        "cod_ciudad": "100",
+        "nombre": "SANTA ROSA DE"
+    },
+    {
+        "cod_ciudad": "101",
+        "nombre": "SANTO DOMINGO"
+    },
+    {
+        "cod_ciudad": "102",
+        "nombre": "SANTUARIO"
+    },
+    {
+        "cod_ciudad": "103",
+        "nombre": "SEGOVIA"
+    },
+    {
+        "cod_ciudad": "104",
+        "nombre": "SONSON"
+    },
+    {
+        "cod_ciudad": "105",
+        "nombre": "SOPETRAN"
+    },
+    {
+        "cod_ciudad": "106",
+        "nombre": "TAMESIS"
+    },
+    {
+        "cod_ciudad": "107",
+        "nombre": "TARAZA"
+    },
+    {
+        "cod_ciudad": "108",
+        "nombre": "TARSO"
+    },
+    {
+        "cod_ciudad": "109",
+        "nombre": "TITIRIBI"
+    },
+    {
+        "cod_ciudad": "110",
+        "nombre": "TOLEDO"
+    },
+    {
+        "cod_ciudad": "111",
+        "nombre": "TURBO"
+    },
+    {
+        "cod_ciudad": "112",
+        "nombre": "URAMITA"
+    },
+    {
+        "cod_ciudad": "113",
+        "nombre": "URRAO"
+    },
+    {
+        "cod_ciudad": "114",
+        "nombre": "VALDIVIA"
+    },
+    {
+        "cod_ciudad": "115",
+        "nombre": "VALPARAISO"
+    },
+    {
+        "cod_ciudad": "116",
+        "nombre": "VEGACHI"
+    },
+    {
+        "cod_ciudad": "117",
+        "nombre": "VENECIA"
+    },
+    {
+        "cod_ciudad": "118",
+        "nombre": "VIGIA DEL FUERTE"
+    },
+    {
+        "cod_ciudad": "119",
+        "nombre": "YALI"
+    },
+    {
+        "cod_ciudad": "120",
+        "nombre": "YARUMAL"
+    },
+    {
+        "cod_ciudad": "121",
+        "nombre": "YOLOMBO"
+    },
+    {
+        "cod_ciudad": "122",
+        "nombre": "YONDO"
+    },
+    {
+        "cod_ciudad": "123",
+        "nombre": "ZARAGOZA"
+    },
+    {
+        "cod_ciudad": "124",
+        "nombre": "BARRANQUILLA"
+    },
+    {
+        "cod_ciudad": "125",
+        "nombre": "BARANOA"
+    },
+    {
+        "cod_ciudad": "126",
+        "nombre": "CAMPO D LA CRUZ"
+    },
+    {
+        "cod_ciudad": "127",
+        "nombre": "CANDELARIA"
+    },
+    {
+        "cod_ciudad": "128",
+        "nombre": "GALAPA"
+    },
+    {
+        "cod_ciudad": "129",
+        "nombre": "JUAN DE ACOSTA"
+    },
+    {
+        "cod_ciudad": "130",
+        "nombre": "LURUACO"
+    },
+    {
+        "cod_ciudad": "131",
+        "nombre": "MALAMBO"
+    },
+    {
+        "cod_ciudad": "132",
+        "nombre": "MANATI"
+    },
+    {
+        "cod_ciudad": "133",
+        "nombre": "PALMAR DE VARELA"
+    },
+    {
+        "cod_ciudad": "134",
+        "nombre": "PIOJO"
+    },
+    {
+        "cod_ciudad": "135",
+        "nombre": "POLONUEVO"
+    },
+    {
+        "cod_ciudad": "136",
+        "nombre": "PONEDERA"
+    },
+    {
+        "cod_ciudad": "137",
+        "nombre": "PUERTO COLOMBIA"
+    },
+    {
+        "cod_ciudad": "138",
+        "nombre": "REPELON"
+    },
+    {
+        "cod_ciudad": "139",
+        "nombre": "SABANALARGA"
+    },
+    {
+        "cod_ciudad": "140",
+        "nombre": "SABANAGRANDE"
+    },
+    {
+        "cod_ciudad": "141",
+        "nombre": "SABANALARGA"
+    },
+    {
+        "cod_ciudad": "142",
+        "nombre": "SANTA LUCIA"
+    },
+    {
+        "cod_ciudad": "143",
+        "nombre": "SANTO TOMAS"
+    },
+    {
+        "cod_ciudad": "144",
+        "nombre": "SOLEDAD"
+    },
+    {
+        "cod_ciudad": "145",
+        "nombre": "SUAN"
+    },
+    {
+        "cod_ciudad": "146",
+        "nombre": "TUBARA"
+    },
+    {
+        "cod_ciudad": "147",
+        "nombre": "USIACURI"
+    },
+    {
+        "cod_ciudad": "148",
+        "nombre": "SANTAFE DE BOGOTA"
+    },
+    {
+        "cod_ciudad": "149",
+        "nombre": "CARTAGENA"
+    },
+    {
+        "cod_ciudad": "150",
+        "nombre": "ACHI"
+    },
+    {
+        "cod_ciudad": "151",
+        "nombre": "ARJONA"
+    },
+    {
+        "cod_ciudad": "152",
+        "nombre": "BARRANCO DE LOBA"
+    },
+    {
+        "cod_ciudad": "153",
+        "nombre": "CALAMAR"
+    },
+    {
+        "cod_ciudad": "154",
+        "nombre": "CORDOBA"
+    },
+    {
+        "cod_ciudad": "155",
+        "nombre": "CARMEN DE BOLIVAR"
+    },
+    {
+        "cod_ciudad": "156",
+        "nombre": "EL GUAMO"
+    },
+    {
+        "cod_ciudad": "157",
+        "nombre": "MAGANGUE"
+    },
+    {
+        "cod_ciudad": "158",
+        "nombre": "MAHATES"
+    },
+    {
+        "cod_ciudad": "159",
+        "nombre": "MARGARITA"
+    },
+    {
+        "cod_ciudad": "160",
+        "nombre": "MARIA LA BAJA"
+    },
+    {
+        "cod_ciudad": "161",
+        "nombre": "MOMPOS"
+    },
+    {
+        "cod_ciudad": "162",
+        "nombre": "MORALES"
+    },
+    {
+        "cod_ciudad": "163",
+        "nombre": "PINILLOS"
+    },
+    {
+        "cod_ciudad": "164",
+        "nombre": "RIO VIEJO"
+    },
+    {
+        "cod_ciudad": "165",
+        "nombre": "SAN ESTANISLAO"
+    },
+    {
+        "cod_ciudad": "166",
+        "nombre": "SAN FERNANDO"
+    },
+    {
+        "cod_ciudad": "167",
+        "nombre": "SAN JACINTO"
+    },
+    {
+        "cod_ciudad": "168",
+        "nombre": "SAN JUAN"
+    },
+    {
+        "cod_ciudad": "169",
+        "nombre": "SAN MARTIN DE"
+    },
+    {
+        "cod_ciudad": "170",
+        "nombre": "SAN PABLO"
+    },
+    {
+        "cod_ciudad": "171",
+        "nombre": "SANTA CATALINA"
+    },
+    {
+        "cod_ciudad": "172",
+        "nombre": "SANTA ROSA"
+    },
+    {
+        "cod_ciudad": "173",
+        "nombre": "SANTA ROSA DEL"
+    },
+    {
+        "cod_ciudad": "174",
+        "nombre": "SIMITI"
+    },
+    {
+        "cod_ciudad": "175",
+        "nombre": "SOPLAVIENTO"
+    },
+    {
+        "cod_ciudad": "176",
+        "nombre": "TALAIGUA NUEVO"
+    },
+    {
+        "cod_ciudad": "177",
+        "nombre": "TURBACO"
+    },
+    {
+        "cod_ciudad": "178",
+        "nombre": "TURBANA"
+    },
+    {
+        "cod_ciudad": "179",
+        "nombre": "VILLANUEVA"
+    },
+    {
+        "cod_ciudad": "180",
+        "nombre": "ZAMBRANO"
+    },
+    {
+        "cod_ciudad": "181",
+        "nombre": "TUNJA"
+    },
+    {
+        "cod_ciudad": "182",
+        "nombre": "ALMEIDA"
+    },
+    {
+        "cod_ciudad": "183",
+        "nombre": "AQUITANIA"
+    },
+    {
+        "cod_ciudad": "184",
+        "nombre": "ARCABUCO"
+    },
+    {
+        "cod_ciudad": "185",
+        "nombre": "BELEN"
+    },
+    {
+        "cod_ciudad": "186",
+        "nombre": "BERBEO"
+    },
+    {
+        "cod_ciudad": "187",
+        "nombre": "BETEITIVA"
+    },
+    {
+        "cod_ciudad": "188",
+        "nombre": "BOAVITA"
+    },
+    {
+        "cod_ciudad": "189",
+        "nombre": "BOYACA"
+    },
+    {
+        "cod_ciudad": "190",
+        "nombre": "BRICENO"
+    },
+    {
+        "cod_ciudad": "191",
+        "nombre": "BUENAVISTA"
+    },
+    {
+        "cod_ciudad": "192",
+        "nombre": "BUSBANZA"
+    },
+    {
+        "cod_ciudad": "193",
+        "nombre": "CALDAS"
+    },
+    {
+        "cod_ciudad": "194",
+        "nombre": "CAMPOHERMOSO"
+    },
+    {
+        "cod_ciudad": "195",
+        "nombre": "CERINZA"
+    },
+    {
+        "cod_ciudad": "196",
+        "nombre": "CHINAVITA"
+    },
+    {
+        "cod_ciudad": "197",
+        "nombre": "CHIQUINQUIRA"
+    },
+    {
+        "cod_ciudad": "198",
+        "nombre": "CHISCAS"
+    },
+    {
+        "cod_ciudad": "199",
+        "nombre": "CHITA"
+    },
+    {
+        "cod_ciudad": "200",
+        "nombre": "CHITARAQUE"
+    },
+    {
+        "cod_ciudad": "201",
+        "nombre": "CHIVATA"
+    },
+    {
+        "cod_ciudad": "202",
+        "nombre": "CIENEGA"
+    },
+    {
+        "cod_ciudad": "203",
+        "nombre": "COMBITA"
+    },
+    {
+        "cod_ciudad": "204",
+        "nombre": "COPER"
+    },
+    {
+        "cod_ciudad": "205",
+        "nombre": "CORRALES"
+    },
+    {
+        "cod_ciudad": "206",
+        "nombre": "COVARACHIA"
+    },
+    {
+        "cod_ciudad": "207",
+        "nombre": "CUBARA"
+    },
+    {
+        "cod_ciudad": "208",
+        "nombre": "CUCAITA"
+    },
+    {
+        "cod_ciudad": "209",
+        "nombre": "CUITIVA"
+    },
+    {
+        "cod_ciudad": "210",
+        "nombre": "CHIQUIZA"
+    },
+    {
+        "cod_ciudad": "211",
+        "nombre": "CHIVOR"
+    },
+    {
+        "cod_ciudad": "212",
+        "nombre": "DUITAMA"
+    },
+    {
+        "cod_ciudad": "213",
+        "nombre": "EL COCUY"
+    },
+    {
+        "cod_ciudad": "214",
+        "nombre": "EL ESPINO"
+    },
+    {
+        "cod_ciudad": "215",
+        "nombre": "FIRAVITOBA"
+    },
+    {
+        "cod_ciudad": "216",
+        "nombre": "FLORESTA"
+    },
+    {
+        "cod_ciudad": "217",
+        "nombre": "GACHANTIVA"
+    },
+    {
+        "cod_ciudad": "218",
+        "nombre": "GAMEZA"
+    },
+    {
+        "cod_ciudad": "219",
+        "nombre": "GARAGOA"
+    },
+    {
+        "cod_ciudad": "220",
+        "nombre": "GUACAMAYAS"
+    },
+    {
+        "cod_ciudad": "221",
+        "nombre": "GUATEQUE"
+    },
+    {
+        "cod_ciudad": "222",
+        "nombre": "GUAYATA"
+    },
+    {
+        "cod_ciudad": "223",
+        "nombre": "GUICAN"
+    },
+    {
+        "cod_ciudad": "224",
+        "nombre": "IZA"
+    },
+    {
+        "cod_ciudad": "225",
+        "nombre": "JENESANO"
+    },
+    {
+        "cod_ciudad": "226",
+        "nombre": "JERICO"
+    },
+    {
+        "cod_ciudad": "227",
+        "nombre": "LABRANZAGRANDE"
+    },
+    {
+        "cod_ciudad": "228",
+        "nombre": "LA CAPILLA"
+    },
+    {
+        "cod_ciudad": "229",
+        "nombre": "LA VICTORIA"
+    },
+    {
+        "cod_ciudad": "230",
+        "nombre": "LA UVITA"
+    },
+    {
+        "cod_ciudad": "231",
+        "nombre": "VILLA DE LEYVA"
+    },
+    {
+        "cod_ciudad": "232",
+        "nombre": "MACANAL"
+    },
+    {
+        "cod_ciudad": "233",
+        "nombre": "MARIPI"
+    },
+    {
+        "cod_ciudad": "234",
+        "nombre": "MIRAFLORES"
+    },
+    {
+        "cod_ciudad": "235",
+        "nombre": "MONGUA"
+    },
+    {
+        "cod_ciudad": "236",
+        "nombre": "MONGUI"
+    },
+    {
+        "cod_ciudad": "237",
+        "nombre": "MONIQUIRA"
+    },
+    {
+        "cod_ciudad": "238",
+        "nombre": "MOTAVITA"
+    },
+    {
+        "cod_ciudad": "239",
+        "nombre": "MUZO"
+    },
+    {
+        "cod_ciudad": "240",
+        "nombre": "NOBSA"
+    },
+    {
+        "cod_ciudad": "241",
+        "nombre": "NUEVO COLON"
+    },
+    {
+        "cod_ciudad": "242",
+        "nombre": "OICATA"
+    },
+    {
+        "cod_ciudad": "243",
+        "nombre": "OTANCHE"
+    },
+    {
+        "cod_ciudad": "244",
+        "nombre": "PACHAVITA"
+    },
+    {
+        "cod_ciudad": "245",
+        "nombre": "PAEZ"
+    },
+    {
+        "cod_ciudad": "246",
+        "nombre": "PAIPA"
+    },
+    {
+        "cod_ciudad": "247",
+        "nombre": "PAJARITO"
+    },
+    {
+        "cod_ciudad": "248",
+        "nombre": "PANQUEBA"
+    },
+    {
+        "cod_ciudad": "249",
+        "nombre": "PAUNA"
+    },
+    {
+        "cod_ciudad": "250",
+        "nombre": "PAYA"
+    },
+    {
+        "cod_ciudad": "251",
+        "nombre": "PAZ DE RIO"
+    },
+    {
+        "cod_ciudad": "252",
+        "nombre": "PESCA"
+    },
+    {
+        "cod_ciudad": "253",
+        "nombre": "PISVA"
+    },
+    {
+        "cod_ciudad": "254",
+        "nombre": "PUERTO BOYACA"
+    },
+    {
+        "cod_ciudad": "255",
+        "nombre": "QUIPAMA"
+    },
+    {
+        "cod_ciudad": "256",
+        "nombre": "RAMIRIQUI"
+    },
+    {
+        "cod_ciudad": "257",
+        "nombre": "RAQUIRA"
+    },
+    {
+        "cod_ciudad": "258",
+        "nombre": "RONDON"
+    },
+    {
+        "cod_ciudad": "259",
+        "nombre": "SABOYA"
+    },
+    {
+        "cod_ciudad": "260",
+        "nombre": "SACHICA"
+    },
+    {
+        "cod_ciudad": "261",
+        "nombre": "SAMACA"
+    },
+    {
+        "cod_ciudad": "262",
+        "nombre": "SAN EDUARDO"
+    },
+    {
+        "cod_ciudad": "263",
+        "nombre": "SAN JOSE DE PARE"
+    },
+    {
+        "cod_ciudad": "264",
+        "nombre": "SAN LUIS DE"
+    },
+    {
+        "cod_ciudad": "265",
+        "nombre": "SAN MATEO"
+    },
+    {
+        "cod_ciudad": "266",
+        "nombre": "SAN MIGUEL DE"
+    },
+    {
+        "cod_ciudad": "267",
+        "nombre": "SAN PABLO DE"
+    },
+    {
+        "cod_ciudad": "268",
+        "nombre": "SANTANA"
+    },
+    {
+        "cod_ciudad": "269",
+        "nombre": "SANTA MARIA"
+    },
+    {
+        "cod_ciudad": "270",
+        "nombre": "SANTA ROSA DE"
+    },
+    {
+        "cod_ciudad": "271",
+        "nombre": "SANTA SOFIA"
+    },
+    {
+        "cod_ciudad": "272",
+        "nombre": "SATIVANORTE"
+    },
+    {
+        "cod_ciudad": "273",
+        "nombre": "SATIVASUR"
+    },
+    {
+        "cod_ciudad": "274",
+        "nombre": "SIACHOQUE"
+    },
+    {
+        "cod_ciudad": "275",
+        "nombre": "SOATA"
+    },
+    {
+        "cod_ciudad": "276",
+        "nombre": "SOCOTA"
+    },
+    {
+        "cod_ciudad": "277",
+        "nombre": "SOCHA"
+    },
+    {
+        "cod_ciudad": "278",
+        "nombre": "SOGAMOSO"
+    },
+    {
+        "cod_ciudad": "279",
+        "nombre": "SOMONDOCO"
+    },
+    {
+        "cod_ciudad": "280",
+        "nombre": "SORA"
+    },
+    {
+        "cod_ciudad": "281",
+        "nombre": "SOTAQUIRA"
+    },
+    {
+        "cod_ciudad": "282",
+        "nombre": "SORACA"
+    },
+    {
+        "cod_ciudad": "283",
+        "nombre": "SUSACON"
+    },
+    {
+        "cod_ciudad": "284",
+        "nombre": "SUTAMARCHAN"
+    },
+    {
+        "cod_ciudad": "285",
+        "nombre": "SUTATENZA"
+    },
+    {
+        "cod_ciudad": "286",
+        "nombre": "TASCO"
+    },
+    {
+        "cod_ciudad": "287",
+        "nombre": "TENZA"
+    },
+    {
+        "cod_ciudad": "288",
+        "nombre": "TIBANA"
+    },
+    {
+        "cod_ciudad": "289",
+        "nombre": "TIBASOSA"
+    },
+    {
+        "cod_ciudad": "290",
+        "nombre": "TINJACA"
+    },
+    {
+        "cod_ciudad": "291",
+        "nombre": "TIPACOQUE"
+    },
+    {
+        "cod_ciudad": "292",
+        "nombre": "TOCA"
+    },
+    {
+        "cod_ciudad": "293",
+        "nombre": "TOGUI"
+    },
+    {
+        "cod_ciudad": "294",
+        "nombre": "TOPAGA"
+    },
+    {
+        "cod_ciudad": "295",
+        "nombre": "TOTA"
+    },
+    {
+        "cod_ciudad": "296",
+        "nombre": "TUNUNGUA"
+    },
+    {
+        "cod_ciudad": "297",
+        "nombre": "TURMEQUE"
+    },
+    {
+        "cod_ciudad": "298",
+        "nombre": "TUTA"
+    },
+    {
+        "cod_ciudad": "299",
+        "nombre": "TUTASA"
+    },
+    {
+        "cod_ciudad": "300",
+        "nombre": "UMBITA"
+    },
+    {
+        "cod_ciudad": "301",
+        "nombre": "VENTAQUEMADA"
+    },
+    {
+        "cod_ciudad": "302",
+        "nombre": "VIRACACHA"
+    },
+    {
+        "cod_ciudad": "303",
+        "nombre": "ZETAQUIRA"
+    },
+    {
+        "cod_ciudad": "304",
+        "nombre": "MANIZALES"
+    },
+    {
+        "cod_ciudad": "305",
+        "nombre": "AGUADAS"
+    },
+    {
+        "cod_ciudad": "306",
+        "nombre": "ANSERMA"
+    },
+    {
+        "cod_ciudad": "307",
+        "nombre": "ARANZAZU"
+    },
+    {
+        "cod_ciudad": "308",
+        "nombre": "BELALCAZAR"
+    },
+    {
+        "cod_ciudad": "309",
+        "nombre": "CHINCHINA"
+    },
+    {
+        "cod_ciudad": "310",
+        "nombre": "FILADELFIA"
+    },
+    {
+        "cod_ciudad": "311",
+        "nombre": "LA DORADA"
+    },
+    {
+        "cod_ciudad": "312",
+        "nombre": "LA MERCED"
+    },
+    {
+        "cod_ciudad": "313",
+        "nombre": "MANZANARES"
+    },
+    {
+        "cod_ciudad": "314",
+        "nombre": "MARMATO"
+    },
+    {
+        "cod_ciudad": "315",
+        "nombre": "MARQUETALIA"
+    },
+    {
+        "cod_ciudad": "316",
+        "nombre": "MARULANDA"
+    },
+    {
+        "cod_ciudad": "317",
+        "nombre": "NEIRA"
+    },
+    {
+        "cod_ciudad": "318",
+        "nombre": "PACORA"
+    },
+    {
+        "cod_ciudad": "319",
+        "nombre": "PALESTINA"
+    },
+    {
+        "cod_ciudad": "320",
+        "nombre": "PENSILVANIA"
+    },
+    {
+        "cod_ciudad": "321",
+        "nombre": "RIOSUCIO"
+    },
+    {
+        "cod_ciudad": "322",
+        "nombre": "RISARALDA"
+    },
+    {
+        "cod_ciudad": "323",
+        "nombre": "SALAMINA"
+    },
+    {
+        "cod_ciudad": "324",
+        "nombre": "SAMANA"
+    },
+    {
+        "cod_ciudad": "325",
+        "nombre": "SUPIA"
+    },
+    {
+        "cod_ciudad": "326",
+        "nombre": "VICTORIA"
+    },
+    {
+        "cod_ciudad": "327",
+        "nombre": "VILLAMARIA"
+    },
+    {
+        "cod_ciudad": "328",
+        "nombre": "VITERBO"
+    },
+    {
+        "cod_ciudad": "329",
+        "nombre": "FLORENCIA"
+    },
+    {
+        "cod_ciudad": "330",
+        "nombre": "ALBANIA"
+    },
+    {
+        "cod_ciudad": "331",
+        "nombre": "BELEN DE LOS"
+    },
+    {
+        "cod_ciudad": "332",
+        "nombre": "CARTAGENA DEL CHAIRA"
+    },
+    {
+        "cod_ciudad": "333",
+        "nombre": "CURILLO"
+    },
+    {
+        "cod_ciudad": "334",
+        "nombre": "EL DONCELLO"
+    },
+    {
+        "cod_ciudad": "335",
+        "nombre": "EL PAUJIL"
+    },
+    {
+        "cod_ciudad": "336",
+        "nombre": "LA MONTAÑITA"
+    },
+    {
+        "cod_ciudad": "337",
+        "nombre": "MILAN"
+    },
+    {
+        "cod_ciudad": "338",
+        "nombre": "MORELIA"
+    },
+    {
+        "cod_ciudad": "339",
+        "nombre": "PUERTO RICO"
+    },
+    {
+        "cod_ciudad": "340",
+        "nombre": "SAN JOSE DE"
+    },
+    {
+        "cod_ciudad": "341",
+        "nombre": "SAN VICENTE DEL CAGUAN"
+    },
+    {
+        "cod_ciudad": "342",
+        "nombre": "SOLANO"
+    },
+    {
+        "cod_ciudad": "343",
+        "nombre": "VALPARAISO"
+    },
+    {
+        "cod_ciudad": "344",
+        "nombre": "POPAYAN"
+    },
+    {
+        "cod_ciudad": "345",
+        "nombre": "ALMAGUER"
+    },
+    {
+        "cod_ciudad": "346",
+        "nombre": "ARGELIA"
+    },
+    {
+        "cod_ciudad": "347",
+        "nombre": "BALBOA"
+    },
+    {
+        "cod_ciudad": "348",
+        "nombre": "BOLIVAR"
+    },
+    {
+        "cod_ciudad": "349",
+        "nombre": "BUENOS AIRES"
+    },
+    {
+        "cod_ciudad": "350",
+        "nombre": "CAJIBIO"
+    },
+    {
+        "cod_ciudad": "351",
+        "nombre": "CALDONO"
+    },
+    {
+        "cod_ciudad": "352",
+        "nombre": "CALOTO"
+    },
+    {
+        "cod_ciudad": "353",
+        "nombre": "CORINTO"
+    },
+    {
+        "cod_ciudad": "354",
+        "nombre": "EL TAMBO"
+    },
+    {
+        "cod_ciudad": "355",
+        "nombre": "FLORENCIA"
+    },
+    {
+        "cod_ciudad": "356",
+        "nombre": "GUAPI"
+    },
+    {
+        "cod_ciudad": "357",
+        "nombre": "INZA"
+    },
+    {
+        "cod_ciudad": "358",
+        "nombre": "JAMBALO"
+    },
+    {
+        "cod_ciudad": "359",
+        "nombre": "LA SIERRA"
+    },
+    {
+        "cod_ciudad": "360",
+        "nombre": "LA VEGA"
+    },
+    {
+        "cod_ciudad": "361",
+        "nombre": "LOPEZ"
+    },
+    {
+        "cod_ciudad": "362",
+        "nombre": "MERCADERES"
+    },
+    {
+        "cod_ciudad": "363",
+        "nombre": "MIRANDA"
+    },
+    {
+        "cod_ciudad": "364",
+        "nombre": "MORALES"
+    },
+    {
+        "cod_ciudad": "365",
+        "nombre": "PADILLA"
+    },
+    {
+        "cod_ciudad": "366",
+        "nombre": "PAEZ"
+    },
+    {
+        "cod_ciudad": "367",
+        "nombre": "PATIA (EL BORDO)"
+    },
+    {
+        "cod_ciudad": "368",
+        "nombre": "PIENDAMO"
+    },
+    {
+        "cod_ciudad": "369",
+        "nombre": "PUERTO TEJADA"
+    },
+    {
+        "cod_ciudad": "370",
+        "nombre": "PURACE"
+    },
+    {
+        "cod_ciudad": "371",
+        "nombre": "ROSAS"
+    },
+    {
+        "cod_ciudad": "372",
+        "nombre": "SAN SEBASTIAN"
+    },
+    {
+        "cod_ciudad": "373",
+        "nombre": "SANTANDER DE QUILICHAO"
+    },
+    {
+        "cod_ciudad": "374",
+        "nombre": "SANTA ROSA"
+    },
+    {
+        "cod_ciudad": "375",
+        "nombre": "SILVIA"
+    },
+    {
+        "cod_ciudad": "376",
+        "nombre": "SOTARA"
+    },
+    {
+        "cod_ciudad": "377",
+        "nombre": "SUAREZ"
+    },
+    {
+        "cod_ciudad": "378",
+        "nombre": "TIMBIO"
+    },
+    {
+        "cod_ciudad": "379",
+        "nombre": "TIMBIQUI"
+    },
+    {
+        "cod_ciudad": "380",
+        "nombre": "TORIBIO"
+    },
+    {
+        "cod_ciudad": "381",
+        "nombre": "TOTORO"
+    },
+    {
+        "cod_ciudad": "382",
+        "nombre": "VALLEDUPAR"
+    },
+    {
+        "cod_ciudad": "383",
+        "nombre": "AGUACHICA"
+    },
+    {
+        "cod_ciudad": "384",
+        "nombre": "CODAZZI"
+    },
+    {
+        "cod_ciudad": "385",
+        "nombre": "ASTREA"
+    },
+    {
+        "cod_ciudad": "386",
+        "nombre": "BECERRIL"
+    },
+    {
+        "cod_ciudad": "387",
+        "nombre": "BOSCONIA"
+    },
+    {
+        "cod_ciudad": "388",
+        "nombre": "CHIMICHAGUA"
+    },
+    {
+        "cod_ciudad": "389",
+        "nombre": "CHIRIGUANA"
+    },
+    {
+        "cod_ciudad": "390",
+        "nombre": "CURUMANI"
+    },
+    {
+        "cod_ciudad": "391",
+        "nombre": "EL COPEY"
+    },
+    {
+        "cod_ciudad": "392",
+        "nombre": "EL PASO"
+    },
+    {
+        "cod_ciudad": "393",
+        "nombre": "GAMARRA"
+    },
+    {
+        "cod_ciudad": "394",
+        "nombre": "GONZALEZ"
+    },
+    {
+        "cod_ciudad": "395",
+        "nombre": "LA GLORIA"
+    },
+    {
+        "cod_ciudad": "396",
+        "nombre": "LA JAGUA DE"
+    },
+    {
+        "cod_ciudad": "397",
+        "nombre": "MANAURE"
+    },
+    {
+        "cod_ciudad": "398",
+        "nombre": "PAILITAS"
+    },
+    {
+        "cod_ciudad": "399",
+        "nombre": "PELAYA"
+    },
+    {
+        "cod_ciudad": "400",
+        "nombre": "RIO DE ORO"
+    },
+    {
+        "cod_ciudad": "401",
+        "nombre": "LA PAZ ROBLES"
+    },
+    {
+        "cod_ciudad": "402",
+        "nombre": "SAN ALBERTO"
+    },
+    {
+        "cod_ciudad": "403",
+        "nombre": "SAN DIEGO"
+    },
+    {
+        "cod_ciudad": "404",
+        "nombre": "SAN MARTIN"
+    },
+    {
+        "cod_ciudad": "405",
+        "nombre": "TAMALAMEQUE"
+    },
+    {
+        "cod_ciudad": "406",
+        "nombre": "MONTERIA"
+    },
+    {
+        "cod_ciudad": "407",
+        "nombre": "AYAPEL"
+    },
+    {
+        "cod_ciudad": "408",
+        "nombre": "BUENAVISTA"
+    },
+    {
+        "cod_ciudad": "409",
+        "nombre": "CANALETE"
+    },
+    {
+        "cod_ciudad": "410",
+        "nombre": "CERETE"
+    },
+    {
+        "cod_ciudad": "411",
+        "nombre": "CHIMA"
+    },
+    {
+        "cod_ciudad": "412",
+        "nombre": "CHINU"
+    },
+    {
+        "cod_ciudad": "413",
+        "nombre": "CIENAGA DE ORO"
+    },
+    {
+        "cod_ciudad": "414",
+        "nombre": "LORICA"
+    },
+    {
+        "cod_ciudad": "415",
+        "nombre": "LOS CORDOBAS"
+    },
+    {
+        "cod_ciudad": "416",
+        "nombre": "MOMIL"
+    },
+    {
+        "cod_ciudad": "417",
+        "nombre": "MONTELIBANO"
+    },
+    {
+        "cod_ciudad": "418",
+        "nombre": "MOÑITOS"
+    },
+    {
+        "cod_ciudad": "419",
+        "nombre": "PLANETA RICA"
+    },
+    {
+        "cod_ciudad": "420",
+        "nombre": "PUEBLO NUEVO"
+    },
+    {
+        "cod_ciudad": "421",
+        "nombre": "PUERTO ESCONDIDO"
+    },
+    {
+        "cod_ciudad": "422",
+        "nombre": "PUERTO LIBERTADOR"
+    },
+    {
+        "cod_ciudad": "423",
+        "nombre": "PURISIMA"
+    },
+    {
+        "cod_ciudad": "424",
+        "nombre": "SAHAGUN"
+    },
+    {
+        "cod_ciudad": "425",
+        "nombre": "SAN ANDRES"
+    },
+    {
+        "cod_ciudad": "426",
+        "nombre": "SAN ANTERO"
+    },
+    {
+        "cod_ciudad": "427",
+        "nombre": "SAN BERNARDO DEL"
+    },
+    {
+        "cod_ciudad": "428",
+        "nombre": "SAN CARLOS"
+    },
+    {
+        "cod_ciudad": "429",
+        "nombre": "SAN PELAYO"
+    },
+    {
+        "cod_ciudad": "430",
+        "nombre": "TIERRALTA"
+    },
+    {
+        "cod_ciudad": "431",
+        "nombre": "VALENCIA"
+    },
+    {
+        "cod_ciudad": "432",
+        "nombre": "AGUA DE DIOS"
+    },
+    {
+        "cod_ciudad": "433",
+        "nombre": "ALBAN"
+    },
+    {
+        "cod_ciudad": "434",
+        "nombre": "ANAPOIMA"
+    },
+    {
+        "cod_ciudad": "435",
+        "nombre": "ANOLAIMA"
+    },
+    {
+        "cod_ciudad": "436",
+        "nombre": "ARBELAEZ"
+    },
+    {
+        "cod_ciudad": "437",
+        "nombre": "BELTRAN"
+    },
+    {
+        "cod_ciudad": "438",
+        "nombre": "BITUIMA"
+    },
+    {
+        "cod_ciudad": "439",
+        "nombre": "BOJACA"
+    },
+    {
+        "cod_ciudad": "440",
+        "nombre": "CABRERA"
+    },
+    {
+        "cod_ciudad": "441",
+        "nombre": "CACHIPAY"
+    },
+    {
+        "cod_ciudad": "442",
+        "nombre": "CAJICA"
+    },
+    {
+        "cod_ciudad": "443",
+        "nombre": "CAPARRAPI"
+    },
+    {
+        "cod_ciudad": "444",
+        "nombre": "CAQUEZA"
+    },
+    {
+        "cod_ciudad": "445",
+        "nombre": "CARMEN DE CARUPA"
+    },
+    {
+        "cod_ciudad": "446",
+        "nombre": "CHAGUANI"
+    },
+    {
+        "cod_ciudad": "447",
+        "nombre": "CHIA"
+    },
+    {
+        "cod_ciudad": "448",
+        "nombre": "CHIPAQUE"
+    },
+    {
+        "cod_ciudad": "449",
+        "nombre": "CHOACHI"
+    },
+    {
+        "cod_ciudad": "450",
+        "nombre": "CHOCONTA"
+    },
+    {
+        "cod_ciudad": "451",
+        "nombre": "COGUA"
+    },
+    {
+        "cod_ciudad": "452",
+        "nombre": "COTA"
+    },
+    {
+        "cod_ciudad": "453",
+        "nombre": "CUCUNUBA"
+    },
+    {
+        "cod_ciudad": "454",
+        "nombre": "EL COLEGIO"
+    },
+    {
+        "cod_ciudad": "455",
+        "nombre": "EL PENON"
+    },
+    {
+        "cod_ciudad": "456",
+        "nombre": "FACATATIVA"
+    },
+    {
+        "cod_ciudad": "457",
+        "nombre": "FOMEQUE"
+    },
+    {
+        "cod_ciudad": "458",
+        "nombre": "FOSCA"
+    },
+    {
+        "cod_ciudad": "459",
+        "nombre": "FUNZA"
+    },
+    {
+        "cod_ciudad": "460",
+        "nombre": "FUQUENE"
+    },
+    {
+        "cod_ciudad": "461",
+        "nombre": "FUSAGASUGA"
+    },
+    {
+        "cod_ciudad": "462",
+        "nombre": "GACHALA"
+    },
+    {
+        "cod_ciudad": "463",
+        "nombre": "GACHANCIPA"
+    },
+    {
+        "cod_ciudad": "464",
+        "nombre": "GACHETA"
+    },
+    {
+        "cod_ciudad": "465",
+        "nombre": "GAMA"
+    },
+    {
+        "cod_ciudad": "466",
+        "nombre": "GIRARDOT"
+    },
+    {
+        "cod_ciudad": "467",
+        "nombre": "GUACHETA"
+    },
+    {
+        "cod_ciudad": "468",
+        "nombre": "GUADUAS"
+    },
+    {
+        "cod_ciudad": "469",
+        "nombre": "GUASCA"
+    },
+    {
+        "cod_ciudad": "470",
+        "nombre": "GUATAQUI"
+    },
+    {
+        "cod_ciudad": "471",
+        "nombre": "GUATAVITA"
+    },
+    {
+        "cod_ciudad": "472",
+        "nombre": "GUAYABAL"
+    },
+    {
+        "cod_ciudad": "473",
+        "nombre": "GUAYABETAL"
+    },
+    {
+        "cod_ciudad": "474",
+        "nombre": "GUTIERREZ"
+    },
+    {
+        "cod_ciudad": "475",
+        "nombre": "JERUSALEN"
+    },
+    {
+        "cod_ciudad": "476",
+        "nombre": "JUNIN"
+    },
+    {
+        "cod_ciudad": "477",
+        "nombre": "LA CALERA"
+    },
+    {
+        "cod_ciudad": "478",
+        "nombre": "LA MESA"
+    },
+    {
+        "cod_ciudad": "479",
+        "nombre": "LA PALMA"
+    },
+    {
+        "cod_ciudad": "480",
+        "nombre": "LA PEÑA"
+    },
+    {
+        "cod_ciudad": "481",
+        "nombre": "LA VEGA"
+    },
+    {
+        "cod_ciudad": "482",
+        "nombre": "LENGUAZAQUE"
+    },
+    {
+        "cod_ciudad": "483",
+        "nombre": "MACHETA"
+    },
+    {
+        "cod_ciudad": "484",
+        "nombre": "MADRID"
+    },
+    {
+        "cod_ciudad": "485",
+        "nombre": "MANTA"
+    },
+    {
+        "cod_ciudad": "486",
+        "nombre": "MEDINA"
+    },
+    {
+        "cod_ciudad": "487",
+        "nombre": "MOSQUERA"
+    },
+    {
+        "cod_ciudad": "488",
+        "nombre": "NARIÑO"
+    },
+    {
+        "cod_ciudad": "489",
+        "nombre": "NEMOCON"
+    },
+    {
+        "cod_ciudad": "490",
+        "nombre": "NILO"
+    },
+    {
+        "cod_ciudad": "491",
+        "nombre": "NIMAIMA"
+    },
+    {
+        "cod_ciudad": "492",
+        "nombre": "NOCAIMA"
+    },
+    {
+        "cod_ciudad": "493",
+        "nombre": "VENECIA"
+    },
+    {
+        "cod_ciudad": "494",
+        "nombre": "PACHO"
+    },
+    {
+        "cod_ciudad": "495",
+        "nombre": "PAIME"
+    },
+    {
+        "cod_ciudad": "496",
+        "nombre": "PANDI"
+    },
+    {
+        "cod_ciudad": "497",
+        "nombre": "PARATEBUENO"
+    },
+    {
+        "cod_ciudad": "498",
+        "nombre": "PASCA"
+    },
+    {
+        "cod_ciudad": "499",
+        "nombre": "PUERTO SALGAR"
+    },
+    {
+        "cod_ciudad": "500",
+        "nombre": "PULI"
+    },
+    {
+        "cod_ciudad": "501",
+        "nombre": "QUEBRADANEGRA"
+    },
+    {
+        "cod_ciudad": "502",
+        "nombre": "QUETAME"
+    },
+    {
+        "cod_ciudad": "503",
+        "nombre": "QUIPILE"
+    },
+    {
+        "cod_ciudad": "504",
+        "nombre": "APULO"
+    },
+    {
+        "cod_ciudad": "505",
+        "nombre": "RICAURTE"
+    },
+    {
+        "cod_ciudad": "506",
+        "nombre": "SAN ANTONIO"
+    },
+    {
+        "cod_ciudad": "507",
+        "nombre": "SAN BERNARDO"
+    },
+    {
+        "cod_ciudad": "508",
+        "nombre": "SAN CAYETANO"
+    },
+    {
+        "cod_ciudad": "509",
+        "nombre": "SAN FRANCISCO"
+    },
+    {
+        "cod_ciudad": "510",
+        "nombre": "SAN JUAN DE RIO"
+    },
+    {
+        "cod_ciudad": "511",
+        "nombre": "SASAIMA"
+    },
+    {
+        "cod_ciudad": "512",
+        "nombre": "SESQUILE"
+    },
+    {
+        "cod_ciudad": "513",
+        "nombre": "SIBATE"
+    },
+    {
+        "cod_ciudad": "514",
+        "nombre": "SILVANIA"
+    },
+    {
+        "cod_ciudad": "515",
+        "nombre": "SIMIJACA"
+    },
+    {
+        "cod_ciudad": "516",
+        "nombre": "SOACHA"
+    },
+    {
+        "cod_ciudad": "517",
+        "nombre": "SOPO"
+    },
+    {
+        "cod_ciudad": "518",
+        "nombre": "SUBACHOQUE"
+    },
+    {
+        "cod_ciudad": "519",
+        "nombre": "SUESCA"
+    },
+    {
+        "cod_ciudad": "520",
+        "nombre": "SUPATA"
+    },
+    {
+        "cod_ciudad": "521",
+        "nombre": "SUSA"
+    },
+    {
+        "cod_ciudad": "522",
+        "nombre": "SUTATAUSA"
+    },
+    {
+        "cod_ciudad": "523",
+        "nombre": "TABIO"
+    },
+    {
+        "cod_ciudad": "524",
+        "nombre": "TAUSA"
+    },
+    {
+        "cod_ciudad": "525",
+        "nombre": "TENA"
+    },
+    {
+        "cod_ciudad": "526",
+        "nombre": "TENJO"
+    },
+    {
+        "cod_ciudad": "527",
+        "nombre": "TIBACUY"
+    },
+    {
+        "cod_ciudad": "528",
+        "nombre": "TIBIRITA"
+    },
+    {
+        "cod_ciudad": "529",
+        "nombre": "TOCAIMA"
+    },
+    {
+        "cod_ciudad": "530",
+        "nombre": "TOCANCIPA"
+    },
+    {
+        "cod_ciudad": "531",
+        "nombre": "TOPAIPI"
+    },
+    {
+        "cod_ciudad": "532",
+        "nombre": "UBALA"
+    },
+    {
+        "cod_ciudad": "533",
+        "nombre": "UBAQUE"
+    },
+    {
+        "cod_ciudad": "534",
+        "nombre": "UBATE"
+    },
+    {
+        "cod_ciudad": "535",
+        "nombre": "UNE"
+    },
+    {
+        "cod_ciudad": "536",
+        "nombre": "UTICA"
+    },
+    {
+        "cod_ciudad": "537",
+        "nombre": "VERGARA"
+    },
+    {
+        "cod_ciudad": "538",
+        "nombre": "VIANI"
+    },
+    {
+        "cod_ciudad": "539",
+        "nombre": "VILLAGOMEZ"
+    },
+    {
+        "cod_ciudad": "540",
+        "nombre": "VILLAPINZON"
+    },
+    {
+        "cod_ciudad": "541",
+        "nombre": "VILLETA"
+    },
+    {
+        "cod_ciudad": "542",
+        "nombre": "VIOTA"
+    },
+    {
+        "cod_ciudad": "543",
+        "nombre": "YACOPI"
+    },
+    {
+        "cod_ciudad": "544",
+        "nombre": "ZIPACON"
+    },
+    {
+        "cod_ciudad": "545",
+        "nombre": "ZIPAQUIRA"
+    },
+    {
+        "cod_ciudad": "546",
+        "nombre": "QUIBDO"
+    },
+    {
+        "cod_ciudad": "547",
+        "nombre": "ACANDI"
+    },
+    {
+        "cod_ciudad": "548",
+        "nombre": "ALTO BAUDO"
+    },
+    {
+        "cod_ciudad": "549",
+        "nombre": "BAGADO"
+    },
+    {
+        "cod_ciudad": "550",
+        "nombre": "BAHIA SOLANO"
+    },
+    {
+        "cod_ciudad": "551",
+        "nombre": "BAJO BAUDO"
+    },
+    {
+        "cod_ciudad": "552",
+        "nombre": "BOJAYA"
+    },
+    {
+        "cod_ciudad": "553",
+        "nombre": "CONDOTO"
+    },
+    {
+        "cod_ciudad": "554",
+        "nombre": "EL CARMEN"
+    },
+    {
+        "cod_ciudad": "555",
+        "nombre": "EL LITORAL DEL CHOCO"
+    },
+    {
+        "cod_ciudad": "556",
+        "nombre": "ISTMINA"
+    },
+    {
+        "cod_ciudad": "557",
+        "nombre": "JURADO"
+    },
+    {
+        "cod_ciudad": "558",
+        "nombre": "LLORO"
+    },
+    {
+        "cod_ciudad": "559",
+        "nombre": "NOVITA"
+    },
+    {
+        "cod_ciudad": "560",
+        "nombre": "NUQUI"
+    },
+    {
+        "cod_ciudad": "561",
+        "nombre": "RIOSUCIO"
+    },
+    {
+        "cod_ciudad": "562",
+        "nombre": "SAN JOSE DEL"
+    },
+    {
+        "cod_ciudad": "563",
+        "nombre": "SIPI"
+    },
+    {
+        "cod_ciudad": "564",
+        "nombre": "TADO"
+    },
+    {
+        "cod_ciudad": "565",
+        "nombre": "UNGUIA"
+    },
+    {
+        "cod_ciudad": "566",
+        "nombre": "NEIVA"
+    },
+    {
+        "cod_ciudad": "567",
+        "nombre": "ACEVEDO"
+    },
+    {
+        "cod_ciudad": "568",
+        "nombre": "AGRADO"
+    },
+    {
+        "cod_ciudad": "569",
+        "nombre": "AIPE"
+    },
+    {
+        "cod_ciudad": "570",
+        "nombre": "ALGECIRAS"
+    },
+    {
+        "cod_ciudad": "571",
+        "nombre": "ALTAMIRA"
+    },
+    {
+        "cod_ciudad": "572",
+        "nombre": "BARAYA"
+    },
+    {
+        "cod_ciudad": "573",
+        "nombre": "CAMPOALEGRE"
+    },
+    {
+        "cod_ciudad": "574",
+        "nombre": "COLOMBIA"
+    },
+    {
+        "cod_ciudad": "575",
+        "nombre": "ELIAS"
+    },
+    {
+        "cod_ciudad": "576",
+        "nombre": "GARZON"
+    },
+    {
+        "cod_ciudad": "577",
+        "nombre": "GIGANTE"
+    },
+    {
+        "cod_ciudad": "578",
+        "nombre": "GUADALUPE"
+    },
+    {
+        "cod_ciudad": "579",
+        "nombre": "HOBO"
+    },
+    {
+        "cod_ciudad": "580",
+        "nombre": "IQUIRA"
+    },
+    {
+        "cod_ciudad": "581",
+        "nombre": "ISNOS"
+    },
+    {
+        "cod_ciudad": "582",
+        "nombre": "LA ARGENTINA"
+    },
+    {
+        "cod_ciudad": "583",
+        "nombre": "LA PLATA"
+    },
+    {
+        "cod_ciudad": "584",
+        "nombre": "NATAGA"
+    },
+    {
+        "cod_ciudad": "585",
+        "nombre": "OPORAPA"
+    },
+    {
+        "cod_ciudad": "586",
+        "nombre": "PAICOL"
+    },
+    {
+        "cod_ciudad": "587",
+        "nombre": "PALERMO"
+    },
+    {
+        "cod_ciudad": "588",
+        "nombre": "PALESTINA"
+    },
+    {
+        "cod_ciudad": "589",
+        "nombre": "PITAL"
+    },
+    {
+        "cod_ciudad": "590",
+        "nombre": "PITALITO"
+    },
+    {
+        "cod_ciudad": "591",
+        "nombre": "RIVERA"
+    },
+    {
+        "cod_ciudad": "592",
+        "nombre": "SALADOBLANCO"
+    },
+    {
+        "cod_ciudad": "593",
+        "nombre": "SAN AGUSTIN"
+    },
+    {
+        "cod_ciudad": "594",
+        "nombre": "SANTA MARIA"
+    },
+    {
+        "cod_ciudad": "595",
+        "nombre": "SUAZA"
+    },
+    {
+        "cod_ciudad": "596",
+        "nombre": "TARQUI"
+    },
+    {
+        "cod_ciudad": "597",
+        "nombre": "TESALIA"
+    },
+    {
+        "cod_ciudad": "598",
+        "nombre": "TELLO"
+    },
+    {
+        "cod_ciudad": "599",
+        "nombre": "TERUEL"
+    },
+    {
+        "cod_ciudad": "600",
+        "nombre": "TIMANA"
+    },
+    {
+        "cod_ciudad": "601",
+        "nombre": "VILLAVIEJA"
+    },
+    {
+        "cod_ciudad": "602",
+        "nombre": "YAGUARA"
+    },
+    {
+        "cod_ciudad": "603",
+        "nombre": "RIOHACHA"
+    },
+    {
+        "cod_ciudad": "604",
+        "nombre": "BARRANCAS"
+    },
+    {
+        "cod_ciudad": "605",
+        "nombre": "EL MOLINO"
+    },
+    {
+        "cod_ciudad": "606",
+        "nombre": "FONSECA"
+    },
+    {
+        "cod_ciudad": "607",
+        "nombre": "MAICAO"
+    },
+    {
+        "cod_ciudad": "608",
+        "nombre": "MANAURE"
+    },
+    {
+        "cod_ciudad": "609",
+        "nombre": "SAN JUAN DEL"
+    },
+    {
+        "cod_ciudad": "610",
+        "nombre": "URIBIA"
+    },
+    {
+        "cod_ciudad": "611",
+        "nombre": "URUMITA"
+    },
+    {
+        "cod_ciudad": "612",
+        "nombre": "VILLANUEVA"
+    },
+    {
+        "cod_ciudad": "613",
+        "nombre": "SANTA MARTA"
+    },
+    {
+        "cod_ciudad": "614",
+        "nombre": "ARACATACA"
+    },
+    {
+        "cod_ciudad": "615",
+        "nombre": "ARIGUANI"
+    },
+    {
+        "cod_ciudad": "616",
+        "nombre": "CERRO SAN ANTONIO"
+    },
+    {
+        "cod_ciudad": "617",
+        "nombre": "CHIVOLO"
+    },
+    {
+        "cod_ciudad": "618",
+        "nombre": "CIENAGA"
+    },
+    {
+        "cod_ciudad": "619",
+        "nombre": "EL BANCO"
+    },
+    {
+        "cod_ciudad": "620",
+        "nombre": "EL PIÑON"
+    },
+    {
+        "cod_ciudad": "621",
+        "nombre": "FUNDACION"
+    },
+    {
+        "cod_ciudad": "622",
+        "nombre": "GUAMAL"
+    },
+    {
+        "cod_ciudad": "623",
+        "nombre": "PEDRAZA"
+    },
+    {
+        "cod_ciudad": "624",
+        "nombre": "PIVIJAY"
+    },
+    {
+        "cod_ciudad": "625",
+        "nombre": "PLATO"
+    },
+    {
+        "cod_ciudad": "626",
+        "nombre": "PUEBLOVIEJO"
+    },
+    {
+        "cod_ciudad": "627",
+        "nombre": "REMOLINO"
+    },
+    {
+        "cod_ciudad": "628",
+        "nombre": "SALAMINA"
+    },
+    {
+        "cod_ciudad": "629",
+        "nombre": "SAN SEBASTIAN"
+    },
+    {
+        "cod_ciudad": "630",
+        "nombre": "SAN ZENON"
+    },
+    {
+        "cod_ciudad": "631",
+        "nombre": "SANTA ANA"
+    },
+    {
+        "cod_ciudad": "632",
+        "nombre": "SITIONUEVO"
+    },
+    {
+        "cod_ciudad": "633",
+        "nombre": "TENERIFE"
+    },
+    {
+        "cod_ciudad": "634",
+        "nombre": "VILLAVICENCIO"
+    },
+    {
+        "cod_ciudad": "635",
+        "nombre": "ACACIAS"
+    },
+    {
+        "cod_ciudad": "636",
+        "nombre": "BARRANCA DE UPIA"
+    },
+    {
+        "cod_ciudad": "637",
+        "nombre": "CABUYARO"
+    },
+    {
+        "cod_ciudad": "638",
+        "nombre": "CASTILLA LA NUEVA"
+    },
+    {
+        "cod_ciudad": "639",
+        "nombre": "CUBARRAL"
+    },
+    {
+        "cod_ciudad": "640",
+        "nombre": "CUMARAL"
+    },
+    {
+        "cod_ciudad": "641",
+        "nombre": "EL CALVARIO"
+    },
+    {
+        "cod_ciudad": "642",
+        "nombre": "EL CASTILLO"
+    },
+    {
+        "cod_ciudad": "643",
+        "nombre": "EL DORADO"
+    },
+    {
+        "cod_ciudad": "644",
+        "nombre": "FUENTE DE ORO"
+    },
+    {
+        "cod_ciudad": "645",
+        "nombre": "GRANADA"
+    },
+    {
+        "cod_ciudad": "646",
+        "nombre": "GUAMAL"
+    },
+    {
+        "cod_ciudad": "647",
+        "nombre": "MAPIRIPAN"
+    },
+    {
+        "cod_ciudad": "648",
+        "nombre": "MESETAS"
+    },
+    {
+        "cod_ciudad": "649",
+        "nombre": "LA MACARENA"
+    },
+    {
+        "cod_ciudad": "650",
+        "nombre": "LA URIBE"
+    },
+    {
+        "cod_ciudad": "651",
+        "nombre": "LEJANIAS"
+    },
+    {
+        "cod_ciudad": "652",
+        "nombre": "PUERTO CONCORDIA"
+    },
+    {
+        "cod_ciudad": "653",
+        "nombre": "PUERTO GAITAN"
+    },
+    {
+        "cod_ciudad": "654",
+        "nombre": "PUERTO LOPEZ"
+    },
+    {
+        "cod_ciudad": "655",
+        "nombre": "PUERTO LLERAS"
+    },
+    {
+        "cod_ciudad": "656",
+        "nombre": "PUERTO RICO"
+    },
+    {
+        "cod_ciudad": "657",
+        "nombre": "RESTREPO"
+    },
+    {
+        "cod_ciudad": "658",
+        "nombre": "SAN CARLOS GUAROA"
+    },
+    {
+        "cod_ciudad": "659",
+        "nombre": "SAN JUAN DE ARAMA"
+    },
+    {
+        "cod_ciudad": "660",
+        "nombre": "SAN JUANITO"
+    },
+    {
+        "cod_ciudad": "661",
+        "nombre": "SAN MARTIN"
+    },
+    {
+        "cod_ciudad": "662",
+        "nombre": "VISTA HERMOSA"
+    },
+    {
+        "cod_ciudad": "663",
+        "nombre": "PASTO"
+    },
+    {
+        "cod_ciudad": "664",
+        "nombre": "ALBAN"
+    },
+    {
+        "cod_ciudad": "665",
+        "nombre": "ALDANA"
+    },
+    {
+        "cod_ciudad": "666",
+        "nombre": "ANCUYA"
+    },
+    {
+        "cod_ciudad": "667",
+        "nombre": "ARBOLEDA"
+    },
+    {
+        "cod_ciudad": "668",
+        "nombre": "BARBACOAS"
+    },
+    {
+        "cod_ciudad": "669",
+        "nombre": "BELEN"
+    },
+    {
+        "cod_ciudad": "670",
+        "nombre": "BUESACO"
+    },
+    {
+        "cod_ciudad": "671",
+        "nombre": "COLON"
+    },
+    {
+        "cod_ciudad": "672",
+        "nombre": "CONSACA"
+    },
+    {
+        "cod_ciudad": "673",
+        "nombre": "CONTADERO"
+    },
+    {
+        "cod_ciudad": "674",
+        "nombre": "CORDOBA"
+    },
+    {
+        "cod_ciudad": "675",
+        "nombre": "CUASPUD"
+    },
+    {
+        "cod_ciudad": "676",
+        "nombre": "CUMBAL"
+    },
+    {
+        "cod_ciudad": "677",
+        "nombre": "CUMBITARA"
+    },
+    {
+        "cod_ciudad": "678",
+        "nombre": "CHACHAGUI"
+    },
+    {
+        "cod_ciudad": "679",
+        "nombre": "EL CHARCO"
+    },
+    {
+        "cod_ciudad": "680",
+        "nombre": "EL ROSARIO"
+    },
+    {
+        "cod_ciudad": "681",
+        "nombre": "EL TABLON"
+    },
+    {
+        "cod_ciudad": "682",
+        "nombre": "EL TAMBO"
+    },
+    {
+        "cod_ciudad": "683",
+        "nombre": "FUNES"
+    },
+    {
+        "cod_ciudad": "684",
+        "nombre": "GUACHUCAL"
+    },
+    {
+        "cod_ciudad": "685",
+        "nombre": "GUAITARILLA"
+    },
+    {
+        "cod_ciudad": "686",
+        "nombre": "GUALMATAN"
+    },
+    {
+        "cod_ciudad": "687",
+        "nombre": "ILES"
+    },
+    {
+        "cod_ciudad": "688",
+        "nombre": "IMUES"
+    },
+    {
+        "cod_ciudad": "689",
+        "nombre": "IPIALES"
+    },
+    {
+        "cod_ciudad": "690",
+        "nombre": "LA CRUZ"
+    },
+    {
+        "cod_ciudad": "691",
+        "nombre": "LA FLORIDA"
+    },
+    {
+        "cod_ciudad": "692",
+        "nombre": "LA LLANADA"
+    },
+    {
+        "cod_ciudad": "693",
+        "nombre": "LA TOLA"
+    },
+    {
+        "cod_ciudad": "694",
+        "nombre": "LA UNION"
+    },
+    {
+        "cod_ciudad": "695",
+        "nombre": "LEIVA"
+    },
+    {
+        "cod_ciudad": "696",
+        "nombre": "LINARES"
+    },
+    {
+        "cod_ciudad": "697",
+        "nombre": "LOS ANDES"
+    },
+    {
+        "cod_ciudad": "698",
+        "nombre": "MAGUI"
+    },
+    {
+        "cod_ciudad": "699",
+        "nombre": "MALLAMA"
+    },
+    {
+        "cod_ciudad": "700",
+        "nombre": "MOSQUERA"
+    },
+    {
+        "cod_ciudad": "701",
+        "nombre": "OLAYA HERRERA"
+    },
+    {
+        "cod_ciudad": "702",
+        "nombre": "OSPINA"
+    },
+    {
+        "cod_ciudad": "703",
+        "nombre": "FRANCISCO PIZARRO"
+    },
+    {
+        "cod_ciudad": "704",
+        "nombre": "POLICARPA"
+    },
+    {
+        "cod_ciudad": "705",
+        "nombre": "POTOSI"
+    },
+    {
+        "cod_ciudad": "706",
+        "nombre": "PROVIDENCIA"
+    },
+    {
+        "cod_ciudad": "707",
+        "nombre": "PUERRES"
+    },
+    {
+        "cod_ciudad": "708",
+        "nombre": "PUPIALES"
+    },
+    {
+        "cod_ciudad": "709",
+        "nombre": "RICAURTE"
+    },
+    {
+        "cod_ciudad": "710",
+        "nombre": "ROBERTO PAYAN"
+    },
+    {
+        "cod_ciudad": "711",
+        "nombre": "SAMANIEGO"
+    },
+    {
+        "cod_ciudad": "712",
+        "nombre": "SANDONA"
+    },
+    {
+        "cod_ciudad": "713",
+        "nombre": "SAN BERNARDO"
+    },
+    {
+        "cod_ciudad": "714",
+        "nombre": "SAN LORENZO"
+    },
+    {
+        "cod_ciudad": "715",
+        "nombre": "SAN PABLO"
+    },
+    {
+        "cod_ciudad": "716",
+        "nombre": "SAN PEDRO DE"
+    },
+    {
+        "cod_ciudad": "717",
+        "nombre": "SANTA BARBARA"
+    },
+    {
+        "cod_ciudad": "718",
+        "nombre": "SANTACRUZ"
+    },
+    {
+        "cod_ciudad": "719",
+        "nombre": "SAPUYES"
+    },
+    {
+        "cod_ciudad": "720",
+        "nombre": "TAMINANGO"
+    },
+    {
+        "cod_ciudad": "721",
+        "nombre": "TANGUA"
+    },
+    {
+        "cod_ciudad": "722",
+        "nombre": "TUMACO"
+    },
+    {
+        "cod_ciudad": "723",
+        "nombre": "TUQUERRES"
+    },
+    {
+        "cod_ciudad": "724",
+        "nombre": "YACUANQUER"
+    },
+    {
+        "cod_ciudad": "725",
+        "nombre": "CUCUTA"
+    },
+    {
+        "cod_ciudad": "726",
+        "nombre": "ABREGO"
+    },
+    {
+        "cod_ciudad": "727",
+        "nombre": "ARBOLEDAS"
+    },
+    {
+        "cod_ciudad": "728",
+        "nombre": "BOCHALEMA"
+    },
+    {
+        "cod_ciudad": "729",
+        "nombre": "BUCARASICA"
+    },
+    {
+        "cod_ciudad": "730",
+        "nombre": "CACOTA"
+    },
+    {
+        "cod_ciudad": "731",
+        "nombre": "CACHIRA"
+    },
+    {
+        "cod_ciudad": "732",
+        "nombre": "CHINACOTA"
+    },
+    {
+        "cod_ciudad": "733",
+        "nombre": "CHITAGA"
+    },
+    {
+        "cod_ciudad": "734",
+        "nombre": "CONVENCION"
+    },
+    {
+        "cod_ciudad": "735",
+        "nombre": "CUCUTILLA"
+    },
+    {
+        "cod_ciudad": "736",
+        "nombre": "DURANIA"
+    },
+    {
+        "cod_ciudad": "737",
+        "nombre": "EL CARMEN"
+    },
+    {
+        "cod_ciudad": "738",
+        "nombre": "EL TARRA"
+    },
+    {
+        "cod_ciudad": "739",
+        "nombre": "EL ZULIA"
+    },
+    {
+        "cod_ciudad": "740",
+        "nombre": "GRAMALOTE"
+    },
+    {
+        "cod_ciudad": "741",
+        "nombre": "HACARI"
+    },
+    {
+        "cod_ciudad": "742",
+        "nombre": "HERRAN"
+    },
+    {
+        "cod_ciudad": "743",
+        "nombre": "LABATECA"
+    },
+    {
+        "cod_ciudad": "744",
+        "nombre": "LA PLAYA"
+    },
+    {
+        "cod_ciudad": "745",
+        "nombre": "LOS PATIOS"
+    },
+    {
+        "cod_ciudad": "746",
+        "nombre": "LOURDES"
+    },
+    {
+        "cod_ciudad": "747",
+        "nombre": "MUTISCUA"
+    },
+    {
+        "cod_ciudad": "748",
+        "nombre": "OCAÑA"
+    },
+    {
+        "cod_ciudad": "749",
+        "nombre": "PAMPLONA"
+    },
+    {
+        "cod_ciudad": "750",
+        "nombre": "PAMPLONITA"
+    },
+    {
+        "cod_ciudad": "751",
+        "nombre": "RAGONVALIA"
+    },
+    {
+        "cod_ciudad": "752",
+        "nombre": "SALAZAR"
+    },
+    {
+        "cod_ciudad": "753",
+        "nombre": "SAN CALIXTO"
+    },
+    {
+        "cod_ciudad": "754",
+        "nombre": "SAN CAYETANO"
+    },
+    {
+        "cod_ciudad": "755",
+        "nombre": "SANTIAGO"
+    },
+    {
+        "cod_ciudad": "756",
+        "nombre": "SARDINATA"
+    },
+    {
+        "cod_ciudad": "757",
+        "nombre": "SILOS"
+    },
+    {
+        "cod_ciudad": "758",
+        "nombre": "TEORAMA"
+    },
+    {
+        "cod_ciudad": "759",
+        "nombre": "TIBU"
+    },
+    {
+        "cod_ciudad": "760",
+        "nombre": "TOLEDO"
+    },
+    {
+        "cod_ciudad": "761",
+        "nombre": "VILLA CARO"
+    },
+    {
+        "cod_ciudad": "762",
+        "nombre": "VILLA DEL ROSARIO"
+    },
+    {
+        "cod_ciudad": "763",
+        "nombre": "ARMENIA"
+    },
+    {
+        "cod_ciudad": "764",
+        "nombre": "BUENAVISTA"
+    },
+    {
+        "cod_ciudad": "765",
+        "nombre": "CALARCA"
+    },
+    {
+        "cod_ciudad": "766",
+        "nombre": "CIRCASIA"
+    },
+    {
+        "cod_ciudad": "767",
+        "nombre": "CORDOBA"
+    },
+    {
+        "cod_ciudad": "768",
+        "nombre": "FILANDIA"
+    },
+    {
+        "cod_ciudad": "769",
+        "nombre": "GENOVA"
+    },
+    {
+        "cod_ciudad": "770",
+        "nombre": "LA TEBAIDA"
+    },
+    {
+        "cod_ciudad": "771",
+        "nombre": "MONTENEGRO"
+    },
+    {
+        "cod_ciudad": "772",
+        "nombre": "PIJAO"
+    },
+    {
+        "cod_ciudad": "773",
+        "nombre": "QUIMBAYA"
+    },
+    {
+        "cod_ciudad": "774",
+        "nombre": "SALENTO"
+    },
+    {
+        "cod_ciudad": "775",
+        "nombre": "PEREIRA"
+    },
+    {
+        "cod_ciudad": "776",
+        "nombre": "APIA"
+    },
+    {
+        "cod_ciudad": "777",
+        "nombre": "BALBOA"
+    },
+    {
+        "cod_ciudad": "778",
+        "nombre": "BELEN DE UMBRIA"
+    },
+    {
+        "cod_ciudad": "779",
+        "nombre": "DOS QUEBRADAS"
+    },
+    {
+        "cod_ciudad": "780",
+        "nombre": "GUATICA"
+    },
+    {
+        "cod_ciudad": "781",
+        "nombre": "LA CELIA"
+    },
+    {
+        "cod_ciudad": "782",
+        "nombre": "LA VIRGINIA"
+    },
+    {
+        "cod_ciudad": "783",
+        "nombre": "MARSELLA"
+    },
+    {
+        "cod_ciudad": "784",
+        "nombre": "MISTRATO"
+    },
+    {
+        "cod_ciudad": "785",
+        "nombre": "PUEBLO RICO"
+    },
+    {
+        "cod_ciudad": "786",
+        "nombre": "QUINCHIA"
+    },
+    {
+        "cod_ciudad": "787",
+        "nombre": "SANTA ROSA DE CABAL"
+    },
+    {
+        "cod_ciudad": "788",
+        "nombre": "SANTUARIO"
+    },
+    {
+        "cod_ciudad": "789",
+        "nombre": "BUCARAMANGA"
+    },
+    {
+        "cod_ciudad": "790",
+        "nombre": "AGUADA"
+    },
+    {
+        "cod_ciudad": "791",
+        "nombre": "ALBANIA"
+    },
+    {
+        "cod_ciudad": "792",
+        "nombre": "ARATOCA"
+    },
+    {
+        "cod_ciudad": "793",
+        "nombre": "BARBOSA"
+    },
+    {
+        "cod_ciudad": "794",
+        "nombre": "BARICHARA"
+    },
+    {
+        "cod_ciudad": "795",
+        "nombre": "BARRANCABERMEJA"
+    },
+    {
+        "cod_ciudad": "796",
+        "nombre": "BETULIA"
+    },
+    {
+        "cod_ciudad": "797",
+        "nombre": "BOLIVAR"
+    },
+    {
+        "cod_ciudad": "798",
+        "nombre": "CABRERA"
+    },
+    {
+        "cod_ciudad": "799",
+        "nombre": "CALIFORNIA"
+    },
+    {
+        "cod_ciudad": "800",
+        "nombre": "CAPITANEJO"
+    },
+    {
+        "cod_ciudad": "801",
+        "nombre": "CARCASI"
+    },
+    {
+        "cod_ciudad": "802",
+        "nombre": "CEPITA"
+    },
+    {
+        "cod_ciudad": "803",
+        "nombre": "CERRITO"
+    },
+    {
+        "cod_ciudad": "804",
+        "nombre": "CHARALA"
+    },
+    {
+        "cod_ciudad": "805",
+        "nombre": "CHARTA"
+    },
+    {
+        "cod_ciudad": "806",
+        "nombre": "CHIMA"
+    },
+    {
+        "cod_ciudad": "807",
+        "nombre": "CHIPATA"
+    },
+    {
+        "cod_ciudad": "808",
+        "nombre": "CIMITARRA"
+    },
+    {
+        "cod_ciudad": "809",
+        "nombre": "CONCEPCION"
+    },
+    {
+        "cod_ciudad": "810",
+        "nombre": "CONFINES"
+    },
+    {
+        "cod_ciudad": "811",
+        "nombre": "CONTRATACION"
+    },
+    {
+        "cod_ciudad": "812",
+        "nombre": "COROMORO"
+    },
+    {
+        "cod_ciudad": "813",
+        "nombre": "CURITI"
+    },
+    {
+        "cod_ciudad": "814",
+        "nombre": "EL CARMEN"
+    },
+    {
+        "cod_ciudad": "815",
+        "nombre": "EL GUACAMAYO"
+    },
+    {
+        "cod_ciudad": "816",
+        "nombre": "EL PEÑON"
+    },
+    {
+        "cod_ciudad": "817",
+        "nombre": "EL PLAYON"
+    },
+    {
+        "cod_ciudad": "818",
+        "nombre": "ENCINO"
+    },
+    {
+        "cod_ciudad": "819",
+        "nombre": "ENCISO"
+    },
+    {
+        "cod_ciudad": "820",
+        "nombre": "FLORIAN"
+    },
+    {
+        "cod_ciudad": "821",
+        "nombre": "FLORIDABLANCA"
+    },
+    {
+        "cod_ciudad": "822",
+        "nombre": "GALAN"
+    },
+    {
+        "cod_ciudad": "823",
+        "nombre": "GAMBITA"
+    },
+    {
+        "cod_ciudad": "824",
+        "nombre": "GIRON"
+    },
+    {
+        "cod_ciudad": "825",
+        "nombre": "GUACA"
+    },
+    {
+        "cod_ciudad": "826",
+        "nombre": "GUADALUPE"
+    },
+    {
+        "cod_ciudad": "827",
+        "nombre": "GUAPOTA"
+    },
+    {
+        "cod_ciudad": "828",
+        "nombre": "GUAVATA"
+    },
+    {
+        "cod_ciudad": "829",
+        "nombre": "GUEPSA"
+    },
+    {
+        "cod_ciudad": "830",
+        "nombre": "HATO"
+    },
+    {
+        "cod_ciudad": "831",
+        "nombre": "JESUS MARIA"
+    },
+    {
+        "cod_ciudad": "832",
+        "nombre": "JORDAN"
+    },
+    {
+        "cod_ciudad": "833",
+        "nombre": "LA BELLEZA"
+    },
+    {
+        "cod_ciudad": "834",
+        "nombre": "LANDAZURI"
+    },
+    {
+        "cod_ciudad": "835",
+        "nombre": "LA PAZ"
+    },
+    {
+        "cod_ciudad": "836",
+        "nombre": "LEBRIJA"
+    },
+    {
+        "cod_ciudad": "837",
+        "nombre": "LOS SANTOS"
+    },
+    {
+        "cod_ciudad": "838",
+        "nombre": "MACARAVITA"
+    },
+    {
+        "cod_ciudad": "839",
+        "nombre": "MALAGA"
+    },
+    {
+        "cod_ciudad": "840",
+        "nombre": "MATANZA"
+    },
+    {
+        "cod_ciudad": "841",
+        "nombre": "MOGOTES"
+    },
+    {
+        "cod_ciudad": "842",
+        "nombre": "MOLAGAVITA"
+    },
+    {
+        "cod_ciudad": "843",
+        "nombre": "OCAMONTE"
+    },
+    {
+        "cod_ciudad": "844",
+        "nombre": "OIBA"
+    },
+    {
+        "cod_ciudad": "845",
+        "nombre": "ONZAGA"
+    },
+    {
+        "cod_ciudad": "846",
+        "nombre": "PALMAR"
+    },
+    {
+        "cod_ciudad": "847",
+        "nombre": "PALMAS SOCORRO"
+    },
+    {
+        "cod_ciudad": "848",
+        "nombre": "PARAMO"
+    },
+    {
+        "cod_ciudad": "849",
+        "nombre": "PIEDECUESTA"
+    },
+    {
+        "cod_ciudad": "850",
+        "nombre": "PINCHOTE"
+    },
+    {
+        "cod_ciudad": "851",
+        "nombre": "PUENTE NACIONAL"
+    },
+    {
+        "cod_ciudad": "852",
+        "nombre": "PUERTO PARRA"
+    },
+    {
+        "cod_ciudad": "853",
+        "nombre": "PUERTO WILCHES"
+    },
+    {
+        "cod_ciudad": "854",
+        "nombre": "RIONEGRO"
+    },
+    {
+        "cod_ciudad": "855",
+        "nombre": "SABANA DE TORRES"
+    },
+    {
+        "cod_ciudad": "856",
+        "nombre": "SAN ANDRES"
+    },
+    {
+        "cod_ciudad": "857",
+        "nombre": "SAN BENITO"
+    },
+    {
+        "cod_ciudad": "858",
+        "nombre": "SAN GIL"
+    },
+    {
+        "cod_ciudad": "859",
+        "nombre": "SAN JOAQUIN"
+    },
+    {
+        "cod_ciudad": "860",
+        "nombre": "SAN JOSE DE"
+    },
+    {
+        "cod_ciudad": "861",
+        "nombre": "SAN MIGUEL"
+    },
+    {
+        "cod_ciudad": "862",
+        "nombre": "SAN VICENTE DE"
+    },
+    {
+        "cod_ciudad": "863",
+        "nombre": "SANTA BARBARA"
+    },
+    {
+        "cod_ciudad": "864",
+        "nombre": "SANTA HELENA DEL"
+    },
+    {
+        "cod_ciudad": "865",
+        "nombre": "SIMACOTA"
+    },
+    {
+        "cod_ciudad": "866",
+        "nombre": "SOCORRO"
+    },
+    {
+        "cod_ciudad": "867",
+        "nombre": "SUAITA"
+    },
+    {
+        "cod_ciudad": "868",
+        "nombre": "SUCRE"
+    },
+    {
+        "cod_ciudad": "869",
+        "nombre": "SURATA"
+    },
+    {
+        "cod_ciudad": "870",
+        "nombre": "TONA"
+    },
+    {
+        "cod_ciudad": "871",
+        "nombre": "VALLE DE SAN JOSE"
+    },
+    {
+        "cod_ciudad": "872",
+        "nombre": "VELEZ"
+    },
+    {
+        "cod_ciudad": "873",
+        "nombre": "VETAS"
+    },
+    {
+        "cod_ciudad": "874",
+        "nombre": "VILLANUEVA"
+    },
+    {
+        "cod_ciudad": "875",
+        "nombre": "ZAPATOCA"
+    },
+    {
+        "cod_ciudad": "876",
+        "nombre": "SINCELEJO"
+    },
+    {
+        "cod_ciudad": "877",
+        "nombre": "BUENAVISTA"
+    },
+    {
+        "cod_ciudad": "878",
+        "nombre": "CAIMITO"
+    },
+    {
+        "cod_ciudad": "879",
+        "nombre": "COLOSO"
+    },
+    {
+        "cod_ciudad": "880",
+        "nombre": "COROZAL"
+    },
+    {
+        "cod_ciudad": "881",
+        "nombre": "CHALAN"
+    },
+    {
+        "cod_ciudad": "882",
+        "nombre": "GALERAS"
+    },
+    {
+        "cod_ciudad": "883",
+        "nombre": "GUARANDA"
+    },
+    {
+        "cod_ciudad": "884",
+        "nombre": "LA UNION"
+    },
+    {
+        "cod_ciudad": "885",
+        "nombre": "LOS PALMITOS"
+    },
+    {
+        "cod_ciudad": "886",
+        "nombre": "MAJAGUAL"
+    },
+    {
+        "cod_ciudad": "887",
+        "nombre": "MORROA"
+    },
+    {
+        "cod_ciudad": "888",
+        "nombre": "OVEJAS"
+    },
+    {
+        "cod_ciudad": "889",
+        "nombre": "PALMITO"
+    },
+    {
+        "cod_ciudad": "890",
+        "nombre": "SAMPUES"
+    },
+    {
+        "cod_ciudad": "891",
+        "nombre": "SAN BENITO ABAD"
+    },
+    {
+        "cod_ciudad": "892",
+        "nombre": "SAN JUAN DE"
+    },
+    {
+        "cod_ciudad": "893",
+        "nombre": "SAN MARCOS"
+    },
+    {
+        "cod_ciudad": "894",
+        "nombre": "SAN ONOFRE"
+    },
+    {
+        "cod_ciudad": "895",
+        "nombre": "SAN PEDRO"
+    },
+    {
+        "cod_ciudad": "896",
+        "nombre": "SINCE"
+    },
+    {
+        "cod_ciudad": "897",
+        "nombre": "SUCRE"
+    },
+    {
+        "cod_ciudad": "898",
+        "nombre": "TOLU"
+    },
+    {
+        "cod_ciudad": "899",
+        "nombre": "TOLUVIEJO"
+    },
+    {
+        "cod_ciudad": "900",
+        "nombre": "IBAGUE"
+    },
+    {
+        "cod_ciudad": "901",
+        "nombre": "ALPUJARRA"
+    },
+    {
+        "cod_ciudad": "902",
+        "nombre": "ALVARADO"
+    },
+    {
+        "cod_ciudad": "903",
+        "nombre": "AMBALEMA"
+    },
+    {
+        "cod_ciudad": "904",
+        "nombre": "ANZOATEGUI"
+    },
+    {
+        "cod_ciudad": "905",
+        "nombre": "ARMERO"
+    },
+    {
+        "cod_ciudad": "906",
+        "nombre": "ATACO"
+    },
+    {
+        "cod_ciudad": "907",
+        "nombre": "CAJAMARCA"
+    },
+    {
+        "cod_ciudad": "908",
+        "nombre": "CARMEN DE APICALA"
+    },
+    {
+        "cod_ciudad": "909",
+        "nombre": "CASABIANCA"
+    },
+    {
+        "cod_ciudad": "910",
+        "nombre": "CHAPARRAL"
+    },
+    {
+        "cod_ciudad": "911",
+        "nombre": "COELLO"
+    },
+    {
+        "cod_ciudad": "912",
+        "nombre": "COYAIMA"
+    },
+    {
+        "cod_ciudad": "913",
+        "nombre": "CUNDAY"
+    },
+    {
+        "cod_ciudad": "914",
+        "nombre": "DOLORES"
+    },
+    {
+        "cod_ciudad": "915",
+        "nombre": "ESPINAL"
+    },
+    {
+        "cod_ciudad": "916",
+        "nombre": "FALAN"
+    },
+    {
+        "cod_ciudad": "917",
+        "nombre": "FLANDES"
+    },
+    {
+        "cod_ciudad": "918",
+        "nombre": "FRESNO"
+    },
+    {
+        "cod_ciudad": "919",
+        "nombre": "GUAMO"
+    },
+    {
+        "cod_ciudad": "920",
+        "nombre": "HERVEO"
+    },
+    {
+        "cod_ciudad": "921",
+        "nombre": "HONDA"
+    },
+    {
+        "cod_ciudad": "922",
+        "nombre": "ICONONZO"
+    },
+    {
+        "cod_ciudad": "923",
+        "nombre": "LERIDA"
+    },
+    {
+        "cod_ciudad": "924",
+        "nombre": "LIBANO"
+    },
+    {
+        "cod_ciudad": "925",
+        "nombre": "MARIQUITA"
+    },
+    {
+        "cod_ciudad": "926",
+        "nombre": "MELGAR"
+    },
+    {
+        "cod_ciudad": "927",
+        "nombre": "MURILLO"
+    },
+    {
+        "cod_ciudad": "928",
+        "nombre": "NATAGAIMA"
+    },
+    {
+        "cod_ciudad": "929",
+        "nombre": "ORTEGA"
+    },
+    {
+        "cod_ciudad": "930",
+        "nombre": "PIEDRAS"
+    },
+    {
+        "cod_ciudad": "931",
+        "nombre": "PLANADAS"
+    },
+    {
+        "cod_ciudad": "932",
+        "nombre": "PRADO"
+    },
+    {
+        "cod_ciudad": "933",
+        "nombre": "PURIFICACION"
+    },
+    {
+        "cod_ciudad": "934",
+        "nombre": "RIOBLANCO"
+    },
+    {
+        "cod_ciudad": "935",
+        "nombre": "RONCESVALLES"
+    },
+    {
+        "cod_ciudad": "936",
+        "nombre": "ROVIRA"
+    },
+    {
+        "cod_ciudad": "937",
+        "nombre": "SALDAÑA"
+    },
+    {
+        "cod_ciudad": "938",
+        "nombre": "SAN ANTONIO"
+    },
+    {
+        "cod_ciudad": "939",
+        "nombre": "SAN LUIS"
+    },
+    {
+        "cod_ciudad": "940",
+        "nombre": "SANTA ISABEL"
+    },
+    {
+        "cod_ciudad": "941",
+        "nombre": "SUAREZ"
+    },
+    {
+        "cod_ciudad": "942",
+        "nombre": "VALLE DE SAN JUAN"
+    },
+    {
+        "cod_ciudad": "943",
+        "nombre": "VENADILLO"
+    },
+    {
+        "cod_ciudad": "944",
+        "nombre": "VILLAHERMOSA"
+    },
+    {
+        "cod_ciudad": "945",
+        "nombre": "VILLARRICA"
+    },
+    {
+        "cod_ciudad": "946",
+        "nombre": "CALI"
+    },
+    {
+        "cod_ciudad": "947",
+        "nombre": "ALCALA"
+    },
+    {
+        "cod_ciudad": "948",
+        "nombre": "ANDALUCIA"
+    },
+    {
+        "cod_ciudad": "949",
+        "nombre": "ANSERMANUEVO"
+    },
+    {
+        "cod_ciudad": "950",
+        "nombre": "ARGELIA"
+    },
+    {
+        "cod_ciudad": "951",
+        "nombre": "BOLIVAR"
+    },
+    {
+        "cod_ciudad": "952",
+        "nombre": "BUENAVENTURA"
+    },
+    {
+        "cod_ciudad": "953",
+        "nombre": "BUGA"
+    },
+    {
+        "cod_ciudad": "954",
+        "nombre": "BUGALAGRANDE"
+    },
+    {
+        "cod_ciudad": "955",
+        "nombre": "CAICEDONIA"
+    },
+    {
+        "cod_ciudad": "956",
+        "nombre": "CALIMA"
+    },
+    {
+        "cod_ciudad": "957",
+        "nombre": "CANDELARIA"
+    },
+    {
+        "cod_ciudad": "958",
+        "nombre": "CARTAGO"
+    },
+    {
+        "cod_ciudad": "959",
+        "nombre": "DAGUA"
+    },
+    {
+        "cod_ciudad": "960",
+        "nombre": "EL AGUILA"
+    },
+    {
+        "cod_ciudad": "961",
+        "nombre": "EL CAIRO"
+    },
+    {
+        "cod_ciudad": "962",
+        "nombre": "EL CERRITO"
+    },
+    {
+        "cod_ciudad": "963",
+        "nombre": "EL DOVIO"
+    },
+    {
+        "cod_ciudad": "964",
+        "nombre": "FLORIDA"
+    },
+    {
+        "cod_ciudad": "965",
+        "nombre": "GINEBRA"
+    },
+    {
+        "cod_ciudad": "966",
+        "nombre": "GUACARI"
+    },
+    {
+        "cod_ciudad": "967",
+        "nombre": "JAMUNDI"
+    },
+    {
+        "cod_ciudad": "968",
+        "nombre": "LA CUMBRE"
+    },
+    {
+        "cod_ciudad": "969",
+        "nombre": "LA UNION"
+    },
+    {
+        "cod_ciudad": "970",
+        "nombre": "LA VICTORIA"
+    },
+    {
+        "cod_ciudad": "971",
+        "nombre": "OBANDO"
+    },
+    {
+        "cod_ciudad": "972",
+        "nombre": "PALMIRA"
+    },
+    {
+        "cod_ciudad": "973",
+        "nombre": "PRADERA"
+    },
+    {
+        "cod_ciudad": "974",
+        "nombre": "RESTREPO"
+    },
+    {
+        "cod_ciudad": "975",
+        "nombre": "RIOFRIO"
+    },
+    {
+        "cod_ciudad": "976",
+        "nombre": "ROLDANILLO"
+    },
+    {
+        "cod_ciudad": "977",
+        "nombre": "SAN PEDRO"
+    },
+    {
+        "cod_ciudad": "978",
+        "nombre": "SEVILLA"
+    },
+    {
+        "cod_ciudad": "979",
+        "nombre": "TORO"
+    },
+    {
+        "cod_ciudad": "980",
+        "nombre": "TRUJILLO"
+    },
+    {
+        "cod_ciudad": "981",
+        "nombre": "TULUA"
+    },
+    {
+        "cod_ciudad": "982",
+        "nombre": "ULLOA"
+    },
+    {
+        "cod_ciudad": "983",
+        "nombre": "VERSALLES"
+    },
+    {
+        "cod_ciudad": "984",
+        "nombre": "VIJES"
+    },
+    {
+        "cod_ciudad": "985",
+        "nombre": "YOTOCO"
+    },
+    {
+        "cod_ciudad": "986",
+        "nombre": "YUMBO"
+    },
+    {
+        "cod_ciudad": "987",
+        "nombre": "ZARZAL"
+    },
+    {
+        "cod_ciudad": "988",
+        "nombre": "ARAUCA"
+    },
+    {
+        "cod_ciudad": "989",
+        "nombre": "ARAUQUITA"
+    },
+    {
+        "cod_ciudad": "990",
+        "nombre": "CRAVO NORTE"
+    },
+    {
+        "cod_ciudad": "991",
+        "nombre": "FORTUL"
+    },
+    {
+        "cod_ciudad": "992",
+        "nombre": "PUERTO RONDON"
+    },
+    {
+        "cod_ciudad": "993",
+        "nombre": "SARAVENA"
+    },
+    {
+        "cod_ciudad": "994",
+        "nombre": "TAME"
+    },
+    {
+        "cod_ciudad": "995",
+        "nombre": "YOPAL"
+    },
+    {
+        "cod_ciudad": "996",
+        "nombre": "AGUAZUL"
+    },
+    {
+        "cod_ciudad": "997",
+        "nombre": "CHAMEZA"
+    },
+    {
+        "cod_ciudad": "998",
+        "nombre": "HATO COROZAL"
+    },
+    {
+        "cod_ciudad": "999",
+        "nombre": "LA SALINA"
+    },
+    {
+        "cod_ciudad": "1000",
+        "nombre": "MANI"
+    },
+    {
+        "cod_ciudad": "1001",
+        "nombre": "MONTERREY"
+    },
+    {
+        "cod_ciudad": "1002",
+        "nombre": "NUNCHIA"
+    },
+    {
+        "cod_ciudad": "1003",
+        "nombre": "OROCUE"
+    },
+    {
+        "cod_ciudad": "1004",
+        "nombre": "PAZ DE ARIPORO"
+    },
+    {
+        "cod_ciudad": "1005",
+        "nombre": "PORE"
+    },
+    {
+        "cod_ciudad": "1006",
+        "nombre": "RECETOR"
+    },
+    {
+        "cod_ciudad": "1007",
+        "nombre": "SABANALARGA"
+    },
+    {
+        "cod_ciudad": "1008",
+        "nombre": "SACAMA"
+    },
+    {
+        "cod_ciudad": "1009",
+        "nombre": "SAN LUIS DE"
+    },
+    {
+        "cod_ciudad": "1010",
+        "nombre": "TAMARA"
+    },
+    {
+        "cod_ciudad": "1011",
+        "nombre": "TAURAMENA"
+    },
+    {
+        "cod_ciudad": "1012",
+        "nombre": "TRINIDAD"
+    },
+    {
+        "cod_ciudad": "1013",
+        "nombre": "VILLANUEVA"
+    },
+    {
+        "cod_ciudad": "1014",
+        "nombre": "MOCOA"
+    },
+    {
+        "cod_ciudad": "1015",
+        "nombre": "COLON"
+    },
+    {
+        "cod_ciudad": "1016",
+        "nombre": "ORITO"
+    },
+    {
+        "cod_ciudad": "1017",
+        "nombre": "PUERTO ASIS"
+    },
+    {
+        "cod_ciudad": "1018",
+        "nombre": "PUERTO CAICEDO"
+    },
+    {
+        "cod_ciudad": "1019",
+        "nombre": "PUERTO GUZMAN"
+    },
+    {
+        "cod_ciudad": "1020",
+        "nombre": "PUERTO LEGUIZAMO"
+    },
+    {
+        "cod_ciudad": "1021",
+        "nombre": "SIBUNDOY"
+    },
+    {
+        "cod_ciudad": "1022",
+        "nombre": "SAN FRANCISCO"
+    },
+    {
+        "cod_ciudad": "1023",
+        "nombre": "SANTIAGO"
+    },
+    {
+        "cod_ciudad": "1024",
+        "nombre": "VALLE GUAMUEZ"
+    },
+    {
+        "cod_ciudad": "1025",
+        "nombre": "VILLAGARZON"
+    },
+    {
+        "cod_ciudad": "1026",
+        "nombre": "SAN ANDRES"
+    },
+    {
+        "cod_ciudad": "1027",
+        "nombre": "PROVIDENCIA"
+    },
+    {
+        "cod_ciudad": "1028",
+        "nombre": "LETICIA"
+    },
+    {
+        "cod_ciudad": "1029",
+        "nombre": "EL ENCANTO"
+    },
+    {
+        "cod_ciudad": "1030",
+        "nombre": "LA CHORRERA"
+    },
+    {
+        "cod_ciudad": "1031",
+        "nombre": "LA PEDRERA"
+    },
+    {
+        "cod_ciudad": "1032",
+        "nombre": "MIRITIPARANA"
+    },
+    {
+        "cod_ciudad": "1033",
+        "nombre": "PUERTO NARIÑO"
+    },
+    {
+        "cod_ciudad": "1034",
+        "nombre": "PUERTO SANTANDER"
+    },
+    {
+        "cod_ciudad": "1035",
+        "nombre": "TARAPACA"
+    },
+    {
+        "cod_ciudad": "1036",
+        "nombre": "INIRIDA"
+    },
+    {
+        "cod_ciudad": "1037",
+        "nombre": "GUAVIARE"
+    },
+    {
+        "cod_ciudad": "1038",
+        "nombre": "SAN JOSE DEL GUAVIARE"
+    },
+    {
+        "cod_ciudad": "1039",
+        "nombre": "CALAMAR"
+    },
+    {
+        "cod_ciudad": "1040",
+        "nombre": "EL RETORNO"
+    },
+    {
+        "cod_ciudad": "1041",
+        "nombre": "MIRAFLORES"
+    },
+    {
+        "cod_ciudad": "1042",
+        "nombre": "MORICHAL"
+    },
+    {
+        "cod_ciudad": "1043",
+        "nombre": "MITU"
+    },
+    {
+        "cod_ciudad": "1044",
+        "nombre": "CARURU"
+    },
+    {
+        "cod_ciudad": "1045",
+        "nombre": "PACOA"
+    },
+    {
+        "cod_ciudad": "1046",
+        "nombre": "YAVARATE"
+    },
+    {
+        "cod_ciudad": "1047",
+        "nombre": "PUERTO CARREÑO"
+    },
+    {
+        "cod_ciudad": "1048",
+        "nombre": "LA PRIMAVERA"
+    },
+    {
+        "cod_ciudad": "1049",
+        "nombre": "SANTA RITA"
+    },
+    {
+        "cod_ciudad": "1050",
+        "nombre": "SAN JOSE DE OCUNE"
+    },
+    {
+        "cod_ciudad": "1051",
+        "nombre": "SANTA ROSALIA"
+    },
+    {
+        "cod_ciudad": "1052",
+        "nombre": "MUNICIPIO DESCONOCIDO"
+    }
 ]

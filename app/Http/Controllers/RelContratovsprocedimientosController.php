@@ -19,33 +19,37 @@ class RelContratovsprocedimientosController extends Controller
         $usuario_id = $request->session()->get('usuario_id');
         $idlist = $request->id;
 
-        if($request->ajax()){
-           /* $datast = rel__contratovsprocedimientos::orderBy('id', 'asc')
+        if ($request->ajax()) {
+            /* $datast = rel__contratovsprocedimientos::orderBy('id', 'asc')
            ->where('procedimiento_id', "=", $idlist)->get(); */
             $datast = DB::table('rel__contratovsprocedimientos')
-            ->Join('def__contratos', 'rel__contratovsprocedimientos.contrato_id', '=', 'def__contratos.id_contrato')
-            ->Join('def__procedimientos', 'rel__contratovsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
-            ->select('rel__contratovsprocedimientos.id_contratovsprocedimiento as idd','def__contratos.contrato as contrato', 'def__contratos.nombre as nombre','rel__contratovsprocedimientos.valor as precio',
-                    'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
-            ->where('rel__contratovsprocedimientos.procedimiento_id', '=', $idlist )
-            ->get();
-          
-        return  DataTables()->of($datast)
-        ->addColumn('actionpt', function($datast){
-        $button = '<button type="button" name="eliminarco" id="'.$datast->idd.'"
+                ->Join('def__contratos', 'rel__contratovsprocedimientos.contrato_id', '=', 'def__contratos.id_contrato')
+                ->Join('def__procedimientos', 'rel__contratovsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
+                ->select(
+                    'rel__contratovsprocedimientos.id_contratovsprocedimiento as idd',
+                    'def__contratos.contrato as contrato',
+                    'def__contratos.nombre as nombre',
+                    'rel__contratovsprocedimientos.valor as precio',
+                    'def__procedimientos.cod_cups as cups',
+                    'def__procedimientos.nombre as Procedimiento'
+                )
+                ->where('rel__contratovsprocedimientos.procedimiento_id', '=', $idlist)
+                ->get();
+
+            return  DataTables()->of($datast)
+                ->addColumn('actionpt', function ($datast) {
+                    $button = '<button type="button" name="eliminarco" id="' . $datast->idd . '"
         class = "eliminarco btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>';
-               
-        return $button;
 
-        }) 
-        ->rawColumns(['actionpt'])
-        ->make(true);
-        
-     }
+                    return $button;
+                })
+                ->rawColumns(['actionpt'])
+                ->make(true);
+        }
 
-     
-      /* return view('admin.financiero.procedimientos.index', compact('datast')); */
-      return view('admin.financiero.procedimientos.index');
+
+        /* return view('admin.financiero.procedimientos.index', compact('datast')); */
+        return view('admin.financiero.procedimientos.index');
     }
 
     public function indexProce(Request $request)
@@ -53,34 +57,38 @@ class RelContratovsprocedimientosController extends Controller
         $usuario_id = $request->session()->get('usuario_id');
         $idlist = $request->id;
 
-        if($request->ajax()){
+        if ($request->ajax()) {
             /* $datast = rel__contratovsprocedimientos::orderBy('id', 'asc')
             ->where('procedimiento_id', "=", $idlist)->get(); */
-             $datast = DB::table('rel__contratovsprocedimientos')
-             ->Join('def__contratos', 'rel__contratovsprocedimientos.contrato_id', '=', 'def__contratos.id_contrato')
-             ->Join('def__procedimientos', 'rel__contratovsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
-             ->select('rel__contratovsprocedimientos.id_contratovsprocedimiento as idd','def__contratos.contrato as contrato', 'def__contratos.nombre as nombre','rel__contratovsprocedimientos.valor as precio',
-                     'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
-             ->where('rel__contratovsprocedimientos.contrato_id', '=', $idlist )
-             ->get();
-           
-         return  DataTables()->of($datast)
-         ->addColumn('actioncp', function($datast){
-         $button = '<button type="button" name="eliminarcp" id="'.$datast->idd.'"
-         class = "eliminarcp btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>'. 
-         '<button type="button" name="editp" id="'.$datast->idd.'" class = "editp btn-float  bg-gradient-info btn-sm tooltipsC"  title="Editar Item"><i class=""><i class="fa fa-edit"></i></i></a>';
-                
-         return $button;
- 
-         })
-         ->rawColumns(['actioncp'])
-         ->make(true);
-         
-      } 
+            $datast = DB::table('rel__contratovsprocedimientos')
+                ->Join('def__contratos', 'rel__contratovsprocedimientos.contrato_id', '=', 'def__contratos.id_contrato')
+                ->Join('def__procedimientos', 'rel__contratovsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
+                ->select(
+                    'rel__contratovsprocedimientos.id_contratovsprocedimiento as idd',
+                    'def__contratos.contrato as contrato',
+                    'def__contratos.nombre as nombre',
+                    'rel__contratovsprocedimientos.valor as precio',
+                    'def__procedimientos.cod_cups as cups',
+                    'def__procedimientos.nombre as Procedimiento'
+                )
+                ->where('rel__contratovsprocedimientos.contrato_id', '=', $idlist)
+                ->get();
 
-     
-      /* return view('admin.financiero.procedimientos.index', compact('datast')); */
-      return view('admin.financiero.contratos.index');
+            return  DataTables()->of($datast)
+                ->addColumn('actioncp', function ($datast) {
+                    $button = '<button type="button" name="eliminarcp" id="' . $datast->idd . '"
+         class = "eliminarcp btn-float  bg-gradient-danger btn-sm tooltipsC"  title="Eliminar Relación"><i class=""><i class="fa fa-trash"></i></i></a>' .
+                        '<button type="button" name="editp" id="' . $datast->idd . '" class = "editp btn-float  bg-gradient-info btn-sm tooltipsC"  title="Editar Item"><i class=""><i class="fa fa-edit"></i></i></a>';
+
+                    return $button;
+                })
+                ->rawColumns(['actioncp'])
+                ->make(true);
+        }
+
+
+        /* return view('admin.financiero.procedimientos.index', compact('datast')); */
+        return view('admin.financiero.contratos.index');
     }
 
     /**
@@ -96,6 +104,11 @@ class RelContratovsprocedimientosController extends Controller
 
             foreach ($idps as $idp) {
 
+                // Obtiene el valor_particular desde def__procedimientos
+                $valor_particular = DB::table('def__procedimientos')
+                    ->where('id_cups', $idp)
+                    ->value('valor_particular');
+
                 $count = DB::table('rel__contratovsprocedimientos')->where([
                     ['procedimiento_id',  $idp],
                     ['contrato_id', $request->contrato_id]
@@ -103,25 +116,27 @@ class RelContratovsprocedimientosController extends Controller
 
                 if ($count > 0) {
                     DB::table('rel__contratovsprocedimientos')
-                   ->where([
-                    ['procedimiento_id',  $idp],
-                    ['contrato_id', $request->contrato_id]
-                    ])->update(
-                        [
-                            'procedimiento_id' => $idp,
-                            'contrato_id' => $request->contrato_id
+                        ->where([
+                            ['procedimiento_id',  $idp],
+                            ['contrato_id', $request->contrato_id]
+                        ])->update(
+                            [
+                                'procedimiento_id' => $idp,
+                                'valor' => $valor_particular,
+                                'contrato_id' => $request->contrato_id
 
-                        ]
-                    );
-                }else{
-                DB::table('rel__contratovsprocedimientos')
-                    ->insert(
-                        [
-                            'procedimiento_id' => $idp,
-                            'contrato_id' => $request->contrato_id
+                            ]
+                        );
+                } else {
+                    DB::table('rel__contratovsprocedimientos')
+                        ->insert(
+                            [
+                                'procedimiento_id' => $idp,
+                                'valor' => $valor_particular,
+                                'contrato_id' => $request->contrato_id
 
-                        ]
-                    );
+                            ]
+                        );
                 }
             }
 
@@ -151,7 +166,7 @@ class RelContratovsprocedimientosController extends Controller
                             [
                                 'contrato_id' => $idp,
                                 'procedimiento_id' => $request->procedimiento_id
-    
+
                             ]
                         );
                 } else {
@@ -178,12 +193,18 @@ class RelContratovsprocedimientosController extends Controller
 
             // $data = rel__contratovsprocedimientos::where('id_contratovsprocedimiento', $id)->first();
             $data = DB::table('rel__contratovsprocedimientos')
-             ->Join('def__contratos', 'rel__contratovsprocedimientos.contrato_id', '=', 'def__contratos.id_contrato')
-             ->Join('def__procedimientos', 'rel__contratovsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
-             ->select('rel__contratovsprocedimientos.id_contratovsprocedimiento as idd','def__contratos.contrato as contrato', 'def__contratos.nombre as nombre_c','rel__contratovsprocedimientos.valor as precio',
-                     'def__procedimientos.cod_cups as cups','def__procedimientos.nombre as Procedimiento')
-             ->where('rel__contratovsprocedimientos.id_contratovsprocedimiento', '=', $id )
-             ->first();
+                ->Join('def__contratos', 'rel__contratovsprocedimientos.contrato_id', '=', 'def__contratos.id_contrato')
+                ->Join('def__procedimientos', 'rel__contratovsprocedimientos.procedimiento_id', '=', 'def__procedimientos.id_cups')
+                ->select(
+                    'rel__contratovsprocedimientos.id_contratovsprocedimiento as idd',
+                    'def__contratos.contrato as contrato',
+                    'def__contratos.nombre as nombre_c',
+                    'rel__contratovsprocedimientos.valor as precio',
+                    'def__procedimientos.cod_cups as cups',
+                    'def__procedimientos.nombre as Procedimiento'
+                )
+                ->where('rel__contratovsprocedimientos.id_contratovsprocedimiento', '=', $id)
+                ->first();
 
             return response()->json(['result' => $data]);
         }
@@ -193,7 +214,7 @@ class RelContratovsprocedimientosController extends Controller
     public function actualizar(Request $request, $id)
     {
         $rules = array(
-            
+
             'valor'  => 'required'
         );
 
@@ -220,15 +241,15 @@ class RelContratovsprocedimientosController extends Controller
      */
     public function eliminar(Request $request, $id)
     {
-        if($request->ajax()){
- 
+        if ($request->ajax()) {
+
             // rel__contratovsprocedimientos::where('id_contratovsprocedimiento', $id)->delete();
 
             $datasp = DB::table('rel__contratovsprocedimientos')
-            ->where('id_contratovsprocedimiento', '=', $id )
-            ->delete();
+                ->where('id_contratovsprocedimiento', '=', $id)
+                ->delete();
 
-        return response()->json(['success' => 'ok9']);
+            return response()->json(['success' => 'ok9']);
         }
     }
 }
