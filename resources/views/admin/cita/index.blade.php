@@ -125,6 +125,37 @@
     <script>
         $(document).ready(function() {
 
+
+// 
+
+  $("#estado_cita").select2({
+      theme: "bootstrap",
+      placeholder: 'estado cita',
+      ajax: {
+        url: "{{ route('selectlist')}}",
+        dataType: 'json',
+        delay: 250,
+        processResults: function(data) {
+          return {
+            results: $.map(data.type, function(data) {
+
+              return {
+
+                text: data.nombre,
+                id: data.nombre
+
+              }
+            })
+          };
+        },
+        cache: true
+      }
+    });
+
+ 
+
+
+
             // variables globales
             var fechaini = '';
             var fechafin = '';

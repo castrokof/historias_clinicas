@@ -12,7 +12,7 @@ class LoginController extends Controller
     //use Notifiable;
     use AuthenticatesUsers;
     
-    protected $redirectTo = '/paciente-pro';
+    protected $redirectTo = '/profesionales';
 
     public function __construct()
     {

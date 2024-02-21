@@ -167,7 +167,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-        
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         
 
 
@@ -240,6 +240,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class
             
     ],
 

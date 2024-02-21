@@ -132,6 +132,13 @@ class ListasDetalleController extends Controller
                 ->where('nombre', 'LIKE', '%' . $term . '%')
                 ->get();
 
+                $type = ListasDetalle::orderBy('id')->where([
+                    ['listas_id', 5],
+                    ['activo', 'SI'],
+                ])
+                    ->where('nombre', 'LIKE', '%' . $term . '%')
+                    ->get();    
+
 
             return response()->json(['regimen' => $regimen, 'type' => $type]);
         } else {
@@ -148,6 +155,13 @@ class ListasDetalleController extends Controller
                 ['activo', 'SI'],
             ])
                 ->get();
+
+
+                $type = ListasDetalle::orderBy('id')->where([
+                    ['listas_id', 5],
+                    ['activo', 'SI'],
+                ])
+                    ->get();
 
             return response()->json(['regimen' => $regimen, 'type' => $type]);
         }

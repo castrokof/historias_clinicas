@@ -64,6 +64,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
      Route::get('permiso-rol', 'PermisoRolController@index')->name('permiso_rol');
      Route::post('permiso-rol', 'PermisoRolController@guardar')->name('guardar_permiso_rol');
 
+     Route::resource('post', 'PostsController');
 
 
 });
