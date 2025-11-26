@@ -12,65 +12,71 @@ class UsuarioAdministradorSeeder extends Seeder
      */
     public function run()
     {
-       DB::table('usuario')->insert([
-            'papellido'=>strtoupper('Castro'),
-            'sapellido'=>strtoupper('Galeano'),
-            'pnombre'=>strtoupper('Jhonnathan'),
+       // Usuario Administrador de ejemplo
+        // IMPORTANTE: Cambiar estos datos en producción y usar contraseñas seguras
+        DB::table('usuario')->insert([
+            'papellido'=>strtoupper('Admin'),
+            'sapellido'=>strtoupper('Sistema'),
+            'pnombre'=>strtoupper('Usuario'),
             'snombre'=>null,
             'tipo_documento'=>strtoupper('CC'),
-            'documento'=>'1130629762',
-            'usuario'=>'jcastro',
-            'password'=>bcrypt('123456'),
-            'remenber_token'=>bcrypt('123456'),
-            'email'=>'castrokof@gmail.com',
-            'cod_retus'=>'0123',
-            'celular'=>'3175018125',
-            'telefono'=>'3062047',
+            'documento'=>'1000000001',
+            'usuario'=>'admin',
+            'password'=>bcrypt(env('ADMIN_DEFAULT_PASSWORD', 'ChangeMe2024!')),
+            'remenber_token'=>bcrypt(env('ADMIN_DEFAULT_PASSWORD', 'ChangeMe2024!')),
+            'email'=>'admin@example.com',
+            'cod_retus'=>'0001',
+            'celular'=>'3001234567',
+            'telefono'=>'6012345678',
             'profesion'=>strtoupper('ingeniero'),
             'area'=>strtoupper('sistemas'),
-            'observacion'=>strtoupper('Prueba'),
+            'observacion'=>strtoupper('Usuario administrador del sistema'),
             // 'ips'=>strtoupper('atencion fidem s.a.s'),
             'activo'=>'1'
             ]);
 
+            // Usuario Desarrollador de ejemplo
+            // IMPORTANTE: Cambiar estos datos en producción
             DB::table('usuario')->insert([
-                'papellido'=>strtoupper('Bejarano'),
-                'sapellido'=>strtoupper('Barbosa'),
-                'pnombre'=>strtoupper('Carlos'),
+                'papellido'=>strtoupper('Desarrollo'),
+                'sapellido'=>strtoupper('Sistemas'),
+                'pnombre'=>strtoupper('Usuario'),
                 'snombre'=>null,
                 'tipo_documento'=>strtoupper('CC'),
-                'documento'=>'1130639211',
-                'usuario'=>'cbejarano',
-                'password'=>bcrypt('123456'),
-                'remenber_token'=>bcrypt('123456'),
-                'email'=>'pruebas@gmail.com',
-                'cod_retus'=>'0123',
-                'celular'=>'12352623528',
-                'telefono'=>'30253689',
+                'documento'=>'1000000002',
+                'usuario'=>'desarrollador',
+                'password'=>bcrypt(env('DEV_DEFAULT_PASSWORD', 'ChangeMe2024!')),
+                'remenber_token'=>bcrypt(env('DEV_DEFAULT_PASSWORD', 'ChangeMe2024!')),
+                'email'=>'dev@example.com',
+                'cod_retus'=>'0002',
+                'celular'=>'3009876543',
+                'telefono'=>'6019876543',
                 'profesion'=>strtoupper('Full Stack Developer'),
-                'area'=>strtoupper('Full Stack Developer'),
-                'observacion'=>strtoupper('Prueba'),
+                'area'=>strtoupper('Desarrollo de Software'),
+                'observacion'=>strtoupper('Usuario de desarrollo y pruebas'),
                 // 'ips'=>strtoupper('salud vitalia s.a.s'),
                 'activo'=>'1'
                 ]);
 
+                // Usuario Médico de ejemplo
+                // IMPORTANTE: Cambiar estos datos en producción
                 DB::table('usuario')->insert([
-                    'papellido'=>strtoupper('Pinillos'),
-                    'sapellido'=>strtoupper('Pedroza'),
-                    'pnombre'=>strtoupper('Nathalia'),
+                    'papellido'=>strtoupper('Garcia'),
+                    'sapellido'=>strtoupper('Lopez'),
+                    'pnombre'=>strtoupper('Maria'),
                     'snombre'=>null,
                     'tipo_documento'=>strtoupper('CC'),
-                    'documento'=>'1143857667',
-                    'usuario'=>'npinillos',
-                    'password'=>bcrypt('123456'),
-                    'remenber_token'=>bcrypt('123456'),
-                    'email'=>'pinillos_dra@gmail.com',
-                    'cod_retus'=>'0123',
-                    'celular'=>'12352623528',
-                    'telefono'=>'30253689',
+                    'documento'=>'1000000003',
+                    'usuario'=>'medico',
+                    'password'=>bcrypt(env('MEDIC_DEFAULT_PASSWORD', 'ChangeMe2024!')),
+                    'remenber_token'=>bcrypt(env('MEDIC_DEFAULT_PASSWORD', 'ChangeMe2024!')),
+                    'email'=>'medico@example.com',
+                    'cod_retus'=>'0003',
+                    'celular'=>'3005551234',
+                    'telefono'=>'6015551234',
                     'profesion'=>strtoupper('medico'),
-                    'area'=>strtoupper('dolor y cuidados paliativos'),
-                    'observacion'=>strtoupper('Prueba'),
+                    'area'=>strtoupper('medicina general'),
+                    'observacion'=>strtoupper('Usuario médico de prueba'),
                     // 'ips'=>strtoupper('salud vitalia s.a.s'),
                     'activo'=>'1'
                     ]);
