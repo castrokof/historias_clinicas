@@ -512,7 +512,7 @@ Este proyecto está bajo la Licencia MIT. Ver archivo `LICENSE` para más detall
 ## 👥 Soporte
 
 Para soporte técnico:
-- 📧 Email: soporte@tu-empresa.com
+- 📧 Email: castrokof@gmail.com
 - 🐛 Issues: https://github.com/castrokof/historias_clinicas/issues
 - 📚 Wiki: https://github.com/castrokof/historias_clinicas/wiki
 
