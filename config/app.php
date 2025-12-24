@@ -165,7 +165,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
+        // Intervention Image 3.x usa auto-discovery
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         
@@ -186,8 +186,8 @@ return [
         //App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-       
+        // RealRashid\SweetAlert usa auto-discovery
+
     ],
 
     /*

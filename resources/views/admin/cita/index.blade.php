@@ -81,58 +81,34 @@ Citas | Fidem
 <script>
     $(document).ready(function() {
 
-<<<<<<< HEAD
+        // Select2 para estado de cita
+        $("#estado_cita").select2({
+            theme: "bootstrap",
+            placeholder: 'estado cita',
+            ajax: {
+                url: "{{ route('selectlist')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data.type, function(data) {
+                            return {
+                                text: data.nombre,
+                                id: data.nombre
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
 
-// 
-
-  $("#estado_cita").select2({
-      theme: "bootstrap",
-      placeholder: 'estado cita',
-      ajax: {
-        url: "{{ route('selectlist')}}",
-        dataType: 'json',
-        delay: 250,
-        processResults: function(data) {
-          return {
-            results: $.map(data.type, function(data) {
-
-              return {
-
-                text: data.nombre,
-                id: data.nombre
-
-              }
-            })
-          };
-        },
-        cache: true
-      }
-    });
-
- 
-
-
-
-            // variables globales
-            var fechaini = '';
-            var fechafin = '';
-            var profesional = '';
-            //Select para consultar los Profesionales
-            $("#profesional_select").select2({
-                theme: "bootstrap",
-                ajax: {
-                    url: "{{ route('selectprofesional') }}",
-                    dataType: 'json',
-                    delay: 250,
-                    processResults: function(data) {
-                        return {
-                            results: $.map(data, function(data) {
-=======
         // variables globales
         var fechaini = '';
         var fechafin = '';
         var profesional = '';
         var status = '';
+
         //Select para consultar los Profesionales
         $("#profesional_select").select2({
             theme: "bootstrap",
@@ -143,13 +119,9 @@ Citas | Fidem
                 processResults: function(data) {
                     return {
                         results: $.map(data, function(data) {
->>>>>>> 4d967155170938f7bdf79f36c6d3cbb48b7bfa0d
-
                             return {
-
                                 text: data.nombre,
                                 id: data.id_profesional
-
                             }
                         })
                     };

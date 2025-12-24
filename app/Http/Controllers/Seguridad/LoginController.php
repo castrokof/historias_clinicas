@@ -11,13 +11,8 @@ class LoginController extends Controller
 {
     //use Notifiable;
     use AuthenticatesUsers;
-<<<<<<< HEAD
-    
-    protected $redirectTo = '/profesionales';
-=======
 
     protected $redirectTo = '/facturacion';
->>>>>>> 4d967155170938f7bdf79f36c6d3cbb48b7bfa0d
 
     public function __construct()
     {
