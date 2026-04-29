@@ -3,22 +3,24 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PermisoConsultor
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        if ((session()->get('rol_nombre') == ('empresa')) || (session()->get('rol_nombre') == ('empleado')) || (session()->get('rol_nombre') == ('administrador')))
-        return $next($request);
+        $rol = session()->get('rol_nombre');
+
+        if (in_array($rol, ['administrador', 'empresa', 'empleado'])) {
+            return $next($request);
+        }
+
         return redirect('/tablero')->with('mensaje', 'No tiene permiso para entrar aqui');
     }
-
-   
 }

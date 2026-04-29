@@ -3,21 +3,24 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PermisoEditor
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        if ((session()->get('rol_nombre') == ('administrador')) || (session()->get('rol_nombre') == ('empresa')))
-        return $next($request);
-        
+        $rol = session()->get('rol_nombre');
+
+        if (in_array($rol, ['administrador', 'empresa'])) {
+            return $next($request);
+        }
+
         return redirect('/tablero')->with('mensaje', 'No tienes autorización para realizar esta acción.');
     }
 }

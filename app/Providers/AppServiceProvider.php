@@ -10,28 +10,23 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        view::composer("theme.lte.aside", function($view){
+        View::composer("theme.lte.aside", function($view){
             $menus = Menu::getMenu(true);
             $view->with('menusComposer',$menus);
         });
 
-        View::share('theme', 'lte');    
+        View::share('theme', 'lte');
     }
 
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
-      
-
-     }
+        //
+    }
     
 }
