@@ -2,6 +2,12 @@
 
 Sistema completo de gestión de historias clínicas para instituciones prestadoras de servicios de salud (IPS), desarrollado con Laravel 11.
 
+## 📚 Guías de Documentación
+
+- 📖 **[INICIO_LOCAL.md](INICIO_LOCAL.md)** - Guía completa para iniciar la aplicación en desarrollo local
+- 🪟 **[SOLUCION_WINDOWS_XAMPP.md](SOLUCION_WINDOWS_XAMPP.md)** - Solución para problemas de PHP en Windows/XAMPP
+- 🚀 **[DEPLOYMENT.md](DEPLOYMENT.md)** - Guía completa de deployment a producción
+
 ## 📋 Tabla de Contenidos
 
 - [Características](#características)
@@ -91,6 +97,11 @@ npm --version             # Verificar NPM
 ```
 
 ## 📦 Instalación
+
+> 💡 **Guías Detalladas Disponibles:**
+> - Para desarrollo local: Ver **[INICIO_LOCAL.md](INICIO_LOCAL.md)**
+> - Para Windows/XAMPP: Ver **[SOLUCION_WINDOWS_XAMPP.md](SOLUCION_WINDOWS_XAMPP.md)**
+> - Para producción: Ver **[DEPLOYMENT.md](DEPLOYMENT.md)**
 
 ### 1. Clonar el Repositorio
 ```bash
@@ -280,6 +291,8 @@ sudo certbot --apache -d tu-dominio.com -d www.tu-dominio.com
 - Diagnósticos (CIE-10)
 
 ## 🚀 Despliegue a Producción
+
+> 📖 **Para una guía completa y detallada de deployment, consulta: [DEPLOYMENT.md](DEPLOYMENT.md)**
 
 ### Checklist Pre-Despliegue
 
